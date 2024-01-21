@@ -13,10 +13,8 @@ function App() {
 
       <Routes>
 
-        <Route path="/" element={Auth(LandingPage, null)} />
+        <Route path="/" element={<RegisterPage/>} />
 
-        <Route path="/login" element = {Auth(LoginPage, false)}/>
-        <Route path="/register" element = {Auth(RegisterPage, false)}/>
 
       </Routes>
 

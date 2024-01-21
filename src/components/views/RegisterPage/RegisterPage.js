@@ -11,6 +11,10 @@ function RegisterPage() {
   const [Name,setName] = useState("")
   const [ConfirmPassword,setConfirmPassword] = useState("")
 
+  const [EmailCode,setEmailCode] = useState("")//이메일 인증번호
+  const [DuplicateEmail,setDuplicateEmail] = useState("")//이메일중복
+  const [DuplicateUsername,setDuplicateUsername] = useState("")//닉네임중복
+
   const navigate = useNavigate();
 
   const onEmailHandler = (e) =>{
@@ -25,6 +29,9 @@ function RegisterPage() {
 const onConfirmPasswordHandler = (e) => {
     setConfirmPassword(e.currentTarget.value)
  }
+ const onEmailCodeHandler = (e) => {
+    setEmailCode(e.currentTarget.value)
+ }
 
 
 
@@ -35,6 +42,7 @@ const onConfirmPasswordHandler = (e) => {
         return alert('비밀번호와 비밀번호 확인은 같아야 합니다.')
       }//틀리면 아래 진입 불가
     
+      /*이메일인증코드 틀리면 아래 진입 불가 */
 
       let body = {
           email: Email,
@@ -62,15 +70,24 @@ const onConfirmPasswordHandler = (e) => {
       onSubmit={onSubmitHandler}>
           <label>Email</label>
           <input type="email" value={Email} onChange={onEmailHandler} />
+          <label>Duplicate Email</label>
+          <input type="button" value={Email} onChange={onEmailHandler} />
 
           <label>Name</label>
           <input type="text" value={Name} onChange={onNameHandler}/>
+          <label>Duplicate Name</label>
+          <input type="button" value={Name} onChange={onNameHandler} />
 
           <label>Password</label>
           <input type="password" value={Password} onChange={onPasswordHandler}/>
 
           <label>Comfirm Password</label>
           <input type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler}/>
+
+          <label>Email Code</label>
+          <input type="text" value={EmailCode} onChange={onEmailCodeHandler}/>
+          <label>Email Code button</label>
+          <input type="button" value={EmailCode} onChange={onEmailCodeHandler}/>
 
           <br/>
           <button type="submit">
