@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 function LandingPage() {
     //landing page에 들어오자마자 아래를 실행
+    /*
     useEffect(()=> {
         axios.get('/api/hello')
         .then(response => console.log(response.data))
@@ -22,13 +23,14 @@ function LandingPage() {
         alert('로그아웃 못함')
       })
     }
+    */
 
   return (
     <div style={{height:'100vh', width:'100%', backgroundColor:"pink",
     display:'flex', justifyContent:'center', alignItems:'center'}}>
         LandingPage.입니다용
 
-        <button onClick={onClickHandler}>
+        <button >
           로그아웃
           </button>
     </div>

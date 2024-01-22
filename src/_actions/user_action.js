@@ -20,11 +20,11 @@ export function loginUser(dataTosubmit){
 
 export function registerUser(dataTosubmit){
     
-    const request = axios.post('/api/users/register', dataTosubmit)
+    const request = axios.post('/join', dataTosubmit)
     .then(response => response.data)
     return{
         type: REGISTER_USER,
-        payload: request
+        payload: request//"회원가입완료"
     }
     
 }
