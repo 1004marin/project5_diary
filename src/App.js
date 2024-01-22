@@ -12,9 +12,12 @@ import Auth from './hoc/auth';
 
 function App() {
 
+
+
+
+
   return(
 
-    
 
         <Routes>
 

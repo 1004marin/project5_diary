@@ -23,6 +23,8 @@ function RegisterPage() {
 
   const [DuplicateEmail,setDuplicateEmail] = useState("")//이메일중복
   const [DuplicateUsername,setDuplicateUsername] = useState("")//닉네임중복
+  const [EmailDuplicate_notice,setEmailDuplicate_notice] = useState("")//이메일중복
+  const [NameDuplicate_notice,setNameDuplicate_notice] = useState("")//닉네임중복
 
 
   const navigate = useNavigate();
@@ -48,43 +50,56 @@ function RegisterPage() {
     const onDuplicateEmailHandler = (e) => {
 
         const jsonEmail = {"email": Email}
-        const emailCheck = axios.post('/join/checkDuplicateEmail', jsonEmail)
-        .then(response => response.data)
-        console.log(Email)
-        console.log(emailCheck)
+        axios.post('/join/checkDuplicateEmail', jsonEmail)
+        .then(response => {
+        const emailCheck = response.data;
+        //console.log(emailCheck)
 
-        if(emailCheck !== "사용 가능한 이메일"){
-            return alert('이메일안됨')
+        
+        if(emailCheck === "사용 가능한 이메일"){
+            setEmailDuplicate_notice("추카 이메일사용가능")
+            setDuplicateEmail("success")
         }
+        else return alert('이메일안됨')
+        })
      }
      const onDuplicateUserNameHandler = (e) => {
-        const usernameCheck = axios.post('/join/checkDuplicateUsername', Name)
-        .then(response => response.data)
-        console.log(Name)
+        const jsonName = {"nickname" : Name}
 
-        if(usernameCheck !== '사용 가능한 닉네임'){
-            return alert('중복된 닉네임입니당')
-        }
-        setDuplicateUsername("success")
+        axios.post('/join/checkDuplicateUsername', jsonName)
+        .then(response => {
+            const nameCheck = response.data
+
+            if(nameCheck === '사용 가능한 닉네임'){
+                setNameDuplicate_notice("추카 사용가능네임임")
+                setDuplicateUsername("success")
+            }
+            else return alert('닉네임안됨')
+        })
+        //console.log(Name)
+
+
      }
+
+
      //이메일인증
      const onEmailCodeHandler = (e) => {
         setEmailCode(e.currentTarget.value)
-        console.log(EmailCode)
     }
-    let Realcode = ""
-    const onEmailCode_SendHandler = (e) => {
+    let Realcode;
+    const onEmailCode_SendHandler = async(e) => {
         if(Email === ""){
             alert("이메일이나쓰삼")
         }
-        const sendEmail = {
-            email: Email
+        else{
+        const jsonSendEmail = {email: Email}
+
+            setEmailCode_notice("전송햇으니까 확인해서입력ㄱ")
+            const Realcode = await axios.post('/join/mail', jsonSendEmail)
+            .then(response => response.data)
         }
-        setEmailCode_notice("전송햇으니까 확인해서입력ㄱ")
-        Realcode = axios.post('/join/mail', sendEmail)
-        .then(response => response.data)
-        console.log(Realcode)
-    }
+        }
+
     const onEmailCode_CheckHandler = (e) => {
         if(EmailCode === ""){//입력 안했을때
             return alert("인증번호를 입력하세요")
@@ -126,8 +141,7 @@ function RegisterPage() {
             }
         })
       }
-      else
-        return alert("정보다체크해")
+      else(alert("다채운거맞아?>"))
   }
 
   return (//form과 button에 모두 submit주는 이유는, and design때매!
@@ -139,11 +153,13 @@ function RegisterPage() {
       onSubmit={onSubmitHandler}>
           <label>Email</label>
           <input type="email" value={Email} onChange={onEmailHandler} />
-          <button onClick={onDuplicateEmailHandler}>이메일중복임?</button>
+          <button type="button"onClick={onDuplicateEmailHandler}>이메일중복임?</button>
+          <div>{EmailDuplicate_notice}</div>
 
           <label>nickName</label>
           <input type="text" value={Name} onChange={onNameHandler}/>
-          <button onClick={onDuplicateUserNameHandler}>닉네임중복임?</button>
+          <button type="button"onClick={onDuplicateUserNameHandler}>닉네임중복임?</button>
+          <div>{NameDuplicate_notice}</div>
 
           <label>Password</label>
           <input type="password" value={Password} onChange={onPasswordHandler}/>
@@ -156,8 +172,8 @@ function RegisterPage() {
 
           <label>Email Code</label>
           <input type="text" value={EmailCode} onChange={onEmailCodeHandler}/>
-          <button onClick={onEmailCode_SendHandler}>인증번호 전송할게용</button>
-          <button onClick={onEmailCode_CheckHandler}>인증번호 맞노체크</button>
+          <button type="button"onClick={onEmailCode_SendHandler}>인증번호 전송할게용</button>
+          <button type="button"onClick={onEmailCode_CheckHandler}>인증번호 맞노체크</button>
           <div>{EmailCode_notice}</div>
 
           <br/>
