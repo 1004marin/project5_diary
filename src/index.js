@@ -5,7 +5,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
-import "antd/dist/antd.js";//전역으로 넣어주기
+//import "antd/dist/antd.js";//전역으로 넣어주기
 
 
 import { Provider } from 'react-redux';

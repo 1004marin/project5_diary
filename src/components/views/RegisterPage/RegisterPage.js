@@ -11,13 +11,14 @@ function RegisterPage() {
   const [Email, setEmail] = useState("")
   const [Password,setPassword] = useState("")
   const [Name,setName] = useState("")
-  const [UserName,setUserName] = useState("")
+
 
   const [ConfirmPassword,setConfirmPassword] = useState("")
 
   const [EmailCode,setEmailCode] = useState("")//이메일 인증번호
   let [EmailCode_notice, setEmailCode_notice] = useState("")
-  const [EmailCode_Send, setEmailCode_Send] = useState("")
+  let [EmailCodeCheck_notice, setEmailCodeCheck_notice] = useState("")
+  const [Realcode, setRealcode] = useState("")
   const [EmailCode_Check, setEmailCode_Check] = useState("")
 
 
@@ -35,9 +36,7 @@ function RegisterPage() {
   const onNameHandler = (e) => {
     setName(e.currentTarget.value)
   }
-  const onUserNameHandler = (e) => {
-    setUserName(e.currentTarget.value)
-  }
+
   const onPasswordHandler = (e) => {
      setPassword(e.currentTarget.value)
   }
@@ -46,14 +45,16 @@ function RegisterPage() {
     }
 
 
-    //중복체크
+    //이메일중복체크
     const onDuplicateEmailHandler = (e) => {
-
+        if(Email === ""){
+            alert("이메일입력해")
+            return;//탈출
+        }
         const jsonEmail = {"email": Email}
         axios.post('/join/checkDuplicateEmail', jsonEmail)
         .then(response => {
         const emailCheck = response.data;
-        //console.log(emailCheck)
 
         
         if(emailCheck === "사용 가능한 이메일"){
@@ -63,14 +64,19 @@ function RegisterPage() {
         else return alert('이메일안됨')
         })
      }
+     //닉네임중복체크
      const onDuplicateUserNameHandler = (e) => {
-        const jsonName = {"nickname" : Name}
+        if(Name === ""){
+            alert("닉네임을 입력하세용")
+            return;//탈출
+        }
+        const jsonName = {"username" : Name}
 
         axios.post('/join/checkDuplicateUsername', jsonName)
         .then(response => {
-            const nameCheck = response.data
-
-            if(nameCheck === '사용 가능한 닉네임'){
+            const nameCheck = response.data;
+            console.log(nameCheck)
+            if(nameCheck === '사용 가능한 이름'){
                 setNameDuplicate_notice("추카 사용가능네임임")
                 setDuplicateUsername("success")
             }
@@ -86,7 +92,6 @@ function RegisterPage() {
      const onEmailCodeHandler = (e) => {
         setEmailCode(e.currentTarget.value)
     }
-    let Realcode;
     const onEmailCode_SendHandler = async(e) => {
         if(Email === ""){
             alert("이메일이나쓰삼")
@@ -95,18 +100,23 @@ function RegisterPage() {
         const jsonSendEmail = {email: Email}
 
             setEmailCode_notice("전송햇으니까 확인해서입력ㄱ")
-            const Realcode = await axios.post('/join/mail', jsonSendEmail)
-            .then(response => response.data)
+            const codeResponse = await axios.post('/join/mail', jsonSendEmail)
+            setRealcode(codeResponse.data)
+            console.log(Realcode)
         }
         }
 
-    const onEmailCode_CheckHandler = (e) => {
+    const onEmailCode_CheckHandler = () => {
+        console.log(Realcode)
         if(EmailCode === ""){//입력 안했을때
             return alert("인증번호를 입력하세요")
         }
         if(EmailCode === Realcode){
-            setEmailCode_notice("인증번호 일치하긔")
+            setEmailCodeCheck_notice("인증번호 일치하긔")
             setEmailCode_Check("success")
+        }
+        else{
+            return setEmailCode_notice("인증번호를 다시 체크해주세요")
         }
     }
 
@@ -125,15 +135,15 @@ function RegisterPage() {
       if(EmailCode_Check && DuplicateUsername && DuplicateEmail === "success" ){
         let body = {
             password: Password,
-            nickname: Name,
+            username: Name,
             email: Email,
-            passwordCheck: ConfirmPassword,
-            username: UserName
+            passwordCheck: ConfirmPassword
         }
   
         dispatch(registerUser(body))
         .then(response => {
-            if(response.payload === '회원가입완료'){
+            console.log(response.payload)
+            if(response.payload === '회원 가입 완료'){
                 navigate('/home')
                 console.log('회원가입성공땨')
             } else{
@@ -167,14 +177,12 @@ function RegisterPage() {
           <label>Comfirm Password</label>
           <input type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler}/>
 
-          <label>userName</label>
-          <input type="text" value={UserName} onChange={onUserNameHandler}/>
-
           <label>Email Code</label>
           <input type="text" value={EmailCode} onChange={onEmailCodeHandler}/>
           <button type="button"onClick={onEmailCode_SendHandler}>인증번호 전송할게용</button>
           <button type="button"onClick={onEmailCode_CheckHandler}>인증번호 맞노체크</button>
           <div>{EmailCode_notice}</div>
+          <div>{EmailCodeCheck_notice}</div>
 
           <br/>
           <button type="submit">
