@@ -3,7 +3,8 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { loginUser } from '../../../_actions/user_action';
+import { LoginUser } from '../../../_actions/user_action';
+import axios from 'axios';
 
 
 function LoginPage() {
@@ -20,16 +21,18 @@ function LoginPage() {
     }
     const onSubmitHandler = (e) =>{
         e.preventDefault()
-
+        if(Email || Password === ""){
+            alert("아이디와 비밀번호를 입력해주세요")
+        }
         let body = {
             email: Email,
-            Password: Password
+            password: Password
         }
 
-        dispatch(loginUser(body))//loginUser라는 action
+        dispatch(LoginUser(body))//loginUser라는 action
         .then(response => {
-            if(response.payload.loginSucess){
-                navigate('/')
+            if(response.payload.status === 200){
+                navigate('/home')
             } else{
                 alert('에러에용')
             }
