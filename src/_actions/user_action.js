@@ -1,26 +1,29 @@
 import axios from "axios";
 import { LOGIN_USER, REGISTER_USER, AUTH_USER } from "./types"
-import { useState } from "react";
 
 
-export function LoginUser(dataTosubmit){
-
-
-    axios.post('/login', dataTosubmit)
-    .then(response => {
-        const token = response.headers.authorization; // 헤더에서 토큰 추출
-
+export const loginUser = (dataTosubmit) => {
+    return async (dispatch) => {
+      try {
+        const response = await axios.post('/login', dataTosubmit);
+        const token = response.headers.authorization;
+  
         if (token) {
-            axios.defaults.headers.common['Authorization'] = token; // Axios 기본 헤더에 토큰 설정
+          axios.defaults.headers.common['Authorization'] = token;
         }
-
-        return {//user_action reducer로 보내기
-            type: LOGIN_USER,//type +
-            payload: response.data// response data. 즉 backend가 준 정보 넣어둠
-        }
-    }
-)
-}
+  
+        dispatch({
+          type: 'LOGIN_USER',
+          payload: response
+        });
+  
+        return response; // 추가로 onSubmitHandler에서 처리하기 위해 전체 응답을 반환합니다.
+      } catch (error) {
+        console.error('Async Action Error:', error);
+        throw error; // 추가로 onSubmitHandler에서 처리하기 위해 에러를 다시 던집니다.
+      }
+    };
+  };
 
 
 export function registerUser(dataTosubmit){
