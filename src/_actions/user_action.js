@@ -6,24 +6,20 @@ import { useState } from "react";
 export function LoginUser(dataTosubmit){
 
 
-    const request = axios.post('/login', dataTosubmit)
-    .then(response => response.data
-        
+    axios.post('/login', dataTosubmit)
+    .then(response => {
+        const token = response.headers.authorization; // 헤더에서 토큰 추출
 
+        if (token) {
+            axios.defaults.headers.common['Authorization'] = token; // Axios 기본 헤더에 토큰 설정
+        }
 
-             // 예를 들어, Redux 액션을 디스패치하여 저장할 수 있습니다.
-            // dispatch(saveTokenAction(token));
-        )
         return {//user_action reducer로 보내기
             type: LOGIN_USER,//type +
-            payload: request// response data. 즉 backend가 준 정보 넣어둠
+            payload: response.data// response data. 즉 backend가 준 정보 넣어둠
         }
-    //1) 서버에서 받은 데이터를 request에 저장
-
-    //action은 type + response 형식
-    //2) reducer에 보내야 함. reducer에서 preState와 action을 조합해서 다음 state를 만들어줌
-
-    
+    }
+)
 }
 
 

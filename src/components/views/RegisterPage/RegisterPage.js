@@ -56,7 +56,7 @@ function RegisterPage() {
         .then(response => {
         const emailCheck = response.data;
 
-        
+        console.log(emailCheck)
         if(emailCheck === "사용 가능한 이메일"){
             setEmailDuplicate_notice("추카 이메일사용가능")
             setDuplicateEmail("success")
@@ -71,21 +71,34 @@ function RegisterPage() {
             return;//탈출
         }
         const jsonName = {"username" : Name}
+        console.log(Name)
 
         axios.post('/join/checkDuplicateUsername', jsonName)
         .then(response => {
-            const nameCheck = response.data;
-            console.log(nameCheck)
-            if(nameCheck === '사용 가능한 이름'){
-                setNameDuplicate_notice("추카 사용가능네임임")
+
+            const nameCheck = response.data; //데이터
+
+            if(response.status === 200){
+                console.log(nameCheck)
+                console.log(response.status)
+                console.log("이건 가능할때요")
                 setDuplicateUsername("success")
+                return;
             }
-            else return alert('닉네임안됨')
-        })
+            else { 
+                console.log(nameCheck)
+                console.log(response.status)
+                console.log("이건 불 가능할때요")
+                setDuplicateUsername("false")
+            }
+            }
+        )
+        .catch( err => {
+            console.log(err)
+        }
+        )
         //console.log(Name)
-
-
-     }
+    }
 
 
      //이메일인증

@@ -7,6 +7,7 @@ import LandingPage from './components/views/LandingPage/LandingPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import MyinfoPage from './components/views/MyinfoPage/MyinfoPage';
+import PasswordPage from './components/views/LoginPage/PasswordPage'
 import Auth from './hoc/auth';
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/home" element={<LandingPage/>}/>
         <Route path="/myinfo" element={<MyinfoPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/password" element={<PasswordPage/>}/>
  
  
        </Routes>

@@ -19,10 +19,17 @@ function LoginPage() {
     const onPasswordHandler = (e) =>{
         setPassword(e.currentTarget.value)
     }
+
     const onSubmitHandler = (e) =>{
         e.preventDefault()
-        if(Email || Password === ""){
-            alert("아이디와 비밀번호를 입력해주세요")
+        console.log(Email+Password)
+        if(Email === ""){
+            alert("아이디를 입력해주세요")
+            return;
+        }
+        if(Password === ""){
+            alert("비밀번호를 입력해주세요")
+            return;
         }
         let body = {
             email: Email,
@@ -31,6 +38,8 @@ function LoginPage() {
 
         dispatch(LoginUser(body))//loginUser라는 action
         .then(response => {
+
+            console(response.payload.status)
             if(response.payload.status === 200){
                 navigate('/home')
             } else{
@@ -44,13 +53,17 @@ function LoginPage() {
         justifyContent:'center', alignItems:'center'}
     }>
         <label>아이디</label>
-        <input type="email" value={Email} onChange={onEmailHandler}/>
+        <input type="text" value={Email} onChange={onEmailHandler}/>
         <label>비밀번호</label>
         <input type="password" value={Password} onChange={onPasswordHandler}/>
 
         <br/>
         <button type="submit">
             login
+        </button>
+
+        <button type="button">
+            비번을 잊으셨나요?/ 변경하실래요
         </button>
     </form>
 
