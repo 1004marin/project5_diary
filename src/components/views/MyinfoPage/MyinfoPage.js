@@ -13,14 +13,23 @@ const [Address, setAddress] = useState("")
 
 //내 정보 뿌리기
 axios.get('/api/v1/user/info').then(response => {
-  console.log(response.data)
+  
+  const token = response.headers.authorization;
+  
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = token;
+  }
 
+  console.log(response)
+  console.log(token)
+  /*
   setEmail(response.data.email)
   setUsername(response.data.username)
   setNickname(response.data.nickname)
   setBloodyType(response.data.bloodyType)
   setAddress(response.data.address)
   setMotto(response.data.motto)
+  */
 })
 
 const onNicknameHandler = (e) =>{

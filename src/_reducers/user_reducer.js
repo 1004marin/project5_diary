@@ -1,7 +1,18 @@
 import {LOGIN_USER, REGISTER_USER, AUTH_USER} from '../_actions/types';
+import axios from 'axios';
+const initialState = {
+    loginSucess: false,
+    register:null,
+    userData:null
+}
 
+// 로컬 스토리지에서 토큰을 가져와서 로그인 상태를 설정
+const storedToken = sessionStorage.getItem('token');
+if (storedToken) {
+  axios.defaults.headers.common['Authorization'] = storedToken;
+}
 //prevState + action을 가졌으니, nextState 돌려주기
-export default function (state={}, action) {
+export default function (state= initialState, action) {
     console.log('유저리듀서에용',action.payload)
     switch (action.type) {//why 스위치문법? action의 type이Login_user만은 아니니까 타입마다 다른 조치 취하기
         case LOGIN_USER:

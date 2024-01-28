@@ -10,10 +10,12 @@ export const loginUser = (dataTosubmit) => {
   
         if (token) {
           axios.defaults.headers.common['Authorization'] = token;
+          // loginUser 액션에서 토큰을 받아와서 localStorage에 저장
+          sessionStorage.setItem('token', token);
         }
   
         dispatch({
-          type: 'LOGIN_USER',
+          type: LOGIN_USER,
           payload: response
         });
   

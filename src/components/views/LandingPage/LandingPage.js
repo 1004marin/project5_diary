@@ -2,7 +2,7 @@ import {React, useEffect} from 'react';
 import axios from 'axios';
 import {useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
     //landing page에 들어오자마자 아래를 실행
@@ -33,6 +33,13 @@ function LandingPage() {
         <button >
           로그아웃
           </button>
+
+          <Link to='/myinfo'>
+          <button >
+          내정보로 이동
+          </button>
+          </Link>
+
     </div>
 
 
