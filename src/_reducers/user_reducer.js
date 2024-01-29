@@ -7,7 +7,7 @@ const initialState = {
 }
 
 // 로컬 스토리지에서 토큰을 가져와서 로그인 상태를 설정
-const storedToken = sessionStorage.getItem('token');
+const storedToken = localStorage.getItem('token');
 if (storedToken) {
   axios.defaults.headers.common['Authorization'] = storedToken;
 }
