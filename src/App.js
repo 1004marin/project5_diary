@@ -12,17 +12,24 @@ import DiaryWrite from './components/views/DiaryWritePage/DiaryWrite';
 import Auth from './hoc/auth';
 
 
+
+
+
+
+
+  const token = localStorage.getItem("token")
+  if(token){
+    console.log("로그인상태:유지중이에요")
+    axios.defaults.headers.common['Authorization'] = token;
+    console.log(token)
+  }
+  else{
+    console.log("로그아웃됨!")
+  }
 function App() {
 
-
-
-
-
   return(
-
-
       <Routes>
-
         <Route path="/" element={<RegisterPage/>} />
         <Route path="/home" element={<LandingPage/>}/>
         <Route path="/myinfo" element={<MyinfoPage/>}/>

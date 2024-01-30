@@ -40,9 +40,9 @@ function LoginPage() {
     dispatch(loginUser(body))
         .then(response => {
             console.log(response);
-            if (response.status === 200) {
+            if (response.payload === 200) {
                 alert('로그인 성공했습니다!');
-                navigate('/home');
+                navigate('/');
             } else {
                 alert('에러에용');
             }

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 function MyinfoPage() {
 
-const [Email, setEmail] = useState("hello")
+const [Email, setEmail] = useState("")
 const [Username,setUsername] = useState("")
 const [Nickname,setNickname] = useState("")
 const [BloodyType, setBloodyType] = useState("")
@@ -13,7 +13,7 @@ const [Address, setAddress] = useState("")
 
 //내 정보 뿌리기
 axios.get('/api/v1/user/info').then(response => {
-  
+  /*
   const token = response.headers.authorization;
   
   if (token) {
@@ -22,14 +22,14 @@ axios.get('/api/v1/user/info').then(response => {
 
   console.log(response)
   console.log(token)
-  /*
+  */
   setEmail(response.data.email)
   setUsername(response.data.username)
   setNickname(response.data.nickname)
   setBloodyType(response.data.bloodyType)
   setAddress(response.data.address)
   setMotto(response.data.motto)
-  */
+  
 })
 
 const onNicknameHandler = (e) =>{

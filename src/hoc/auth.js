@@ -10,7 +10,7 @@ const AuthFunction =(SpecifiComponent, option, adminRoute = null) => {
     //false => 로그인한 유저는 출입 불가능한 페이지
 
     //관계자 페이지 필요 없음 null이라고 해두기. es6문법
-
+/*
         function AuthenticationCheck(props){
 
             const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const AuthFunction =(SpecifiComponent, option, adminRoute = null) => {
         }
 
     return <AuthenticationCheck/>;
+    */
 }
 
 export default AuthFunction;
