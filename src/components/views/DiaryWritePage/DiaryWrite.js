@@ -1,8 +1,13 @@
 import React from 'react'
+import axios from 'axios'
 
 function DiaryWrite() {
+
+  
   return (
-    <div>DiaryWrite</div>
+    <div>
+      hello
+      </div>
   )
 }
 
