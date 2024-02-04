@@ -13,7 +13,7 @@ function MyinfoPage() {
   const [Address, setAddress] = useState("")
 
 //내 정보 뿌리기
-/*
+
   useEffect(() => {
     axios.get('/api/v1/info')
       .then(response => {
@@ -28,7 +28,7 @@ function MyinfoPage() {
         console.log(err);
       });
   }, []); // 빈 배열을 전달하여 컴포넌트 마운트 시에만 호출되도록 설정
-*/
+
 const onNicknameHandler = (e) =>{
   setNickname(e.currentTarget.value)
 }
@@ -52,7 +52,7 @@ const onSubmitHandler = (e) => {
     bloodType: BloodType,
   };
 
-  // url 체크하기
+  // url 체크하기, { withCredentials: true }
   axios.post("/api/v1/update", body)
     .then(response => {
       const update = response.data;

@@ -17,11 +17,10 @@ import Auth from './hoc/auth';
 
 
 
-  const token = localStorage.getItem("token")
-  if(token){
-    console.log("로그인상태:유지중이에요")
-    axios.defaults.headers.common['Authorization'] = token;
-    console.log(token)
+  const is_accessToken = localStorage.getItem("accessToken");
+  if(is_accessToken){
+    axios.defaults.headers.common['Authorization'] = is_accessToken;
+    console.log("로그인유지중:",is_accessToken)
   }
   else{
     console.log("로그아웃됨!")
@@ -30,10 +29,10 @@ function App() {
 
   return(
       <Routes>
-        <Route path="/" element={<RegisterPage/>} />
+        <Route path="/register" element={<RegisterPage/>} />
         <Route path="/home" element={<LandingPage/>}/>
         <Route path="/myinfo" element={<MyinfoPage/>}/>
-        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/" element={<LoginPage/>}/>
         <Route path="/password" element={<PasswordPage/>}/>
 
         <Route path="/diaryWrite" element={<DiaryWrite/>}/>

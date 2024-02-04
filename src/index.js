@@ -12,12 +12,13 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import promiseMiddleware from'redux-promise';
 import {thunk} from 'redux-thunk';
+import authMiddleware from '../src/_middleware/authMiddleware';//액세스토큰 갱신
 
 import Reducer from './_reducers';
 
 
 
-const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, thunk)(createStore)
+const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, thunk, authMiddleware)(createStore)
 //원래는 createstore만 해서 store를 redux에서 생성하는데, 그냥 store는 객체만 못받으니까
 //promise와 function도 함께 받게 하기 위해
 

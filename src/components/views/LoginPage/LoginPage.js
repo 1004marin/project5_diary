@@ -39,8 +39,7 @@ function LoginPage() {
     // dispatch의 리턴값을 변수에 저장하지 않고 바로 사용
     dispatch(loginUser(body))
         .then(response => {
-            console.log(response);
-            if (response.payload === 200) {
+            if (response.status === 200) {
                 alert('로그인 성공했습니다!');
                 navigate('/');
             } else {
