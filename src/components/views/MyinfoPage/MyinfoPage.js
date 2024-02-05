@@ -45,16 +45,17 @@ const onAddressHandler = (e) =>{
 const onSubmitHandler = (e) => {
   e.preventDefault(); // 새로 고침 방지
 
-  let body = {
-    nickname: Nickname,
-    motto: Motto,
-    address: Address,
-    bloodType: BloodType,
+    const body = {
+    "address": Address,
+    "bloodType": BloodType,
+    "motto": Motto,
+    "nickname": Nickname
   };
 
   // url 체크하기, { withCredentials: true }
   axios.post("/api/v1/update", body)
     .then(response => {
+      console.log(body)
       const update = response.data;
       console.log(update);
 

@@ -1,12 +1,12 @@
 import { createStore } from 'redux';
-import {LOGIN_USER, REGISTER_USER, AUTH_USER, UNAUTHORIZED_ERROR} from '../_actions/types';
+import {LOGIN_USER, REGISTER_USER, AUTH_USER, UNAUTHORIZED_ERROR, LOGOUT_USER} from '../_actions/types';
 import axios from 'axios';
 const initialState = {
     loginSucess: false,
     register:null,
     userData:null,
-    token: null
-    
+    token: null,
+    Is_logout_requested: false
 }
 
 // 로컬 스토리지에서 토큰을 가져와서 로그인 상태를 설정
@@ -17,6 +17,13 @@ export default function (state= initialState, action) {
     switch (action.type) {//why 스위치문법? action의 type이Login_user만은 아니니까 타입마다 다른 조치 취하기
         case LOGIN_USER:
             return {...state, loginSucess: true}//...위를 그대로 가져옴. 빈상태
+            break;
+        case LOGOUT_USER:
+            // 로그아웃이 완료되었을 때 플래그를 false로 변경
+            return {...state, loginSucess: 'Logout', Is_logout_requested:false}//...위를 그대로 가져옴. 빈상태
+             break;
+        case 'logout_flag':
+            return{...state, Is_logout_requested: true}
             break;
         case REGISTER_USER:
             return {...state, register: action.payload}

@@ -3,7 +3,9 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { loginUser } from '../../../_actions/user_action';
+import { loginUser, logoutUser,logout_requested } from '../../../_actions/user_action';
+import { LOGOUT_REQUESTED } from '../../../_actions/types';
+import store from '../../../_middleware/store'
 import axios from 'axios';
 
 
@@ -19,6 +21,20 @@ function LoginPage() {
     const onPasswordHandler = (e) =>{
         setPassword(e.currentTarget.value)
     }
+
+    //로그아웃
+    const onLogoutHandler = () => {
+        dispatch(logout_requested())
+          .then(response => {
+            // 로그아웃이 성공한 경우 여기에 추가적인 처리를 할 수 있습니다.
+            console.log(response);
+          })
+          .catch(error => {
+            // 로그아웃 중 에러가 발생한 경우 여기에 처리를 할 수 있습니다.
+            console.error('Logout Error:', error);
+          });
+      };
+
 
     const onSubmitHandler = (e) =>{
         e.preventDefault()
@@ -67,6 +83,9 @@ function LoginPage() {
 
         <button type="button">
             비번을 잊으셨나요?/ 변경하실래요
+        </button>
+        <button type="button" onClick={onLogoutHandler}>
+            로그아웃
         </button>
     </form>
 

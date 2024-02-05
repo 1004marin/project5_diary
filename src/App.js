@@ -18,7 +18,7 @@ import Auth from './hoc/auth';
 
 
   const is_accessToken = localStorage.getItem("accessToken");
-  if(is_accessToken){
+  if(is_accessToken !== undefined){
     axios.defaults.headers.common['Authorization'] = is_accessToken;
     console.log("로그인유지중:",is_accessToken)
   }
