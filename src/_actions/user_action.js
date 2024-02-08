@@ -52,7 +52,8 @@ export const refreshAccessToken = () => {
       const refreshToken = localStorage.getItem('refreshToken');
 
       // 서버에 리프레시 토큰을 전송하여 새로운 액세스 토큰 받기
-      const response = await axios.post('/reIssueAccessToken', { refreshToken });
+      const response = await axios.post('/api/v1/accessToken', { refreshToken });
+      //경로체크
       console.log('액세스 재발급:',response)
       // 새로 받은 액세스 토큰을 로컬 스토리지와 Redux에 저장
       const newAccessToken = response.headers.authorization;
@@ -92,8 +93,9 @@ export const logoutUser = () => {
       console.log("저장된 액세스",storedAccessToken)
       console.log("리프레시 토큰", storedRefreshToken)
 
+
       // 서버에 로그아웃 요청 (헤더에 설정된 토큰을 서버로 전송)
-      const response = await axios.post('/logout',null, { headers: {
+      const response = await axios.post('/api/v1/logout',null, { headers: {
         'Authorization': `${storedAccessToken}`,
         'Refresh': `${storedRefreshToken}`,
       }});

@@ -58,11 +58,10 @@ function LoginPage() {
             if (response.status === 200) {
                 alert('로그인 성공했습니다!');
                 navigate('/');
-            } else {
-                alert('에러에용');
-            }
+            } 
         })
         .catch(error => {
+            alert('에러에용');
             console.error('Async Action Error:', error);
         });
     }

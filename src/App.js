@@ -8,23 +8,17 @@ import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import MyinfoPage from './components/views/MyinfoPage/MyinfoPage';
 import PasswordPage from './components/views/LoginPage/PasswordPage'
-import DiaryWrite from './components/views/DiaryWritePage/DiaryWrite';
-import Auth from './hoc/auth';
-
-
 
 
 
 
 
   const is_accessToken = localStorage.getItem("accessToken");
-  if(is_accessToken !== undefined){
-    axios.defaults.headers.common['Authorization'] = is_accessToken;
-    console.log("로그인유지중:",is_accessToken)
-  }
-  else{
-    console.log("로그아웃됨!")
-  }
+    //axios.defaults.headers.common['Authorization'] = {is_accessToken};
+    console.log("app액세스",is_accessToken)
+
+  
+
 function App() {
 
   return(
@@ -34,8 +28,7 @@ function App() {
         <Route path="/myinfo" element={<MyinfoPage/>}/>
         <Route path="/" element={<LoginPage/>}/>
         <Route path="/password" element={<PasswordPage/>}/>
-
-        <Route path="/diaryWrite" element={<DiaryWrite/>}/>
+        
  
  
        </Routes>

@@ -15,7 +15,11 @@ function MyinfoPage() {
 //내 정보 뿌리기
 
   useEffect(() => {
-    axios.get('/api/v1/info')
+    //체크
+    const storedAccessToken = localStorage.getItem("accessToken");
+    axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
+
+    axios.get('/api/v1/user')
       .then(response => {
         setEmail(response.data.email);
         setUsername(response.data.username);
@@ -30,16 +34,21 @@ function MyinfoPage() {
   }, []); // 빈 배열을 전달하여 컴포넌트 마운트 시에만 호출되도록 설정
 
 const onNicknameHandler = (e) =>{
-  setNickname(e.currentTarget.value)
+  const updatedNickname = e.currentTarget.value//동기비동기문제
+  setNickname(updatedNickname)
+  console.log(Nickname)
 }
 const onBloodTypeHandler = (e) =>{
   setBloodType(e.currentTarget.value)
 }
-const onMottoHandler = (e) =>{
-  setMotto(e.currentTarget.value)
-}
+const onMottoHandler = (e) => {
+  const updatedMotto = e.currentTarget.value;
+  setMotto(updatedMotto);
+  console.log(Motto)
+};
 const onAddressHandler = (e) =>{
   setAddress(e.currentTarget.value)
+
 }
 
 const onSubmitHandler = (e) => {
@@ -51,11 +60,15 @@ const onSubmitHandler = (e) => {
     "motto": Motto,
     "nickname": Nickname
   };
-
+  const storedAccessToken = localStorage.getItem("accessToken");
+  const storedRefreshToken = localStorage.getItem("refreshToken");
+  
+  console.log(storedAccessToken)
+  console.log(storedRefreshToken)
+  console.log(body)
   // url 체크하기, { withCredentials: true }
-  axios.post("/api/v1/update", body)
+  axios.patch("/api/v1/user", body)
     .then(response => {
-      console.log(body)
       const update = response.data;
       console.log(update);
 

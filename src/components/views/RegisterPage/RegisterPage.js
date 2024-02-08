@@ -52,7 +52,7 @@ function RegisterPage() {
             return;//탈출
         }
         const jsonEmail = {"email": Email}
-        axios.post('/join/checkDuplicateEmail', jsonEmail)
+        axios.post('/duplicateEmail', jsonEmail)
         .then(response => {
         const emailCheck = response.data;
 
@@ -73,7 +73,7 @@ function RegisterPage() {
         const jsonName = {"username" : Name}
         console.log(Name)
 
-        axios.post('/join/checkDuplicateUsername', jsonName)
+        axios.post('/duplicateUsername', jsonName)
         .then(response => {
 
             const nameCheck = response.data; //데이터
@@ -113,7 +113,7 @@ function RegisterPage() {
         const jsonSendEmail = {email: Email}
 
             setEmailCode_notice("전송햇으니까 확인해서입력ㄱ")
-            const codeResponse = await axios.post('/join/mail', jsonSendEmail)
+            const codeResponse = await axios.post('/mail', jsonSendEmail)
             setRealcode(codeResponse.data)
             console.log(Realcode)
         }

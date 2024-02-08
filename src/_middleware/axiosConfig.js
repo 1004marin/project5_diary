@@ -3,7 +3,7 @@ import store from './store';
 import { unauthorizedError } from '../_actions/user_action';
 
 // 모든 http 요청에 대해 중복코드 작성 x, http응답 모두 일괄 처리!
-axios.interceptors.response.use(
+axios.interceptors.response.use(//토큰만료거하나넣기
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 500) {
