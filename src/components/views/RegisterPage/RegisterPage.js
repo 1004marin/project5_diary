@@ -157,7 +157,7 @@ function RegisterPage() {
         .then(response => {
             console.log(response.payload)
             if(response.payload === '회원 가입 완료'){
-                navigate('/home')
+                navigate('/')
                 console.log('회원가입성공땨')
             } else{
                 alert('회원가입에러에용')

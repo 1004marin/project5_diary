@@ -27,7 +27,7 @@ const authMiddleware = (store) => (next) => async (action) => {
       // 리프레시 토큰이 성공적으로 사용되면 다시 시도한 액션을 디스패치
       return next(action);
     } catch (error) {
-      console.error('Error refreshing access token:', error);
+      console.error('Error 미들웨어refreshing access token:', error);
       // 리프레시 토큰 갱신에 실패하면 로그아웃 또는 다른 처리를 수행할 수 있습니다.
     }
   }

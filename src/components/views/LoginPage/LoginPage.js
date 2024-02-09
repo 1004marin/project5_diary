@@ -7,6 +7,7 @@ import { loginUser, logoutUser,logout_requested } from '../../../_actions/user_a
 import { LOGOUT_REQUESTED } from '../../../_actions/types';
 import store from '../../../_middleware/store'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 function LoginPage() {
@@ -79,10 +80,11 @@ function LoginPage() {
         <button type="submit">
             login
         </button>
-
-        <button type="button">
-            비번을 잊으셨나요?/ 변경하실래요
-        </button>
+        <Link to={"/password"}>
+            <button type="button">
+                비번을 잊으셨나요?/ 변경하실래요
+            </button>
+        </Link>
         <button type="button" onClick={onLogoutHandler}>
             로그아웃
         </button>

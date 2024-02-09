@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
-
+import { Navigate, useNavigate } from 'react-router-dom'
 function MyinfoPage() {
 
   const [Email, setEmail] = useState("")
@@ -11,11 +11,14 @@ function MyinfoPage() {
   const [BloodType, setBloodType] = useState("")
   const [Motto, setMotto] = useState("")
   const [Address, setAddress] = useState("")
+  const [DeletePassword,setDeletePassword] = useState("")
 
+  const navigate = useNavigate();
 //내 정보 뿌리기
 
   useEffect(() => {
     //체크
+    console.log("데이터불러올게요")
     const storedAccessToken = localStorage.getItem("accessToken");
     axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
@@ -50,10 +53,40 @@ const onAddressHandler = (e) =>{
   setAddress(e.currentTarget.value)
 
 }
+const onDeletePasswordHandler = (e) =>{
+  setDeletePassword(e.currentTarget.value)
 
+}
+
+
+//탈퇴
+const onDeleteHandler = () => {
+  const storedAccessToken = localStorage.getItem("accessToken");
+  axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
+
+  const params = {
+    data: {
+      password: DeletePassword
+    }
+  };
+
+  axios.delete('/api/v1/user', params).then(
+    response => {
+      console.log(response)
+      if(response.data === "회원 탈퇴 성공"){
+        alert("탈퇴성공이요")
+      }
+      navigate('/');
+    }
+  )
+  .catch(error => {
+    alert("탈퇴에러요!")
+    console.error("탈퇴에러요:", error)
+  })
+}
 const onSubmitHandler = (e) => {
   e.preventDefault(); // 새로 고침 방지
-
+  console.log("데이터보낼게요")
     const body = {
     "address": Address,
     "bloodType": BloodType,
@@ -66,7 +99,7 @@ const onSubmitHandler = (e) => {
   console.log(storedAccessToken)
   console.log(storedRefreshToken)
   console.log(body)
-  // url 체크하기, { withCredentials: true }
+
   axios.patch("/api/v1/user", body)
     .then(response => {
       const update = response.data;
@@ -111,7 +144,10 @@ const onSubmitHandler = (e) => {
 
       <br/>
       <button type="submit" onClick={onSubmitHandler}>수정버튼</button>
-      
+
+      <br/>
+      <button type="button" onClick={onDeleteHandler}>탈퇴버튼</button>
+      <input type="password" value={DeletePassword} onChange={onDeletePasswordHandler}></input>
       
     </form>
   )

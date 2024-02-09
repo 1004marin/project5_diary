@@ -2,7 +2,9 @@ import axios from "axios";
 import { LOGIN_USER, REGISTER_USER, UNAUTHORIZED_ERROR,LOGOUT_USER,LOGOUT_REQUESTED } from "./types"
 import { useStore } from "react-redux";
 import store from '../_middleware/store'
+import { Navigate, useNavigate } from "react-router-dom";
 
+//쓸지말지
 export const updateUser= (userData) =>({
   type: LOGIN_USER,
   payload: userData
@@ -50,17 +52,34 @@ export const refreshAccessToken = () => {
     try {
       // 로컬 스토리지에서 리프레시 토큰 가져오기
       const refreshToken = localStorage.getItem('refreshToken');
+      console.log('재발급리프레시:',refreshToken)
+
+      const storedAccessToken = localStorage.getItem("accessToken");
+      axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
+
 
       // 서버에 리프레시 토큰을 전송하여 새로운 액세스 토큰 받기
-      const response = await axios.post('/api/v1/accessToken', { refreshToken });
+      const response = await axios.post('/api/v1/accessToken', null, { headers: {
+        'Refresh': `${refreshToken}`,
+      }});
       //경로체크
       console.log('액세스 재발급:',response)
+
       // 새로 받은 액세스 토큰을 로컬 스토리지와 Redux에 저장
-      const newAccessToken = response.headers.authorization;
+      const newAccessToken = response.data
       localStorage.setItem('accessToken', newAccessToken);
-      dispatch(updateUser({ accessToken: newAccessToken }));
+
+    // 모든 axios 요청의 헤더에 새로운 액세스 토큰 추가
+    /*이게 왜 작동 안할까!?
+      axios.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
+    */
+
+    dispatch(updateUser({ accessToken: newAccessToken }));
       
-      // 성공적으로 액세스 토큰을 갱신했을 때 추가적으로 처리할 로직
+      
+      if(response.status === 200){
+        alert("액세스토큰재발급 완료!")
+      }
       console.log("액세스토큰 갱신 완료")
 
     } catch (error) {
@@ -68,7 +87,29 @@ export const refreshAccessToken = () => {
       console.error('Error refreshing access token:', error);
 
       // 로그아웃 액션을 디스패치하여 사용자를 로그아웃 상태로 만듭니다.
-      //dispatch(logoutUser());
+
+        dispatch(logout_requested())
+          .then(response => {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+      
+            // 헤더 초기화
+            delete axios.defaults.headers.common['Authorization'];
+            delete axios.defaults.headers.common['Refresh'];
+      
+            // Redux 상태 업데이트 등 추가적인 처리가 필요하다면 여기에서 수행
+      
+            // 로그아웃 상태로 업데이트
+            dispatch({
+              type: LOGOUT_USER
+            });
+            const navigate = useNavigate()
+            navigate('/login')
+            
+            alert("토큰이만료되엇어용! 다시로그인 ㄱ")
+
+          }
+          )
     }
   };
 }
