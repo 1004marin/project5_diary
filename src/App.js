@@ -13,6 +13,7 @@ import PasswordPage from './components/views/LoginPage/PasswordPage'
 import DiaryListPage from './components/views/DiaryPage/DiaryListPage';
 import DiaryCreatePage from './components/views/DiaryPage/DiaryCreatePage';
 import DiaryContentPage from './components/views/DiaryPage/DiaryContentPage';
+import DiaryWritePage from './components/views/DiaryPage/DiaryWritePage';
 
 
 
@@ -34,10 +35,14 @@ function App() {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/password" element={<PasswordPage/>}/>
 
+
+
         <Route path="/diaryCreate" element={<DiaryCreatePage/>}/>
         <Route path="/diaryList" element={<DiaryListPage/>}/>
         <Route path="/diaryContent" element={<DiaryContentPage/>}/>
         
+
+        <Route path='/diaryWrite' element={<DiaryWritePage/>}/>
  
  
        </Routes>

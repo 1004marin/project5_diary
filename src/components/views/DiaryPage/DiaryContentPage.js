@@ -7,6 +7,9 @@ import { useLocation } from 'react-router-dom';
 
 
 function DiaryContentPage() {
+    const storedAccessToken = localStorage.getItem("accessToken");
+    axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
+
     const location = useLocation();
     const { diaryId } = location.state || {};
     console.log("다이어리 id는:", diaryId)
