@@ -52,17 +52,27 @@ function RegisterPage() {
             return;//탈출
         }
         const jsonEmail = {"email": Email}
-        axios.post('/join/checkDuplicateEmail', jsonEmail)
+        axios.post('/duplicateEmail', jsonEmail)
         .then(response => {
         const emailCheck = response.data;
 
         console.log(emailCheck)
         if(emailCheck === "사용 가능한 이메일"){
+
             setEmailDuplicate_notice("추카 이메일사용가능")
             setDuplicateEmail("success")
         }
-        else return alert('이메일안됨')
         })
+        .catch(error=>{
+            console.log(error)
+            if(error.response.data.message==="이미 존재하는 이메일입니다."){
+                setEmailDuplicate_notice("중복 메일입니당")
+            }
+            else{
+                return alert('이메일 중복 체크 에러')
+            }
+        })
+
      }
      //닉네임중복체크
      const onDuplicateUserNameHandler = (e) => {
@@ -73,7 +83,7 @@ function RegisterPage() {
         const jsonName = {"username" : Name}
         console.log(Name)
 
-        axios.post('/join/checkDuplicateUsername', jsonName)
+        axios.post('/duplicateUsername', jsonName)
         .then(response => {
 
             const nameCheck = response.data; //데이터
@@ -83,6 +93,7 @@ function RegisterPage() {
                 console.log(response.status)
                 console.log("이건 가능할때요")
                 setDuplicateUsername("success")
+                setNameDuplicate_notice("추카 이름사용가능")
                 return;
             }
             else { 
@@ -90,6 +101,7 @@ function RegisterPage() {
                 console.log(response.status)
                 console.log("이건 불 가능할때요")
                 setDuplicateUsername("false")
+                setNameDuplicate_notice("이름 중복임")
             }
             }
         )
@@ -113,7 +125,7 @@ function RegisterPage() {
         const jsonSendEmail = {email: Email}
 
             setEmailCode_notice("전송햇으니까 확인해서입력ㄱ")
-            const codeResponse = await axios.post('/join/mail', jsonSendEmail)
+            const codeResponse = await axios.post('/mail', jsonSendEmail)
             setRealcode(codeResponse.data)
             console.log(Realcode)
         }
@@ -157,7 +169,7 @@ function RegisterPage() {
         .then(response => {
             console.log(response.payload)
             if(response.payload === '회원 가입 완료'){
-                navigate('/home')
+                navigate('/')
                 console.log('회원가입성공땨')
             } else{
                 alert('회원가입에러에용')
@@ -179,7 +191,7 @@ function RegisterPage() {
           <button type="button"onClick={onDuplicateEmailHandler}>이메일중복임?</button>
           <div>{EmailDuplicate_notice}</div>
 
-          <label>nickName</label>
+          <label>userName</label>
           <input type="text" value={Name} onChange={onNameHandler}/>
           <button type="button"onClick={onDuplicateUserNameHandler}>닉네임중복임?</button>
           <div>{NameDuplicate_notice}</div>
