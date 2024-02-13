@@ -31,7 +31,7 @@ function PasswordPage() {
         const jsonEmail = {
             email: Email
         }
-        axios.post('/findPassword/mail', jsonEmail).then(
+        axios.post('/newPassword/mail', jsonEmail).then(
             response => {
                 setRealcode(response.data)
                 console.log(Realcode)
@@ -68,15 +68,19 @@ function PasswordPage() {
             passwordCheck: newPasswordConfirm,
             email: Email
         }
-        axios.post("/findPassword/newPassword", jsonNewPassword).then(
+        axios.post("/newPassword", jsonNewPassword).then(
             response => {
-                console.log(response.data)
-                if(response.data === "비밀번호 변경 성공"){
+                //이거 수정해야함. result뭐받아오는지
+                const result = response.data
+                console.log(result)
+                /*
+                if(result.response.data.message === "비밀번호 변경 성공"){
                     navigate('/home')
                 }
-                else{
+                else if(result.response.data.message === '동일한 비밀번호로 변경할 수 없습니다.'){
                     alert("동일한 비번이라 안되용")
                 }
+                */
             }
         )
     }

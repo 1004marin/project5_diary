@@ -3,8 +3,11 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { loginUser } from '../../../_actions/user_action';
+import { loginUser, logoutUser,logout_requested } from '../../../_actions/user_action';
+import { LOGOUT_REQUESTED } from '../../../_actions/types';
+import store from '../../../_middleware/store'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 function LoginPage() {
@@ -19,6 +22,20 @@ function LoginPage() {
     const onPasswordHandler = (e) =>{
         setPassword(e.currentTarget.value)
     }
+
+    //로그아웃
+    const onLogoutHandler = () => {
+        dispatch(logout_requested())
+          .then(response => {
+            // 로그아웃이 성공한 경우 여기에 추가적인 처리를 할 수 있습니다.
+            console.log(response);
+          })
+          .catch(error => {
+            // 로그아웃 중 에러가 발생한 경우 여기에 처리를 할 수 있습니다.
+            console.error('Logout Error:', error);
+          });
+      };
+
 
     const onSubmitHandler = (e) =>{
         e.preventDefault()
@@ -39,15 +56,13 @@ function LoginPage() {
     // dispatch의 리턴값을 변수에 저장하지 않고 바로 사용
     dispatch(loginUser(body))
         .then(response => {
-            console.log(response);
             if (response.status === 200) {
                 alert('로그인 성공했습니다!');
-                navigate('/home');
-            } else {
-                alert('에러에용');
-            }
+                navigate('/');
+            } 
         })
         .catch(error => {
+            alert('에러에용');
             console.error('Async Action Error:', error);
         });
     }
@@ -65,9 +80,13 @@ function LoginPage() {
         <button type="submit">
             login
         </button>
-
-        <button type="button">
-            비번을 잊으셨나요?/ 변경하실래요
+        <Link to={"/password"}>
+            <button type="button">
+                비번을 잊으셨나요?/ 변경하실래요
+            </button>
+        </Link>
+        <button type="button" onClick={onLogoutHandler}>
+            로그아웃
         </button>
     </form>
 
