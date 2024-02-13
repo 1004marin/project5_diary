@@ -62,7 +62,7 @@ function LoginPage() {
             } 
         })
         .catch(error => {
-            alert('에러에용');
+            alert('아디 비번 확인하세요! 에러에용');
             console.error('Async Action Error:', error);
         });
     }

@@ -18,6 +18,7 @@ function MyinfoPage() {
 
   useEffect(() => {
     //체크
+  
     console.log("데이터불러올게요")
     const storedAccessToken = localStorage.getItem("accessToken");
     axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
@@ -31,8 +32,10 @@ function MyinfoPage() {
         setAddress(response.data.address);
         setNickname(response.data.nickname);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        console.log(error);
+        alert("회원 권한이 없슴니당 로그인하셔요")
+        navigate('/login')
       });
   }, []); // 빈 배열을 전달하여 컴포넌트 마운트 시에만 호출되도록 설정
 

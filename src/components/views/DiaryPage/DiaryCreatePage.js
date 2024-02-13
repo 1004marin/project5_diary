@@ -44,13 +44,16 @@ const onSubmitHandler = (e) =>{
                 console.log(response)//data 31받음
             }
             
-            const diaryId = response.data
-            navigate('/diaryContent', { state: { diaryId } });
+            const Client_diaryId = response.data
+            navigate('/diaryContent', { state: { Client_diaryId } });
 
         }
-    ).catch(
-        error => {console.log("다이어리 생성에러:", error)})
+    ).catch( error => {
+        {console.log("다이어리 생성에러:", error)}
         alert("다이어리 생성 에러!")
+    }
+    )
+
 }
 
 

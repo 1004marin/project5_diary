@@ -48,8 +48,10 @@ export const loginUser = (dataTosubmit) => {
   };
 
 export const refreshAccessToken = () => {
+
   return async (dispatch) => {
     try {
+      
       // 로컬 스토리지에서 리프레시 토큰 가져오기
       const refreshToken = localStorage.getItem('refreshToken');
       console.log('재발급리프레시:',refreshToken)
@@ -81,15 +83,15 @@ export const refreshAccessToken = () => {
         alert("액세스토큰재발급 완료!")
       }
       console.log("액세스토큰 갱신 완료")
-
+ 
     } catch (error) {
       // 리프레시 토큰이 만료되었거나 다른 이유로 갱신에 실패한 경우
       console.error('Error refreshing access token:', error);
 
       // 로그아웃 액션을 디스패치하여 사용자를 로그아웃 상태로 만듭니다.
 
-        dispatch(logout_requested())
-          .then(response => {
+        //dispatch(logout_requested())이거 넣어서 true로 바꾸면 미들웨어 거쳐가서 기존 logout디스패치됨! -> 만료된토큰이라 에러
+
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
       
@@ -102,14 +104,16 @@ export const refreshAccessToken = () => {
             // 로그아웃 상태로 업데이트
             dispatch({
               type: LOGOUT_USER
-            });
-            const navigate = useNavigate()
-            navigate('/login')
-            
-            alert("토큰이만료되엇어용! 다시로그인 ㄱ")
+            }).then(()=>{
+              const navigate = useNavigate()
+              console.log("액세스,리프레시 만료: 로그아웃!")
+              navigate('/login')
+            }
+            )
 
-          }
-          )
+
+          
+          
     }
   };
 }

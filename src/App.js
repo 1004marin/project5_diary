@@ -14,8 +14,7 @@ import DiaryListPage from './components/views/DiaryPage/DiaryListPage';
 import DiaryCreatePage from './components/views/DiaryPage/DiaryCreatePage';
 import DiaryContentPage from './components/views/DiaryPage/DiaryContentPage';
 import DiaryWritePage from './components/views/DiaryPage/DiaryWritePage';
-
-
+import DiaryInfoPage from './components/views/DiaryPage/DiaryInfoPage';
 
 const is_refreshToken = localStorage.getItem("refreshToken");
   const is_accessToken = localStorage.getItem("accessToken");
@@ -35,15 +34,11 @@ function App() {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/password" element={<PasswordPage/>}/>
 
-
-
         <Route path="/diaryCreate" element={<DiaryCreatePage/>}/>
         <Route path="/diaryList" element={<DiaryListPage/>}/>
         <Route path="/diaryContent" element={<DiaryContentPage/>}/>
-        
-
-        <Route path='/diaryWrite' element={<DiaryWritePage/>}/>
- 
+        <Route path="/diaryWrite" element={<DiaryWritePage/>}/>
+        <Route path="/diaryInfo" element={<DiaryInfoPage/>}/>
  
        </Routes>
 

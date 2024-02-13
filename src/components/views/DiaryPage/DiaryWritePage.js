@@ -11,7 +11,7 @@ export default function DiaryWritePage() {
     const [DiaryMood, setDiaryMood] = useState("")
     const [DiaryContent, setDiaryContent] = useState("")
     const [DiaryDate, setDiaryDate] = useState("")
-    const [DiaryImage, setDiaryImage] = useState(null)
+    const [DiaryImage, setDiaryImage] = useState("")
 
     const onDiaryTitleHandler =(e) => {
         setDiaryTitle(e.currentTarget.value)
@@ -34,14 +34,13 @@ export default function DiaryWritePage() {
     }
   
 
-    const onSubmitHandler = async(e) => {
+    const onSubmitHandler = (e) => {
         e.preventDefault();
-
         const storedAccessToken = localStorage.getItem("accessToken");
         axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
-            const formData = new formData();
-            formData.append('file', DiaryImage);
+        const formData = new FormData();
+        formData.append('file', DiaryImage)
 
         //FileReader 객체를 사용하여 이미지 파일 Base64문자열로 변환
         const reader = new FileReader()
@@ -54,10 +53,10 @@ export default function DiaryWritePage() {
                 mood: DiaryMood,
                 body: DiaryContent,
                 date: DiaryDate,
-                imageData: Base64_imageData  // 이미지 데이터를 imageData라는 키로 추가
-            };
-
-
+                ImageData: Base64_imageData      
+            }
+            reader.readAsDataURL(DiaryImage); // DiaryImage 파일을 Base64로 읽기
+            
             axios.post('/diary/{diaryId}/post', jsonDiaryData)
             .then(response => {
                 console.log(response)
@@ -67,14 +66,10 @@ export default function DiaryWritePage() {
                     navigate("/diary")
                 }
             })
-        }
 
 
 
-
-
-
-    }
+        }}
 
 
   return (
