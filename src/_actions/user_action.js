@@ -51,14 +51,11 @@ export const refreshAccessToken = () => {
 
   return async (dispatch) => {
     try {
-      
       // 로컬 스토리지에서 리프레시 토큰 가져오기
       const refreshToken = localStorage.getItem('refreshToken');
-      console.log('재발급리프레시:',refreshToken)
 
       const storedAccessToken = localStorage.getItem("accessToken");
       axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
-
 
       // 서버에 리프레시 토큰을 전송하여 새로운 액세스 토큰 받기
       const response = await axios.post('/api/v1/accessToken', null, { headers: {
@@ -71,23 +68,15 @@ export const refreshAccessToken = () => {
       const newAccessToken = response.data
       localStorage.setItem('accessToken', newAccessToken);
 
-    // 모든 axios 요청의 헤더에 새로운 액세스 토큰 추가
-    /*이게 왜 작동 안할까!?
-      axios.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
-    */
-
-    dispatch(updateUser({ accessToken: newAccessToken }));
-      
-      
       if(response.status === 200){
         alert("액세스토큰재발급 완료!")
       }
       console.log("액세스토큰 갱신 완료")
- 
-    } catch (error) {
+    }
+    catch (error) {
       // 리프레시 토큰이 만료되었거나 다른 이유로 갱신에 실패한 경우
       console.error('Error refreshing access token:', error);
-
+      
         //dispatch(logout_requested())이거 넣어서 true로 바꾸면 미들웨어 거쳐가서 기존 logout디스패치됨! -> 만료된토큰이라 에러
       /*
             localStorage.removeItem('accessToken');

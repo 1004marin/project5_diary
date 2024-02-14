@@ -1,4 +1,5 @@
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { logoutUser, refreshAccessToken,unauthorizedError } from '../_actions/user_action';
 
 // Redux 미들웨어
@@ -26,9 +27,22 @@ const authMiddleware = (store) => (next) => async (action) => {
 
       // 리프레시 토큰이 성공적으로 사용되면 다시 시도한 액션을 디스패치
       return next(action);
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Error 미들웨어refreshing access token:', error);
       // 리프레시 토큰 갱신에 실패하면 로그아웃 또는 다른 처리를 수행할 수 있습니다.
+
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+
+      delete axios.defaults.headers.common['Authorization'];
+      delete axios.defaults.headers.common['Refresh'];
+
+      // Redux 상태 업데이트 등 추가적인 처리가 필요하다면 여기에서 수행
+      //이 코드 middleware에만 있어야 하는지?
+        const navigate = useNavigate()
+        console.log("액세스,리프레시 만료: 로그아웃!")
+        navigate('/login')
     }
   }
   

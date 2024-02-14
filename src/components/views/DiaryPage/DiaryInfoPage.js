@@ -13,6 +13,8 @@ function DiaryInfoPage() {
     const [diaryIntroduce, setDiaryIntroduce] = useState("")
     const [want_to_delete, setWant_to_delete] = useState("")
     const [diaryDelete_notice, setDiaryDelete_notice] = useState("")
+    const [visible_yesOrNo, setVisible_yesOrNo]=useState(false)
+
 
     const onDiaryIntroduceHandler=(e)=>{
         setDiaryIntroduce(e.currentTarget.value)
@@ -39,17 +41,37 @@ function DiaryInfoPage() {
                     )
                 }
                 else{
-                    setDiaryDelete_notice("한명남아서 삭제되요. 괜찬아요?")
+                    setDiaryDelete_notice("한명남아서 데이터 삭제되요. 괜찬아요?")
+                    setVisible_yesOrNo(true)
                     console.log("멤버1명")
-
-
-
                 }
             }
         )
     }
+    const onButtonHandler=(value)=>{
+        if(value === 'yes'){
+            axios.delete(`/api/v1/diary/${Client_diaryId}`).then(
+                response=>{
+                    console.log(response)
+                    if(response.data === '삭제 완료'){
+                        alert('삭제 완료되었어용')
+                        navigate('/diaryList')
+                    }
+                }
+            ).catch(error=>{
+                console.log("다이어리 삭제 에러:",error)
+            })
+
+        }
+        if(value === 'no'){
+            setVisible_yesOrNo(false)
+            alert("삭제 안할게요")
+            setDiaryDelete_notice("")
+        }
+    }
     const onDiaryDeleteHandler=()=>{
-        
+        setDiaryDelete_notice("디비에서 아예 날라가용 ㄱㅊ?")
+        setVisible_yesOrNo(true)        
     }
     const onIntroduceHandler=()=>{
         const storedAccessToken = localStorage.getItem("accessToken");
@@ -117,12 +139,12 @@ function DiaryInfoPage() {
             <button onClick={onDiaryDeleteHandler}>소.멸.</button>
 
             <br/>
-            <div>
-                <div>{diaryDelete_notice}</div>
+            <div>{diaryDelete_notice}</div>
+            {visible_yesOrNo && (<div>
+                <button onClick={()=>onButtonHandler('yes')}>예</button>
+                <button onClick={()=>onButtonHandler('no')}>아니요</button>
+            </div>)}
 
-                <button>예</button>
-                <button>아니요</button>
-            </div>
 
         </div>
     );

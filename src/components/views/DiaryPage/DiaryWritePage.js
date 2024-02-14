@@ -57,7 +57,7 @@ export default function DiaryWritePage() {
             }
             reader.readAsDataURL(DiaryImage); // DiaryImage 파일을 Base64로 읽기
             
-            axios.post('/diary/{diaryId}/post', jsonDiaryData)
+            axios.post('/api/v1/diary/44/post', jsonDiaryData)
             .then(response => {
                 console.log(response)
     
@@ -76,33 +76,32 @@ export default function DiaryWritePage() {
     <div style={
         { height:'100vh', display:"flex", flexDirection:"column", background:"#D2E1FF", 
         justifyContent:'center', alignItems:'center'}}>
+        <form onSubmit={onSubmitHandler}>
+            <label>제목</label>
+            <input type='text' value={DiaryTitle} onChange={onDiaryTitleHandler}></input>
+            
+            <label>날씨</label>
+            <input type='text' value={DiaryWeather} onChange={onDiaryWeatherHandler}></input>
 
-        <label>제목</label>
-        <input type='text' value={DiaryTitle} onChange={onDiaryTitleHandler}></input>
-        
-        <label>날씨</label>
-        <input type='text' value={DiaryWeather} onChange={onDiaryWeatherHandler}></input>
+            <label>기분</label>
+            <input type='text' value={DiaryMood} onChange={onDiaryMoodHandler}></input>
 
-        <label>기분</label>
-        <input type='text' value={DiaryMood} onChange={onDiaryMoodHandler}></input>
+            <label>내용</label>
+            <input type='text' value={DiaryContent} onChange={onDiaryContentHandler}></input>
 
-        <label>내용</label>
-        <input type='text' value={DiaryContent} onChange={onDiaryContentHandler}></input>
+            <label>날짜</label>
+            <input type='text' value={DiaryDate} onChange={onDiaryDateHandler}></input>
 
-        <label>날짜</label>
-        <input type='text' value={DiaryDate} onChange={onDiaryDateHandler}></input>
+            <br/>
+            <label>사진 첨부</label>
+            <input type="file" onChange={onDiaryImageHandler}/>
 
-        <br/>
-        <label>사진 첨부</label>
-        <input type="file" onChange={onDiaryImageHandler}/>
-
-        <br/>
-        <br/>
-        <button type='submit' onClick={onSubmitHandler}>
-            일기 제출
-        </button>
-
-
-        </div>
+            <br/>
+            <br/>
+            <button type='submit' onClick={onSubmitHandler}>
+                일기 제출
+            </button>
+        </form>
+    </div>
   )
 }
