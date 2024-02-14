@@ -2,18 +2,53 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 
 function DiaryInfoPage() {
+    const navigate = useNavigate();
+
     const location = useLocation()
     const { Client_diaryId } = location.state || {};
     const [diaryInfo, setDiaryInfo] = useState(null);
     const [diaryIntroduce, setDiaryIntroduce] = useState("")
+    const [want_to_delete, setWant_to_delete] = useState("")
+    const [diaryDelete_notice, setDiaryDelete_notice] = useState("")
 
     const onDiaryIntroduceHandler=(e)=>{
         setDiaryIntroduce(e.currentTarget.value)
     }
     const onDiaryLeaveHandler=()=>{
+        console.log("핸들러")
+        axios.get(`/api/v1/diary/${Client_diaryId}/memberCount`).then(
+            response=>{
+                if(response.data >= 2){
+                    console.log("멤버2명이상")
+
+                    axios.post(`/api/v1/diary/${Client_diaryId}/exit`).then(
+                        response=>{
+                            if(response.data === "탈퇴 완료"){
+                                console.log("다요리 탈퇴 완료") 
+                                alert("다요리 탈퇴 완료!")
+                                navigate('/diaryList')
+                            }
+                        }
+                    ).catch(error=>{
+                        console.log(error)
+                        alert("다요리 탈퇴 에러!")
+                    }
+                    )
+                }
+                else{
+                    setDiaryDelete_notice("한명남아서 삭제되요. 괜찬아요?")
+                    console.log("멤버1명")
+
+
+
+                }
+            }
+        )
+    }
+    const onDiaryDeleteHandler=()=>{
         
     }
     const onIntroduceHandler=()=>{
@@ -79,7 +114,16 @@ function DiaryInfoPage() {
 
             <br/>
             <button onClick={onDiaryLeaveHandler}>탈퇴</button>
-            <button onClick>소.멸.</button>
+            <button onClick={onDiaryDeleteHandler}>소.멸.</button>
+
+            <br/>
+            <div>
+                <div>{diaryDelete_notice}</div>
+
+                <button>예</button>
+                <button>아니요</button>
+            </div>
+
         </div>
     );
 }

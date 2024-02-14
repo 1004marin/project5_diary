@@ -10,8 +10,7 @@ function LandingPage() {
   const onTokenHandler=()=>{
     dispatch(refreshAccessToken()).then(
       response => {
-        const refreshResult = response.status
-        console.log("리프레시 발급")
+        console.log("리프레시 새로 발급")
       }
     )
   }
