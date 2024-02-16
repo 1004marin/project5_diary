@@ -8,7 +8,15 @@ axios.interceptors.response.use(//토큰만료거하나넣기
   (error) => {
     if (error.response && error.response.status === 500) {
       // 500 status의 에러가 발생하면 UNAUTHORIZED_ERROR 액션을 디스패치
-      store.dispatch(unauthorizedError());
+      store.dispatch(unauthorizedError()).then(
+        console.log("액세스 재발급 완료: axiosConfig")
+      )
+      .catch(error => {
+        
+
+      }
+
+      )
     }
     return Promise.reject(error);
   }
