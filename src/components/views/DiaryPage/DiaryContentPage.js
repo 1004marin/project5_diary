@@ -14,7 +14,7 @@ function DiaryContentPage() {
     const navigate = useNavigate()
 
     const YearMonth = {
-        yearMonth: "2023-02-01"
+        yearMonth: "2024-01-01"
     }
     const onMember_to_addHandler=(e)=>{
         setMember_to_add(e.currentTarget.value)

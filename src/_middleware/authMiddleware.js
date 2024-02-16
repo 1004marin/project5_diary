@@ -47,7 +47,7 @@ const authMiddleware = (store) => (next) => async (action) => {
   }
   
 
-  return next(action);
+  //return next(action);
 };
 
 export default authMiddleware;

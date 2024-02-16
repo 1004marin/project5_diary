@@ -12,7 +12,7 @@ export default function DiaryWritePage() {
     const [DiaryContent, setDiaryContent] = useState("")
     const [DiaryDate, setDiaryDate] = useState("")
     const [DiaryImage, setDiaryImage] = useState("")
-
+    const diaryId = 44
     const onDiaryTitleHandler =(e) => {
         setDiaryTitle(e.currentTarget.value)
     }
@@ -34,34 +34,28 @@ export default function DiaryWritePage() {
     }
   
 
-    const onSubmitHandler = (e) => {
+    const onSubmit = (e) => {
+        console.log("제출해용")
         e.preventDefault();
         const storedAccessToken = localStorage.getItem("accessToken");
         axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
-        const formData = new FormData();
-        formData.append('file', DiaryImage)
-
-        //FileReader 객체를 사용하여 이미지 파일 Base64문자열로 변환
-        const reader = new FileReader()
-        reader.onload =() => {
-            const Base64_imageData = reader.result
-
+        
             const jsonDiaryData = {
                 title: DiaryTitle,
                 weather: DiaryWeather,
                 mood: DiaryMood,
                 body: DiaryContent,
                 date: DiaryDate,
-                ImageData: Base64_imageData      
+                
             }
-            reader.readAsDataURL(DiaryImage); // DiaryImage 파일을 Base64로 읽기
+            //reader.readAsDataURL(DiaryImage); // DiaryImage 파일을 Base64로 읽기
             
-            axios.post('/api/v1/diary/44/post', jsonDiaryData)
+            axios.post(`/api/v1/diary/44/post`, jsonDiaryData)
             .then(response => {
                 console.log(response)
     
-                if(response.data === "일기 작성 완료"){
+                if(response.status === "200"){
                     alert("일기 작성 완료")
                     navigate("/diary")
                 }
@@ -69,14 +63,14 @@ export default function DiaryWritePage() {
 
 
 
-        }}
+        }
 
 
   return (
     <div style={
         { height:'100vh', display:"flex", flexDirection:"column", background:"#D2E1FF", 
         justifyContent:'center', alignItems:'center'}}>
-        <form onSubmit={onSubmitHandler}>
+        <form onSubmit={onSubmit}>
             <label>제목</label>
             <input type='text' value={DiaryTitle} onChange={onDiaryTitleHandler}></input>
             
@@ -98,7 +92,7 @@ export default function DiaryWritePage() {
 
             <br/>
             <br/>
-            <button type='submit' onClick={onSubmitHandler}>
+            <button type='submit'>
                 일기 제출
             </button>
         </form>

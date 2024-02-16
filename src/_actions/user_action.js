@@ -1,9 +1,9 @@
 import axios from "axios";
-import { LOGIN_USER, REGISTER_USER, UNAUTHORIZED_ERROR,LOGOUT_USER,LOGOUT_REQUESTED } from "./types"
+import { LOGIN_USER, REGISTER_USER, UNAUTHORIZED_ERROR,LOGOUT_USER, EXPIRED_REFRESH, LOGOUT_REQUESTED } from "./types"
 import { useStore } from "react-redux";
 import store from '../_middleware/store'
 import { Navigate, useNavigate } from "react-router-dom";
-
+//************************reducer: 로그아웃_유저타입시 false->true로바꾸엇음이거안되면다시원래대로false로 */
 //쓸지말지
 export const updateUser= (userData) =>({
   type: LOGIN_USER,
@@ -54,8 +54,6 @@ export const refreshAccessToken = () => {
       // 로컬 스토리지에서 리프레시 토큰 가져오기
       const refreshToken = localStorage.getItem('refreshToken');
 
-      const storedAccessToken = localStorage.getItem("accessToken");
-      axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
       // 서버에 리프레시 토큰을 전송하여 새로운 액세스 토큰 받기
       const response = await axios.post('/api/v1/accessToken', null, { headers: {
@@ -75,8 +73,12 @@ export const refreshAccessToken = () => {
     }
     catch (error) {
       // 리프레시 토큰이 만료되었거나 다른 이유로 갱신에 실패한 경우
-      console.error('Error refreshing access token:', error);
-      
+      dispatch(ExpiredRefreshError()).then(
+        response=>{
+          console.error('Error refreshing access token:', error);
+        }
+      )
+
         //dispatch(logout_requested())이거 넣어서 true로 바꾸면 미들웨어 거쳐가서 기존 logout디스패치됨! -> 만료된토큰이라 에러
       /*
             localStorage.removeItem('accessToken');
@@ -101,6 +103,31 @@ export const refreshAccessToken = () => {
 export const unauthorizedError = () => ({
   type: UNAUTHORIZED_ERROR,
 });
+
+//리프레시 토큰 만료 시->강제 로그아웃
+export const ExpiredRefreshError = () => {
+  const navigate = useNavigate()
+  return async (dispatch) => {
+
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+
+    delete axios.defaults.headers.common['Authorization'];
+    delete axios.defaults.headers.common['Refresh'];
+
+                //이 코드 middleware에만 있어야 하는지?
+
+                console.log("액세스,리프레시 만료: 로그아웃!")
+                navigate('/login')
+  }
+  //type: EXPIRED_REFRESH
+
+
+
+}
+
+
+
 
 //로그아웃 요청시, 플래그 true변경용
 export const logout_requested = () => ({
