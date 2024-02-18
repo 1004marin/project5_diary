@@ -6,8 +6,11 @@ const DiaryDrawPage = () => {
     const [canvas, setCanvas] = useState(null);
     const [textValue, setTextValue] = useState('');
     const [drawingMode, setDrawingMode] = useState(false);
+    const [isErasing, setIsErasing] = useState(false);
     const [selectedColor, setSelectedColor] = useState('#000000');
     const [penColor, setPenColor] = useState('#000000');
+    const [penWidth, setPenWidth] = useState(1)
+    const [eraseWidth, setEraseWidth] = useState(1)
 
     // Canvas 초기화
     const initializeCanvas = () => {
@@ -21,7 +24,7 @@ const DiaryDrawPage = () => {
             setCanvas(newCanvas);
             bindCanvasEvents(newCanvas); // 이벤트 바인딩 추가
         } else { // 이미 캔버스가 있으면 초기화
-            canvas.clear();
+            //canvas.clear();
         }
     };
 
@@ -127,6 +130,31 @@ const DiaryDrawPage = () => {
             canvas.freeDrawingBrush.color = e.target.value;
         }
     };
+        // 펜의 굵기 변경
+const handlePenWidthChange = (width) => {
+    setPenWidth(width);
+    canvas.freeDrawingBrush.width = width;
+};
+//지우개 굵기 변경
+const handleEraseWidthChange = (width) => {
+    setEraseWidth(width);
+    canvas.freeDrawingBrush.width = width;
+};
+    // 지우개 기능
+const toggleEraser = () => {
+    if (!canvas) return;
+
+    if (!isErasing) {
+        canvas.freeDrawingBrush.color = '#ffffff'; // 펜 색상을 배경 색상으로 변경하여 지우개 역할 수행
+        canvas.isDrawingMode = true; // 그리기 모드 활성화
+    } else {
+        canvas.freeDrawingBrush.color = selectedColor; // 원래 색상으로 변경하여 그리기 모드로 변경
+        canvas.isDrawingMode = drawingMode; // 그리기 모드 설정
+    }
+
+    setIsErasing(!isErasing); // 지우개 상태 업데이트
+};
+
     // Canvas 이벤트 바인딩
     const bindCanvasEvents = (canvas) => {
         canvas.on('mouse:down', handleMouseDown);
@@ -148,6 +176,11 @@ const DiaryDrawPage = () => {
                 <button onClick={toggleDrawingMode}>{drawingMode ? 'Disable Drawing Mode' : 'Enable Drawing Mode'}</button>
                 <input type="color" value={selectedColor} onChange={handleColorChange} />
                 <input type="color" value={penColor} onChange={handlePenColorChange} />
+
+                <br/>
+                <input type="range" min="1" max="10" value={penWidth} onChange={(e) => handlePenWidthChange(parseInt(e.target.value))} />
+                <input type="range" min="1" max="10" value={eraseWidth} onChange={(e) => handleEraseWidthChange(parseInt(e.target.value))} />
+                <button onClick={toggleEraser}>{isErasing ? 'Disable Eraser' : 'Enable Eraser'}</button>
             </div>
         </div>
     );

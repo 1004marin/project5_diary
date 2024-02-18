@@ -12,7 +12,12 @@ axios.interceptors.response.use(//토큰만료거하나넣기
         console.log("액세스 재발급 완료: axiosConfig")
       )
       .catch(error => {
-        
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+    
+        delete axios.defaults.headers.common['Authorization'];
+        delete axios.defaults.headers.common['Refresh'];
+    
 
       }
 
