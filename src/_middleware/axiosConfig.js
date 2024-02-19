@@ -1,6 +1,7 @@
 import axios from 'axios';
 import store from './store';
 import { unauthorizedError } from '../_actions/user_action';
+import { useNavigate } from 'react-router-dom';
 
 // 모든 http 요청에 대해 중복코드 작성 x, http응답 모두 일괄 처리!
 axios.interceptors.response.use(//토큰만료거하나넣기
@@ -9,7 +10,7 @@ axios.interceptors.response.use(//토큰만료거하나넣기
     if (error.response && error.response.status === 500) {
       // 500 status의 에러가 발생하면 UNAUTHORIZED_ERROR 액션을 디스패치
       store.dispatch(unauthorizedError()).then(
-        console.log("액세스 재발급 완료: axiosConfig")
+        console.log("액세스 재발급: axiosConfig")
       )
       .catch(error => {
         localStorage.removeItem('accessToken');
@@ -18,7 +19,9 @@ axios.interceptors.response.use(//토큰만료거하나넣기
         delete axios.defaults.headers.common['Authorization'];
         delete axios.defaults.headers.common['Refresh'];
     
-
+        alert("config: 로그인 만료! 로그인새로 하셤")
+        const navigate = useNavigate
+        navigate('/login')
       }
 
       )

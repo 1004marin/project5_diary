@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { fabric } from 'fabric';
 
-const DiaryDrawPage = () => {
+const DiaryDrawPage = ({ onSaveDrawing }) => {
     const canvasRef = useRef(null);
     const [canvas, setCanvas] = useState(null);
     const [textValue, setTextValue] = useState('');
@@ -11,6 +11,9 @@ const DiaryDrawPage = () => {
     const [penColor, setPenColor] = useState('#000000');
     const [penWidth, setPenWidth] = useState(1)
     const [eraseWidth, setEraseWidth] = useState(1)
+
+    //그림 저장 상태
+    const [hasDrawing, setHasDrawing] = useState(false);
 
     // Canvas 초기화
     const initializeCanvas = () => {
@@ -23,8 +26,9 @@ const DiaryDrawPage = () => {
             });
             setCanvas(newCanvas);
             bindCanvasEvents(newCanvas); // 이벤트 바인딩 추가
+            setHasDrawing(true);
         } else { // 이미 캔버스가 있으면 초기화
-            //canvas.clear();
+            canvas.clear();
         }
     };
 
@@ -160,27 +164,37 @@ const toggleEraser = () => {
         canvas.on('mouse:down', handleMouseDown);
         // 다른 이벤트 바인딩 추가 가능
     };
-
+    // 그린 그림 데이터를 저장하고 부모 컴포넌트에 전달
+    const saveDrawingData = () => {
+        if (!canvas) return;
+        if (hasDrawing) {
+            const drawingData = canvas.toDataURL({ format: 'png' }); // Base64 형식의 이미지 데이터
+            onSaveDrawing(drawingData); // 부모 컴포넌트에 전달
+        } else {
+            onSaveDrawing(null); // 부모 컴포넌트에 NULL 값 전달
+        }
+    };
     return (
         <div>
-            <canvas ref={canvasRef} width={800} height={600}></canvas>
+            <canvas ref={canvasRef}  width={800} height={600}></canvas>
             <div>
-                <button onClick={initializeCanvas}>Initialize Canvas</button>
+                <button type="button" onClick={initializeCanvas}>Initialize Canvas</button>
                 <input type="text" value={textValue} onChange={(e) => setTextValue(e.target.value)} placeholder="Enter text" />
-                <button onClick={addText}>Add Text</button>
+                <button type="button" onClick={addText}>Add Text</button>
                 <input type="file" accept="image/*" onChange={(e) => addImage(e.target.files[0])} />
                 
-                <button onClick={() => addShape('circle')}>Add Circle</button>
-                <button onClick={() => addShape('rectangle')}>Add Rectangle</button>
-                <button onClick={clearCanvas}>Clear Canvas</button>
-                <button onClick={toggleDrawingMode}>{drawingMode ? 'Disable Drawing Mode' : 'Enable Drawing Mode'}</button>
+                <button type="button" onClick={() => addShape('circle')}>Add Circle</button>
+                <button type="button" onClick={() => addShape('rectangle')}>Add Rectangle</button>
+                <button type="button" onClick={clearCanvas}>Clear Canvas</button>
+                <button type="button" onClick={toggleDrawingMode}>{drawingMode ? 'Disable Drawing Mode' : 'Enable Drawing Mode'}</button>
                 <input type="color" value={selectedColor} onChange={handleColorChange} />
                 <input type="color" value={penColor} onChange={handlePenColorChange} />
 
                 <br/>
                 <input type="range" min="1" max="10" value={penWidth} onChange={(e) => handlePenWidthChange(parseInt(e.target.value))} />
                 <input type="range" min="1" max="10" value={eraseWidth} onChange={(e) => handleEraseWidthChange(parseInt(e.target.value))} />
-                <button onClick={toggleEraser}>{isErasing ? 'Disable Eraser' : 'Enable Eraser'}</button>
+                <button type="button" onClick={toggleEraser}>{isErasing ? 'Disable Eraser' : 'Enable Eraser'}</button>
+                <button type="button" onClick={saveDrawingData}>Save Drawing</button>
             </div>
         </div>
     );

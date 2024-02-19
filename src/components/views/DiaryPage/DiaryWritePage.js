@@ -2,17 +2,23 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import DiaryDrawPage from './DiaryDrawPage'
 
 export default function DiaryWritePage() {
     const navigate = useNavigate();
 
+    const [drawingData, setDrawingData] = useState(null);//props
+
     const [DiaryTitle, setDiaryTitle] = useState("")
+    //그림으로 선택해서 값 CLOUDY 등 지정해두기
     const [DiaryWeather, setDiaryWeather] = useState("")
     const [DiaryMood, setDiaryMood] = useState("")
     const [DiaryContent, setDiaryContent] = useState("")
     const [DiaryDate, setDiaryDate] = useState("")
-    const [DiaryImage, setDiaryImage] = useState("")
+    const [json_diary, setjson_diary] = useState("")
+
     const diaryId = 44
+
     const onDiaryTitleHandler =(e) => {
         setDiaryTitle(e.currentTarget.value)
     }
@@ -28,30 +34,37 @@ export default function DiaryWritePage() {
     const onDiaryDateHandler =(e) => {
         setDiaryDate(e.currentTarget.value)
     }
-    //파일 선택
-    const onDiaryImageHandler = (e) => {
-        setDiaryImage(e.currentTarget.files[0])
-    }
+    
   
 
     const onSubmit = (e) => {
-        console.log("제출해용")
         e.preventDefault();
         const storedAccessToken = localStorage.getItem("accessToken");
         axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
-        
+        if(drawingData){
             const jsonDiaryData = {
                 title: DiaryTitle,
                 weather: DiaryWeather,
                 mood: DiaryMood,
                 body: DiaryContent,
                 date: DiaryDate,
-                
+                imageData:Array.from(drawingData)//byte 배열로 변환 
             }
-            //reader.readAsDataURL(DiaryImage); // DiaryImage 파일을 Base64로 읽기
-            
-            axios.post(`/api/v1/diary/44/post`, jsonDiaryData)
+            setjson_diary(jsonDiaryData)
+        }
+        else if(drawingData === null){
+            const jsonDiaryData = {
+                title: DiaryTitle,
+                weather: DiaryWeather,
+                mood: DiaryMood,
+                body: DiaryContent,
+                date: DiaryDate,
+            }
+            setjson_diary(jsonDiaryData)
+        }
+        console.log(drawingData)
+            axios.post(`/api/v1/diary/44/post`, json_diary)
             .then(response => {
                 console.log(response)
     
@@ -59,6 +72,11 @@ export default function DiaryWritePage() {
                     alert("일기 작성 완료")
                     navigate("/diary")
                 }
+            })
+            .catch(error =>{
+                alert("다요리 쓰기 에러 발생")
+                navigate("/diary")
+                console.log(error)
             })
 
 
@@ -86,9 +104,8 @@ export default function DiaryWritePage() {
             <label>날짜</label>
             <input type='text' value={DiaryDate} onChange={onDiaryDateHandler}></input>
 
-            <br/>
-            <label>사진 첨부</label>
-            <input type="file" onChange={onDiaryImageHandler}/>
+            <label>그림일기</label>
+            <DiaryDrawPage onSaveDrawing={setDrawingData} />
 
             <br/>
             <br/>

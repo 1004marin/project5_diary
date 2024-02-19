@@ -43,6 +43,8 @@ function DiaryListPage() {
     setis_diary_clicked(true)//비번 입력창 보이게
   };
 
+
+//다이어리 입장 버튼: 1)다이어리 id가 선택되었을 때만 2) 선택했을 때만 버튼 보이게 수정
   const onDiaryEnterHandler =() => {
     console.log("다요리 enter:", Client_diaryId)
     const storedAccessToken = localStorage.getItem("accessToken");
@@ -59,15 +61,18 @@ function DiaryListPage() {
         console.log(Client_diaryId)
         setis_diary_clicked(false)//비번 입력창 보이게
         navigate('/diaryContent', { state: { Client_diaryId } })
-      }
-      else{
+      }})   
+    .catch(error => {
+      if(error.response.data.message === "비밀번호가 일치하지 않습니다"){
+        console.log("다이어리 비번 에러:", error)
         alert("비번틀림")
         setis_diary_clicked(false)//비번 입력창 보이게
       }
-    })
-    .catch(error => {
-      console.log("다이어리 비번 에러:", error)
-    })
+      else{
+        alert("먼가 에러 발생!")
+      }
+    }
+    )
 
   }
 

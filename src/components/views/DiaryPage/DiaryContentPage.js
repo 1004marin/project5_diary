@@ -4,18 +4,66 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
+
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import './DiaryCalender.css'
+
+
 function DiaryContentPage() {
+    const navigate = useNavigate()
     const location = useLocation();
-    //const [diaryId, setDiaryId]
+
     const { Client_diaryId } = location.state || {};
     const [member_to_add,setMember_to_add] = useState("멤버")
-    const navigate = useNavigate()
+    //달력
+    const [date, setDate] = useState(new Date());
+    const [posts, setPosts] = useState([]);
+    const [selectedPost, setSelectedPost] = useState([]);
 
-    const YearMonth = {
-        yearMonth: "2024-01-01"
+    useEffect(() => {
+        fetchPosts();
+    }, [date]);
+
+
+    const fetchPosts = async() =>{
+        const storedAccessToken = localStorage.getItem("accessToken");
+        axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
+        // 서버에서 해당 월에 있는 포스트를 가져오는 API를 호출합니다.
+            try {
+                const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-01`;
+                const response = await axios.get(`/api/v1/diary/${Client_diaryId}`, { params: { yearMonth: formattedDate } });
+                setPosts(response.data);
+                setSelectedPost([]);
+            } catch (error) {
+                console.error('Error getting posts:', error);
+            }
+
     }
+    const handleTileClick = (date) => {
+        const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+        const selectedPosts = posts.filter((post) => post.date === formattedDate);
+        setSelectedPost(selectedPosts);
+    };
+    // 달력의 날짜에 포스트가 있는 경우 해당 날짜를 반환하는 함수
+    const tileContent = ({ date, view }) => {
+        if (view === 'month') {
+            const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+            const hasPost = posts.find((post) => post.date === formattedDate);
+            return hasPost ? <div className="post-marker"></div> : null;
+        }
+    };
+
+    const formatDate = (date) => {
+        // 날짜를 "YYYY-MM-DD" 형식으로 포맷합니다.
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+    };
+
     const onMember_to_addHandler=(e)=>{
         setMember_to_add(e.currentTarget.value)
     }
@@ -52,34 +100,42 @@ function DiaryContentPage() {
         })
     }
 
-    useEffect(() => {
-        if(Client_diaryId) {
-            const storedAccessToken = localStorage.getItem("accessToken");
-            axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
-            console.log(Client_diaryId)
-            // diaryId를 사용하여 axios를 통해 요청을 보냄
-            axios.get(`/api/v1/diary/${Client_diaryId}`, { params: { yearMonth: '2024-02-01' } })
-                .then(response => {
-                    // 요청 성공 시 처리할 로직
-                    console.log('다이어리 내용:', response);
-                })
-                .catch(error => {
-                    // 요청 실패 시 처리할 로직
-                    console.error('다이어리 내용을 불러오는 중 오류 발생:', error);
-                });
-        }
-    }, [Client_diaryId]); // diaryId가 변경될 때마다 useEffect가 호출되도록 설정
-
     return (
         <div style={
             { height:'100vh', display:"flex", flexDirection:"column", background:"#D2E1FF", 
             justifyContent:'center', alignItems:'center'}}>       
-            <label>다이어리 내부입니당</label>
+
+
+            <label>다이어리입니당</label>
+            <div>
+            <Calendar
+                onChange={setDate}
+                value={date}
+                tileContent={tileContent}
+                onClickDay={(date) => handleTileClick(date)}
+            />
+            <div>
+                {selectedPost.map((post, index) => (
+                    <div key={index}>
+                        <p>{post.title}</p>
+                        <p>{post.writer.username}</p>
+                    </div>
+                ))}
+            </div>
+            </div>
+
+
+
+            <br/>
             <button onClick={onMemberInviteHandler}>멤버 초대</button>
             <input value={member_to_add} onChange={onMember_to_addHandler}></input>
 
             <br/>
             <button onClick={onDiaryInfoHandler}>다요리 정보</button>
+            <Link to="/diaryWrite">
+                <button type="button">일기 쓰기</button>
+            </Link>
+
         </div>
 
     );
