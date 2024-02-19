@@ -168,8 +168,9 @@ const toggleEraser = () => {
     const saveDrawingData = () => {
         if (!canvas) return;
         if (hasDrawing) {
-            const drawingData = canvas.toDataURL({ format: 'png' }); // Base64 형식의 이미지 데이터
-            onSaveDrawing(drawingData); // 부모 컴포넌트에 전달
+            const drawingData = canvas.toDataURL({ format: 'png' }); // Base64 형식의 이미지 
+            const base64String = drawingData.split(',')[1] //앞의 "data:image/png;base64,헤더 제거
+            onSaveDrawing(base64String); // 부모 컴포넌트에 전달
         } else {
             onSaveDrawing(null); // 부모 컴포넌트에 NULL 값 전달
         }

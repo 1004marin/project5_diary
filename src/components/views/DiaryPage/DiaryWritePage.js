@@ -15,7 +15,7 @@ export default function DiaryWritePage() {
     const [DiaryMood, setDiaryMood] = useState("")
     const [DiaryContent, setDiaryContent] = useState("")
     const [DiaryDate, setDiaryDate] = useState("")
-    const [json_diary, setjson_diary] = useState("")
+    //const [json_diary, setjson_diary] = useState("")
 
     const diaryId = 44
 
@@ -41,43 +41,49 @@ export default function DiaryWritePage() {
         e.preventDefault();
         const storedAccessToken = localStorage.getItem("accessToken");
         axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
-
-        if(drawingData){
-            const jsonDiaryData = {
-                title: DiaryTitle,
-                weather: DiaryWeather,
-                mood: DiaryMood,
-                body: DiaryContent,
-                date: DiaryDate,
-                imageData:Array.from(drawingData)//byte 배열로 변환 
-            }
-            setjson_diary(jsonDiaryData)
-        }
-        else if(drawingData === null){
-            const jsonDiaryData = {
-                title: DiaryTitle,
-                weather: DiaryWeather,
-                mood: DiaryMood,
-                body: DiaryContent,
-                date: DiaryDate,
-            }
-            setjson_diary(jsonDiaryData)
-        }
-        console.log(drawingData)
-            axios.post(`/api/v1/diary/44/post`, json_diary)
-            .then(response => {
-                console.log(response)
-    
-                if(response.status === "200"){
-                    alert("일기 작성 완료")
-                    navigate("/diary")
+        
+                console.log(drawingData)
+           
+                const json_diary = {
+                    title: DiaryTitle,
+                    weather: DiaryWeather,
+                    mood: DiaryMood,
+                    body: DiaryContent,
+                    date: DiaryDate,
+                    imageData:drawingData
                 }
-            })
-            .catch(error =>{
-                alert("다요리 쓰기 에러 발생")
-                navigate("/diary")
-                console.log(error)
-            })
+                
+
+                axios.post(`/api/v1/diary/44/post`, json_diary)
+                .then(response => {
+                    console.log(response)
+        
+                    if(response.status === "200"){
+                        alert("일기 작성 완료")
+                        navigate("/diary")
+                    }
+                })
+                .catch(error =>{
+                    alert("다요리 쓰기 에러 발생")
+                    navigate("/diary")
+                    console.log(error)
+                })
+            
+            /*
+            else if(drawingData === null){
+                json_diary = {
+                    title: DiaryTitle,
+                    weather: DiaryWeather,
+                    mood: DiaryMood,
+                    body: DiaryContent,
+                    date: DiaryDate,
+                    //imageData:""
+                }
+                console.log("2")
+            }
+            */
+        
+
 
 
 
