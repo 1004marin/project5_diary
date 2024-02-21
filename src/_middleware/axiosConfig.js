@@ -9,10 +9,17 @@ axios.interceptors.response.use(//토큰만료거하나넣기
   (error) => {
     if (error.response && error.response.status === 500) {
       // 500 status의 에러가 발생하면 UNAUTHORIZED_ERROR 액션을 디스패치
+      console.log("axiosConfig: 리프레시 만료됨?: ",store.getState().user.Is_refresh_expired )
+      //리프레시 만료 시, 강제 로그아웃
       store.dispatch(unauthorizedError()).then(
-        console.log("액세스 재발급: axiosConfig")
+        console.log("axiosConfig: unauthorized 디스패치")
       )
-      .catch(error => {
+    }
+    return Promise.reject(error);
+  }
+);
+
+/*      if(store.getState().user.Is_refresh_expired === true){
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
     
@@ -22,10 +29,5 @@ axios.interceptors.response.use(//토큰만료거하나넣기
         alert("config: 로그인 만료! 로그인새로 하셤")
         const navigate = useNavigate
         navigate('/login')
-      }
-
-      )
-    }
-    return Promise.reject(error);
-  }
-);
+        return;
+      } */

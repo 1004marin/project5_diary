@@ -17,7 +17,7 @@ export default function (state= initialState, action) {
     console.log('유저리듀서에용')
     switch (action.type) {//why 스위치문법? action의 type이Login_user만은 아니니까 타입마다 다른 조치 취하기
         case LOGIN_USER:
-            return {...state, loginSucess: true}//...위를 그대로 가져옴. 빈상태
+            return {...state, loginSucess: true, Is_refresh_expired: false}//...위를 그대로 가져옴. 빈상태
             break;
         case LOGOUT_USER:
             // 로그아웃이 완료되었을 때 플래그를 false로 변경

@@ -10,6 +10,7 @@ export const updateUser= (userData) =>({
   payload: userData
 })
 
+
 export const loginUser = (dataTosubmit) => {
     return async (dispatch) => {
       try {
@@ -48,57 +49,51 @@ export const loginUser = (dataTosubmit) => {
   };
 
 export const refreshAccessToken = () => {
-
+//리프레시만! 액세스x
   return async (dispatch) => {
     try {
 
-      //const accessToken = localStorage.getItem("accessToken");
       const refreshToken = localStorage.getItem('refreshToken');
       axios.defaults.headers.common['Authorization'] = `${""}`;
 
       // 서버에 리프레시 토큰을 전송하여 새로운 액세스 토큰 받기
       const response = await axios.post('/api/v1/accessToken', null, { headers: {
         'Refresh': `${refreshToken}`,
-      }});
-      //경로체크
-      console.log('액세스 재발급:',response)
+      }}).then(()=>{
+        console.log('액세스 재발급:',response)
 
-      // 새로 받은 액세스 토큰을 로컬 스토리지와 Redux에 저장
-      const newAccessToken = response.data
-      localStorage.setItem('accessToken', newAccessToken);
-
-      if(response.status === 200){
-        alert("액세스토큰재발급 완료!")
-      }
-      console.log("액세스토큰 갱신 완료")
-    }
-    catch (error) {
-      console.log("리프레시 액션: 만료 에러")
-      // 리프레시 토큰이 만료되었거나 다른 이유로 갱신에 실패한 경우
-      /*
-      dispatch(ExpiredRefreshError()).then(
-        response=>{
-          console.error('Error refreshing access token:', error);
+        // 새로 받은 액세스 토큰을 로컬 스토리지와 Redux에 저장
+        const newAccessToken = response.data
+        localStorage.setItem('accessToken', newAccessToken);
+  
+        if(response.status === 200){
+          alert("액세스토큰재발급 완료!")
         }
-      )
-        */
-        //dispatch(logout_requested())이거 넣어서 true로 바꾸면 미들웨어 거쳐가서 기존 logout디스패치됨! -> 만료된토큰이라 에러
-      /*
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('refreshToken');
+        console.log("액세스토큰 갱신 완료")
+      })
+      .catch(error=>{
+        dispatch({
+          type: EXPIRED_REFRESH
+        }).then(()=>{
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
       
-            delete axios.defaults.headers.common['Authorization'];
-            delete axios.defaults.headers.common['Refresh'];
+          delete axios.defaults.headers.common['Authorization'];
+          delete axios.defaults.headers.common['Refresh'];
       
-            // Redux 상태 업데이트 등 추가적인 처리가 필요하다면 여기에서 수행
-      
-            // 로그아웃 상태로 업데이트
-            //이 코드 middleware에만 있어야 하는지?
-              const navigate = useNavigate()
-              console.log("액세스,리프레시 만료: 로그아웃!")
-              navigate('/login')
-        */
+          alert("action: 로그인 만료! 로그인새로 하셤")
+          const navigate = useNavigate
+          navigate('/login')
+          console.log("리프레시 액션: 만료 에러")
+          console.log(store.getState().user.Is_refresh_expired)
+
+          return
+        }
+        )
+      })
+      //경로체크
     }
+    catch{}
   };
 }
 

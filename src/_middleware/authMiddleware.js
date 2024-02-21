@@ -41,7 +41,7 @@ const authMiddleware = (store) => (next) => async (action) => {
       // Redux 상태 업데이트 등 추가적인 처리가 필요하다면 여기에서 수행
       //이 코드 middleware에만 있어야 하는지?
         const navigate = useNavigate()
-        console.log("액세스,리프레시 만료: 로그아웃!")
+        console.log("미들웨어에서 강제로갓!")
         navigate('/login')
     }
   }

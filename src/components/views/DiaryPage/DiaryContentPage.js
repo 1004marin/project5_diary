@@ -18,6 +18,10 @@ function DiaryContentPage() {
 
     const { Client_diaryId } = location.state || {};
     const [member_to_add,setMember_to_add] = useState("멤버")
+    const [Client_postId, setClient_PostId] = useState("")
+    const onPostIdHandler =()=>{
+        navigate('/diaryPost', { state: { Client_postId} },{ state: { Client_diaryId} })
+    }
     //달력
     const [date, setDate] = useState(new Date());
     const [posts, setPosts] = useState([]);
@@ -25,6 +29,7 @@ function DiaryContentPage() {
 
     useEffect(() => {
         fetchPosts();
+
     }, [date]);
 
 
@@ -55,7 +60,7 @@ function DiaryContentPage() {
             return hasPost ? <div className="post-marker"></div> : null;
         }
     };
-
+/*
     const formatDate = (date) => {
         // 날짜를 "YYYY-MM-DD" 형식으로 포맷합니다.
         const year = date.getFullYear();
@@ -63,7 +68,7 @@ function DiaryContentPage() {
         const day = date.getDate();
         return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
     };
-
+*/
     const onMember_to_addHandler=(e)=>{
         setMember_to_add(e.currentTarget.value)
     }
@@ -117,8 +122,12 @@ function DiaryContentPage() {
             <div>
                 {selectedPost.map((post, index) => (
                     <div key={index}>
-                        <p>{post.title}</p>
+                        <p onClick={()=>{
+                            setClient_PostId(post.id)
+                            onPostIdHandler()
+                        }}>{post.title}</p>
                         <p>{post.writer.username}</p>
+                        <p>{post.id}</p>
                     </div>
                 ))}
             </div>
@@ -135,7 +144,6 @@ function DiaryContentPage() {
             <Link to="/diaryWrite">
                 <button type="button">일기 쓰기</button>
             </Link>
-
         </div>
 
     );
