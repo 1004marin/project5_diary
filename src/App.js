@@ -19,11 +19,11 @@ import DiaryDrawPage from './components/views/DiaryPage/DiaryDrawPage';
 import DiaryPostPage from './components/views/DiaryPage/DiaryPostPage';
 
 const is_refreshToken = localStorage.getItem("refreshToken");
-  const is_accessToken = localStorage.getItem("accessToken");
-
+const is_accessToken = localStorage.getItem("accessToken");
+const is_logined = localStorage.getItem("is_logined");
     console.log("app액세스",is_accessToken)
     console.log("app리프레시",is_refreshToken)
-
+    console.log("로긘상태",is_logined)
   
 
 function App() {

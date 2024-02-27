@@ -163,6 +163,11 @@ function DiaryContentPage() {
             <br/>
             <button onClick={onDiaryInfoHandler}>다요리 정보</button>
             <button type="button" onClick={onDiaryWriteHandler}>일기 쓰기</button>
+
+            <br/>
+            <Link to='/diaryList'>
+                <button>다이어리 리스트로</button>
+            </Link>
         </div>
 
     );

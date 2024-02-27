@@ -10,13 +10,14 @@ const authMiddleware = (store) => (next) => async (action) => {
       await store.dispatch(refreshAccessToken())
       .then(
         console.log("미들웨어에서 디스패치햇구요")
-
         
       )
+      
       .catch(error=>{
         console.log("미들웨어 토큰 재발급 에러", error)
       })
       return next(action);
+
 
       // !!!!!!!!!!!!!!!!!!!이거 테스트!!!!!!!!리프레시 토큰이 성공적으로 사용되면 다시 시도한 액션을 디스패치
     } 

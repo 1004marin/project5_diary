@@ -8,4 +8,4 @@ export const EXPIRED_REFRESH = "expired_refresh"//리프레시 만료용
 
 export const REACCESS_SUCCESS = "reAccess_success"//리프레시 만료용
 
-export const DIARY_ID ="diary_id"
+export const IS_NOT_LOGIN = "is_not_login"//로그인 안하고, 다이어리 접근 시 

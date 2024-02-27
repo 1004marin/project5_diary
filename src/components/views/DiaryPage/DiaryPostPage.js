@@ -19,17 +19,22 @@ function DiaryPostPage() {
     
     const logined_username = localStorage.getItem("logined_user");
     const [Stamp, setStamp] = useState("")
-    const [StampList, setStampList] = useState("")
+    const [StampList, setStampList] = useState([])
     const [already_Stamped, setAlready_Stamped] = useState(false)
     
     //반응
-    const onStampHandler =(e)=>{
+
+    const onStampHandler=(e)=>{
       setStamp(e.currentTarget.value)
     }
     const onStampSubmitHandler=()=>{
       console.log(Stamp)
       const jsonStamp = {stamp: Stamp}
-      axios.post(`/api/v1/diary/${Client_diaryId}/post/${Client_postId}/react`, jsonStamp)
+
+      const storedAccessToken = localStorage.getItem("accessToken");
+      axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
+
+      axios.post(`/api/v1/diary/${Client_diaryId}/${Client_postId}/react`, jsonStamp)
       .then(response => {
         console.log(response)
       })
@@ -56,18 +61,23 @@ function DiaryPostPage() {
         })
 
     }
+    
     useEffect(()=> {
       if(StampList){
-        StampList.array.forEach(element => {
-          if(element.username === logined_username){
+        StampList.forEach(item => {
+          if(item.username === logined_username){
             setAlready_Stamped(true)
           }
         });
-      }   
+      } 
+      console.log(already_Stamped)  
     },[logined_username, StampList])
+    
     useEffect(()=>{
         const storedAccessToken = localStorage.getItem("accessToken");
         axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
+        
+        console.log(logined_username)
         console.log(Client_diaryId, Client_postId)
         axios.get(`/api/v1/diary/${Client_diaryId}/post/${Client_postId}`)
         .then(response => {
@@ -82,16 +92,13 @@ function DiaryPostPage() {
             setDiaryWeather(Post.weather)
         })
         
-        axios.get(`/api/v1/diary/${Client_diaryId}/post/${Client_postId}/react`)
+        axios.get(`/api/v1/diary/${Client_diaryId}/${Client_postId}/react`)
         .then(response=>{
           console.log(response)
           setStampList(response.data)
         })
         .catch(error=>{
-          if(error.response.status === 404){
-            console.log("반응 없ㅇ믐")
-            setStampList("없긔영")
-          }
+            console.log(error)
         })
     },[])
   return (
@@ -122,17 +129,32 @@ function DiaryPostPage() {
             <br/>
             
             <label>반응 목록</label>
-            <div>{StampList}</div>
+            <div>
+              {StampList.length > 0 ? (
+                StampList.map((data, index) => (
+                  <div key={index}>
+                    <div>Username: {data.username}</div>
+                    <div>Post ID: {data.postId}</div>
+                    <div>Stamp: {data.stamp}</div>
+                    <hr />
+                  </div>
+                ))
+              ) : (
+                <div>No stamps available</div>
+              )}
+            </div>
+
 
 
             <label>반응 남기기</label>
-            <select onChange={(value)=>onStampHandler(value)}>
+            <select value={Stamp} onChange={onStampHandler}>
               <option value="GREAT">그렛</option>
               <option value="GOOD">귯</option>
               <option value="BAD">밷</option>
             {/* 다른 옵션들 추가 */}
+            </select>
+
             {!already_Stamped && <button onClick={onStampSubmitHandler}>반응 전송</button> }
-        </select>
     </div>
   )
 }

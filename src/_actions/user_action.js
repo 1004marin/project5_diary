@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_USER, REGISTER_USER, UNAUTHORIZED_ERROR,LOGOUT_USER, EXPIRED_REFRESH, REACCESS_SUCCESS,DIARY_ID} from "./types"
+import { LOGIN_USER, REGISTER_USER, UNAUTHORIZED_ERROR,LOGOUT_USER, EXPIRED_REFRESH} from "./types"
 import { useNavigate } from "react-router-dom";
 //************************reducer: 로그아웃_유저타입시 false->true로바꾸엇음이거안되면다시원래대로false로 */
 //쓸지말지
@@ -29,7 +29,7 @@ export const loginUser = (dataTosubmit) => {
         payload: response.status
       });
       localStorage.setItem("logined_user", dataTosubmit.username);
-
+      localStorage.setItem("is_logined", "is_logined");
       return response; // 추가로 onSubmitHandler에서 처리하기 위해 전체 응답을 반환합니다.
       } 
       catch (error) {
@@ -39,6 +39,16 @@ export const loginUser = (dataTosubmit) => {
     };
   };
 
+export const NotLogin=()=> {
+
+  return async()=>{
+    try{
+      alert("권한이 없습니다. 로그인하세요")
+    }
+    catch{
+    }
+  }
+}
 export const refreshAccessToken = () => {
 
 //리프레시만! 액세스x
@@ -61,15 +71,8 @@ export const refreshAccessToken = () => {
       .catch(error=>{
         console.log("리프레시 액션에서 에러요", error)
       })
-      .finally( ()=>{
-        //이거 순서 체크!!!
-        dispatch({
-          type:REACCESS_SUCCESS
-        })
-        console.log("username은: ", store.getState().user.username)
-        console.log("is_refresh_expired는: ", store.getState().user.Is_refresh_expired)
-      }
-      )
+
+      
     }
     catch{}
   };
@@ -80,13 +83,13 @@ export const unauthorizedError = () => ({
 });
 
 export const ExpiredRefreshError = () => {
-  const navigate = useNavigate()
+
   return async (dispatch) => {
 
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('logined_user');
-    
+    localStorage.removeItem('is_logined');
     delete axios.defaults.headers.common['Authorization'];
     delete axios.defaults.headers.common['Refresh'];
     dispatch({
@@ -94,7 +97,7 @@ export const ExpiredRefreshError = () => {
     });
      console.log("액세스,리프레시 만료: 로그아웃!")
      alert("토큰이 만료되었어용. 다시 로그인하세요")
-     navigate('/login')
+//.로그인페이지로 이동 법
   }
 
 }
@@ -120,7 +123,7 @@ export const logoutUser = () => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('logined_user');
-
+      localStorage.removeItem('is_logined');
       // 헤더 초기화
       delete axios.defaults.headers.common['Authorization'];
       delete axios.defaults.headers.common['Refresh'];
@@ -143,11 +146,13 @@ export const logoutUser = () => {
 export function registerUser(dataTosubmit){
     
     const request = axios.post('/join', dataTosubmit)
-    .then(response => response.data)
+    .then(response => response.data
+      
+      )
 
     return{
         type: REGISTER_USER,
-        payload: request.status//"회원가입완료"
+        payload: request//"회원가입완료"
     }
 
 }

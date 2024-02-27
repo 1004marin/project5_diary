@@ -64,6 +64,12 @@ const onDeletePasswordHandler = (e) =>{
 
 //탈퇴
 const onDeleteHandler = () => {
+
+  if(!DeletePassword){
+    alert("비번을 입력하세요")
+
+    return
+  }
   const storedAccessToken = localStorage.getItem("accessToken");
   axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
@@ -83,8 +89,14 @@ const onDeleteHandler = () => {
     }
   )
   .catch(error => {
-    alert("탈퇴에러요!")
-    console.error("탈퇴에러요:", error)
+    if(error.response.data.message === '비밀번호가 일치하지 않습니다.'){
+      alert(error.response.data.message)
+      return
+    }
+    else{
+      alert("탈퇴에러요!")
+      console.error("탈퇴에러요:", error)
+    }
   })
 }
 const onSubmitHandler = (e) => {

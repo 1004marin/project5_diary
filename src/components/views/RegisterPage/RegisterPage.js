@@ -167,10 +167,10 @@ function RegisterPage() {
   
         dispatch(registerUser(body))
         .then(response => {
-            console.log(response.payload)
+            console.log(response)
             if(response.payload === '회원 가입 완료'){
                 navigate('/')
-                console.log('회원가입성공땨')
+                alert('회원가입성공땨')
             } else{
                 alert('회원가입에러에용')
             }
