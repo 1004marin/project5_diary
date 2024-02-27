@@ -4,9 +4,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { loginUser, logoutUser,logout_requested } from '../../../_actions/user_action';
-import { LOGOUT_REQUESTED } from '../../../_actions/types';
-import store from '../../../_middleware/store'
-import axios from 'axios';
+
 import { Link } from 'react-router-dom';
 
 
@@ -25,7 +23,7 @@ function LoginPage() {
 
     //로그아웃
     const onLogoutHandler = () => {
-        dispatch(logout_requested())
+        dispatch(logoutUser())
           .then(response => {
             // 로그아웃이 성공한 경우 여기에 추가적인 처리를 할 수 있습니다.
             console.log(response);

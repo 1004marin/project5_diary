@@ -13,6 +13,9 @@ function LandingPage() {
         console.log("액세스 새로 발급")
       }
     )
+    .catch(error=>{
+      console.log("랜딩 액세스 에러: ",error)
+    })
   }
   return (
     <div style={{height:'100vh', width:'100%', backgroundColor:"pink",

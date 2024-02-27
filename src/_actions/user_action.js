@@ -1,14 +1,9 @@
 import axios from "axios";
-import { LOGIN_USER, REGISTER_USER, UNAUTHORIZED_ERROR,LOGOUT_USER, EXPIRED_REFRESH, LOGOUT_REQUESTED } from "./types"
-import { useStore } from "react-redux";
-import store from '../_middleware/store'
-import { Navigate, useNavigate } from "react-router-dom";
+import { LOGIN_USER, REGISTER_USER, UNAUTHORIZED_ERROR,LOGOUT_USER, EXPIRED_REFRESH, REACCESS_SUCCESS,DIARY_ID} from "./types"
+import { useNavigate } from "react-router-dom";
 //************************reducer: 로그아웃_유저타입시 false->true로바꾸엇음이거안되면다시원래대로false로 */
 //쓸지말지
-export const updateUser= (userData) =>({
-  type: LOGIN_USER,
-  payload: userData
-})
+import store from "../_middleware/store";
 
 
 export const loginUser = (dataTosubmit) => {
@@ -21,7 +16,7 @@ export const loginUser = (dataTosubmit) => {
 
         // 액세스 토큰을 헤더에 저장
        axios.defaults.headers.common['Authorization'] = `${accessToken}`;
-       axios.defaults.headers.common['Refresh'] = `${refreshToken}`;  // 리프레시 토큰 추가 // 리프레시 토큰 추가
+       axios.defaults.headers.common['Refresh'] = `${refreshToken}`; 
        // 로컬 스토리지에 액세스 토큰과 리프레시 토큰 저장
        localStorage.setItem("accessToken", accessToken);
        localStorage.setItem("refreshToken", refreshToken);
@@ -29,15 +24,11 @@ export const loginUser = (dataTosubmit) => {
       console.log(response)
       console.log("로컬에저장한 액세스토큰: ",accessToken, "리프레시",refreshToken)
       
-      // 로컬 스토리지에서 토큰을 가져와서 Redux 상태 업데이트
-      const storedAccessToken = localStorage.getItem("accessToken");
-      const storedRefreshToken = localStorage.getItem("refreshToken");
-      dispatch(updateUser({ accessToken: storedAccessToken, refreshToken: storedRefreshToken }));
-    
       dispatch({
         type: LOGIN_USER,
         payload: response.status
       });
+      localStorage.setItem("logined_user", dataTosubmit.username);
 
       return response; // 추가로 onSubmitHandler에서 처리하기 위해 전체 응답을 반환합니다.
       } 
@@ -49,89 +40,64 @@ export const loginUser = (dataTosubmit) => {
   };
 
 export const refreshAccessToken = () => {
+
 //리프레시만! 액세스x
   return async (dispatch) => {
     try {
-
-      const refreshToken = localStorage.getItem('refreshToken');
       axios.defaults.headers.common['Authorization'] = `${""}`;
+      const refreshToken = localStorage.getItem('refreshToken');
 
-      // 서버에 리프레시 토큰을 전송하여 새로운 액세스 토큰 받기
-      const response = await axios.post('/api/v1/accessToken', null, { headers: {
+      await axios.post('/api/v1/accessToken', null, { headers: {
         'Refresh': `${refreshToken}`,
-      }}).then(()=>{
+      }})
+      .then(response=>{
         console.log('액세스 재발급:',response)
 
-        // 새로 받은 액세스 토큰을 로컬 스토리지와 Redux에 저장
         const newAccessToken = response.data
         localStorage.setItem('accessToken', newAccessToken);
-  
-        if(response.status === 200){
-          alert("액세스토큰재발급 완료!")
-        }
+
         console.log("액세스토큰 갱신 완료")
       })
       .catch(error=>{
-        dispatch({
-          type: EXPIRED_REFRESH
-        }).then(()=>{
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('refreshToken');
-      
-          delete axios.defaults.headers.common['Authorization'];
-          delete axios.defaults.headers.common['Refresh'];
-      
-          alert("action: 로그인 만료! 로그인새로 하셤")
-          const navigate = useNavigate
-          navigate('/login')
-          console.log("리프레시 액션: 만료 에러")
-          console.log(store.getState().user.Is_refresh_expired)
-
-          return
-        }
-        )
+        console.log("리프레시 액션에서 에러요", error)
       })
-      //경로체크
+      .finally( ()=>{
+        //이거 순서 체크!!!
+        dispatch({
+          type:REACCESS_SUCCESS
+        })
+        console.log("username은: ", store.getState().user.username)
+        console.log("is_refresh_expired는: ", store.getState().user.Is_refresh_expired)
+      }
+      )
     }
     catch{}
   };
 }
 
-//액세스 토큰 만료 시
 export const unauthorizedError = () => ({
   type: UNAUTHORIZED_ERROR,
 });
 
-//리프레시 토큰 만료 시->강제 로그아웃
-//이거안되면 axios.안에 넣어보기
 export const ExpiredRefreshError = () => {
   const navigate = useNavigate()
   return async (dispatch) => {
 
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-
+    localStorage.removeItem('logined_user');
+    
     delete axios.defaults.headers.common['Authorization'];
     delete axios.defaults.headers.common['Refresh'];
-
-                //이 코드 middleware에만 있어야 하는지?
-
-                console.log("액세스,리프레시 만료: 로그아웃!")
-                navigate('/login')
+    dispatch({
+      type: EXPIRED_REFRESH
+    });
+     console.log("액세스,리프레시 만료: 로그아웃!")
+     alert("토큰이 만료되었어용. 다시 로그인하세요")
+     navigate('/login')
   }
-  //type: EXPIRED_REFRESH
-
-
 
 }
-
-
-
-
-//로그아웃 요청시, 플래그 true변경용
-export const logout_requested = () => ({
-  type: LOGOUT_REQUESTED,
-});
 
 export const logoutUser = () => {
   return async (dispatch) => {
@@ -153,6 +119,7 @@ export const logoutUser = () => {
       // 로컬 스토리지에서 토큰 정보 삭제
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
+      localStorage.removeItem('logined_user');
 
       // 헤더 초기화
       delete axios.defaults.headers.common['Authorization'];
@@ -164,6 +131,7 @@ export const logoutUser = () => {
       dispatch({
         type: LOGOUT_USER
       });
+      return 'Logout requested successfully'; 
 
     } catch (error) {
       console.error('Logout Error:', error);
@@ -179,7 +147,7 @@ export function registerUser(dataTosubmit){
 
     return{
         type: REGISTER_USER,
-        payload: request//"회원가입완료"
+        payload: request.status//"회원가입완료"
     }
 
 }

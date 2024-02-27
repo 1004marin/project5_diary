@@ -20,7 +20,7 @@ import DiaryPostPage from './components/views/DiaryPage/DiaryPostPage';
 
 const is_refreshToken = localStorage.getItem("refreshToken");
   const is_accessToken = localStorage.getItem("accessToken");
-    //axios.defaults.headers.common['Authorization'] = {is_accessToken};
+
     console.log("app액세스",is_accessToken)
     console.log("app리프레시",is_refreshToken)
 

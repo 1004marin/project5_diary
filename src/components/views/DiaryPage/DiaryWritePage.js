@@ -3,10 +3,14 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import DiaryDrawPage from './DiaryDrawPage'
+import { useLocation } from 'react-router-dom'
+
 
 export default function DiaryWritePage() {
     const navigate = useNavigate();
+    const location = useLocation();
 
+    const { Client_diaryId } = location.state || {};
     const [drawingData, setDrawingData] = useState(null);//props
 
     const [DiaryTitle, setDiaryTitle] = useState("")
@@ -15,9 +19,6 @@ export default function DiaryWritePage() {
     const [DiaryMood, setDiaryMood] = useState("")
     const [DiaryContent, setDiaryContent] = useState("")
     const [DiaryDate, setDiaryDate] = useState("")
-    //const [json_diary, setjson_diary] = useState("")
-
-    const diaryId = 44
 
     const onDiaryTitleHandler =(e) => {
         setDiaryTitle(e.currentTarget.value)
@@ -54,39 +55,20 @@ export default function DiaryWritePage() {
                 }
                 
 
-                axios.post(`/api/v1/diary/44/post`, json_diary)
+                axios.post(`/api/v1/diary/${Client_diaryId}/post`, json_diary)
                 .then(response => {
                     console.log(response)
         
-                    if(response.status === "200"){
+                    if(response.status === 200){
                         alert("일기 작성 완료")
-                        navigate("/diary")
+                        navigate("/diaryContent", {state: {Client_diaryId}})
                     }
                 })
                 .catch(error =>{
                     alert("다요리 쓰기 에러 발생")
-                    navigate("/diary")
+                    navigate("/diaryContent", {state: {Client_diaryId}})
                     console.log(error)
                 })
-            
-            /*
-            else if(drawingData === null){
-                json_diary = {
-                    title: DiaryTitle,
-                    weather: DiaryWeather,
-                    mood: DiaryMood,
-                    body: DiaryContent,
-                    date: DiaryDate,
-                    //imageData:""
-                }
-                console.log("2")
-            }
-            */
-        
-
-
-
-
         }
 
 

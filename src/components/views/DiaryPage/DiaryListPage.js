@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 function DiaryListPage() {
   const [diaries, setDiaries] = useState([]);
   const [diaryPassword, setDiaryPassword] = useState("")
@@ -12,6 +11,7 @@ function DiaryListPage() {
   const [Client_diaryId, setClient_diaryId] = useState("")
   const [diaryNum, setDiaryNum] = useState("")
   const navigate = useNavigate();
+
 
   const onDiaryPasswordHandler =(e) => {
     setDiaryPassword(e.currentTarget.value)
