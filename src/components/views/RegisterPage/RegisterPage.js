@@ -49,7 +49,7 @@ function RegisterPage() {
     const onDuplicateEmailHandler = (e) => {
         if(Email === ""){
             alert("이메일입력해")
-            return;//탈출
+            return;
         }
         const jsonEmail = {"email": Email}
         axios.post('/duplicateEmail', jsonEmail)
@@ -61,8 +61,13 @@ function RegisterPage() {
 
             setEmailDuplicate_notice("추카 이메일사용가능")
             setDuplicateEmail("success")
-        }
-        })
+
+
+            const codeResponse = axios.post('/mail', jsonEmail)
+            setRealcode(codeResponse.data)
+            setEmailCode_notice("전송햇으니까 확인해서입력ㄱ")
+
+        }})
         .catch(error=>{
             console.log(error)
             if(error.response.data.message==="이미 존재하는 이메일입니다."){
@@ -117,19 +122,6 @@ function RegisterPage() {
      const onEmailCodeHandler = (e) => {
         setEmailCode(e.currentTarget.value)
     }
-    const onEmailCode_SendHandler = async(e) => {
-        if(Email === ""){
-            alert("이메일이나쓰삼")
-        }
-        else{
-        const jsonSendEmail = {email: Email}
-
-            setEmailCode_notice("전송햇으니까 확인해서입력ㄱ")
-            const codeResponse = await axios.post('/mail', jsonSendEmail)
-            setRealcode(codeResponse.data)
-            console.log(Realcode)
-        }
-        }
 
     const onEmailCode_CheckHandler = () => {
         console.log(Realcode)
@@ -188,7 +180,7 @@ function RegisterPage() {
       onSubmit={onSubmitHandler}>
           <label>Email</label>
           <input type="email" value={Email} onChange={onEmailHandler} />
-          <button type="button"onClick={onDuplicateEmailHandler}>이메일중복임?</button>
+          <button type="button"onClick={onDuplicateEmailHandler}>이메일중복&인증전송</button>
           <div>{EmailDuplicate_notice}</div>
 
           <label>userName</label>
@@ -204,7 +196,6 @@ function RegisterPage() {
 
           <label>Email Code</label>
           <input type="text" value={EmailCode} onChange={onEmailCodeHandler}/>
-          <button type="button"onClick={onEmailCode_SendHandler}>인증번호 전송할게용</button>
           <button type="button"onClick={onEmailCode_CheckHandler}>인증번호 맞노체크</button>
           <div>{EmailCode_notice}</div>
           <div>{EmailCodeCheck_notice}</div>

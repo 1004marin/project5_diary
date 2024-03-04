@@ -83,9 +83,9 @@ function LoginPage() {
                 비번을 잊으셨나요?/ 변경하실래요
             </button>
         </Link>
-        <button type="button" onClick={onLogoutHandler}>
+        {localStorage.getItem("is_logined") &&<button type="button" onClick={onLogoutHandler}>
             로그아웃
-        </button>
+        </button> }
     </form>
 
 

@@ -67,6 +67,7 @@ export const refreshAccessToken = () => {
         localStorage.setItem('accessToken', newAccessToken);
 
         console.log("액세스토큰 갱신 완료")
+        alert("토큰 갱신! 다시시도해주세용")
       })
       .catch(error=>{
         console.log("리프레시 액션에서 에러요", error)

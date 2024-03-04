@@ -91,7 +91,6 @@ const onDeleteHandler = () => {
   .catch(error => {
     if(error.response.data.message === '비밀번호가 일치하지 않습니다.'){
       alert(error.response.data.message)
-      return
     }
     else{
       alert("탈퇴에러요!")
