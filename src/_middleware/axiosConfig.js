@@ -14,7 +14,6 @@ axios.interceptors.response.use(
       console.log(is_accessToken)
       if(!localStorage.getItem("is_logined")){
         store.dispatch(NotLogin())
-        alert("회원 권한이 없습니다! 로그인해주셔요!")
         return
       }
     }

@@ -1,0 +1,90 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400..700;1,400..700&display=swap');
+@import "reset.css";
+@font-face {
+    font-family: 'DOSSaemmul';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSSaemmul.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.RegisterBox{
+    height: 100vh;
+    width: 100%;
+}
+.formBox{
+    height: 100%;
+    width: 100%;
+}
+//모바일&아이패드 세로
+@media screen and (min-width: 375px){
+
+    .formBox{
+        font-family: 'Cuprum';
+        background-image: url('../../public/mobile_background.png');
+        background-repeat : no-repeat; /*가로 세로 */
+        background-size : 100% 100%;
+        padding:20% 20% 0 20%; //시계방향 상 우 하 좌
+        box-sizing: border-box; /* 내부 패딩과 테두리를 요소의 크기에 포함시킵니다 */
+        background-position: center;
+        background-attachment: scroll;
+    }
+    .inner_formBox{
+        background-color: antiquewhite;
+        display:flex;
+        flex-direction: column;
+    }
+    .inner_formBox_title{
+        background-color: aquamarine;
+        width: 60vw;
+
+        &:nth-child(2) {
+            width: 99px;
+            height: 81px;
+           }
+    }
+    .title{
+        font-family: 'DOSSaemmul';
+        align-self: stretch;
+        color: 515151;
+        font-size: 1.8em;
+        letter-spacing: 0;
+        position: relative;
+        line-height: 34px;
+        paint-order: stroke fill;
+        stroke-width: 10;
+        stroke: blueviolet;
+        
+        text-shadow: calc(5px * 1) 0 0 #ffffff,
+        calc(5px * 0.9239) calc(5px * 0.3827) 0 #ffffff,
+        calc(5px * 0.7071) calc(5px * 0.7071) 0 #ffffff,
+        calc(5px * 0.3827) calc(5px * 0.9239) 0 #ffffff,
+        0 calc(5px * 1) 0 #ffffff,
+        calc(5px * -0.3827) calc(5px * 0.9239) 0 #ffffff,
+        calc(5px * -0.7071) calc(5px * 0.7071) 0 #ffffff,
+        calc(5px * -0.9239) calc(5px * 0.3827) 0 #ffffff,
+        calc(5px * -1) 0 0 #ffffff,
+        calc(5px * -0.9239) calc(5px * -0.3827) 0 #ffffff,
+        calc(5px * -0.7071) calc(5px * -0.7071) 0 #ffffff,
+        calc(5px * -0.3827) calc(5px * -0.9239) 0 #ffffff,
+        0 calc(5px * -1) 0 #ffffff,
+        calc(5px * 0.3827) calc(5px * -0.9239) 0 #ffffff,
+        calc(5px * 0.7071) calc(5px * -0.7071) 0 #ffffff,
+        calc(5px * 0.9239) calc(5px * -0.3827) 0 #ffffff,
+        calc(5px * 1) 8px 5px rgba(0, 0, 0, 0.8); /* 수정된 부분 */
+    }
+
+
+}
+
+//아이패드 가로&PC
+@media screen and (min-width: 1024px)  {
+	.formBox{
+        display:flex;
+        font-family: 'Cuprum';
+        background-image: url('../../public/pc_background.png');
+        background-repeat : no-repeat; /*가로 세로 */
+        background-size : cover;
+    }
+}
+

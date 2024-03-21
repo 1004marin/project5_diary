@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import axios from 'axios';
 import { registerUser } from '../../../_actions/user_action';
+import '../../../css/register.scss'
 
 
 function RegisterPage() {
@@ -172,12 +173,16 @@ function RegisterPage() {
   }
 
   return (//form과 button에 모두 submit주는 이유는, and design때매!
-  <div style={{height:'100vh', width:'100%', backgroundColor:"pink",
-  display:'flex', justifyContent:'center', alignItems:'center'}}
-      >
-      
-      <form style={{display:"flex", flexDirection:"column"}}
-      onSubmit={onSubmitHandler}>
+  <div className='RegisterBox'>
+       
+      <form
+      onSubmit={onSubmitHandler} className='formBox'>
+        <div className='inner_formBox'>
+            <div className='inner_formBox_title'>
+                <div className='title'>일기교환클럽<br/>
+                    입부신청서...</div>
+                <img src={process.env.PUBLIC_URL + '/letter.png'} />
+            </div>
           <label>Email</label>
           <input type="email" value={Email} onChange={onEmailHandler} />
           <button type="button"onClick={onDuplicateEmailHandler}>이메일중복&인증전송</button>
@@ -204,6 +209,7 @@ function RegisterPage() {
           <button type="submit">
               회원 가입
           </button>
+          </div>
       </form>   
   </div>
 )
