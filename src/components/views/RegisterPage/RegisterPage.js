@@ -27,7 +27,7 @@ function RegisterPage() {
   const [DuplicateUsername,setDuplicateUsername] = useState("")//닉네임중복
   const [EmailDuplicate_notice,setEmailDuplicate_notice] = useState("")//이메일중복
   const [NameDuplicate_notice,setNameDuplicate_notice] = useState("")//닉네임중복
-
+  const [isChecked, setIsChecked] = useState(false);//체크박스
 
   const navigate = useNavigate();
 
@@ -44,7 +44,10 @@ function RegisterPage() {
   const onConfirmPasswordHandler = (e) => {
     setConfirmPassword(e.currentTarget.value)
     }
-
+    const handleCheckboxChange = () => {
+        setIsChecked(!isChecked);
+      };
+    
 
     //이메일중복체크
     const onDuplicateEmailHandler = (e) => {
@@ -60,19 +63,19 @@ function RegisterPage() {
         console.log(emailCheck)
         if(emailCheck === "사용 가능한 이메일"){
 
-            setEmailDuplicate_notice("추카 이메일사용가능")
+            setEmailDuplicate_notice("기존 부원과 겹치지 않아요.")
             setDuplicateEmail("success")
 
 
             const codeResponse = axios.post('/mail', jsonEmail)
             setRealcode(codeResponse.data)
-            setEmailCode_notice("전송햇으니까 확인해서입력ㄱ")
+            setEmailCode_notice("인증 메일을 보냈어요.")
 
         }})
         .catch(error=>{
             console.log(error)
             if(error.response.data.message==="이미 존재하는 이메일입니다."){
-                setEmailDuplicate_notice("중복 메일입니당")
+                setEmailDuplicate_notice("이미 해당 메일을 가진 부원이 있어요.")
             }
             else{
                 return alert('이메일 중복 체크 에러')
@@ -99,7 +102,7 @@ function RegisterPage() {
                 console.log(response.status)
                 console.log("이건 가능할때요")
                 setDuplicateUsername("success")
-                setNameDuplicate_notice("추카 이름사용가능")
+                setNameDuplicate_notice("처음 온 부원이네요.")
                 return;
             }
             else { 
@@ -107,7 +110,7 @@ function RegisterPage() {
                 console.log(response.status)
                 console.log("이건 불 가능할때요")
                 setDuplicateUsername("false")
-                setNameDuplicate_notice("이름 중복임")
+                setNameDuplicate_notice("이미 존재하는 부원이에요.")
             }
             }
         )
@@ -174,42 +177,53 @@ function RegisterPage() {
 
   return (//form과 button에 모두 submit주는 이유는, and design때매!
   <div className='RegisterBox'>
-       
+    
       <form
       onSubmit={onSubmitHandler} className='formBox'>
         <div className='inner_formBox'>
             <div className='inner_formBox_title'>
                 <div className='title'>일기교환클럽<br/>
                     입부신청서...</div>
-                <img src={process.env.PUBLIC_URL + '/letter.png'} />
+                <img className="letter"src={process.env.PUBLIC_URL + '/letter.png'} />
             </div>
-          <label>Email</label>
-          <input type="email" value={Email} onChange={onEmailHandler} />
-          <button type="button"onClick={onDuplicateEmailHandler}>이메일중복&인증전송</button>
-          <div>{EmailDuplicate_notice}</div>
+            <div className='inner_formBox_content'>
 
-          <label>userName</label>
-          <input type="text" value={Name} onChange={onNameHandler}/>
-          <button type="button"onClick={onDuplicateUserNameHandler}>닉네임중복임?</button>
-          <div>{NameDuplicate_notice}</div>
+                <label>Email</label>
+                <input type="email" value={Email} onChange={onEmailHandler} />
+                <button type="button"onClick={onDuplicateEmailHandler}>인증번호 전송해주세요</button>
+                <div className='margin_bottom'>{EmailDuplicate_notice}</div>
 
-          <label>Password</label>
-          <input type="password" value={Password} onChange={onPasswordHandler}/>
+                <label>Email Code</label>
+                <input type="text" value={EmailCode} onChange={onEmailCodeHandler}/>
+                <button type="button"onClick={onEmailCode_CheckHandler}>제가 잘 입력했나요?</button>
+                <div>{EmailCode_notice}</div>
+                <div className='margin_bottom'>{EmailCodeCheck_notice}</div>
 
-          <label>Comfirm Password</label>
-          <input type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler}/>
+                <label>Username</label>
+                <input type="text" value={Name} onChange={onNameHandler}/>
+                <button type="button"onClick={onDuplicateUserNameHandler}>이미 부원인가요?</button>
+                <div className='margin_bottom'>{NameDuplicate_notice}</div>
 
-          <label>Email Code</label>
-          <input type="text" value={EmailCode} onChange={onEmailCodeHandler}/>
-          <button type="button"onClick={onEmailCode_CheckHandler}>인증번호 맞노체크</button>
-          <div>{EmailCode_notice}</div>
-          <div>{EmailCodeCheck_notice}</div>
+                <label>Password</label>
+                <input className='margin_bottom'type="password" value={Password} onChange={onPasswordHandler}/>
 
-          <br/>
-          <button type="submit">
-              회원 가입
-          </button>
-          </div>
+                <label>Comfirm Password</label>
+                <input className='margin_bottom'type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler}/>
+                <label className='register_agree'>
+                    <input
+                    className='check'
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
+                    />
+                    <span className='check_icon'></span>
+                    <span className='check_text'>※ 일기교환클럽 부원이 되는 것에 맹세합니다.</span>
+                </label>
+                <button type="submit" className='submit_button'>
+                    받아주세요
+                </button>
+            </div>
+        </div>
       </form>   
   </div>
 )
