@@ -7,41 +7,39 @@
   font-weight: normal;
   font-style: normal;
 }
-.navbar {
-  width: 100%;
-  height: 100%;
+.navbar_content {
   font-family: "DOSSaemmul";
-  background-color: bisque;
-}
-.navbar .navbar_content {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  height: 500px;
-  background-color: aquamarine;
+  width: 23vw;
+  height: 65vh;
+  position: relative; /* 부모 컨테이너를 상대적인 위치로 설정 */
 }
 
 .navbar_title {
   color: white;
-  font-size: 1.8rem;
+  height: 10vh;
+  font-size: 3vw;
   letter-spacing: 0;
-  flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
-  position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
-  line-height: 34px;
-  text-shadow: calc(5px * 1) 0 0 #5a5a5a, calc(5px * 0.9239) calc(5px * 0.3827) 0 #5a5a5a, calc(5px * 0.7071) calc(5px * 0.7071) 0 #5a5a5a, calc(5px * 0.3827) calc(5px * 0.9239) 0 #5a5a5a, 0 calc(5px * 1) 0 #5a5a5a, calc(5px * -0.3827) calc(5px * 0.9239) 0 #5a5a5a, calc(5px * -0.7071) calc(5px * 0.7071) 0 #5a5a5a, calc(5px * -0.9239) calc(5px * 0.3827) 0 #5a5a5a, calc(5px * -1) 0 0 #5a5a5a, calc(5px * -0.9239) calc(5px * -0.3827) 0 #5a5a5a, calc(5px * -0.7071) calc(5px * -0.7071) 0 #5a5a5a, calc(5px * -0.3827) calc(5px * -0.9239) 0 #5a5a5a, 0 calc(5px * -1) 0 #5a5a5a, calc(5px * 0.3827) calc(5px * -0.9239) 0 #5a5a5a, calc(5px * 0.7071) calc(5px * -0.7071) 0 #5a5a5a, calc(5px * 0.9239) calc(5px * -0.3827) 0 #5a5a5a;
-  flex: 1;
+  text-shadow: calc(4.5px * 1) 0 0 #5a5a5a, calc(4.5px * 0.9239) calc(4.5px * 0.3827) 0 #5a5a5a, calc(4.5px * 0.7071) calc(4.5px * 0.7071) 0 #5a5a5a, calc(4.5px * 0.3827) calc(4.5px * 0.9239) 0 #5a5a5a, 0 calc(4.5px * 1) 0 #5a5a5a, calc(4.5px * -0.3827) calc(4.5px * 0.9239) 0 #5a5a5a, calc(4.5px * -0.7071) calc(4.5px * 0.7071) 0 #5a5a5a, calc(4.5px * -0.9239) calc(4.5px * 0.3827) 0 #5a5a5a, calc(4.5px * -1) 0 0 #5a5a5a, calc(4.5px * -0.9239) calc(4.5px * -0.3827) 0 #5a5a5a, calc(4.5px * -0.7071) calc(4.5px * -0.7071) 0 #5a5a5a, calc(4.5px * -0.3827) calc(4.5px * -0.9239) 0 #5a5a5a, 0 calc(4.5px * -1) 0 #5a5a5a, calc(4.5px * 0.3827) calc(4.5px * -0.9239) 0 #5a5a5a, calc(4.5px * 0.7071) calc(4.5px * -0.7071) 0 #5a5a5a, calc(4.5px * 0.9239) calc(4.5px * -0.3827) 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);
 }
 
 .navbar_sub {
-  text-shadow: 3px 0 0 #fdddee, 2.7717px 1.1481px 0 #fdddee, 2.1213px 2.1213px 0 #fdddee, 1.1481px 2.7717px 0 #fdddee, 0 3px 0 #fdddee, -1.1481px 2.7717px 0 #fdddee, -2.1213px 2.1213px 0 #fdddee, -2.7717px 1.1481px 0 #fdddee, -3px 0 0 #fdddee, -2.7717px -1.1481px 0 #fdddee, -2.1213px -2.1213px 0 #fdddee, -1.1481px -2.7717px 0 #fdddee, 0 -3px 0 #fdddee, 1.1481px -2.7717px 0 #fdddee, 2.1213px -2.1213px 0 #fdddee, 2.7717px -1.1481px 0 #fdddee, 5px 8px 5px rgba(0, 0, 0, 0.8);
+  color: #464646;
+  font-size: 2.6vh;
+  text-shadow: calc(3px * 1) 0 0 #fdddee, calc(3px * 0.9239) calc(3px * 0.3827) 0 #fdddee, calc(3px * 0.7071) calc(3px * 0.7071) 0 #fdddee, calc(3px * 0.3827) calc(3px * 0.9239) 0 #fdddee, 0 calc(3px * 1) 0 #fdddee, calc(3px * -0.3827) calc(3px * 0.9239) 0 #fdddee, calc(3px * -0.7071) calc(3px * 0.7071) 0 #fdddee, calc(3px * -0.9239) calc(3px * 0.3827) 0 #fdddee, calc(3px * -1) 0 0 #fdddee, calc(3px * -0.9239) calc(3px * -0.3827) 0 #fdddee, calc(3px * -0.7071) calc(3px * -0.7071) 0 #fdddee, calc(3px * -0.3827) calc(3px * -0.9239) 0 #fdddee, 0 calc(3px * -1) 0 #fdddee, calc(3px * 0.3827) calc(3px * -0.9239) 0 #fdddee, calc(3px * 0.7071) calc(3px * -0.7071) 0 #fdddee, calc(3px * 0.9239) calc(3px * -0.3827) 0 #fdddee, 5px 8px 5px rgba(0, 0, 0, 0.8);
 }
 
 .navbar_menu {
   color: white;
-  font-size: 1rem;
+  font-size: 1.6vw;
   letter-spacing: 0;
-  flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
-  position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
-  line-height: 34px;
-  text-shadow: calc(2px * 1) 0 0 #5a5a5a, calc(2px * 0.9239) calc(2px * 0.3827) 0 #5a5a5a, calc(2px * 0.7071) calc(2px * 0.7071) 0 #5a5a5a, calc(2px * 0.3827) calc(2px * 0.9239) 0 #5a5a5a, 0 calc(2px * 1) 0 #5a5a5a, calc(2px * -0.3827) calc(2px * 0.9239) 0 #5a5a5a, calc(2px * -0.7071) calc(2px * 0.7071) 0 #5a5a5a, calc(2px * -0.9239) calc(2px * 0.3827) 0 #5a5a5a, calc(2px * -1) 0 0 #5a5a5a, calc(2px * -0.9239) calc(2px * -0.3827) 0 #5a5a5a, calc(2px * -0.7071) calc(2px * -0.7071) 0 #5a5a5a, calc(2px * -0.3827) calc(2px * -0.9239) 0 #5a5a5a, 0 calc(2px * -1) 0 #5a5a5a, calc(2px * 0.3827) calc(2px * -0.9239) 0 #5a5a5a, calc(2px * 0.7071) calc(2px * -0.7071) 0 #5a5a5a, calc(2px * 0.9239) calc(2px * -0.3827) 0 #5a5a5a;
+  line-height: 35px;
+  text-shadow: calc(3px * 1) 0 0 #5a5a5a, calc(3px * 0.9239) calc(3px * 0.3827) 0 #5a5a5a, calc(3px * 0.7071) calc(3px * 0.7071) 0 #5a5a5a, calc(3px * 0.3827) calc(3px * 0.9239) 0 #5a5a5a, 0 calc(3px * 1) 0 #5a5a5a, calc(3px * -0.3827) calc(3px * 0.9239) 0 #5a5a5a, calc(3px * -0.7071) calc(3px * 0.7071) 0 #5a5a5a, calc(3px * -0.9239) calc(3px * 0.3827) 0 #5a5a5a, calc(3px * -1) 0 0 #5a5a5a, calc(3px * -0.9239) calc(3px * -0.3827) 0 #5a5a5a, calc(3px * -0.7071) calc(3px * -0.7071) 0 #5a5a5a, calc(3px * -0.3827) calc(3px * -0.9239) 0 #5a5a5a, 0 calc(3px * -1) 0 #5a5a5a, calc(3px * 0.3827) calc(3px * -0.9239) 0 #5a5a5a, calc(3px * 0.7071) calc(3px * -0.7071) 0 #5a5a5a, calc(3px * 0.9239) calc(3px * -0.3827) 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);
+}
+
+.right {
+  position: absolute; /* 절대적인 위치로 설정 */
+  bottom: 0; /* 아래쪽으로 위치시킵니다. */
+  right: 0; /* 오른쪽으로 위치시킵니다. */
 }/*# sourceMappingURL=navbar.css.map */

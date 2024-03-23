@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import axios from 'axios';
 import { registerUser } from '../../../_actions/user_action';
 import '../../../css/register.scss'
-
+import NavBar from '../NavBar/NavBar';
 
 function RegisterPage() {
 
@@ -177,13 +177,15 @@ function RegisterPage() {
 
   return (//form과 button에 모두 submit주는 이유는, and design때매!
   <div className='RegisterBox'>
-    
+    <div className='inner_navber'>
+        <NavBar/>
+    </div>
       <form
       onSubmit={onSubmitHandler} className='formBox'>
         <div className='inner_formBox'>
             <div className='inner_formBox_title'>
                 <div className='title'>일기교환클럽<br/>
-                    입부신청서...</div>
+                    입부 신청서...</div>
                 <img className="letter"src={process.env.PUBLIC_URL + '/letter.png'} />
             </div>
             <div className='inner_formBox_content'>
@@ -219,10 +221,11 @@ function RegisterPage() {
                     <span className='check_icon'></span>
                     <span className='check_text'>※ 일기교환클럽 부원이 되는 것에 맹세합니다.</span>
                 </label>
-                <button type="submit" className='submit_button'>
-                    받아주세요
-                </button>
+
             </div>
+            <button type="submit" className='submit_button'>
+                    받아주세요
+            </button> 
         </div>
       </form>   
   </div>
