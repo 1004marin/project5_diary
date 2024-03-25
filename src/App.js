@@ -8,6 +8,7 @@ import NavBar from './components/views/NavBar/NavBar';
 import LandingPage from './components/views/LandingPage/LandingPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
+import RegisterCompletePage from './components/views/RegisterPage/RegisterCompletePage';
 import MyinfoPage from './components/views/MyinfoPage/MyinfoPage';
 import PasswordPage from './components/views/LoginPage/PasswordPage'
 
@@ -34,6 +35,7 @@ function App() {
       <Routes>
         <Route path='/navbar' element={<NavBar/>}/>
         <Route path="/register" element={<RegisterPage/>} />
+        <Route path="/registerComplete" element={<RegisterCompletePage/>} />
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/myinfo" element={<MyinfoPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>

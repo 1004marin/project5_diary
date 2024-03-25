@@ -3,6 +3,8 @@ import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import '../../../css/password.scss'
+import NavBar from '../NavBar/NavBar';
 
 function PasswordPage() {
     const navigate = useNavigate();
@@ -85,19 +87,39 @@ function PasswordPage() {
         )
     }
   return (
-    <div style={{backgroundColor:"pink", justifyContent:'center', alignItems:'center', height:'100vh', display: "flex", flexDirection:"column"}}>
-        <input type="email" value={Email} onChange={onEmailHandler}/>
-        <button onClick={onEmailCode_SendHandler}>인증번호 보내기</button>
-        <div>{EmailCode_notice}</div>
-        <br/>
-        <input type="text" value={EmailCode} onChange={onEmailCodeHandler}/>
-        <button onClick={onEmailCode_CheckHandler}>인증번호 일치 체크</button>
+    <div className='Password'>
+        <div className='inner_navber'>
+            <NavBar/>
+        </div>
+        <div className='formbox'>
+            <div className='inner_formbox'>
+                <div className='inner_formBox_title'>
+                        <div className='title'>일기교환클럽<br/>
+                            암호 변경 부서...</div>
+                        <img className="letter"src={process.env.PUBLIC_URL + '/letter.png'} />
+                    </div>
+                <div className='password_formbox'>
+                    <label>Email</label>
+                    <input type="email" value={Email} onChange={onEmailHandler}/>
+                    <button onClick={onEmailCode_SendHandler}>인증번호 보내주세요</button>
+                    <div>{EmailCode_notice}보냇어용</div>
+
+                    <label>Email Code</label>
+                    <input type="text" value={EmailCode} onChange={onEmailCodeHandler}/>
+                    <button onClick={onEmailCode_CheckHandler}>제가 잘 입력했나요?</button>
 
 
-        <br/>
-        <input type="password" value={newPassword} onChange={onNewPasswordHandler}/>
-        <input type="password" value={newPasswordConfirm} onChange={onNewPasswordConfirmHandler}/>
-        <button type="submit" onClick={onSubmitHandler}>비번 변경</button>
+                    <label>Password</label>
+                    <input type="password" value={newPassword} onChange={onNewPasswordHandler}/>
+                    <label>Confirm Password</label>
+                    <input type="password" value={newPasswordConfirm} onChange={onNewPasswordConfirmHandler}/>
+                    <button type="submit" onClick={onSubmitHandler}>변경할래요</button>
+                </div>
+            </div>
+            
+        </div>
+
+
 
     </div>
   )

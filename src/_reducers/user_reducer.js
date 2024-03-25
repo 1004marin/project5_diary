@@ -7,7 +7,7 @@ const initialState = {
     username:'',
     Is_refresh_expired: false,
 }
-//로그인하고 재발급 된 후에도 닉네임 있는지 체크
+//로그인하고 재발급 된 후에도 닉네임 있는지 체크: 페이지이동시사라짐!->로컬에저장
 
 //prevState + action을 가졌으니, nextState 돌려주기
 export default function (state= initialState, action) {

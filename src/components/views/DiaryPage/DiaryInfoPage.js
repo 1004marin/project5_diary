@@ -139,7 +139,7 @@ function DiaryInfoPage() {
             <button onClick={onDiaryDeleteHandler}>소.멸.</button>
 
             <br/>
-            <div>{diaryDelete_notice}</div>
+            <div>{diaryDelete_notice}</div> 
             {visible_yesOrNo && (<div>
                 <button onClick={()=>onButtonHandler('yes')}>예</button>
                 <button onClick={()=>onButtonHandler('no')}>아니요</button>

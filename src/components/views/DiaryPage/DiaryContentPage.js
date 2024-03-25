@@ -148,12 +148,11 @@ function DiaryContentPage() {
                             onPostIdHandler(post.id)
                         }}>{post.title}</p>
                         <p>{post.writer.username}</p>
-                        <p>{post.id}</p>
+                        <p>{post.id}</p> 
                     </div>
-                ))}
+                ))} 
             </div>
             </div>
-
 
 
             <br/>
@@ -165,9 +164,9 @@ function DiaryContentPage() {
             <button type="button" onClick={onDiaryWriteHandler}>일기 쓰기</button>
 
             <br/>
-            <Link to='/diaryList'>
+            <Link to='/diaryList'>  
                 <button>다이어리 리스트로</button>
-            </Link>
+            </Link> 
         </div>
 
     );
