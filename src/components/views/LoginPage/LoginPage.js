@@ -22,18 +22,7 @@ function LoginPage() {
         setPassword(e.currentTarget.value)
     }
 
-    //로그아웃
-    const onLogoutHandler = () => {
-        dispatch(logoutUser())
-          .then(response => {
-            // 로그아웃이 성공한 경우 여기에 추가적인 처리를 할 수 있습니다.
-            console.log(response);
-          })
-          .catch(error => {
-            // 로그아웃 중 에러가 발생한 경우 여기에 처리를 할 수 있습니다.
-            console.error('Logout Error:', error);
-          });
-      };
+
 
 
     const onSubmitHandler = (e) =>{
@@ -87,24 +76,28 @@ function LoginPage() {
         </div>
 
         <label>Username</label>
-        <input type="text" value={Username} onChange={onUsernameHandler}/>
+        <input className="login_input"type="text" value={Username} onChange={onUsernameHandler}/>
         <label>Password</label>
-        <input type="password" value={Password} onChange={onPasswordHandler}/>
+        <input className="login_input"type="password" value={Password} onChange={onPasswordHandler}/>
 
-        <div>
+        <div className='login_sub'>
             ※ 본인은 일기교환클럽의 부원임을 증명합니다.
             <img className="stamp"src={process.env.PUBLIC_URL + '/stamp.png'} />
         </div>
 
-        <Link to={"/register"}>
-            ※ 클럽에 등록하고 싶어요.
-        </Link>
-        <Link to={"/password"}>
-            ※ 증명 암호를 까먹었어요/변경하고 싶어요.
-        </Link>
+        <div className='login_sub2'>
+            <Link to={"/register"}>
+                ※ 클럽에 등록하고 싶어요.
+            </Link>
+            <span></span>
+            <Link to={"/password"}>
+                ※ 증명 암호를 까먹었어요/변경하고 싶어요.
+            </Link>
+        </div>
+
         
     </form>
-    <button className='submit_button' type="submit">
+    <button className='login_submit_button' type="submit">
             확인해주세요
     </button>
     </div>

@@ -89,7 +89,6 @@
         flex-direction: column;
         height: 83vh;
         width: 70vw;
-        //background-color: #fbadb6;
     }
     .inner_title{
         width: auto;
@@ -133,48 +132,68 @@
         font-family: 'Cuprum';
         margin-bottom: 0.1em;
     }
+    .login_submit_button{
+        border-width: 0;
+        width: 32vw;
+        height: 8vh;
+        border-radius: 25px;
+        box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        background-image: linear-gradient(to top,#fddaed , #fff2f9, #fff );
+        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
+        font-family: 'DOSSaemmul';
+        font-size: 1rem;
+        color: #fff;
+        margin-top: auto; /* 마지막 요소를 가장 하단에 배치합니다. */
+        margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
+      
+    }
+    .login_input{
+        color: #696969;
+        width: 100%;
+        font-family: '';
+        box-sizing: border-box;
+        font-family: 'Dongle-Regular';
+        font-size: 2.4vh;
+        font-weight: 300;
+        height: 33px;
+        border: none;
+        border-bottom: solid 1px #000;
+         background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
+    }
+    .login_sub{
+        @include customTextShadow(1px, #fdddee); // thickness와 color를 여기서 조절합니다.
+        font-size: 2vh;
+        //background-color: #dcfff1;
+        margin-top: 2vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        letter-spacing: 1px;
+        height: 10vh;
+        z-index: 0;
+    }
+    .stamp{
+        width: 15vw;
+        transform: rotate(-22.95deg);
+        position: absolute;
+        z-index: -1;
+        right: 0;
+        margin-top: 1vh;
+        margin-right: 16vw;
+    }
+    .login_sub2{
+        //background-color: #fdddee;
+        display: flex;
+        flex-direction: column;
+        @include customTextShadow(1px, #ffffff); // thickness와 color를 여기서 조절합니다.
+        font-size: 2vh;
+    }
+    a{
+        text-decoration: none;
+    }
 }
-button{
-    width: 100%;
-    height: 25px;
-    border: solid 1px #a6a6a6;
-    background-image: linear-gradient(to bottom, #fff, #f1f1f1 , #d0d0d0 );
-    font-family: 'Dongle-Regular';
-    font-size: 1.4rem;
-    color: #0f0f0f;
-    display: flex; /* Flexbox를 사용하여 요소를 가로로 배치합니다. */
-    justify-content: center; /* 텍스트를 수평으로 가운데 정렬합니다. */
-    align-items: center; /* 텍스트를 수직으로 가운데 정렬합니다. */
-    margin-top: 0.2em;
-}
-.submit_button{
-border-width: 0;
-width: 32vw;
-  height: 8vh;
-  border-radius: 25px;
-  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0 , #fff );
-  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
-  font-family: 'DOSSaemmul';
-  font-size: 1rem;
-  color: #fff;
-  margin-top: auto; /* 마지막 요소를 가장 하단에 배치합니다. */
-  margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
-  
-}
-input{
-    color: #696969;
-    width: 100%;
-    font-family: '';
-    box-sizing: border-box;
-    font-family: 'Dongle-Regular';
-    font-size: 2.4vh;
-    font-weight: 300;
-    height: 33px;
-    border: none;
-    border-bottom: solid 1px #000;
-     background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
-}
+
 
 //아이패드 미니 세로~
 @media screen and (min-width: 768px) and (max-width: 819px){

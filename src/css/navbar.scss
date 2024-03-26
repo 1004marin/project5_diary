@@ -60,10 +60,8 @@
     line-height: 35px;//줄간격
     @include customTextShadow(3px, #5a5a5a); // thickness와 color를 여기서 조절합니다.
     .link{
-        text-decoration: none ;/* 링크의 밑줄 제거 */
         color: white;
         @include customTextShadow(3px, #5a5a5a); // thickness와 color를 여기서 조절합니다.
-        
       }
 }
 
@@ -71,4 +69,7 @@
     position: absolute; /* 절대적인 위치로 설정 */
     bottom: 0; /* 아래쪽으로 위치시킵니다. */
     right: 0; /* 오른쪽으로 위치시킵니다. */
+}
+a{
+    text-decoration: none;
 }
