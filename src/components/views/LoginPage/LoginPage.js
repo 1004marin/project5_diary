@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { loginUser, logoutUser,logout_requested } from '../../../_actions/user_action';
-
+import '../../../css/login.scss'
+import NavBar from '../NavBar/NavBar';
 import { Link } from 'react-router-dom';
 
 
@@ -65,28 +66,50 @@ function LoginPage() {
         });
     }
   return (
-    <form onSubmit={onSubmitHandler} style={
-        { height:'100vh', display:"flex", flexDirection:"column", background:"pink", 
-        justifyContent:'center', alignItems:'center'}
-    }>
-        <label>아이디</label>
+    <div className='Login'>
+    <div className='inner_navbar'>
+        <NavBar/>
+    </div>
+    <div className='login_formbox'>
+        <div className='login_inner_formbox'>
+            <div className='inner_title'>
+                <div className='title'>일기교환클럽<br/>
+                                부원 확인 중...</div>
+                <img className="letter"src={process.env.PUBLIC_URL + '/pink.png'} />
+            </div>
+    <form className='login_formbox_content' onSubmit={onSubmitHandler}>
+        <div className='login_card'>
+            <div className='login_card_info'>
+                <div>ID card</div>
+                <div>Diary Exchange<br/>Club</div>
+            </div>
+            <img className="profile"src={process.env.PUBLIC_URL + '/profile.png'} />
+        </div>
+
+        <label>Username</label>
         <input type="text" value={Username} onChange={onUsernameHandler}/>
-        <label>비밀번호</label>
+        <label>Password</label>
         <input type="password" value={Password} onChange={onPasswordHandler}/>
 
-        <br/>
-        <button type="submit">
-            login
-        </button>
-        <Link to={"/password"}>
-            <button type="button">
-                비번을 잊으셨나요?/ 변경하실래요
-            </button>
+        <div>
+            ※ 본인은 일기교환클럽의 부원임을 증명합니다.
+            <img className="stamp"src={process.env.PUBLIC_URL + '/stamp.png'} />
+        </div>
+
+        <Link to={"/register"}>
+            ※ 클럽에 등록하고 싶어요.
         </Link>
-        {localStorage.getItem("is_logined") &&<button type="button" onClick={onLogoutHandler}>
-            로그아웃
-        </button> }
+        <Link to={"/password"}>
+            ※ 증명 암호를 까먹었어요/변경하고 싶어요.
+        </Link>
+        
     </form>
+    <button className='submit_button' type="submit">
+            확인해주세요
+    </button>
+    </div>
+    </div>
+    </div>
 
 
   

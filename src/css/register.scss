@@ -13,12 +13,6 @@
     font-weight: normal;
     font-style: normal;
   }
-  @font-face {
-    font-family: 'DOSPilgiMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/DOSPilgiMedium.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
 @mixin customTextShadow($thickness, $color) {
     text-shadow: 
       calc(#{$thickness} * 1) 0 0 $color,
@@ -46,14 +40,13 @@
     width: 100%;
     position: relative; /* RegisterBox를 상대적인 위치로 설정 */
 }
-.inner_navber{
+.inner_navbar{
     display: none;
 }
 .formBox{
     height: 100%;
     width: 100%;
     padding-bottom: 200px;
-
 }
 .register_agree{
     font-family: 'Dongle-Regular';

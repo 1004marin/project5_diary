@@ -177,7 +177,7 @@ function RegisterPage() {
 
   return (//form과 button에 모두 submit주는 이유는, and design때매!
   <div className='RegisterBox'>
-    <div className='inner_navber'>
+    <div className='inner_navbar'>
         <NavBar/>
     </div>
       <form

@@ -3,12 +3,12 @@ import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import '../../../css/password.scss'
 import NavBar from '../NavBar/NavBar';
+import '../../../css/password.scss'
 
 function PasswordPage() {
     const navigate = useNavigate();
-    const [Email, setEmail] = useState("이메일을입력하셔요")
+    const [Email, setEmail] = useState("")
     const [EmailCode, setEmailCode] = useState("")
     const [EmailCode_notice, setEmailCode_notice] = useState("")
     const [Realcode, setRealcode] = useState("")
@@ -88,33 +88,33 @@ function PasswordPage() {
     }
   return (
     <div className='Password'>
-        <div className='inner_navber'>
+        <div className='inner_navbar'>
             <NavBar/>
         </div>
-        <div className='formbox'>
-            <div className='inner_formbox'>
-                <div className='inner_formBox_title'>
+        <div className='password_formbox'>
+            <div className='password_inner_formbox'>
+                <div className='inner_title'>
                         <div className='title'>일기교환클럽<br/>
                             암호 변경 부서...</div>
-                        <img className="letter"src={process.env.PUBLIC_URL + '/letter.png'} />
+                        <img className="letter"src={process.env.PUBLIC_URL + '/pink.png'} />
                     </div>
-                <div className='password_formbox'>
+                <div className='password_formbox_content'>
                     <label>Email</label>
                     <input type="email" value={Email} onChange={onEmailHandler}/>
-                    <button onClick={onEmailCode_SendHandler}>인증번호 보내주세요</button>
-                    <div>{EmailCode_notice}보냇어용</div>
+                    <button  onClick={onEmailCode_SendHandler}>인증번호 보내주세요</button>
+                    <div className="margin_bottom">{EmailCode_notice}보냇어용</div>
 
                     <label>Email Code</label>
                     <input type="text" value={EmailCode} onChange={onEmailCodeHandler}/>
-                    <button onClick={onEmailCode_CheckHandler}>제가 잘 입력했나요?</button>
+                    <button className="margin_bottom"onClick={onEmailCode_CheckHandler}>제가 잘 입력했나요?</button>
 
 
                     <label>Password</label>
-                    <input type="password" value={newPassword} onChange={onNewPasswordHandler}/>
+                    <input className="margin_bottom" type="password" value={newPassword} onChange={onNewPasswordHandler}/>
                     <label>Confirm Password</label>
-                    <input type="password" value={newPasswordConfirm} onChange={onNewPasswordConfirmHandler}/>
-                    <button type="submit" onClick={onSubmitHandler}>변경할래요</button>
+                    <input className="margin_bottom" type="password" value={newPasswordConfirm} onChange={onNewPasswordConfirmHandler}/>
                 </div>
+                <button className="submit_button" type="submit" onClick={onSubmitHandler}>변경할래요</button>
             </div>
             
         </div>

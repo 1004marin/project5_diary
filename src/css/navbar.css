@@ -35,6 +35,7 @@
   font-size: 1.5vw;
   letter-spacing: 0;
   line-height: 35px;
+  text-decoration: none;
   text-shadow: calc(3px * 1) 0 0 #5a5a5a, calc(3px * 0.9239) calc(3px * 0.3827) 0 #5a5a5a, calc(3px * 0.7071) calc(3px * 0.7071) 0 #5a5a5a, calc(3px * 0.3827) calc(3px * 0.9239) 0 #5a5a5a, 0 calc(3px * 1) 0 #5a5a5a, calc(3px * -0.3827) calc(3px * 0.9239) 0 #5a5a5a, calc(3px * -0.7071) calc(3px * 0.7071) 0 #5a5a5a, calc(3px * -0.9239) calc(3px * 0.3827) 0 #5a5a5a, calc(3px * -1) 0 0 #5a5a5a, calc(3px * -0.9239) calc(3px * -0.3827) 0 #5a5a5a, calc(3px * -0.7071) calc(3px * -0.7071) 0 #5a5a5a, calc(3px * -0.3827) calc(3px * -0.9239) 0 #5a5a5a, 0 calc(3px * -1) 0 #5a5a5a, calc(3px * 0.3827) calc(3px * -0.9239) 0 #5a5a5a, calc(3px * 0.7071) calc(3px * -0.7071) 0 #5a5a5a, calc(3px * 0.9239) calc(3px * -0.3827) 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);
 }
 

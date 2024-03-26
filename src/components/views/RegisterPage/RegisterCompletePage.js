@@ -6,7 +6,7 @@ import NavBar from '../NavBar/NavBar';
 function RegisterCompletePage() {
   return (
     <div className='registerComplete'>
-      <div className='inner_navber'>
+      <div className='inner_navbar'>
         <NavBar/>
       </div>
       <div className='registerComplete_box'>
