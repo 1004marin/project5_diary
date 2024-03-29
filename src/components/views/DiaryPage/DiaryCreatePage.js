@@ -1,7 +1,11 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useRef,  useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+
+import NavBar from '../NavBar/NavBar';
+import SlideMenu from '../NavBar/SlideMenu';
+import '../../../css/diary_create.scss'
 
 function DiaryCreatePage() {
 
@@ -34,7 +38,7 @@ const onSubmitHandler = (e) =>{
         name: DiaryName,
         introduce: DiaryIntroduce,
         password: DiaryPassword,
-        max: DiaryMax
+        max: DiaryMax.replace(/\D/g, '')// '1'
     }
     axios.post('/api/v1/diary', jsonDiaryCreate)
     .then(
@@ -55,36 +59,69 @@ const onSubmitHandler = (e) =>{
     )
 
 }
+//드롭박스
+const [isListOpen, setListOpen] = useState(false);
 
+const handleButtonClick = () => {
+  setListOpen(!isListOpen);
+};
+
+const handleOptionClick = (option) => {
+    setDiaryMax(option);
+  setListOpen(false);
+};
 
   return (
-    <div style={
-        { height:'100vh', display:"flex", flexDirection:"column", background:"#D2E1FF", 
-        justifyContent:'center', alignItems:'center'}}>
+<div className='DiaryCreate'>
+    
+    <div className='inner_navbar'>
+        <NavBar/>
+    </div>
+    <div className='diaryCreate_formbox'>
+        <div className='moblie_menu'>
+            <SlideMenu/>
+        </div>
+        <div className='diaryCreate_inner_formbox'>
+            <div className='inner_title'>
+                <div className='title'>교환일기장<br/>
+                                신청서...</div>
+                <img className="pinkBubble"src={process.env.PUBLIC_URL + '/pink.png'} />
+            </div>
+            <div className='diaryCreate_formbox_content'>
+                <label>Name</label>
+                <input type="text" value={DiaryName} onChange={onDiaryNameHandler}></input>
 
-        <label>다요리</label>
-        <br/>
-        <label>이름</label>
-        <input type="text" value={DiaryName} onChange={onDiaryNameHandler}></input>
+                <label>Introduce</label>
+                <input type="text" value={DiaryIntroduce} onChange={onDiaryIntroduceHandler}></input>
 
-        <label>소개</label>
-        <input type="text" value={DiaryIntroduce} onChange={onDiaryIntroduceHandler}></input>
+                <label>Password</label>
+                <input type="password" value={DiaryPassword} onChange={onDiaryPasswordHandler}></input>
 
-        <label>비번</label>
-        <input type="password" value={DiaryPassword} onChange={onDiaryPasswordHandler}></input>
+                <label>Max</label>
+                <button className="btn-select" onClick={handleButtonClick}>
+                    {DiaryMax || '최대 부원 인원을 정해주세요.'}
+                </button>
+                        {isListOpen && (
+                            <ul className="list-member">
+                            <li>
+                                <button onClick={() => handleOptionClick('1명')}>1명</button>
+                            </li>
+                            <li>
+                                <button onClick={() => handleOptionClick('2명')}>2명</button>
+                            </li>
+                            <li>
+                                <button onClick={() => handleOptionClick('3명')}>3명</button>
+                            </li>
+                            </ul>
+                        )}
 
-        <label>최대 인원</label>
-        <select value={DiaryMax} onChange={onDiaryMaxHandler}>
-            <option value="1">1명</option>
-            <option value="2">2명</option>
-            <option value="3">3명</option>
-            {/* 다른 옵션들 추가 */}
-        </select>
-
-        <br/>
-        <button type="submit" onClick={onSubmitHandler}>생성</button>
-
-        
+                <div className='diaryCreate_sub'>
+                ※ 교환일기장 이름, 암호, 최대 모집원 수는 신청이 접수되면 변경이 불가능해요
+                </div>
+            </div>
+            <button className="diaryCreate_submit_button" type='submit' onClick={onSubmitHandler}>받아주세요</button>
+            </div>
+            </div>
     </div>
   )
 }

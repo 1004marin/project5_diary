@@ -71,7 +71,7 @@
     height: 25vw;
 }
 //모바일 세로
-@media screen and (min-width: 375px){
+@media screen and (min-width: 280px){
     .login_formbox{
         font-size: 16px;
         line-height: normal;
@@ -107,7 +107,7 @@
         line-height: 6.5vh;
         @include customTextShadow(5px, #ffffff); // thickness와 color를 여기서 조절합니다.
     }
-    .letter{
+    .pinkBubble{
         width:33vw;
         height: 12vh;
         margin-left: 27vw;
@@ -120,9 +120,6 @@
         margin-top: 6vh;
         font-size: 2.5vh;
     }
-    .margin_bottom{
-        margin-bottom: 0.5vh;
-    }
     label{
         text-decoration: underline;
         text-shadow: 3px 4px 4.2px #00000040, 2px 1px 0px #ffffff;
@@ -130,7 +127,7 @@
         font-size: 2.4vh;
         display: block;
         font-family: 'Cuprum';
-        margin-bottom: 0.1em;
+        margin-bottom: 0.2em;
     }
     .login_submit_button{
         border-width: 0;
@@ -141,13 +138,14 @@
         background-image: linear-gradient(to top,#fddaed , #fff2f9, #fff );
         text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
         font-family: 'DOSSaemmul';
-        font-size: 1rem;
+        font-size: 1.7vh;
         color: #fff;
         margin-top: auto; /* 마지막 요소를 가장 하단에 배치합니다. */
         margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
       
     }
     .login_input{
+        margin-bottom: 0.5vh;
         color: #696969;
         width: 100%;
         font-family: '';
@@ -162,7 +160,7 @@
     }
     .login_sub{
         @include customTextShadow(1px, #fdddee); // thickness와 color를 여기서 조절합니다.
-        font-size: 2vh;
+        font-size: 2.3vh;
         //background-color: #dcfff1;
         margin-top: 2vh;
         display: flex;
@@ -187,7 +185,8 @@
         display: flex;
         flex-direction: column;
         @include customTextShadow(1px, #ffffff); // thickness와 color를 여기서 조절합니다.
-        font-size: 2vh;
+        font-size: 2.5vh;
+        margin-top: -18px;
     }
     a{
         text-decoration: none;
@@ -206,69 +205,93 @@
         line-height: 6vh;
 
     }
-    .letter{
-        width: 9rem;
+    .pinkBubble{
+        width: 12rem;
         height: 8rem;
-        margin-left: 20vw;
+        margin-left: 18vw;
+    }
+    .login_card{
+        border-top: solid 1.5px #000;
+        padding: 8px 8px 27px 8px;
+        font-size: 2.4vh;
+    }
+    .profile{
+        width: 23vw;
+        height: 22vw;
     }
     label{
         font-size: 1.7rem;
     }
-    input{
+    .login_input{
         height: 2.3rem;
         font-size: 3vh;
     }
-    button{
-        font-size: 1.7rem;
-        height: 3vh;
+    .login_submit_button{
+        font-size: 1.3rem;
+        width: 27vw;
+        height: 9vh;
     }
-    .submit_button{
-        font-size: 1.5rem;
+    .login_sub{
+        font-size: 2.8vh;
+    }
+    .stamp{
+        width: 11vw;
+        margin-right: 23vw;
+    }
+    .login_sub2{
+        font-size: 2.5vh;
+        margin-top: -2vh;
     }
 }
 //아이패드에어 ~아이패드프로 세로
 @media screen and (min-width: 820px) and (max-width: 1024px){
     .inner_title{
         width: 48vw;
-        margin-bottom: 4.5vh;
+        margin-bottom: 3vh;
     }
     .title{
-        font-size: 6.5vh;
-        line-height:7vh;
+        font-size: 5.9vh;
+        line-height: 6vh;
     }
-    .letter{
-        width: 12rem;
-        height: 10rem;
-        margin-left: 24vw;
+    .pinkBubble{
+        width: 25vw;
+        height: 17vw;
+        margin-left: 19vw;
     }
-    button{
-        height: 3.3vh;
-        font-size: 2.7vh;
-        border: 2px solid #A6A6A6; /* 테두리 설정 */
+    .login_card{
+        border-top: solid 1.5px #000;
+        padding: 10px 10px 27px 10px;
+        font-size: 2.4vh;
     }
-    label{
-        font-size: 2.7vh;
+    .profile{
+        width: 23vw;
+        height: 22vw;
     }
-    input{
-        height: 3.6vh;
+    .login_input{
+        height: 2.5rem;
+        font-size: 3vh;
+    }
+    .login_submit_button{
+        font-size: 1.8vh;
+        width: 27vw;
+        height: 9vh;
+    }
+    .login_sub{
         font-size: 2.8vh;
     }
-    .formBox{
-        padding:14% 20% 0 20%; //시계방향 상 우 하 좌
+    .stamp{
+        width: 11vw;
+        margin-right: 23vw;
     }
-    .password_formbox_content{
-        margin-top: 4vh;
-    }
-    .submit_button{
-        width: 15rem;
-        height: 8vh;
-        font-size: 1.6rem;
+    .login_sub2{
+        font-size: 2.5vh;
+        margin-top: -2vh;
     }
 }
 
 //아이패드 & 모바일 가로&PC
 @media screen and (min-width: 1025px), (orientation: landscape) {
-	.password_formbox{
+	.login_formbox{
         background-image: url('../../public/pc_background.png');
         background-repeat : no-repeat; /*가로 세로 */
         background-size : 100% 100%;
@@ -282,7 +305,7 @@
         left: 4vw; /* 왼쪽에 위치하도록 설정 */
         z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
     }
-    .password_inner_formbox{
+    .login_inner_formbox{
         height: 73vh;
         width: 62vw;
     }
@@ -297,36 +320,52 @@
     label{
         font-size: 2.8vh;
     }
-.letter{
-    width: 11vw;
-    height: 9vw;
-    margin-top: 2vh;
-    margin-left: 12vw;
-}
-.password_formbox_content{
-    width: 40%;
-    height: 70%;
-    margin-left: 19vw;
-    z-index: 1;
-    margin-bottom: -10rem;
-}
-.margin_bottom{
-    margin-bottom: 0.2em;
-}
-button{
-    width: 100%;
-    height: 3.4vh;
-    font-size: 2.5vh;
-    margin-top: 0.1em;
-}
-.submit_button{
-    width: 14vw;
-  height: 10vh;
-  font-size: 2.3vh;
-  z-index: 2;
-}
-input{
-    font-size: 1.9vw;
-    height: 3.8vh;
-}
+    .pinkBubble{
+        width: 11vw;
+        height: 9vw;
+        margin-top: 2vh;
+        margin-left: 12vw;
+    }
+    .login_formbox_content{
+        width: 40%;
+        height: 70%;
+        margin-left: 19vw;
+        z-index: 1;
+        margin-bottom: -20rem;
+    }
+    .login_input{
+        font-size: 1.9vw;
+        height: 3.8vh;
+    }
+    .login_card{
+        border-top: solid 2px #000;
+        padding: 0.5vw 0.5vw 27px 0.5vw;
+        font-size: 2.4vh;
+        margin-top: -4vh;
+    }
+    .profile{
+        width: 10vw;
+        height: 9vw;
+    }
+    .login_input{
+        height: 2.5rem;
+        font-size: 3vh;
+    }
+    .login_submit_button{
+        font-size: 1.8vh;
+        width: 10vw;
+        height: 9vh;
+        z-index: 2;
+    }
+    .login_sub{
+        font-size: 2.8vh;
+    }
+    .stamp{
+        width: 4vw;
+        margin-right: 3vw;
+    }
+    .login_sub2{
+        font-size: 2.5vh;
+        margin-top: 2vh;
+    }
 }

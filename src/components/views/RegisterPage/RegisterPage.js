@@ -223,7 +223,7 @@ function RegisterPage() {
                 </label>
 
             </div>
-            <button type="submit" className='submit_button'>
+            <button type="submit" className='register_submit_button'>
                     받아주세요
             </button> 
         </div>

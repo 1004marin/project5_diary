@@ -64,7 +64,7 @@ function LoginPage() {
             <div className='inner_title'>
                 <div className='title'>일기교환클럽<br/>
                                 부원 확인 중...</div>
-                <img className="letter"src={process.env.PUBLIC_URL + '/pink.png'} />
+                <img className="pinkBubble"src={process.env.PUBLIC_URL + '/pink.png'} />
             </div>
     <form className='login_formbox_content' onSubmit={onSubmitHandler}>
         <div className='login_card'>

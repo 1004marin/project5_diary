@@ -13,46 +13,47 @@
   font-weight: normal;
   font-style: normal;
 }
-.RegisterBox {
+.diaryCreate {
   height: 100vh;
   width: 100%;
-  position: relative; /* RegisterBox를 상대적인 위치로 설정 */
+  position: relative;
 }
 
 .inner_navbar {
   display: none;
 }
 
-.formBox {
-  height: 100%;
+.diaryCreate_formbox {
+  height: 100vh;
   width: 100%;
   padding-bottom: 200px;
 }
 
-.register_agree {
+.diaryCreate_formbox_content {
   font-family: "Dongle-Regular";
 }
 
 @media screen and (min-width: 280px) {
-  .formBox {
+  .diaryCreate_formbox {
     font-size: 16px;
     line-height: normal;
     color: #1e1e1e;
     background-image: url("../../public/mobile_background.png");
     background-repeat: no-repeat; /*가로 세로 */
     background-size: 100% 100%;
-    padding: 10vh 20% 0 20%;
+    padding: 10vh 9.5% 0 21%;
     box-sizing: border-box; /* 내부 패딩과 테두리를 요소의 크기에 포함시킵니다 */
-    background-position: center;
-    background-attachment: scroll;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
   }
-  .inner_formBox {
+  .diaryCreate_inner_formbox {
     display: flex;
     flex-direction: column;
     height: 83vh;
     width: 70vw;
   }
-  .inner_formBox_title {
+  .inner_title {
     width: auto;
     display: flex;
     position: relative;
@@ -69,20 +70,18 @@
     line-height: 6.5vh;
     text-shadow: calc(5px * 1) 0 0 #ffffff, calc(5px * 0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * 0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * 0.3827) calc(5px * 0.9239) 0 #ffffff, 0 calc(5px * 1) 0 #ffffff, calc(5px * -0.3827) calc(5px * 0.9239) 0 #ffffff, calc(5px * -0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * -0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * -1) 0 0 #ffffff, calc(5px * -0.9239) calc(5px * -0.3827) 0 #ffffff, calc(5px * -0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * -0.3827) calc(5px * -0.9239) 0 #ffffff, 0 calc(5px * -1) 0 #ffffff, calc(5px * 0.3827) calc(5px * -0.9239) 0 #ffffff, calc(5px * 0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * 0.9239) calc(5px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
   }
-  .letter {
-    width: 29vw;
+  .pinkBubble {
+    width: 33vw;
     height: 12vh;
-    margin-left: 30vw;
+    margin-left: 27vw;
   }
-  .inner_formBox_content {
+  .diaryCreate_formbox_content {
     width: 100%;
     height: 65%;
     display: flex;
     flex-direction: column;
-    margin-top: 1.3vh;
-  }
-  .margin_bottom {
-    margin-bottom: 1vh;
+    margin-top: 6vh;
+    font-size: 2.5vh;
   }
   label {
     text-decoration: underline;
@@ -93,22 +92,23 @@
     font-family: "Cuprum";
     margin-bottom: 0.1em;
   }
+  .diaryCreate_sub {
+    text-shadow: calc(1px * 1) 0 0 #fdddee, calc(1px * 0.9239) calc(1px * 0.3827) 0 #fdddee, calc(1px * 0.7071) calc(1px * 0.7071) 0 #fdddee, calc(1px * 0.3827) calc(1px * 0.9239) 0 #fdddee, 0 calc(1px * 1) 0 #fdddee, calc(1px * -0.3827) calc(1px * 0.9239) 0 #fdddee, calc(1px * -0.7071) calc(1px * 0.7071) 0 #fdddee, calc(1px * -0.9239) calc(1px * 0.3827) 0 #fdddee, calc(1px * -1) 0 0 #fdddee, calc(1px * -0.9239) calc(1px * -0.3827) 0 #fdddee, calc(1px * -0.7071) calc(1px * -0.7071) 0 #fdddee, calc(1px * -0.3827) calc(1px * -0.9239) 0 #fdddee, 0 calc(1px * -1) 0 #fdddee, calc(1px * 0.3827) calc(1px * -0.9239) 0 #fdddee, calc(1px * 0.7071) calc(1px * -0.7071) 0 #fdddee, calc(1px * 0.9239) calc(1px * -0.3827) 0 #fdddee, 5px 8px 5px rgba(0, 0, 0, 0.8);
+    font-size: 2.3vh;
+    margin-top: 0.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    letter-spacing: 0px;
+    line-height: 2.9vh;
+  }
+  .btn-select {
+    background-color: rgb(90, 56, 56);
+    border: 1px black;
+  }
 }
-button {
-  width: 100%;
-  height: 25px;
-  border: solid 1px #a6a6a6;
-  background-image: linear-gradient(to bottom, #fff, #f1f1f1, #d0d0d0);
-  font-family: "Dongle-Regular";
-  font-size: 1.4rem;
-  color: #0f0f0f;
-  display: flex; /* Flexbox를 사용하여 요소를 가로로 배치합니다. */
-  justify-content: center; /* 텍스트를 수평으로 가운데 정렬합니다. */
-  align-items: center; /* 텍스트를 수직으로 가운데 정렬합니다. */
-  margin-top: 0.2em;
-}
-
-.register_submit_button {
+.diaryCreate_submit_button {
   border-width: 0;
   width: 32vw;
   height: 8vh;
@@ -124,60 +124,46 @@ button {
 }
 
 input {
+  margin-bottom: 1vh;
   color: #696969;
   width: 100%;
   box-sizing: border-box;
-  font-family: "Dongle-Regular";
-  font-size: 2.4vh;
+  font-size: 2.7vh;
   font-weight: 300;
-  height: 33px;
+  height: 4vh;
   border: solid 1px #000;
   background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
 }
 
-input[type=checkbox] {
-  display: none;
-}
-
-/* 체크박스 꾸미기 - 활성화 x */
-.check_icon::before {
-  content: "";
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  width: 5vw;
-  height: 3.5vh;
-  box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  background-image: url("../../public/checkbox_none.png");
-  background-size: 100% 100%;
-}
-
-.check_icon {
+.btn-select {
+  background: none;
+  border: 1px solid black;
+  margin-bottom: 0.3vh;
   cursor: pointer;
+  font-size: 2.7vh;
 }
 
-/* 체크박스 꾸미기 - 활성화 */
-.register_agree input:checked + .check_icon::before {
-  background-image: url("../../public/checkbox_checked.png");
-  background-size: 100% 100%;
+.list-member {
+  border: 0.5px solid rgb(184, 184, 184);
+  border-radius: 10px;
 }
 
-.register_agree {
-  font-size: 2.6vh;
-  display: flex;
-  margin-top: 4px;
-  align-items: center;
-  color: #F2A3A8;
-  text-shadow: -1.2px 0px #FFE4E4, 0px 1.2px #FFE4E4, 1.2px 0px #FFE4E4, 0px -1.2px #FFE4E4;
+.list-member button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2.7vh;
 }
 
-.check_text {
-  margin-left: 10px;
-  margin-bottom: 10px;
+.btn-select:hover,
+.btn-select:focus {
+  border: 1px solid #fdddee;
+  border-radius: 10px;
+  outline: 3px solid #fff0f8;
 }
 
 @media screen and (min-width: 768px) and (max-width: 819px) {
-  .inner_formBox_title {
+  .inner_title {
     width: 48vw;
     margin-bottom: 3vh;
   }
@@ -185,31 +171,27 @@ input[type=checkbox] {
     font-size: 5.9vh;
     line-height: 6vh;
   }
-  .letter {
+  .pinkBubble {
     width: 9rem;
-    height: 8rem;
-    margin-left: 20vw;
+    height: 7rem;
+    margin-left: 16vw;
   }
   label {
     font-size: 1.7rem;
-  }
-  .register_agree {
-    font-size: 1.8rem;
   }
   input {
     height: 2.3rem;
     font-size: 3vh;
   }
-  button {
-    font-size: 1.7rem;
-    height: 3vh;
-  }
-  .register_submit_button {
+  .diaryCreate_submit_button {
     font-size: 1.5rem;
+  }
+  .diaryCreate_sub {
+    font-size: 2.6vh;
   }
 }
 @media screen and (min-width: 820px) and (max-width: 1024px) {
-  .inner_formBox_title {
+  .inner_title {
     width: 48vw;
     margin-bottom: 4.5vh;
   }
@@ -217,60 +199,49 @@ input[type=checkbox] {
     font-size: 6.5vh;
     line-height: 7vh;
   }
-  .letter {
+  .pinkBubble {
     width: 12rem;
     height: 10rem;
-    margin-left: 24vw;
-  }
-  button {
-    height: 3.3vh;
-    font-size: 2.7vh;
-    border: 2px solid #A6A6A6; /* 테두리 설정 */
+    margin-left: 18vw;
   }
   label {
-    font-size: 2.7vh;
+    font-size: 2.8vh;
   }
   input {
     height: 3.6vh;
-    font-size: 2.8vh;
+    font-size: 3.1vh;
   }
-  .formBox {
-    padding: 14% 20% 0 20%;
+  .diaryCreate_submit_button {
+    width: 15rem;
+    height: 8vh;
+    font-size: 1.6rem;
   }
-  .inner_formBox_content {
-    margin-top: 1vh;
-  }
-  .register_agree {
-    font-size: 3.6vw;
-  }
-  .register_submit_button {
-    width: 25vw;
-    height: 7vh;
-    font-size: 2.7vw;
-  }
-  .check_text {
-    margin-bottom: 23px;
+  .diaryCreate_sub {
+    font-size: 2.7vh;
   }
 }
 @media screen and (min-width: 1025px), (orientation: landscape) {
-  .formBox {
+  .slideMenu {
+    display: none;
+  }
+  .diaryCreate_formbox {
     background-image: url("../../public/pc_background.png");
     background-repeat: no-repeat; /*가로 세로 */
     background-size: 100% 100%;
     padding: 19vh 0 10vh 33vw;
   }
-  .inner_navber {
+  .inner_navbar {
     display: block;
     position: absolute;
     top: 21vh; /* 상단에 위치하도록 설정 */
     left: 4vw; /* 왼쪽에 위치하도록 설정 */
     z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
   }
-  .inner_formBox {
+  .diaryCreate_inner_formbox {
     height: 73vh;
     width: 62vw;
   }
-  .inner_formBox_title {
+  .inner_title {
     width: 27vw;
     margin-bottom: -3rem;
   }
@@ -281,46 +252,27 @@ input[type=checkbox] {
   label {
     font-size: 2.8vh;
   }
-  .letter {
+  .pinkBubble {
     width: 11vw;
     height: 9vw;
-    margin-top: 2vh;
-    margin-left: 12vw;
+    margin-top: 1.5vh;
+    margin-left: 7vw;
   }
-  .register_agree {
-    font-size: 2.8vh;
-  }
-  .inner_formBox_content {
+  .diaryCreate_formbox_content {
     width: 40%;
     height: 70%;
     margin-left: 19vw;
     z-index: 1;
     margin-bottom: -10rem;
   }
-  .margin_bottom {
-    margin-bottom: 0.2em;
-  }
-  button {
-    width: 100%;
-    height: 3.4vh;
-    font-size: 2.5vh;
-    margin-top: 0.1em;
-  }
-  .register_submit_button {
+  .diaryCreate_submit_button {
     width: 14vw;
     height: 10vh;
-    font-size: 2.6vh;
+    font-size: 2.3vh;
     z-index: 2;
   }
   input {
     font-size: 1.9vw;
     height: 3.8vh;
   }
-  .check_icon::before {
-    width: 1.4vw;
-    height: 3.5vh;
-  }
-  .check_text {
-    margin-bottom: 2vh;
-  }
-}/*# sourceMappingURL=register.css.map */
+}/*# sourceMappingURL=diary_create.css.map */

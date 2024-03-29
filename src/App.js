@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useEffect } from 'react';
 
 import NavBar from './components/views/NavBar/NavBar';
+import SlideMenu from './components/views/NavBar/SlideMenu';
+
 import LandingPage from './components/views/LandingPage/LandingPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
@@ -20,6 +22,7 @@ import DiaryWritePage from './components/views/DiaryPage/DiaryWritePage';
 import DiaryInfoPage from './components/views/DiaryPage/DiaryInfoPage';
 import DiaryDrawPage from './components/views/DiaryPage/DiaryDrawPage';
 import DiaryPostPage from './components/views/DiaryPage/DiaryPostPage';
+import DiaryCreateCompletePage from './components/views/DiaryPage/DiaryCreateCompletePage';
 
 const is_refreshToken = localStorage.getItem("refreshToken");
 const is_accessToken = localStorage.getItem("accessToken");
@@ -34,6 +37,8 @@ function App() {
   return(
       <Routes>
         <Route path='/navbar' element={<NavBar/>}/>
+        <Route path='/slidemenu' element={<SlideMenu/>}/>
+
         <Route path="/register" element={<RegisterPage/>} />
         <Route path="/registerComplete" element={<RegisterCompletePage/>} />
         <Route path="/" element={<LandingPage/>}/>
@@ -42,6 +47,7 @@ function App() {
         <Route path="/password" element={<PasswordPage/>}/>
 
         <Route path="/diaryCreate" element={<DiaryCreatePage/>}/>
+        <Route path="/diaryCreateComplete" element={<DiaryCreateCompletePage/>}/>
         <Route path="/diaryList" element={<DiaryListPage/>}/>
         <Route path="/diaryContent" element={<DiaryContentPage/>}/>
         <Route path="/diaryWrite" element={<DiaryWritePage/>}/>
