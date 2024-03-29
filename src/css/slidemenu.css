@@ -1,10 +1,95 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400..700;1,400..700&display=swap");
+@import "reset.css";
+@font-face {
+  font-family: "DOSSaemmul";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSSaemmul.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+.mobile_navbar {
+  width: 100%;
+  height: 10vh;
+  margin-top: -8vh;
+  margin-left: 1.9vw;
+  line-height: 3.5vh;
+}
+
+.menuButton {
+  font-size: 2.4vh;
+  width: -moz-fit-content;
+  width: fit-content;
+  right: 0;
+  top: 0;
+  text-shadow: 2px 0 0 #fdddee, 1.8478px 0.7654px 0 #fdddee, 1.4142px 1.4142px 0 #fdddee, 0.7654px 1.8478px 0 #fdddee, 0 2px 0 #fdddee, -0.7654px 1.8478px 0 #fdddee, -1.4142px 1.4142px 0 #fdddee, -1.8478px 0.7654px 0 #fdddee, -2px 0 0 #fdddee, -1.8478px -0.7654px 0 #fdddee, -1.4142px -1.4142px 0 #fdddee, -0.7654px -1.8478px 0 #fdddee, 0 -2px 0 #fdddee, 0.7654px -1.8478px 0 #fdddee, 1.4142px -1.4142px 0 #fdddee, 1.8478px -0.7654px 0 #fdddee, 5px 8px 5px rgba(0, 0, 0, 0.8);
+}
+
+.mobile_navbar_content {
+  font-family: "DOSSaemmul";
+  display: flex;
+  flex-direction: column;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: relative; /* 부모 컨테이너를 상대적인 위치로 설정 */
+}
+
+.closeSlideMenu {
+  z-index: 100;
+  background-color: #464646;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: fit-contents;
+}
+
+.mobile_navbar_title {
+  margin-top: 9vh;
+  color: white;
+  height: 10vh;
+  font-size: 3.5vh;
+  letter-spacing: 0;
+  text-shadow: 4.5px 0 0 #5a5a5a, 4.15755px 1.72215px 0 #5a5a5a, 3.18195px 3.18195px 0 #5a5a5a, 1.72215px 4.15755px 0 #5a5a5a, 0 4.5px 0 #5a5a5a, -1.72215px 4.15755px 0 #5a5a5a, -3.18195px 3.18195px 0 #5a5a5a, -4.15755px 1.72215px 0 #5a5a5a, -4.5px 0 0 #5a5a5a, -4.15755px -1.72215px 0 #5a5a5a, -3.18195px -3.18195px 0 #5a5a5a, -1.72215px -4.15755px 0 #5a5a5a, 0 -4.5px 0 #5a5a5a, 1.72215px -4.15755px 0 #5a5a5a, 3.18195px -3.18195px 0 #5a5a5a, 4.15755px -1.72215px 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);
+}
+
+.mobile_navbar_sub {
+  color: #464646;
+  font-size: 2vh;
+  text-shadow: 2px 0 0 #fdddee, 1.8478px 0.7654px 0 #fdddee, 1.4142px 1.4142px 0 #fdddee, 0.7654px 1.8478px 0 #fdddee, 0 2px 0 #fdddee, -0.7654px 1.8478px 0 #fdddee, -1.4142px 1.4142px 0 #fdddee, -1.8478px 0.7654px 0 #fdddee, -2px 0 0 #fdddee, -1.8478px -0.7654px 0 #fdddee, -1.4142px -1.4142px 0 #fdddee, -0.7654px -1.8478px 0 #fdddee, 0 -2px 0 #fdddee, 0.7654px -1.8478px 0 #fdddee, 1.4142px -1.4142px 0 #fdddee, 1.8478px -0.7654px 0 #fdddee, 5px 8px 5px rgba(0, 0, 0, 0.8);
+}
+
+.mobile_navbar_menu {
+  color: white;
+  font-size: 2.2vh;
+  margin-top: 7vh;
+  letter-spacing: 0;
+  line-height: 35px;
+  text-shadow: 3px 0 0 #5a5a5a, 2.7717px 1.1481px 0 #5a5a5a, 2.1213px 2.1213px 0 #5a5a5a, 1.1481px 2.7717px 0 #5a5a5a, 0 3px 0 #5a5a5a, -1.1481px 2.7717px 0 #5a5a5a, -2.1213px 2.1213px 0 #5a5a5a, -2.7717px 1.1481px 0 #5a5a5a, -3px 0 0 #5a5a5a, -2.7717px -1.1481px 0 #5a5a5a, -2.1213px -2.1213px 0 #5a5a5a, -1.1481px -2.7717px 0 #5a5a5a, 0 -3px 0 #5a5a5a, 1.1481px -2.7717px 0 #5a5a5a, 2.1213px -2.1213px 0 #5a5a5a, 2.7717px -1.1481px 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);
+}
+
+.mobile_navbar_menu .link {
+  color: white;
+  text-shadow: 3px 0 0 #5a5a5a, 2.7717px 1.1481px 0 #5a5a5a, 2.1213px 2.1213px 0 #5a5a5a, 1.1481px 2.7717px 0 #5a5a5a, 0 3px 0 #5a5a5a, -1.1481px 2.7717px 0 #5a5a5a, -2.1213px 2.1213px 0 #5a5a5a, -2.7717px 1.1481px 0 #5a5a5a, -3px 0 0 #5a5a5a, -2.7717px -1.1481px 0 #5a5a5a, -2.1213px -2.1213px 0 #5a5a5a, -1.1481px -2.7717px 0 #5a5a5a, 0 -3px 0 #5a5a5a, 1.1481px -2.7717px 0 #5a5a5a, 2.1213px -2.1213px 0 #5a5a5a, 2.7717px -1.1481px 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);
+}
+
+.mobileRight {
+  position: absolute; /* 절대적인 위치로 설정 */
+  bottom: 20vh; /* 아래쪽으로 위치시킵니다. */
+  right: 10vw; /* 오른쪽으로 위치시킵니다. */
+}
+
+a {
+  text-decoration: none;
+} 
 #sidebar {
-  z-index: 5;
-  padding: 12px;
-  border-radius: 15px 0 0 15px;
-  background-color: #e7e4e1;
-  height: 100%;
-  width: 55%;
+  z-index: 99;
+  padding: 3vh 1vh 0 3vh;
+  box-sizing: border-box;
+  background-image: url("../../public/mobile_slidemenu.png");
+  background-repeat: no-repeat; /*가로 세로 */
+  background-size: 100% 100%;
+  height: 100vh;
+  width: 85vw;
   right: -100%;
   top: 0;
   position: fixed;

@@ -12,6 +12,7 @@ import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import RegisterCompletePage from './components/views/RegisterPage/RegisterCompletePage';
 import MyinfoPage from './components/views/MyinfoPage/MyinfoPage';
+import MyinfoDeletePage from './components/views/MyinfoPage/MyinfoDeletePage';
 import PasswordPage from './components/views/LoginPage/PasswordPage'
 
 //다이어리
@@ -43,6 +44,7 @@ function App() {
         <Route path="/registerComplete" element={<RegisterCompletePage/>} />
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/myinfo" element={<MyinfoPage/>}/>
+        <Route path="/myinfoDelete" element={<MyinfoDeletePage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/password" element={<PasswordPage/>}/>
 

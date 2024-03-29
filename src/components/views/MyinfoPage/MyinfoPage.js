@@ -3,6 +3,11 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
+
+import NavBar from '../NavBar/NavBar';
+import SlideMenu from '../NavBar/SlideMenu'
+
+import '../../../css/myinfo.scss'
 function MyinfoPage() {
 
   const [Email, setEmail] = useState("")
@@ -137,33 +142,51 @@ const onSubmitHandler = (e) => {
 //내정보를 다른 페이지에서도 접근할일이 있나?
 //=>다이어리작성할때(나중에 reducer에 저장하기!)
   return (
-    <form style={{height:"100vh", backgroundColor:"pink", display:"flex", flexDirection:"column",alignItems:"center", justifyContent:"center"}}>
-      <label>이메일</label>
-      <div style={{width:"20vh", height:"2vh", backgroundColor:"gray"}}>{Email}</div>
+<div className='Myinfo'>
+    
+    <div className='inner_navbar'>
+        <NavBar/>
+    </div>
+    <div className='myinfo_formbox'>
+        <div className='moblie_menu'>
+            <SlideMenu/>
+        </div>
+        <div className='myinfo_inner_formbox'>
+            <div className='inner_title'>
+                <div className='title'>교환일기장<br/>
+                                신청서...</div>
+                <img className="myinfo_pinkBubble"src={process.env.PUBLIC_URL + '/pink.png'} />
+            </div>
+              <form className='myinfo_formbox_content'>
+                <label>이메일</label>
+                <div style={{width:"20vh", height:"2vh", backgroundColor:"gray"}}>{Email}</div>
 
-      <label>닉네임</label>
-      <input type="text" value ={Nickname} onChange={onNicknameHandler}/>
+                <label>닉네임</label>
+                <input type="text" value ={Nickname} onChange={onNicknameHandler}/>
 
-      <label>유저 이름</label>
-      <div style={{width:"20vh", height:"2vh", backgroundColor:"gray"}}>{Username}</div>
+                <label>유저 이름</label>
+                <div style={{width:"20vh", height:"2vh", backgroundColor:"gray"}}>{Username}</div>
 
-      <label>혈액형</label>
-      <input type="text" value ={BloodType} onChange={onBloodTypeHandler}/>
+                <label>혈액형</label>
+                <input type="text" value ={BloodType} onChange={onBloodTypeHandler}/>
 
-      <label>모토</label>
-      <input type="text" value ={Motto} onChange={onMottoHandler}/>
+                <label>모토</label>
+                <input type="text" value ={Motto} onChange={onMottoHandler}/>
 
-      <label>주소</label>
-      <input type="text" value ={Address} onChange={onAddressHandler}/>
+                <label>주소</label>
+                <input type="text" value ={Address} onChange={onAddressHandler}/>
 
-      <br/>
-      <button type="submit" onClick={onSubmitHandler}>수정버튼</button>
+                <br/>
+                <button type="submit" onClick={onSubmitHandler}>수정버튼</button>
 
-      <br/>
-      <button type="button" onClick={onDeleteHandler}>탈퇴버튼</button>
-      <input type="password" value={DeletePassword} onChange={onDeletePasswordHandler}></input>
-      
-    </form>
+                <br/>
+                <button type="button" onClick={onDeleteHandler}>탈퇴버튼</button>
+                <input type="password" value={DeletePassword} onChange={onDeletePasswordHandler}></input>
+                
+              </form>
+            </div>
+    </div>
+    </div>
   )
 
   }

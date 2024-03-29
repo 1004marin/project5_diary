@@ -34,6 +34,9 @@
 }
 
 @media screen and (min-width: 280px) {
+  .moblie_menu {
+    width: 2vw;
+  }
   .diaryCreate_formbox {
     font-size: 16px;
     line-height: normal;
@@ -41,7 +44,7 @@
     background-image: url("../../public/mobile_background.png");
     background-repeat: no-repeat; /*가로 세로 */
     background-size: 100% 100%;
-    padding: 10vh 9.5% 0 21%;
+    padding: 10vh 9.5% 0 0%;
     box-sizing: border-box; /* 내부 패딩과 테두리를 요소의 크기에 포함시킵니다 */
     display: flex;
     justify-content: space-between;
@@ -70,7 +73,7 @@
     line-height: 6.5vh;
     text-shadow: calc(5px * 1) 0 0 #ffffff, calc(5px * 0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * 0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * 0.3827) calc(5px * 0.9239) 0 #ffffff, 0 calc(5px * 1) 0 #ffffff, calc(5px * -0.3827) calc(5px * 0.9239) 0 #ffffff, calc(5px * -0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * -0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * -1) 0 0 #ffffff, calc(5px * -0.9239) calc(5px * -0.3827) 0 #ffffff, calc(5px * -0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * -0.3827) calc(5px * -0.9239) 0 #ffffff, 0 calc(5px * -1) 0 #ffffff, calc(5px * 0.3827) calc(5px * -0.9239) 0 #ffffff, calc(5px * 0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * 0.9239) calc(5px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
   }
-  .pinkBubble {
+  .diaryCreate_pinkBubble {
     width: 33vw;
     height: 12vh;
     margin-left: 27vw;
@@ -171,7 +174,7 @@ input {
     font-size: 5.9vh;
     line-height: 6vh;
   }
-  .pinkBubble {
+  .diaryCreate_pinkBubble {
     width: 9rem;
     height: 7rem;
     margin-left: 16vw;
@@ -199,7 +202,7 @@ input {
     font-size: 6.5vh;
     line-height: 7vh;
   }
-  .pinkBubble {
+  .diaryCreate_pinkBubble {
     width: 12rem;
     height: 10rem;
     margin-left: 18vw;
@@ -221,7 +224,7 @@ input {
   }
 }
 @media screen and (min-width: 1025px), (orientation: landscape) {
-  .slideMenu {
+  .moblie_menu {
     display: none;
   }
   .diaryCreate_formbox {
@@ -252,7 +255,7 @@ input {
   label {
     font-size: 2.8vh;
   }
-  .pinkBubble {
+  .diaryCreate_pinkBubble {
     width: 11vw;
     height: 9vw;
     margin-top: 1.5vh;

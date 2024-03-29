@@ -1,15 +1,35 @@
 import React from 'react'
 import { useState, useRef,useEffect } from 'react';
 import '../../../css/slidemenu.css';
-
+import { useDispatch } from 'react-redux'
+import {logoutUser } from '../../../_actions/user_action';
+import { Link } from 'react-router-dom'
 
 function SlideMenu() {
-    //메뉴
+
+//로그아웃
+const dispatch= useDispatch()
+//로그아웃
+const onLogoutHandler = () => {
+  dispatch(logoutUser())
+    .then(response => {
+      // 로그아웃이 성공한 경우 여기에 추가적인 처리를 할 수 있습니다.
+      console.log(response);
+    })
+    .catch(error => {
+      // 로그아웃 중 에러가 발생한 경우 여기에 처리를 할 수 있습니다.
+      console.error('Logout Error:', error);
+    });
+};
+
+//메뉴
 const [isOpen, setIsOpen] = useState(false); // 사이드바의 열림/닫힘 상태를 관리하는 상태
 const outside = useRef(null); // 외부를 클릭하는지 감지하기 위한 ref
 
 const toggleSide = () => {    setIsOpen(true);  };
-
+const toggleClose = () => {
+      setIsOpen(false);
+};
 // 외부를 클릭할 때 사이드바를 닫기 위한 이벤트 핸들러
 const handleClickOutside = (event) => {
     if (outside.current && !outside.current.contains(event.target)) {
@@ -27,19 +47,37 @@ const handleClickOutside = (event) => {
 
 
   return (
-    <div onClick={toggleSide} className='menuButton'>목차
+    <div className='mobile_navbar'>
+        <div className='mobile_navbar_content'>
+            <div onClick={toggleSide} className='menuButton'>목차
          {
         <div id="sidebar" isOpen={isOpen} setIsOpen={setIsOpen}
         ref={outside} className={isOpen ? 'open' : ''}>
-            <div id='closeSlideMenu'  onClick={toggleSide} onKeyDown={toggleSide}>닫기</div>
-            <ul>
-                <li>슬라이드 메뉴1</li>
-                <li>슬라이드 메뉴2</li>
-                <li>슬라이드 메뉴3</li>
+
+            <div className='closeSlideMenu'  onClick={toggleClose}>닫기</div>
+            <div className='mobile_navbar_title'>목차...</div>
+            <div className='mobile_navbar_sub'>일기교환클럽으로<br/>새로운 만남이<br/>생길지도..ww</div>
+
+            <ul  className='mobile_navbar_menu'>
+                {localStorage.getItem("is_logined") ? (
+                    <li onClick={onLogoutHandler}>로그아웃...............3</li>
+                    ) : (
+                    <Link to='/login'>
+                    <li className='link'>로그인................3</li>
+                    </Link>
+                    )}
+                    <li>자기소개서...........12</li>
+                    <li>내 교환일기들........34</li>
             </ul>
+
+            <div className='mobile_navbar_sub mobileRight'>오늘은 어떤 일기가<br/>기다리고 있을까</div>
         </div>
-    }
+        }
+
+        </div>
+        </div>
     </div>
+
 
   )
 }

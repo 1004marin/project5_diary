@@ -107,7 +107,7 @@
         line-height: 6.5vh;
         @include customTextShadow(5px, #ffffff); // thickness와 color를 여기서 조절합니다.
     }
-    .pinkBubble{
+    .login_pinkBubble{
         width:33vw;
         height: 12vh;
         margin-left: 27vw;
@@ -205,10 +205,10 @@
         line-height: 6vh;
 
     }
-    .pinkBubble{
+    .login_pinkBubble{
         width: 12rem;
         height: 8rem;
-        margin-left: 18vw;
+        margin-left: 20vw;
     }
     .login_card{
         border-top: solid 1.5px #000;
@@ -253,7 +253,7 @@
         font-size: 5.9vh;
         line-height: 6vh;
     }
-    .pinkBubble{
+    .login_pinkBubble{
         width: 25vw;
         height: 17vw;
         margin-left: 19vw;
@@ -320,7 +320,7 @@
     label{
         font-size: 2.8vh;
     }
-    .pinkBubble{
+    .login_pinkBubble{
         width: 11vw;
         height: 9vw;
         margin-top: 2vh;

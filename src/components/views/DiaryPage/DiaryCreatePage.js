@@ -85,7 +85,7 @@ const handleOptionClick = (option) => {
             <div className='inner_title'>
                 <div className='title'>교환일기장<br/>
                                 신청서...</div>
-                <img className="pinkBubble"src={process.env.PUBLIC_URL + '/pink.png'} />
+                <img className="diaryCreate_pinkBubble"src={process.env.PUBLIC_URL + '/pink.png'} />
             </div>
             <div className='diaryCreate_formbox_content'>
                 <label>Name</label>

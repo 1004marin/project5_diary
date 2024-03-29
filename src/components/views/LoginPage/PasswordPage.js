@@ -96,7 +96,7 @@ function PasswordPage() {
                 <div className='inner_title'>
                         <div className='title'>일기교환클럽<br/>
                             암호 변경 부서...</div>
-                        <img className="letter"src={process.env.PUBLIC_URL + '/pink.png'} />
+                        <img className="password_pinkBubble"src={process.env.PUBLIC_URL + '/pink.png'} />
                 </div>
                 <div className='password_formbox_content'>
                     <label>Email</label>

@@ -91,7 +91,7 @@
     line-height: 6.5vh;
     text-shadow: calc(5px * 1) 0 0 #ffffff, calc(5px * 0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * 0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * 0.3827) calc(5px * 0.9239) 0 #ffffff, 0 calc(5px * 1) 0 #ffffff, calc(5px * -0.3827) calc(5px * 0.9239) 0 #ffffff, calc(5px * -0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * -0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * -1) 0 0 #ffffff, calc(5px * -0.9239) calc(5px * -0.3827) 0 #ffffff, calc(5px * -0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * -0.3827) calc(5px * -0.9239) 0 #ffffff, 0 calc(5px * -1) 0 #ffffff, calc(5px * 0.3827) calc(5px * -0.9239) 0 #ffffff, calc(5px * 0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * 0.9239) calc(5px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
   }
-  .pinkBubble {
+  .login_pinkBubble {
     width: 33vw;
     height: 12vh;
     margin-left: 27vw;
@@ -182,10 +182,10 @@
     font-size: 5.9vh;
     line-height: 6vh;
   }
-  .pinkBubble {
+  .login_pinkBubble {
     width: 12rem;
     height: 8rem;
-    margin-left: 18vw;
+    margin-left: 20vw;
   }
   .login_card {
     border-top: solid 1.5px #000;
@@ -229,7 +229,7 @@
     font-size: 5.9vh;
     line-height: 6vh;
   }
-  .pinkBubble {
+  .login_pinkBubble {
     width: 25vw;
     height: 17vw;
     margin-left: 19vw;
@@ -293,7 +293,7 @@
   label {
     font-size: 2.8vh;
   }
-  .pinkBubble {
+  .login_pinkBubble {
     width: 11vw;
     height: 9vw;
     margin-top: 2vh;
