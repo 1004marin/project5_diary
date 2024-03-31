@@ -97,7 +97,7 @@ function LoginPage() {
 
         
     </form>
-    <button className='login_submit_button' type="submit">
+    <button className='login_submit_button' type="submit" onClick={onSubmitHandler}>
             확인해주세요
     </button>
     </div>

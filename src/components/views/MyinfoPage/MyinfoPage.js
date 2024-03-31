@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate, Link} from 'react-router-dom'
 
 import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu'
@@ -16,8 +16,9 @@ function MyinfoPage() {
   const [BloodType, setBloodType] = useState("")
   const [Motto, setMotto] = useState("")
   const [Address, setAddress] = useState("")
-  const [DeletePassword,setDeletePassword] = useState("")
 
+
+  const [isChecked, setIsChecked] = useState(false);//체크박스
   const navigate = useNavigate();
 //내 정보 뿌리기
 
@@ -40,7 +41,7 @@ function MyinfoPage() {
       .catch(error => {
         console.log(error);
         alert("회원 권한이 없슴니당 로그인하셔요")
-        navigate('/login')
+        //navigate('/login')
       });
   }, []); // 빈 배열을 전달하여 컴포넌트 마운트 시에만 호출되도록 설정
 
@@ -50,8 +51,11 @@ const onNicknameHandler = (e) =>{
   console.log(Nickname)
 }
 const onBloodTypeHandler = (e) =>{
-  setBloodType(e.currentTarget.value)
+  setBloodType(e.currentTarget.value);
 }
+
+
+
 const onMottoHandler = (e) => {
   const updatedMotto = e.currentTarget.value;
   setMotto(updatedMotto);
@@ -61,48 +65,7 @@ const onAddressHandler = (e) =>{
   setAddress(e.currentTarget.value)
 
 }
-const onDeletePasswordHandler = (e) =>{
-  setDeletePassword(e.currentTarget.value)
 
-}
-
-
-//탈퇴
-const onDeleteHandler = () => {
-
-  if(!DeletePassword){
-    alert("비번을 입력하세요")
-
-    return
-  }
-  const storedAccessToken = localStorage.getItem("accessToken");
-  axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
-
-  const params = {
-    data: {
-      password: DeletePassword
-    }
-  };
-
-  axios.delete('/api/v1/user', params).then(
-    response => {
-      console.log(response)
-      if(response.data === "회원 탈퇴 성공"){
-        alert("탈퇴성공이요")
-      }
-      navigate('/');
-    }
-  )
-  .catch(error => {
-    if(error.response.data.message === '비밀번호가 일치하지 않습니다.'){
-      alert(error.response.data.message)
-    }
-    else{
-      alert("탈퇴에러요!")
-      console.error("탈퇴에러요:", error)
-    }
-  })
-}
 const onSubmitHandler = (e) => {
   e.preventDefault(); // 새로 고침 방지
   console.log("데이터보낼게요")
@@ -137,6 +100,9 @@ const onSubmitHandler = (e) => {
       alert("서버 오류가 발생하였습니다.");
     });
 };
+const handleCheckboxChange = () => {
+  setIsChecked(!isChecked);
+};
 
 
 //내정보를 다른 페이지에서도 접근할일이 있나?
@@ -153,36 +119,61 @@ const onSubmitHandler = (e) => {
         </div>
         <div className='myinfo_inner_formbox'>
             <div className='inner_title'>
-                <div className='title'>교환일기장<br/>
-                                신청서...</div>
-                <img className="myinfo_pinkBubble"src={process.env.PUBLIC_URL + '/pink.png'} />
+                <div className='title'>일기교환클럽<br/>
+                자기 소개서<span>(笑)</span>
+                </div>
+                <img className="myinfo_pinkBubble"src={process.env.PUBLIC_URL + '/profile.png'} />
             </div>
               <form className='myinfo_formbox_content'>
-                <label>이메일</label>
-                <div style={{width:"20vh", height:"2vh", backgroundColor:"gray"}}>{Email}</div>
+                <label>Email</label>
+                <div className='myinfo_fixed_input'>{Email}하이</div>
 
-                <label>닉네임</label>
+                <label>Username</label>
+                <div className='myinfo_fixed_input'>{Username}gd하이</div>
+
+                <label>Nickname</label>
                 <input type="text" value ={Nickname} onChange={onNicknameHandler}/>
 
-                <label>유저 이름</label>
-                <div style={{width:"20vh", height:"2vh", backgroundColor:"gray"}}>{Username}</div>
 
-                <label>혈액형</label>
+
+                <label>BloodType</label>
                 <input type="text" value ={BloodType} onChange={onBloodTypeHandler}/>
-
-                <label>모토</label>
+                <div className="radio-container">
+                  <label style={{display:"flex"}}>
+                  <span className='radio_icon'></span>
+                    <input type="radio" name="option" value="A" checked={BloodType === "A"} onChange={onBloodTypeHandler} />
+                    A형
+                  </label>
+                  <span className='radio_icon'></span>
+                  <label>
+                    <input type="radio" name="option" value="B" checked={BloodType === "B"} onChange={onBloodTypeHandler} />
+                    B형
+                  </label>
+                  <span className='radio_icon'></span>
+                  <label>
+                    <input type="radio" name="option" value="O" checked={BloodType === "O"} onChange={onBloodTypeHandler} />
+                    O형
+                  </label>
+                  <span className='radio_icon'></span>
+                  <label>
+                    <input type="radio" name="option" value="AB" checked={BloodType === "AB"} onChange={onBloodTypeHandler} />
+                    AB형
+                  </label>
+                </div>
+                <label>Motto</label>
                 <input type="text" value ={Motto} onChange={onMottoHandler}/>
 
-                <label>주소</label>
+                <label>Address</label>
                 <input type="text" value ={Address} onChange={onAddressHandler}/>
 
-                <br/>
-                <button type="submit" onClick={onSubmitHandler}>수정버튼</button>
+                <Link to='/myinfoDelete'>
+                  <div className='quit'>※ 클럽을 그만둘래요</div>
+                </Link>
 
-                <br/>
-                <button type="button" onClick={onDeleteHandler}>탈퇴버튼</button>
-                <input type="password" value={DeletePassword} onChange={onDeletePasswordHandler}></input>
-                
+                <button className="myinfo_submit_button"type="submit" onClick={onSubmitHandler}>수정버튼</button>
+
+
+
               </form>
             </div>
     </div>

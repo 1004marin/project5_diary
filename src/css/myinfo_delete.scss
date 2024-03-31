@@ -13,6 +13,7 @@
     font-weight: normal;
     font-style: normal;
   }
+@import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
 @mixin customTextShadow($thickness, $color) {
     text-shadow: 
       calc(#{$thickness} * 1) 0 0 $color,
@@ -52,51 +53,44 @@
       calc(#{$thickness} * 0.7071) calc(#{$thickness} * -0.7071) 0 $color,
       calc(#{$thickness} * 0.9239) calc(#{$thickness} * -0.3827) 0 $color
   }
+
 //
-.Myinfo{
+.MyinfoDelete{
     height: 100vh;
     width: 100%;
-    position: relative;
+    position: relative; /* RegisterBox를 상대적인 위치로 설정 */
 }
 .inner_navbar{
     display: none;
 }
-.myinfo_formbox{
-    height: 100vh;
+.myinfoDelete_formbox{
+    height: 100%;
     width: 100%;
     padding-bottom: 200px;
 }
-.myinfo_formbox_content{
+.myinfoDelete_formbox_content{
     font-family: 'Dongle-Regular';
 }
 
 //모바일 세로
 @media screen and (min-width: 280px){
-    .moblie_menu{
-        //background-color: antiquewhite;
-        width: 2vw;
-
-    }
-    .myinfo_formbox{
+    .myinfoDelete_formbox{
         font-size: 16px;
         line-height: normal;
         color: #1e1e1e;
         background-image: url('../../public/mobile_background.png');
         background-repeat : no-repeat; /*가로 세로 */
         background-size : 100% 100%;
-        padding:10vh 9.5% 0 0%; //시계방향 상 우 하 좌
+        padding:10vh 20% 0 20%; //시계방향 상 우 하 좌
         box-sizing: border-box; /* 내부 패딩과 테두리를 요소의 크기에 포함시킵니다 */
-        display: flex;
-        justify-content: space-between;
-        position: relative;
+        background-position: center;
+        background-attachment: scroll;
     }
-
-    .myinfo_inner_formbox{
+    .myinfoDelete_inner_formbox{
         display:flex;
         flex-direction: column;
         height: 83vh;
         width: 70vw;
-        //background-color: rgb(232, 255, 255);
     }
     .inner_title{
         width: auto;
@@ -114,17 +108,14 @@
         position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
         line-height: 6.5vh;
         @include customTextShadow(5px, #ffffff); // thickness와 color를 여기서 조절합니다.
-        span{
-            font-family: 'DOSSaemmul';
-            font-size: 3.5vh;
-        }
     }
-    .myinfo_pinkBubble{
-        width:25vw;
+
+    .myinfoDelete_pinkBubble{
+        width:33vw;
         height: 12vh;
-        margin-left: 45vw;
+        margin-left: 27vw;
     }
-    .myinfo_formbox_content{
+    .myinfoDelete_formbox_content{
         width: 100%;
         height: 65%;
         display: flex;
@@ -139,21 +130,10 @@
         font-size: 2.4vh;
         display: block;
         font-family: 'Cuprum';
-        margin-bottom: 0.2em;
+        margin-bottom: 0.1em;
     }
-    .myinfo_sub{
-        @include customTextShadow(1px, #fdddee); // thickness와 color를 여기서 조절합니다.
-        font-size: 2.3vh;
-        margin-top: 0.5vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        position: relative;
-        letter-spacing: 0px;
-        line-height: 2.9vh;
     }
-}
-    .diaryCreate_submit_button{
+    .myinfo_submit_button{
         border-width: 0;
         width: 32vw;
         height: 8vh;
@@ -167,60 +147,27 @@
         margin-top: auto; /* 마지막 요소를 가장 하단에 배치합니다. */
         margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
     }
-    .myinfo_formbox_content input{
+    .myinfoDelete_formbox_content input{
         padding-left: 1vw;
         margin: 0.6vh 0 1vh 0;
         color: #ff989e;
         @include customText_NoneShadow(2px, #ffffff); // thickness와 color를 여기서 조절합니다.
         width: 100%;
         box-sizing: border-box;
-        font-size: 2.7vh;
+        font-size: 3vh;
         font-weight: 300;
+        font-family: 'galmuri';
         height: 4vh;
         border-radius: 9px;
         border: solid 1px #fbd5dc;
         background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%);
     }
-    .myinfo_fixed_input{
-        @extend input
+    .delete_notice{
+        @include customTextShadow(2px, #FDDDEE); // thickness와 color를 여기서 조절합니다.
+        line-height: 2vh;
+        background-color: #fbadb6;
+        height: 20vh;
     }
-    .radio-container{
-        background-color: gainsboro;
-        display: flex;
-        label{
-            font-family: 'Dongle-Regular';
-            display: flex; 
-            align-items: center;
-            background-color: #fbadb6;
-        }
-        //라디오박스
-        input[type="radio"]{
-                display: none;
-        }
-    }
-
-    /* 체크박스 꾸미기 - 활성화 x */
-    .radio_icon::before{
-        content:'';
-        display: inline-block;
-        position: relative;
-        box-sizing:border-box;
-        width: 5vw;
-        height: 3.5vh;
-        box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-        background-image:url("../../public/checkbox_none.png");
-        background-size: 100% 100%;
-    }
-    .radio_icon{
-        cursor: pointer;
-    }
-    /* 체크박스 꾸미기 - 활성화 */
-    input[type="radio"]:checked + .radio_icon::before{
-        background-image:url("../../public/checkbox_checked.png");
-        background-size: 100% 100%;
-    }
- 
-
 //아이패드 미니 세로~
 @media screen and (min-width: 768px) and (max-width: 819px){
     .inner_title{
@@ -230,11 +177,12 @@
     .title{
         font-size: 5.9vh;
         line-height: 6vh;
+
     }
-    .myinfo_pinkBubble{
+    .password_pinkBubble{
         width: 9rem;
-        height: 7rem;
-        margin-left: 16vw;
+        height: 8rem;
+        margin-left: 20vw;
     }
     label{
         font-size: 1.7rem;
@@ -243,11 +191,12 @@
         height: 2.3rem;
         font-size: 3vh;
     }
-    .myinfo_submit_button{
-        font-size: 1.5rem;
+    button{
+        font-size: 1.7rem;
+        height: 3vh;
     }
-    .myinfo_sub{
-        font-size: 2.6vh;
+    .submit_button{
+        font-size: 1.5rem;
     }
 }
 //아이패드에어 ~아이패드프로 세로
@@ -260,39 +209,41 @@
         font-size: 6.5vh;
         line-height:7vh;
     }
-    .myinfo_pinkBubble{
+    .myinfoDelete_pinkBubble{
         width: 12rem;
         height: 10rem;
-        margin-left: 18vw;
+        margin-left: 24vw;
+    }
+    button{
+        height: 3.3vh;
+        font-size: 2.7vh;
+        border: 2px solid #A6A6A6; /* 테두리 설정 */
     }
     label{
-        font-size: 2.8vh;
+        font-size: 2.7vh;
     }
     input{
         height: 3.6vh;
-        font-size: 3.1vh;
+        font-size: 2.8vh;
     }
-    .myinfo_submit_button{
+    .myinfoDelete_formbox_content{
+        margin-top: 4vh;
+    }
+    .submit_button{
         width: 15rem;
         height: 8vh;
         font-size: 1.6rem;
-    }
-    .myinfo_sub{
-        font-size: 2.7vh;
     }
 }
 
 //아이패드 & 모바일 가로&PC
 @media screen and (min-width: 1025px), (orientation: landscape) {
-    .moblie_menu{
-        display: none;
-    }
-
-	.myinfo_formbox{
+	.myinfoDelete_formbox{
         background-image: url('../../public/pc_background.png');
         background-repeat : no-repeat; /*가로 세로 */
         background-size : 100% 100%;
         padding:19vh 0 10vh 33vw; //시계방향 상 우 하 좌
+        
     }
     .inner_navbar{
         display: block;
@@ -301,7 +252,7 @@
         left: 4vw; /* 왼쪽에 위치하도록 설정 */
         z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
     }
-    .myinfo_inner_formbox{
+    .myinfoDelete_inner_formbox{
         height: 73vh;
         width: 62vw;
     }
@@ -316,28 +267,36 @@
     label{
         font-size: 2.8vh;
     }
-    .myinfo_pinkBubble{
-        width: 11vw;
-        height: 9vw;
-        margin-top: 1.5vh;
-        margin-left: 7vw;
-    }
-    .myinfo_formbox_content{
-        width: 40%;
-        height: 70%;
-        margin-left: 19vw;
-        z-index: 1;
-        margin-bottom: -10rem;
-        
-    }
-    .myinfo_submit_button{
-        width: 14vw;
-        height: 10vh;
-        font-size: 2.3vh;
-        z-index: 2;
-    }
-    input{
-        font-size: 1.9vw;
-        height: 3.8vh;
-    }
+.myinfoDelete_pinkBubble{
+    width: 11vw;
+    height: 9vw;
+    margin-top: 2vh;
+    margin-left: 12vw;
+}
+.myinfoDelete_formbox_content{
+    width: 40%;
+    height: 70%;
+    margin-left: 19vw;
+    z-index: 1;
+    margin-bottom: -10rem;
+}
+.margin_bottom{
+    margin-bottom: 0.2em;
+}
+button{
+    width: 100%;
+    height: 3.4vh;
+    font-size: 2.5vh;
+    margin-top: 0.1em;
+}
+.submit_button{
+    width: 14vw;
+  height: 10vh;
+  font-size: 2.3vh;
+  z-index: 2;
+}
+input{
+    font-size: 1.9vw;
+    height: 3.8vh;
+}
 }
