@@ -27,7 +27,7 @@ function RegisterPage() {
   const [DuplicateUsername,setDuplicateUsername] = useState("")//닉네임중복
   const [EmailDuplicate_notice,setEmailDuplicate_notice] = useState("")//이메일중복
   const [NameDuplicate_notice,setNameDuplicate_notice] = useState("")//닉네임중복
-  const [isChecked, setIsChecked] = useState(false);//체크박스
+
 
   const navigate = useNavigate();
 
@@ -44,6 +44,7 @@ function RegisterPage() {
   const onConfirmPasswordHandler = (e) => {
     setConfirmPassword(e.currentTarget.value)
     }
+    const [isChecked, setIsChecked] = useState(false);//체크박스
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
       };

@@ -44,18 +44,20 @@
     //background-color: darkolivegreen;
     color: white;
     height: 10vh;
-    font-size: 2.4vw;
+    font-size: 2.1vw;
     letter-spacing: 0;
     @include customTextShadow(4.5px, #5a5a5a); // thickness와 color를 여기서 조절합니다.
 }
 .navbar_sub{
     color: #464646;
-    font-size: 2vh;
-    @include customTextShadow(3px, #fdddee);
+    font-size: 1.7vh;
+    line-height: 2vh;
+    margin-bottom: 2vh;
+    @include customTextShadow(2px, #fdddee);
 }
 .navbar_menu{
     color: white;
-    font-size: 1.3vw;
+    font-size: 1.1vw;
     letter-spacing: 0;
     line-height: 35px;//줄간격
     @include customTextShadow(3px, #5a5a5a); // thickness와 color를 여기서 조절합니다.

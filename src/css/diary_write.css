@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400..700;1,400..700&display=swap");
 @import "reset.css";
+@import url("https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css");
 @font-face {
   font-family: "DOSSaemmul";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSSaemmul.woff") format("woff");
@@ -13,7 +14,7 @@
   font-weight: normal;
   font-style: normal;
 }
-.diaryCreate {
+.DiaryWrite {
   height: 100vh;
   width: 100%;
   position: relative;
@@ -23,21 +24,37 @@
   display: none;
 }
 
-.diaryCreate_formbox {
+.diaryWrite_formbox {
   height: 100vh;
   width: 100%;
   padding-bottom: 200px;
 }
 
-.diaryCreate_formbox_content {
+.diaryWrite_formbox_content {
   font-family: "Dongle-Regular";
+}
+
+/* Webkit 브라우저(크롬, 사파리)의 스크롤 바 */
+::-webkit-scrollbar {
+  width: 1.5vw;
+}
+
+/* 스크롤 바 색상 */
+::-webkit-scrollbar-thumb {
+  background-color: #ffdede; /* 스크롤 바의 색상 */
+  border-radius: 6px; /* 스크롤 바의 둥근 모서리 반지름 */
+}
+
+/* 호버 시 스크롤 바 색상 */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffc0c0; /* 스크롤 바 호버 시 색상 */
 }
 
 @media screen and (min-width: 280px) {
   .moblie_menu {
     width: 2vw;
   }
-  .diaryCreate_formbox {
+  .diaryWrite_formbox {
     font-size: 16px;
     line-height: normal;
     color: #1e1e1e;
@@ -49,8 +66,9 @@
     display: flex;
     justify-content: space-between;
     position: relative;
+    overflow: hidden; /* 내부 컨텐츠의 넘침을 가리기 위해 overflow 속성을 hidden으로 설정 */
   }
-  .diaryCreate_inner_formbox {
+  .diaryWrite_inner_formbox {
     display: flex;
     flex-direction: column;
     height: 83vh;
@@ -70,21 +88,32 @@
     letter-spacing: 0;
     flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
     position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
-    line-height: 6.5vh;
+    line-height: 5vh;
     text-shadow: calc(5px * 1) 0 0 #ffffff, calc(5px * 0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * 0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * 0.3827) calc(5px * 0.9239) 0 #ffffff, 0 calc(5px * 1) 0 #ffffff, calc(5px * -0.3827) calc(5px * 0.9239) 0 #ffffff, calc(5px * -0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * -0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * -1) 0 0 #ffffff, calc(5px * -0.9239) calc(5px * -0.3827) 0 #ffffff, calc(5px * -0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * -0.3827) calc(5px * -0.9239) 0 #ffffff, 0 calc(5px * -1) 0 #ffffff, calc(5px * 0.3827) calc(5px * -0.9239) 0 #ffffff, calc(5px * 0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * 0.9239) calc(5px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
   }
-  .diaryCreate_pinkBubble {
-    width: 33vw;
-    height: 12vh;
-    margin-left: 27vw;
+  .title span {
+    font-family: "DOSSaemmul";
+    font-size: 3vh;
+    margin-left: 1.5vw;
   }
-  .diaryCreate_formbox_content {
+  .diaryWrite_inner_formbox .title span {
+    font-size: 3vh;
+    font-family: "Galmuri11";
+  }
+  .diaryWrite_pinkBubble {
+    width: 32vw;
+    height: 8vh;
+    margin: 6vh 0 0 34vw;
+  }
+  .diaryWrite_formbox_content {
     width: 100%;
     height: 65%;
     display: flex;
     flex-direction: column;
-    margin-top: 6vh;
+    margin-top: 2vh;
     font-size: 2.5vh;
+    overflow-y: auto; /* 세로 스크롤바를 추가하기 위해 overflow-y 속성을 auto로 설정 */
+    overflow-x: hidden;
   }
   label {
     text-decoration: underline;
@@ -93,21 +122,19 @@
     font-size: 2.4vh;
     display: block;
     font-family: "Cuprum";
-    margin-bottom: 0.1em;
+    margin-bottom: 0.2em;
   }
-  .diaryCreate_sub {
-    text-shadow: calc(1px * 1) 0 0 #fdddee, calc(1px * 0.9239) calc(1px * 0.3827) 0 #fdddee, calc(1px * 0.7071) calc(1px * 0.7071) 0 #fdddee, calc(1px * 0.3827) calc(1px * 0.9239) 0 #fdddee, 0 calc(1px * 1) 0 #fdddee, calc(1px * -0.3827) calc(1px * 0.9239) 0 #fdddee, calc(1px * -0.7071) calc(1px * 0.7071) 0 #fdddee, calc(1px * -0.9239) calc(1px * 0.3827) 0 #fdddee, calc(1px * -1) 0 0 #fdddee, calc(1px * -0.9239) calc(1px * -0.3827) 0 #fdddee, calc(1px * -0.7071) calc(1px * -0.7071) 0 #fdddee, calc(1px * -0.3827) calc(1px * -0.9239) 0 #fdddee, 0 calc(1px * -1) 0 #fdddee, calc(1px * 0.3827) calc(1px * -0.9239) 0 #fdddee, calc(1px * 0.7071) calc(1px * -0.7071) 0 #fdddee, calc(1px * 0.9239) calc(1px * -0.3827) 0 #fdddee, 5px 8px 5px rgba(0, 0, 0, 0.8);
-    font-size: 2.3vh;
+  .quit {
+    text-shadow: calc(2px * 1) 0 0 #FFE2E2, calc(2px * 0.9239) calc(2px * 0.3827) 0 #FFE2E2, calc(2px * 0.7071) calc(2px * 0.7071) 0 #FFE2E2, calc(2px * 0.3827) calc(2px * 0.9239) 0 #FFE2E2, 0 calc(2px * 1) 0 #FFE2E2, calc(2px * -0.3827) calc(2px * 0.9239) 0 #FFE2E2, calc(2px * -0.7071) calc(2px * 0.7071) 0 #FFE2E2, calc(2px * -0.9239) calc(2px * 0.3827) 0 #FFE2E2, calc(2px * -1) 0 0 #FFE2E2, calc(2px * -0.9239) calc(2px * -0.3827) 0 #FFE2E2, calc(2px * -0.7071) calc(2px * -0.7071) 0 #FFE2E2, calc(2px * -0.3827) calc(2px * -0.9239) 0 #FFE2E2, 0 calc(2px * -1) 0 #FFE2E2, calc(2px * 0.3827) calc(2px * -0.9239) 0 #FFE2E2, calc(2px * 0.7071) calc(2px * -0.7071) 0 #FFE2E2, calc(2px * 0.9239) calc(2px * -0.3827) 0 #FFE2E2;
+    font-size: 2.2vh;
     margin-top: 0.5vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    letter-spacing: 0px;
-    line-height: 2.9vh;
+    color: #F2A3A8;
+  }
+  a {
+    margin-left: auto;
   }
 }
-.diaryCreate_submit_button {
+.diaryWrite_submit_button {
   border-width: 0;
   width: 32vw;
   height: 8vh;
@@ -122,43 +149,57 @@
   margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
 }
 
-input {
-  margin-bottom: 1vh;
-  color: #696969;
+.diaryWrite_formbox_content input, .diaryWrite_formbox_content .diaryWrite_fixed_input {
+  padding-left: 1vw;
+  margin: 0.6vh 0 1vh 0;
+  color: #ff989e;
+  text-shadow: calc(2px * 1) 0 0 #ffffff, calc(2px * 0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * 0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * 0.3827) calc(2px * 0.9239) 0 #ffffff, 0 calc(2px * 1) 0 #ffffff, calc(2px * -0.3827) calc(2px * 0.9239) 0 #ffffff, calc(2px * -0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * -0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * -1) 0 0 #ffffff, calc(2px * -0.9239) calc(2px * -0.3827) 0 #ffffff, calc(2px * -0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * -0.3827) calc(2px * -0.9239) 0 #ffffff, 0 calc(2px * -1) 0 #ffffff, calc(2px * 0.3827) calc(2px * -0.9239) 0 #ffffff, calc(2px * 0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * 0.9239) calc(2px * -0.3827) 0 #ffffff;
   width: 100%;
   box-sizing: border-box;
   font-size: 2.7vh;
   font-weight: 300;
   height: 4vh;
-  border: solid 1px #000;
-  background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
+  border-radius: 9px;
+  border: solid 1px #fbd5dc;
+  background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%);
 }
 
-.btn-select {
-  background: none;
-  border: 1px solid black;
-  margin-bottom: 0.3vh;
+.radio-container {
+  display: flex;
+  justify-content: space-between;
+}
+.radio-container label {
+  font-family: "Dongle-Regular";
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.radio-container input[type=radio], .radio-container [type=radio].diaryWrite_fixed_input {
+  display: none;
+}
+
+/* 체크박스 꾸미기 - 활성화 x */
+.radio_icon::before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  width: 5vw;
+  height: 3.5vh;
+  box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  background-image: url("../../public/checkbox_none.png");
+  background-size: 100% 100%;
+}
+
+.radio_icon {
   cursor: pointer;
-  font-size: 2.7vh;
+  margin-right: 4px;
 }
 
-.list-member {
-  border: 0.5px solid rgb(184, 184, 184);
-  border-radius: 10px;
-}
-
-.list-member button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 2.7vh;
-}
-
-.btn-select:hover,
-.btn-select:focus {
-  border: 1px solid #fdddee;
-  border-radius: 10px;
-  outline: 3px solid #fff0f8;
+/* 체크박스 꾸미기 - 활성화 */
+input[type=radio]:checked + .radio_icon::before, [type=radio].diaryWrite_fixed_input:checked + .radio_icon::before {
+  background-image: url("../../public/checkbox_checked.png");
+  background-size: 100% 100%;
 }
 
 @media screen and (min-width: 768px) and (max-width: 819px) {
@@ -170,22 +211,22 @@ input {
     font-size: 5.9vh;
     line-height: 6vh;
   }
-  .diaryCreate_pinkBubble {
-    width: 9rem;
+  .myinfo_pinkBubble {
+    width: 7rem;
     height: 7rem;
     margin-left: 16vw;
   }
   label {
     font-size: 1.7rem;
   }
-  input {
+  input, .diaryWrite_fixed_input {
     height: 2.3rem;
     font-size: 3vh;
   }
-  .diaryCreate_submit_button {
+  .myinfo_submit_button {
     font-size: 1.5rem;
   }
-  .diaryCreate_sub {
+  .myinfo_sub {
     font-size: 2.6vh;
   }
 }
@@ -198,7 +239,7 @@ input {
     font-size: 6.5vh;
     line-height: 7vh;
   }
-  .diaryCreate_pinkBubble {
+  .myinfo_pinkBubble {
     width: 12rem;
     height: 10rem;
     margin-left: 18vw;
@@ -206,16 +247,16 @@ input {
   label {
     font-size: 2.8vh;
   }
-  input {
+  input, .diaryWrite_fixed_input {
     height: 3.6vh;
     font-size: 3.1vh;
   }
-  .diaryCreate_submit_button {
+  .myinfo_submit_button {
     width: 15rem;
     height: 8vh;
     font-size: 1.6rem;
   }
-  .diaryCreate_sub {
+  .myinfo_sub {
     font-size: 2.7vh;
   }
 }
@@ -223,7 +264,7 @@ input {
   .moblie_menu {
     display: none;
   }
-  .diaryCreate_formbox {
+  .myinfo_formbox {
     background-image: url("../../public/pc_background.png");
     background-repeat: no-repeat; /*가로 세로 */
     background-size: 100% 100%;
@@ -236,7 +277,7 @@ input {
     left: 4vw; /* 왼쪽에 위치하도록 설정 */
     z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
   }
-  .diaryCreate_inner_formbox {
+  .myinfo_inner_formbox {
     height: 73vh;
     width: 62vw;
   }
@@ -248,30 +289,34 @@ input {
     font-size: 3.7vw;
     line-height: 4.3vw;
   }
+  .title span {
+    margin-left: 1vw;
+  }
   label {
     font-size: 2.8vh;
   }
-  .diaryCreate_pinkBubble {
+  .myinfo_pinkBubble {
     width: 11vw;
     height: 9vw;
     margin-top: 1.5vh;
     margin-left: 7vw;
   }
-  .diaryCreate_formbox_content {
+  .myinfo_formbox_content {
     width: 40%;
     height: 70%;
     margin-left: 19vw;
     z-index: 1;
     margin-bottom: -10rem;
+    background-color: #fbadb6;
   }
-  .diaryCreate_submit_button {
+  .myinfo_submit_button {
     width: 14vw;
     height: 10vh;
     font-size: 2.3vh;
     z-index: 2;
   }
-  input {
+  input, .diaryWrite_fixed_input {
     font-size: 1.9vw;
     height: 3.8vh;
   }
-}/*# sourceMappingURL=diary_create.css.map */
+}/*# sourceMappingURL=diary_write.css.map */

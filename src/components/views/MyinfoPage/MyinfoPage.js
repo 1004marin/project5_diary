@@ -134,32 +134,35 @@ const handleCheckboxChange = () => {
                 <label>Nickname</label>
                 <input type="text" value ={Nickname} onChange={onNicknameHandler}/>
 
-
-
-                <label>BloodType</label>
-                <input type="text" value ={BloodType} onChange={onBloodTypeHandler}/>
                 <div className="radio-container">
-                  <label style={{display:"flex"}}>
-                  <span className='radio_icon'></span>
+                  <label>
                     <input type="radio" name="option" value="A" checked={BloodType === "A"} onChange={onBloodTypeHandler} />
+                    <span className='radio_icon'></span>
                     A형
                   </label>
-                  <span className='radio_icon'></span>
+
                   <label>
+
                     <input type="radio" name="option" value="B" checked={BloodType === "B"} onChange={onBloodTypeHandler} />
+                    <span className='radio_icon'></span>
                     B형
                   </label>
-                  <span className='radio_icon'></span>
+
                   <label>
                     <input type="radio" name="option" value="O" checked={BloodType === "O"} onChange={onBloodTypeHandler} />
+                    <span className='radio_icon'></span>
                     O형
                   </label>
-                  <span className='radio_icon'></span>
+
+
                   <label>
                     <input type="radio" name="option" value="AB" checked={BloodType === "AB"} onChange={onBloodTypeHandler} />
+                    <span className='radio_icon'></span>
                     AB형
                   </label>
                 </div>
+                
+                
                 <label>Motto</label>
                 <input type="text" value ={Motto} onChange={onMottoHandler}/>
 
@@ -169,12 +172,8 @@ const handleCheckboxChange = () => {
                 <Link to='/myinfoDelete'>
                   <div className='quit'>※ 클럽을 그만둘래요</div>
                 </Link>
-
-                <button className="myinfo_submit_button"type="submit" onClick={onSubmitHandler}>수정버튼</button>
-
-
-
               </form>
+              <button className="myinfo_submit_button" type="submit" onClick={onSubmitHandler}>수정할래요</button>
             </div>
     </div>
     </div>

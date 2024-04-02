@@ -5,6 +5,12 @@ import { useNavigate } from 'react-router-dom'
 import DiaryDrawPage from './DiaryDrawPage'
 import { useLocation } from 'react-router-dom'
 
+import NavBar from '../NavBar/NavBar';
+import SlideMenu from '../NavBar/SlideMenu';
+import '../../../css/diary_write.scss'
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default function DiaryWritePage() {
     const navigate = useNavigate();
@@ -19,6 +25,15 @@ export default function DiaryWritePage() {
     const [DiaryMood, setDiaryMood] = useState("")
     const [DiaryContent, setDiaryContent] = useState("")
     const [DiaryDate, setDiaryDate] = useState("")
+
+    //
+    const [startDate, setStartDate] = useState(new Date());
+
+  
+    const handleClick = () => {
+      // 달력 표시
+      setStartDate(new Date());
+    };
 
     const onDiaryTitleHandler =(e) => {
         setDiaryTitle(e.currentTarget.value)
@@ -73,34 +88,53 @@ export default function DiaryWritePage() {
 
 
   return (
-    <div style={
-        { height:'100vh', display:"flex", flexDirection:"column", background:"#D2E1FF", 
-        justifyContent:'center', alignItems:'center'}}>
-        <form onSubmit={onSubmit}>
-            <label>제목</label>
+    <div className='DiaryWrite'>
+        <div className='inner_navbar'>
+            <NavBar/>
+        </div>    
+        <div className='diaryWrite_formbox'>
+        <div className='moblie_menu'>
+            <SlideMenu/>
+        </div>
+        <div className='diaryWrite_inner_formbox'>
+            <div className='inner_title'>
+                <div className='title'>쉿! 교환일기<br/>쓰는 중...<span>☞☜</span></div>
+                <img className="diaryWrite_pinkBubble"src={process.env.PUBLIC_URL + '/diary.png'} />
+            </div>
+        <form className='diaryWrite_formbox_content' onSubmit={onSubmit}>
+            <label>Title</label>
             <input type='text' value={DiaryTitle} onChange={onDiaryTitleHandler}></input>
-            
-            <label>날씨</label>
-            <input type='text' value={DiaryWeather} onChange={onDiaryWeatherHandler}></input>
 
-            <label>기분</label>
-            <input type='text' value={DiaryMood} onChange={onDiaryMoodHandler}></input>
+            <DatePicker dateFormat='yyyyMM.dd'selected={startDate} 
+                    onChange={(date) => setStartDate(date)}
+                  readOnly // 키보드 입력 비활성화
+                  onClick={handleClick} // 클릭시 달력 표시
+            >
+            <div style={{ color: "red" }}>Don't forget to check the weather!</div>
+            </DatePicker>
 
-            <label>내용</label>
-            <input type='text' value={DiaryContent} onChange={onDiaryContentHandler}></input>
-
-            <label>날짜</label>
+            <label>Date</label>
             <input type='text' value={DiaryDate} onChange={onDiaryDateHandler}></input>
 
-            <label>그림일기</label>
-            <DiaryDrawPage onSaveDrawing={setDrawingData} />
+            <label>Weather</label>
+            <input type='text' value={DiaryWeather} onChange={onDiaryWeatherHandler}></input>
 
-            <br/>
-            <br/>
-            <button type='submit'>
-                일기 제출
+            <label>Mood</label>
+            <input type='text' value={DiaryMood} onChange={onDiaryMoodHandler}></input>
+
+            <label>Content</label>
+            <input type='text' value={DiaryContent} onChange={onDiaryContentHandler}></input>
+
+            
+
+            <label>Draw</label>
+            <DiaryDrawPage onSaveDrawing={setDrawingData} />
+            <button className='diaryWrite_submit_button'type='submit'>
+                제출할래요
             </button>
         </form>
-    </div>
+        </div>
+        </div>
+        </div>
   )
 }

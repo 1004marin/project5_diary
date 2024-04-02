@@ -75,19 +75,19 @@
   }
   .title span {
     font-family: "DOSSaemmul";
-    font-size: 3.5vh;
+    font-size: 3vh;
   }
   .myinfo_pinkBubble {
     width: 25vw;
     height: 12vh;
-    margin-left: 45vw;
+    margin-left: 40vw;
   }
   .myinfo_formbox_content {
     width: 100%;
     height: 65%;
     display: flex;
     flex-direction: column;
-    margin-top: 6vh;
+    margin-top: 2vh;
     font-size: 2.5vh;
   }
   label {
@@ -99,19 +99,17 @@
     font-family: "Cuprum";
     margin-bottom: 0.2em;
   }
-  .myinfo_sub {
-    text-shadow: calc(1px * 1) 0 0 #fdddee, calc(1px * 0.9239) calc(1px * 0.3827) 0 #fdddee, calc(1px * 0.7071) calc(1px * 0.7071) 0 #fdddee, calc(1px * 0.3827) calc(1px * 0.9239) 0 #fdddee, 0 calc(1px * 1) 0 #fdddee, calc(1px * -0.3827) calc(1px * 0.9239) 0 #fdddee, calc(1px * -0.7071) calc(1px * 0.7071) 0 #fdddee, calc(1px * -0.9239) calc(1px * 0.3827) 0 #fdddee, calc(1px * -1) 0 0 #fdddee, calc(1px * -0.9239) calc(1px * -0.3827) 0 #fdddee, calc(1px * -0.7071) calc(1px * -0.7071) 0 #fdddee, calc(1px * -0.3827) calc(1px * -0.9239) 0 #fdddee, 0 calc(1px * -1) 0 #fdddee, calc(1px * 0.3827) calc(1px * -0.9239) 0 #fdddee, calc(1px * 0.7071) calc(1px * -0.7071) 0 #fdddee, calc(1px * 0.9239) calc(1px * -0.3827) 0 #fdddee, 5px 8px 5px rgba(0, 0, 0, 0.8);
-    font-size: 2.3vh;
+  .quit {
+    text-shadow: calc(2px * 1) 0 0 #FFE2E2, calc(2px * 0.9239) calc(2px * 0.3827) 0 #FFE2E2, calc(2px * 0.7071) calc(2px * 0.7071) 0 #FFE2E2, calc(2px * 0.3827) calc(2px * 0.9239) 0 #FFE2E2, 0 calc(2px * 1) 0 #FFE2E2, calc(2px * -0.3827) calc(2px * 0.9239) 0 #FFE2E2, calc(2px * -0.7071) calc(2px * 0.7071) 0 #FFE2E2, calc(2px * -0.9239) calc(2px * 0.3827) 0 #FFE2E2, calc(2px * -1) 0 0 #FFE2E2, calc(2px * -0.9239) calc(2px * -0.3827) 0 #FFE2E2, calc(2px * -0.7071) calc(2px * -0.7071) 0 #FFE2E2, calc(2px * -0.3827) calc(2px * -0.9239) 0 #FFE2E2, 0 calc(2px * -1) 0 #FFE2E2, calc(2px * 0.3827) calc(2px * -0.9239) 0 #FFE2E2, calc(2px * 0.7071) calc(2px * -0.7071) 0 #FFE2E2, calc(2px * 0.9239) calc(2px * -0.3827) 0 #FFE2E2;
+    font-size: 2.2vh;
     margin-top: 0.5vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    letter-spacing: 0px;
-    line-height: 2.9vh;
+    color: #F2A3A8;
+  }
+  a {
+    margin-left: auto;
   }
 }
-.diaryCreate_submit_button {
+.myinfo_submit_button {
   border-width: 0;
   width: 32vw;
   height: 8vh;
@@ -142,14 +140,14 @@
 }
 
 .radio-container {
-  background-color: gainsboro;
   display: flex;
+  justify-content: space-between;
 }
 .radio-container label {
   font-family: "Dongle-Regular";
   display: flex;
   align-items: center;
-  background-color: #fbadb6;
+  text-decoration: none;
 }
 .radio-container input[type=radio], .radio-container [type=radio].myinfo_fixed_input {
   display: none;
@@ -170,6 +168,7 @@
 
 .radio_icon {
   cursor: pointer;
+  margin-right: 4px;
 }
 
 /* 체크박스 꾸미기 - 활성화 */
@@ -262,8 +261,11 @@ input[type=radio]:checked + .radio_icon::before, [type=radio].myinfo_fixed_input
     margin-bottom: -3rem;
   }
   .title {
-    font-size: 4vw;
+    font-size: 3.7vw;
     line-height: 4.3vw;
+  }
+  .title span {
+    margin-left: 1vw;
   }
   label {
     font-size: 2.8vh;
@@ -280,6 +282,7 @@ input[type=radio]:checked + .radio_icon::before, [type=radio].myinfo_fixed_input
     margin-left: 19vw;
     z-index: 1;
     margin-bottom: -10rem;
+    background-color: #fbadb6;
   }
   .myinfo_submit_button {
     width: 14vw;

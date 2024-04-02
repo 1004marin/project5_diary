@@ -85,7 +85,7 @@ function MyinfoDeletePage() {
         
 
                         <div className='delete_notice'>
-                        ※ 일기교환클럽 탈퇴 시, 내 기록들은 모두 불에 태울거에요<br/>
+                        ※ 일기교환클럽 탈퇴 시, 내 기록들은 모두 불에 태울거에요.<br/><br/>
                         ※ 뿐만 아니라, 클럽 내의 일들은 모두 비밀로 유지되어야 해요. 이 약속이 어겨질 시...
                         </div>
                         <label className='delete_agree'>
@@ -96,11 +96,10 @@ function MyinfoDeletePage() {
                             onChange={handleCheckboxChange}
                             />
                             <span className='check_icon'></span>
-                            <span className='check_text'>클럽의 규칙을 맹세해요.</span>
+                            <span className='delete_check_text'>클럽의 규칙을 맹세해요.</span>
                          </label>    
-                        <button type="myinfo_submit_button" onClick={onDeleteHandler}>탈퇴하래요</button>
-                        
                       </form>
+                      <button type="button" className='delete_submit_button' onClick={onDeleteHandler}>탈퇴할래요</button>
                     </div>
             </div>
             </div>
