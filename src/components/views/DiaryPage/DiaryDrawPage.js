@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { fabric } from 'fabric';
+import '../../../css/diary_draw.scss'
 
 const DiaryDrawPage = ({ onSaveDrawing }) => {
     const canvasRef = useRef(null);
@@ -26,12 +27,16 @@ const DiaryDrawPage = ({ onSaveDrawing }) => {
             });
             setCanvas(newCanvas);
             bindCanvasEvents(newCanvas); // 이벤트 바인딩 추가
+            customizeCanvas(newCanvas); // 캔버스 커스터마이징
             setHasDrawing(true);
         } else { // 이미 캔버스가 있으면 초기화
             canvas.clear();
         }
     };
-
+   // 캔버스 커스터마이징
+    const customizeCanvas = (canvas) => {
+        canvas.setBackgroundImage('/diary_write_draw.png', canvas.renderAll.bind(canvas));//canvas.renderAll() 메서드를 호출할 때 this가 항상 현재 캔버스 객체를 가리키도록
+    };
     // 텍스트 삽입
     const addText = () => {
         if (!canvas || !textValue) return;
@@ -40,7 +45,7 @@ const DiaryDrawPage = ({ onSaveDrawing }) => {
             left: 100,
             top: 100,
             fontSize: 20,
-            fontFamily: 'Arial',
+            fontFamily: 'Dongle-Regular',
             fill: selectedColor, // 선택된 색상 적용
         });
         canvas.add(text);
@@ -177,7 +182,11 @@ const toggleEraser = () => {
     };
     return (
         <div>
-            <canvas ref={canvasRef}  width={800} height={600}></canvas>
+
+                <canvas ref={canvasRef} width={430} height={500}></canvas>
+
+
+            
             <div>
                 <button type="button" onClick={initializeCanvas}>Initialize Canvas</button>
                 <input type="text" value={textValue} onChange={(e) => setTextValue(e.target.value)} placeholder="Enter text" />

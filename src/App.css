@@ -36,3 +36,6 @@
     transform: rotate(360deg);
   }
 }
+.react-datepicker__day--selected {
+  background-image: linear-gradient(to top, #ffcccc, #ff8383)!important; /* 여기에 원하는 배경색을 지정하세요 */
+}

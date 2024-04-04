@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400..700;1,400..700&display=swap');
+@import "reset.css";
+@font-face {
+    font-family: 'DOSSaemmul';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSSaemmul.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Dongle-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108_2@1.0/Dongle-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+@mixin customTextShadow($thickness, $color) {
+    text-shadow: 
+      calc(#{$thickness} * 1) 0 0 $color,
+      calc(#{$thickness} * 0.9239) calc(#{$thickness} * 0.3827) 0 $color,
+      calc(#{$thickness} * 0.7071) calc(#{$thickness} * 0.7071) 0 $color,
+      calc(#{$thickness} * 0.3827) calc(#{$thickness} * 0.9239) 0 $color,
+      0 calc(#{$thickness} * 1) 0 $color,
+      calc(#{$thickness} * -0.3827) calc(#{$thickness} * 0.9239) 0 $color,
+      calc(#{$thickness} * -0.7071) calc(#{$thickness} * 0.7071) 0 $color,
+      calc(#{$thickness} * -0.9239) calc(#{$thickness} * 0.3827) 0 $color,
+      calc(#{$thickness} * -1) 0 0 $color,
+      calc(#{$thickness} * -0.9239) calc(#{$thickness} * -0.3827) 0 $color,
+      calc(#{$thickness} * -0.7071) calc(#{$thickness} * -0.7071) 0 $color,
+      calc(#{$thickness} * -0.3827) calc(#{$thickness} * -0.9239) 0 $color,
+      0 calc(#{$thickness} * -1) 0 $color,
+      calc(#{$thickness} * 0.3827) calc(#{$thickness} * -0.9239) 0 $color,
+      calc(#{$thickness} * 0.7071) calc(#{$thickness} * -0.7071) 0 $color,
+      calc(#{$thickness} * 0.9239) calc(#{$thickness} * -0.3827) 0 $color,
+      calc(5px * 1) 8px 5px rgba(0, 0, 0, 0.8); 
+  }
+
+  .diaryDraw_canvas{
+    background-image: url('../../public/diary_write_draw.png');
+    height: 40vh;
+    width: 10vw;
+    background-size: cover;
+  }

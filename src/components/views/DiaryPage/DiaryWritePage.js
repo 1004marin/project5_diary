@@ -29,12 +29,6 @@ export default function DiaryWritePage() {
     //
     const [startDate, setStartDate] = useState(new Date());
 
-  
-    const handleClick = () => {
-      // 달력 표시
-      setStartDate(new Date());
-    };
-
     const onDiaryTitleHandler =(e) => {
         setDiaryTitle(e.currentTarget.value)
     }
@@ -65,7 +59,7 @@ export default function DiaryWritePage() {
                     weather: DiaryWeather,
                     mood: DiaryMood,
                     body: DiaryContent,
-                    date: DiaryDate,
+                    date: startDate,
                     imageData:drawingData
                 }
                 
@@ -105,16 +99,14 @@ export default function DiaryWritePage() {
             <label>Title</label>
             <input type='text' value={DiaryTitle} onChange={onDiaryTitleHandler}></input>
 
-            <DatePicker dateFormat='yyyyMM.dd'selected={startDate} 
-                    onChange={(date) => setStartDate(date)}
-                  readOnly // 키보드 입력 비활성화
-                  onClick={handleClick} // 클릭시 달력 표시
-            >
-            <div style={{ color: "red" }}>Don't forget to check the weather!</div>
-            </DatePicker>
 
             <label>Date</label>
-            <input type='text' value={DiaryDate} onChange={onDiaryDateHandler}></input>
+            <DatePicker dateFormat='yyyy年 MM月 dd日'selected={startDate} 
+            shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
+                    onChange={(date) => setStartDate(date.toISOString().split('T')[0])}
+            >
+            <div className='monthly_guide'style={{ }}>교환일기의 날짜 구다사이!!~</div>
+            </DatePicker>
 
             <label>Weather</label>
             <input type='text' value={DiaryWeather} onChange={onDiaryWeatherHandler}></input>
@@ -123,7 +115,7 @@ export default function DiaryWritePage() {
             <input type='text' value={DiaryMood} onChange={onDiaryMoodHandler}></input>
 
             <label>Content</label>
-            <input type='text' value={DiaryContent} onChange={onDiaryContentHandler}></input>
+            <input type='text' value={DiaryContent} onChange={onDiaryContentHandler} className="diaryWrite_content"></input>
 
             
 

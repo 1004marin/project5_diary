@@ -53,6 +53,13 @@
       calc(#{$thickness} * 0.7071) calc(#{$thickness} * -0.7071) 0 $color,
       calc(#{$thickness} * 0.9239) calc(#{$thickness} * -0.3827) 0 $color
   }
+//달력
+.monthly_guide{
+    color: #ff9494;
+    font-size:2.5vh;
+    font-Family:'Dongle-Regular';
+    @include customTextShadow(4px, #ffffff); // thickness와 color를 여기서 조절합니다.
+}
 //
 .DiaryWrite{
     height: 100vh;
@@ -84,6 +91,7 @@
   ::-webkit-scrollbar-thumb:hover {
     background-color: #ffc0c0; /* 스크롤 바 호버 시 색상 */
   }
+
 //모바일 세로
 @media screen and (min-width: 280px){
     .moblie_menu{
@@ -196,51 +204,16 @@
         box-sizing: border-box;
         font-size: 2.7vh;
         font-weight: 300;
-        height: 4vh;
+        height: 3.5vh;
         border-radius: 9px;
         border: solid 1px #fbd5dc;
-        background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%);
+        background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%); 
     }
-    .diaryWrite_fixed_input{
-        @extend input
+    .diaryWrite_formbox_content input.diaryWrite_content{
+        background-image: url('../../public/diary_write_content.png') ;
+        background-size: cover;
+        background-position: center;
     }
-    
-    .radio-container{
-        display: flex;
-        justify-content: space-between;
-        label{
-            font-family: 'Dongle-Regular';
-            display: flex; 
-            align-items: center;
-            text-decoration: none;
-        }
-        //라디오박스
-        input[type="radio"]{
-            display: none;
-        }
-    }
-        /* 체크박스 꾸미기 - 활성화 x */
-        .radio_icon::before{
-            content:'';
-            display: inline-block;
-            position: relative;
-            box-sizing:border-box;
-            width: 5vw;
-            height: 3.5vh;
-            box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-            background-image:url("../../public/checkbox_none.png");
-            background-size: 100% 100%;
-        }
-        .radio_icon{
-            cursor: pointer;
-            margin-right: 4px;
-        }
-        /* 체크박스 꾸미기 - 활성화 */
-        input[type="radio"]:checked +.radio_icon::before{
-            background-image:url("../../public/checkbox_checked.png");
-            background-size: 100% 100%;
-        }
- 
 
 //아이패드 미니 세로~
 @media screen and (min-width: 768px) and (max-width: 819px){

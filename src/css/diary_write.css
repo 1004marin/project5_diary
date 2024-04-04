@@ -14,6 +14,13 @@
   font-weight: normal;
   font-style: normal;
 }
+.monthly_guide {
+  color: #ff9494;
+  font-size: 2.5vh;
+  font-Family: "Dongle-Regular";
+  text-shadow: calc(4px * 1) 0 0 #ffffff, calc(4px * 0.9239) calc(4px * 0.3827) 0 #ffffff, calc(4px * 0.7071) calc(4px * 0.7071) 0 #ffffff, calc(4px * 0.3827) calc(4px * 0.9239) 0 #ffffff, 0 calc(4px * 1) 0 #ffffff, calc(4px * -0.3827) calc(4px * 0.9239) 0 #ffffff, calc(4px * -0.7071) calc(4px * 0.7071) 0 #ffffff, calc(4px * -0.9239) calc(4px * 0.3827) 0 #ffffff, calc(4px * -1) 0 0 #ffffff, calc(4px * -0.9239) calc(4px * -0.3827) 0 #ffffff, calc(4px * -0.7071) calc(4px * -0.7071) 0 #ffffff, calc(4px * -0.3827) calc(4px * -0.9239) 0 #ffffff, 0 calc(4px * -1) 0 #ffffff, calc(4px * 0.3827) calc(4px * -0.9239) 0 #ffffff, calc(4px * 0.7071) calc(4px * -0.7071) 0 #ffffff, calc(4px * 0.9239) calc(4px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
+}
+
 .DiaryWrite {
   height: 100vh;
   width: 100%;
@@ -149,7 +156,7 @@
   margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
 }
 
-.diaryWrite_formbox_content input, .diaryWrite_formbox_content .diaryWrite_fixed_input {
+.diaryWrite_formbox_content input {
   padding-left: 1vw;
   margin: 0.6vh 0 1vh 0;
   color: #ff989e;
@@ -158,48 +165,16 @@
   box-sizing: border-box;
   font-size: 2.7vh;
   font-weight: 300;
-  height: 4vh;
+  height: 3.5vh;
   border-radius: 9px;
   border: solid 1px #fbd5dc;
   background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%);
 }
 
-.radio-container {
-  display: flex;
-  justify-content: space-between;
-}
-.radio-container label {
-  font-family: "Dongle-Regular";
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-.radio-container input[type=radio], .radio-container [type=radio].diaryWrite_fixed_input {
-  display: none;
-}
-
-/* 체크박스 꾸미기 - 활성화 x */
-.radio_icon::before {
-  content: "";
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  width: 5vw;
-  height: 3.5vh;
-  box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  background-image: url("../../public/checkbox_none.png");
-  background-size: 100% 100%;
-}
-
-.radio_icon {
-  cursor: pointer;
-  margin-right: 4px;
-}
-
-/* 체크박스 꾸미기 - 활성화 */
-input[type=radio]:checked + .radio_icon::before, [type=radio].diaryWrite_fixed_input:checked + .radio_icon::before {
-  background-image: url("../../public/checkbox_checked.png");
-  background-size: 100% 100%;
+.diaryWrite_formbox_content input.diaryWrite_content {
+  background-image: url("../../public/diary_write_content.png");
+  background-size: cover;
+  background-position: center;
 }
 
 @media screen and (min-width: 768px) and (max-width: 819px) {
@@ -219,7 +194,7 @@ input[type=radio]:checked + .radio_icon::before, [type=radio].diaryWrite_fixed_i
   label {
     font-size: 1.7rem;
   }
-  input, .diaryWrite_fixed_input {
+  input {
     height: 2.3rem;
     font-size: 3vh;
   }
@@ -247,7 +222,7 @@ input[type=radio]:checked + .radio_icon::before, [type=radio].diaryWrite_fixed_i
   label {
     font-size: 2.8vh;
   }
-  input, .diaryWrite_fixed_input {
+  input {
     height: 3.6vh;
     font-size: 3.1vh;
   }
@@ -315,7 +290,7 @@ input[type=radio]:checked + .radio_icon::before, [type=radio].diaryWrite_fixed_i
     font-size: 2.3vh;
     z-index: 2;
   }
-  input, .diaryWrite_fixed_input {
+  input {
     font-size: 1.9vw;
     height: 3.8vh;
   }
