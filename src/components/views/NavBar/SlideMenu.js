@@ -3,18 +3,20 @@ import { useState, useRef,useEffect } from 'react';
 import '../../../css/slidemenu.css';
 import { useDispatch } from 'react-redux'
 import {logoutUser } from '../../../_actions/user_action';
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 
 function SlideMenu() {
 
 //로그아웃
 const dispatch= useDispatch()
+const navigate = useNavigate()
+
 //로그아웃
 const onLogoutHandler = () => {
   dispatch(logoutUser())
     .then(response => {
-      // 로그아웃이 성공한 경우 여기에 추가적인 처리를 할 수 있습니다.
       console.log(response);
+      navigate('/login')
     })
     .catch(error => {
       // 로그아웃 중 에러가 발생한 경우 여기에 처리를 할 수 있습니다.

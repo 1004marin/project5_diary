@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { fabric } from 'fabric';
-import '../../../css/diary_draw.scss'
 
+
+import '../../../css/diary_draw.scss'
 const DiaryDrawPage = ({ onSaveDrawing }) => {
     const canvasRef = useRef(null);
     const [canvas, setCanvas] = useState(null);
@@ -12,35 +13,27 @@ const DiaryDrawPage = ({ onSaveDrawing }) => {
     const [penColor, setPenColor] = useState('#000000');
     const [penWidth, setPenWidth] = useState(1)
     const [eraseWidth, setEraseWidth] = useState(1)
-
     //그림 저장 상태
     const [hasDrawing, setHasDrawing] = useState(false);
-
     // Canvas 초기화
     const initializeCanvas = () => {
         if (!canvasRef.current) return; // 캔버스가 없으면 종료
-
         if (!canvas) { // 캔버스가 없으면 새로 생성
+            
             const newCanvas = new fabric.Canvas(canvasRef.current, {
                 isDrawingMode: false,
                 selection: true,
             });
             setCanvas(newCanvas);
             bindCanvasEvents(newCanvas); // 이벤트 바인딩 추가
-            customizeCanvas(newCanvas); // 캔버스 커스터마이징
             setHasDrawing(true);
         } else { // 이미 캔버스가 있으면 초기화
             canvas.clear();
         }
     };
-   // 캔버스 커스터마이징
-    const customizeCanvas = (canvas) => {
-        canvas.setBackgroundImage('/diary_write_draw.png', canvas.renderAll.bind(canvas));//canvas.renderAll() 메서드를 호출할 때 this가 항상 현재 캔버스 객체를 가리키도록
-    };
     // 텍스트 삽입
     const addText = () => {
         if (!canvas || !textValue) return;
-
         const text = new fabric.Textbox(textValue, {
             left: 100,
             top: 100,
@@ -50,7 +43,6 @@ const DiaryDrawPage = ({ onSaveDrawing }) => {
         });
         canvas.add(text);
     };
-
     // 이미지 삽입
     const addImage = (file) => {
         if (!canvas || !file) return;
@@ -71,11 +63,9 @@ const DiaryDrawPage = ({ onSaveDrawing }) => {
         };
         reader.readAsDataURL(file);
     };
-
     // 도형 삽입
     const addShape = (shapeType) => {
         if (!canvas) return;
-
         let shape;
         switch (shapeType) {
             case 'circle':
@@ -88,23 +78,19 @@ const DiaryDrawPage = ({ onSaveDrawing }) => {
             default:
                 return;
         }
-
         canvas.add(shape);
     };
-
     // Canvas 모두 지우기
     const clearCanvas = () => {
         if (!canvas) return;
         canvas.clear();
     };
-
     // 펜 그리기 모드 토글
     const toggleDrawingMode = () => {
         if (!canvas) return;
         canvas.isDrawingMode = !drawingMode;
         setDrawingMode(!drawingMode);
     };
-
     // 마우스 다운 이벤트 핸들러
     const handleMouseDown = (event) => {
         if (!canvas || !drawingMode) return;
@@ -121,17 +107,14 @@ const DiaryDrawPage = ({ onSaveDrawing }) => {
             });
             canvas.add(path);
             canvas.renderAll();
-
             path.path.push(`L ${x} ${y}`);
             path.setCoords();
         }
     };
-
     // 색상 변경
     const handleColorChange = (e) => {
         setSelectedColor(e.target.value);
     };
-
     // 펜 색상 변경
     const handlePenColorChange = (e) => {
         setPenColor(e.target.value);
@@ -139,31 +122,30 @@ const DiaryDrawPage = ({ onSaveDrawing }) => {
             canvas.freeDrawingBrush.color = e.target.value;
         }
     };
-        // 펜의 굵기 변경
+    // 펜의 굵기 변경
 const handlePenWidthChange = (width) => {
+    if(!canvas) return;
     setPenWidth(width);
     canvas.freeDrawingBrush.width = width;
 };
 //지우개 굵기 변경
 const handleEraseWidthChange = (width) => {
+    if(!canvas) return;
     setEraseWidth(width);
     canvas.freeDrawingBrush.width = width;
 };
     // 지우개 기능
 const toggleEraser = () => {
     if (!canvas) return;
-
     if (!isErasing) {
-        canvas.freeDrawingBrush.color = '#ffffff'; // 펜 색상을 배경 색상으로 변경하여 지우개 역할 수행
+        canvas.freeDrawingBrush.color = '#FFF4F6'; // 펜 색상을 배경 색상으로 변경하여 지우개 역할 수행
         canvas.isDrawingMode = true; // 그리기 모드 활성화
     } else {
         canvas.freeDrawingBrush.color = selectedColor; // 원래 색상으로 변경하여 그리기 모드로 변경
         canvas.isDrawingMode = drawingMode; // 그리기 모드 설정
     }
-
     setIsErasing(!isErasing); // 지우개 상태 업데이트
 };
-
     // Canvas 이벤트 바인딩
     const bindCanvasEvents = (canvas) => {
         canvas.on('mouse:down', handleMouseDown);
@@ -173,7 +155,7 @@ const toggleEraser = () => {
     const saveDrawingData = () => {
         if (!canvas) return;
         if (hasDrawing) {
-            const drawingData = canvas.toDataURL({ format: 'png' }); // Base64 형식의 이미지 
+            const drawingData = canvas.toDataURL({ format: 'png' }); // Base64 형식의 이미지 데이터
             const base64String = drawingData.split(',')[1] //앞의 "data:image/png;base64,헤더 제거
             onSaveDrawing(base64String); // 부모 컴포넌트에 전달
         } else {
@@ -182,29 +164,40 @@ const toggleEraser = () => {
     };
     return (
         <div>
+            <div className='canvas'>
+            <canvas ref={canvasRef} ></canvas>
+            </div>
 
-                <canvas ref={canvasRef} width={430} height={500}></canvas>
+            <div className='diaryDraw_form_content'>
+                <button type="button" onClick={initializeCanvas}>그림 그릴래요</button>
 
+                <div className='draw_add_1'>
+                    <input type="text" value={textValue} onChange={(e) => setTextValue(e.target.value)} placeholder="Enter text" />
+                    <button type="button" onClick={addText}>텍스트 추가</button>
 
-            
-            <div>
-                <button type="button" onClick={initializeCanvas}>Initialize Canvas</button>
-                <input type="text" value={textValue} onChange={(e) => setTextValue(e.target.value)} placeholder="Enter text" />
-                <button type="button" onClick={addText}>Add Text</button>
-                <input type="file" accept="image/*" onChange={(e) => addImage(e.target.files[0])} />
+                    <input type="file" accept="image/*" onChange={(e) => addImage(e.target.files[0])} />
+
+                    
+
+                </div>
                 
-                <button type="button" onClick={() => addShape('circle')}>Add Circle</button>
-                <button type="button" onClick={() => addShape('rectangle')}>Add Rectangle</button>
-                <button type="button" onClick={clearCanvas}>Clear Canvas</button>
-                <button type="button" onClick={toggleDrawingMode}>{drawingMode ? 'Disable Drawing Mode' : 'Enable Drawing Mode'}</button>
-                <input type="color" value={selectedColor} onChange={handleColorChange} />
-                <input type="color" value={penColor} onChange={handlePenColorChange} />
+                <div className='draw_add_2'>
+                    <button type="button" onClick={() => addShape('circle')}>원 모양자</button>
+                    <button type="button" onClick={() => addShape('rectangle')}>사각 모양자</button>
+                    <input type="color" value={selectedColor} onChange={handleColorChange} />
+                    <button type="button" onClick={clearCanvas}>모두 지우기</button>
+                </div>
 
-                <br/>
-                <input type="range" min="1" max="10" value={penWidth} onChange={(e) => handlePenWidthChange(parseInt(e.target.value))} />
-                <input type="range" min="1" max="10" value={eraseWidth} onChange={(e) => handleEraseWidthChange(parseInt(e.target.value))} />
-                <button type="button" onClick={toggleEraser}>{isErasing ? 'Disable Eraser' : 'Enable Eraser'}</button>
-                <button type="button" onClick={saveDrawingData}>Save Drawing</button>
+                <div className='draw_pen'>
+                    <button type="button" onClick={toggleDrawingMode}>{drawingMode ? '샤프 반납' : '샤프 빌리기'}</button>
+                    <button type="button" onClick={toggleEraser}>{isErasing ? '지우개 반납' : '지우개 빌리기'}</button>
+
+                    <input type="color" value={penColor} onChange={handlePenColorChange} />
+                    <input type="range" min="1" max="10" value={penWidth} onChange={(e) => handlePenWidthChange(parseInt(e.target.value))} />
+                    <input type="range" min="1" max="10" value={eraseWidth} onChange={(e) => handleEraseWidthChange(parseInt(e.target.value))} />
+                </div>
+
+                <button type="button" onClick={saveDrawingData}>그림 저장</button>
             </div>
         </div>
     );

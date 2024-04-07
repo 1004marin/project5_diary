@@ -153,7 +153,8 @@
     }
     .diaryWrite_formbox_content{
         width: 100%;
-        height: 65%;
+        height: 55dvh;
+        //background-color: #fae0e0;
         display: flex;
         flex-direction: column;
         margin-top: 2vh;
@@ -197,7 +198,7 @@
     }
     .diaryWrite_formbox_content input{
         padding-left: 1vw;
-        margin: 0.6vh 0 1vh 0;
+        margin: 0.2vh 0 0.5vh 0;
         color: #ff989e;
         @include customText_NoneShadow(2px, #ffffff); // thickness와 color를 여기서 조절합니다.
         width: 100%;
@@ -209,10 +210,11 @@
         border: solid 1px #fbd5dc;
         background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%); 
     }
-    .diaryWrite_formbox_content input.diaryWrite_content{
+    .diaryWrite_formbox_content input.write_content{
         background-image: url('../../public/diary_write_content.png') ;
         background-size: cover;
         background-position: center;
+        height: 50px;
     }
 
 //아이패드 미니 세로~

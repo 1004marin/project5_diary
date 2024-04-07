@@ -29,23 +29,43 @@ function PasswordPage() {
     const onNewPasswordConfirmHandler = (e) => {
         setnewPasswordConfirm(e.currentTarget.value)
     }
+    const validateEmail = (Email) => {
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return pattern.test(Email);
+      };
+
     const onEmailCode_SendHandler = () =>{
+        //이메일형식
+         if (!validateEmail(Email)) {
+            alert('올바른 이메일 형식이 아닙니다.');
+            return;
+        } 
         const jsonEmail = {
             email: Email
         }
-        axios.post('/newPassword/mail', jsonEmail).then(
+        const storedAccessToken = localStorage.getItem("accessToken");
+        axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
+
+        axios.post('/newPassword/mail', jsonEmail)
+        .then(
             response => {
                 setRealcode(response.data)
                 console.log(Realcode)
 
-                if(Realcode === "존재하지 않는 이메일입니다."){
-                    alert("이메일이 없네여")
-                }
-                else if(Realcode === ""){
-                    setEmailCode_notice("메일보냇으니 입력하세요")
-                }
+                setEmailCode_notice("메일보냇으니 입력하세요")
+            })
+        .catch(error=>{
+            if(Realcode === "존재하지 않는 이메일입니다."){
+                alert("이메일이 없네여")
             }
-        )
+            else{
+                console.error('에러 발생:', error);
+                alert('서버에 문제가 발생했습니다. 나중에 다시 시도해주세요.');
+            }
+        })
+
+            
+        
     }
     const onEmailCode_CheckHandler = () => {
         if(EmailCode === ""){
@@ -73,8 +93,7 @@ function PasswordPage() {
         axios.post("/newPassword", jsonNewPassword).then(
             response => {
                 //이거 수정해야함. result뭐받아오는지
-                const result = response.data
-                console.log(result)
+                console.log(response)
                 /*
                 if(result.response.data.message === "비밀번호 변경 성공"){
                     navigate('/home')
@@ -102,7 +121,7 @@ function PasswordPage() {
                     <label>Email</label>
                     <input type="email" value={Email} onChange={onEmailHandler}/>
                     <button  onClick={onEmailCode_SendHandler}>인증번호 보내주세요</button>
-                    <div className="margin_bottom">{EmailCode_notice}보냇어용</div>
+                    <div className="margin_bottom">{EmailCode_notice}</div>
 
                     <label>Email Code</label>
                     <input type="text" value={EmailCode} onChange={onEmailCodeHandler}/>

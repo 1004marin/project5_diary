@@ -114,7 +114,7 @@
   }
   .diaryWrite_formbox_content {
     width: 100%;
-    height: 65%;
+    height: 55dvh;
     display: flex;
     flex-direction: column;
     margin-top: 2vh;
@@ -158,7 +158,7 @@
 
 .diaryWrite_formbox_content input {
   padding-left: 1vw;
-  margin: 0.6vh 0 1vh 0;
+  margin: 0.2vh 0 0.5vh 0;
   color: #ff989e;
   text-shadow: calc(2px * 1) 0 0 #ffffff, calc(2px * 0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * 0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * 0.3827) calc(2px * 0.9239) 0 #ffffff, 0 calc(2px * 1) 0 #ffffff, calc(2px * -0.3827) calc(2px * 0.9239) 0 #ffffff, calc(2px * -0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * -0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * -1) 0 0 #ffffff, calc(2px * -0.9239) calc(2px * -0.3827) 0 #ffffff, calc(2px * -0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * -0.3827) calc(2px * -0.9239) 0 #ffffff, 0 calc(2px * -1) 0 #ffffff, calc(2px * 0.3827) calc(2px * -0.9239) 0 #ffffff, calc(2px * 0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * 0.9239) calc(2px * -0.3827) 0 #ffffff;
   width: 100%;
@@ -171,10 +171,11 @@
   background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%);
 }
 
-.diaryWrite_formbox_content input.diaryWrite_content {
+.diaryWrite_formbox_content input.write_content {
   background-image: url("../../public/diary_write_content.png");
   background-size: cover;
   background-position: center;
+  height: 50px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 819px) {

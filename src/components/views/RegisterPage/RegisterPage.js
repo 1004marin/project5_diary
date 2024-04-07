@@ -17,7 +17,6 @@ function RegisterPage() {
   const [ConfirmPassword,setConfirmPassword] = useState("")
 
   const [EmailCode,setEmailCode] = useState("")//이메일 인증번호
-  let [EmailCode_notice, setEmailCode_notice] = useState("")
   let [EmailCodeCheck_notice, setEmailCodeCheck_notice] = useState("")
   const [Realcode, setRealcode] = useState("")
   const [EmailCode_Check, setEmailCode_Check] = useState("")
@@ -48,14 +47,23 @@ function RegisterPage() {
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
       };
-    
+    const validateEmail = (Email) => {
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return pattern.test(Email);
+      };
 
     //이메일중복체크
     const onDuplicateEmailHandler = (e) => {
-        if(Email === ""){
+        //이메일형식
+          if (!validateEmail(Email)) {
+            alert('올바른 이메일 형식이 아닙니다.');
+            return;
+          } 
+          if(Email === ""){
             alert("이메일입력해")
             return;
         }
+
         const jsonEmail = {"email": Email}
         axios.post('/duplicateEmail', jsonEmail)
         .then(response => {
@@ -70,7 +78,7 @@ function RegisterPage() {
 
             const codeResponse = axios.post('/mail', jsonEmail)
             setRealcode(codeResponse.data)
-            setEmailCode_notice("인증 메일을 보냈어요.")
+            setEmailDuplicate_notice("인증 메일을 보냈어요.")
 
         }})
         .catch(error=>{
@@ -138,7 +146,7 @@ function RegisterPage() {
             setEmailCode_Check("success")
         }
         else{
-            return setEmailCode_notice("인증번호를 다시 체크해주세요")
+            return setEmailCodeCheck_notice("인증번호를 다시 체크해주세요")
         }
     }
 
@@ -166,7 +174,7 @@ function RegisterPage() {
         .then(response => {
             console.log(response)
             if(response.payload === '회원 가입 완료'){
-                navigate('/')
+                navigate('/registerComplete')
                 alert('회원가입성공땨')
             } else{
                 alert('회원가입에러에용')
@@ -199,7 +207,6 @@ function RegisterPage() {
                 <label>Email Code</label>
                 <input type="text" value={EmailCode} onChange={onEmailCodeHandler}/>
                 <button type="button"onClick={onEmailCode_CheckHandler}>제가 잘 입력했나요?</button>
-                <div>{EmailCode_notice}</div>
                 <div className='margin_bottom'>{EmailCodeCheck_notice}</div>
 
                 <label>Username</label>

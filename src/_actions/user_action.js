@@ -45,7 +45,8 @@ export const NotLogin=()=> {
     try{
       alert("권한이 없습니다. 로그인하세요")
     }
-    catch{
+    catch (error){
+      console.error(error);
     }
   }
 }

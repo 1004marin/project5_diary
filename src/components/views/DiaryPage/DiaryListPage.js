@@ -4,6 +4,9 @@ import { useState } from 'react'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import NavBar from '../NavBar/NavBar';
+import SlideMenu from '../NavBar/SlideMenu'
+
 function DiaryListPage() {
   const [diaries, setDiaries] = useState([]);
   const [diaryPassword, setDiaryPassword] = useState("")
@@ -77,7 +80,22 @@ function DiaryListPage() {
   }
 
   return (
-    <div>
+    <div className='diaryList'>
+      <div className='inner_navbar'>
+        <NavBar/>
+    </div>
+    <div className='myinfo_formbox'>
+        <div className='moblie_menu'>
+            <SlideMenu/>
+        </div>
+        <div className='myinfo_inner_formbox'>
+            <div className='inner_title'>
+                <div className='title'>일기교환클럽<br/>
+                자기 소개서<span>(笑)</span>
+                </div>
+                <img className="myinfo_pinkBubble"src={process.env.PUBLIC_URL + '/profile.png'} />
+            </div>
+              <form className='myinfo_formbox_content'></form>
       <h1>다이어리 목록</h1>
       <div>{is_diary_clicked && <input onChange={onDiaryPasswordHandler}value={diaryPassword} type="password"/>}</div>
       {diaryNum !== 0 && (
@@ -95,6 +113,9 @@ function DiaryListPage() {
         ))}
       </ul>
     </div>
+    </div>
+    </div>
+
   );
 }
 

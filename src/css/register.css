@@ -66,7 +66,7 @@
     letter-spacing: 0;
     flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
     position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
-    line-height: 6.5vh;
+    line-height: 6.7vh;
     text-shadow: calc(5px * 1) 0 0 #ffffff, calc(5px * 0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * 0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * 0.3827) calc(5px * 0.9239) 0 #ffffff, 0 calc(5px * 1) 0 #ffffff, calc(5px * -0.3827) calc(5px * 0.9239) 0 #ffffff, calc(5px * -0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * -0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * -1) 0 0 #ffffff, calc(5px * -0.9239) calc(5px * -0.3827) 0 #ffffff, calc(5px * -0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * -0.3827) calc(5px * -0.9239) 0 #ffffff, 0 calc(5px * -1) 0 #ffffff, calc(5px * 0.3827) calc(5px * -0.9239) 0 #ffffff, calc(5px * 0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * 0.9239) calc(5px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
   }
   .letter {
@@ -79,10 +79,12 @@
     height: 65%;
     display: flex;
     flex-direction: column;
-    margin-top: 1.3vh;
+    margin-top: 0;
   }
-  .margin_bottom {
-    margin-bottom: 1vh;
+  .inner_formBox_content .margin_bottom {
+    margin-bottom: 0.2vh;
+    font-family: "Dongle-Regular";
+    font-size: 2vh;
   }
   label {
     text-decoration: underline;
@@ -94,18 +96,18 @@
     margin-bottom: 0.1em;
   }
 }
-button {
+.inner_formBox_content button {
   width: 100%;
-  height: 25px;
+  height: 3dvh;
   border: solid 1px #a6a6a6;
   background-image: linear-gradient(to bottom, #fff, #f1f1f1, #d0d0d0);
   font-family: "Dongle-Regular";
-  font-size: 1.4rem;
+  font-size: 2.4dvh;
   color: #0f0f0f;
   display: flex; /* Flexbox를 사용하여 요소를 가로로 배치합니다. */
   justify-content: center; /* 텍스트를 수평으로 가운데 정렬합니다. */
   align-items: center; /* 텍스트를 수직으로 가운데 정렬합니다. */
-  margin-top: 0.2em;
+  margin-top: 0vh;
 }
 
 .register_submit_button {
@@ -123,7 +125,7 @@ button {
   margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
 }
 
-input {
+.inner_formBox_content input {
   color: #696969;
   width: 100%;
   box-sizing: border-box;
@@ -140,13 +142,13 @@ input[type=checkbox] {
 }
 
 /* 체크박스 꾸미기 - 활성화 x */
-.check_icon::before {
+.register_agree .check_icon::before {
   content: "";
   display: inline-block;
   position: relative;
   box-sizing: border-box;
-  width: 5vw;
-  height: 3.5vh;
+  width: 4.5vw;
+  height: 3vh;
   box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   background-image: url("../../public/checkbox_none.png");
   background-size: 100% 100%;
@@ -163,9 +165,9 @@ input[type=checkbox] {
 }
 
 .register_agree {
-  font-size: 2.6vh;
+  font-size: 2.2vh;
   display: flex;
-  margin-top: 4px;
+  margin-top: 1px;
   align-items: center;
   color: #F2A3A8;
   text-shadow: -1.2px 0px #FFE4E4, 0px 1.2px #FFE4E4, 1.2px 0px #FFE4E4, 0px -1.2px #FFE4E4;
@@ -316,8 +318,8 @@ input[type=checkbox] {
     font-size: 1.9vw;
     height: 3.8vh;
   }
-  .check_icon::before {
-    width: 1.4vw;
+  .register_agree .check_icon::before {
+    width: 1.3vw;
     height: 3.5vh;
   }
   .check_text {
