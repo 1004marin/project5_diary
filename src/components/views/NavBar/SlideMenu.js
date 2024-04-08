@@ -53,7 +53,7 @@ const handleClickOutside = (event) => {
         <div className='mobile_navbar_content'>
             <div onClick={toggleSide} className='menuButton'>목차
          {
-        <div id="sidebar" isOpen={isOpen} setIsOpen={setIsOpen}
+        <div id="sidebar"
         ref={outside} className={isOpen ? 'open' : ''}>
 
             <div className='closeSlideMenu'  onClick={toggleClose}>닫기</div>

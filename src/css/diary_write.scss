@@ -196,25 +196,37 @@
         margin-top: auto; /* 마지막 요소를 가장 하단에 배치합니다. */
         margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
     }
-    .diaryWrite_formbox_content input{
+    
+    //input중복코드
+    @mixin diary-input-style {
         padding-left: 1vw;
         margin: 0.2vh 0 0.5vh 0;
         color: #ff989e;
-        @include customText_NoneShadow(2px, #ffffff); // thickness와 color를 여기서 조절합니다.
+        font-family: 'Dongle-Regular';
+        @include customText_NoneShadow(2px, #ffffff);
         width: 100%;
         box-sizing: border-box;
         font-size: 2.7vh;
-        font-weight: 300;
-        height: 3.5vh;
         border-radius: 9px;
         border: solid 1px #fbd5dc;
+    }
+    .diaryWrite_formbox_content input{
+        @include diary-input-style;
         background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%); 
     }
-    .diaryWrite_formbox_content input.write_content{
+    .diaryWrite_formbox_content .write_text{
+        @include diary-input-style;
         background-image: url('../../public/diary_write_content.png') ;
         background-size: cover;
         background-position: center;
-        height: 50px;
+        overflow-wrap: break-word; /* 가로 너비를 초과할 경우 단어 단위로 줄 바꿈 */
+        word-wrap: break-word; /* IE 호환을 위해 추가 */
+
+        min-height: 15vh;
+        line-height: 3dvh;
+        height: auto;
+        padding: 0.8vh; /* 텍스트 입력란의 패딩을 설정합니다. */
+        resize: vertical; /* 사용자가 세로 방향으로만 크기를 조절할 수 있도록 합니다. */
     }
 
 //아이패드 미니 세로~

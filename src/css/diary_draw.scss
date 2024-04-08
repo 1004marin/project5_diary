@@ -67,7 +67,8 @@
         font-family: 'Dongle-Regular';
         border: solid 1px #F39FD1;
         @include customTextShadow(1px, #ffe3e3); 
-        height: 3vh;
+        height: 3.8vh;
+        line-height: 1.5vh;
       }
     }
   }

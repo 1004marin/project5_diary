@@ -90,18 +90,24 @@ function PasswordPage() {
             passwordCheck: newPasswordConfirm,
             email: Email
         }
-        axios.post("/newPassword", jsonNewPassword).then(
+        axios.post("/newPassword", jsonNewPassword)
+        .then(
             response => {
-                //이거 수정해야함. result뭐받아오는지
                 console.log(response)
-                /*
-                if(result.response.data.message === "비밀번호 변경 성공"){
-                    navigate('/home')
+                
+                if(response.data === "비밀번호 변경 성공"){
+                    navigate('/diaryList')
                 }
-                else if(result.response.data.message === '동일한 비밀번호로 변경할 수 없습니다.'){
+            }
+        ).catch(
+            error => {
+                if(error.response.data.message === "동일한 비밀번호로 변경할 수 없습니다."){
                     alert("동일한 비번이라 안되용")
                 }
-                */
+                else{
+                    alert("서버에 에러가 발생했어용")
+                    console.log(error)
+                }
             }
         )
     }

@@ -2,19 +2,24 @@ import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate, Link } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu'
+import '../../../css/diary_list.scss'
 
 function DiaryListPage() {
+  const navigate = useNavigate();
+
   const [diaries, setDiaries] = useState([]);
   const [diaryPassword, setDiaryPassword] = useState("")
   const [is_diary_clicked, setis_diary_clicked] = useState(false)
   const [Client_diaryId, setClient_diaryId] = useState("")
   const [diaryNum, setDiaryNum] = useState("")
-  const navigate = useNavigate();
-
+  //비번페이지
+  const [showPasswordPage, setshowPasswordPage] = useState(true);
+  const handlePasswordPage = () => {
+    setshowPasswordPage(!showPasswordPage);
+  };
 
   const onDiaryPasswordHandler =(e) => {
     setDiaryPassword(e.currentTarget.value)
@@ -83,40 +88,69 @@ function DiaryListPage() {
     <div className='diaryList'>
       <div className='inner_navbar'>
         <NavBar/>
-    </div>
-    <div className='myinfo_formbox'>
-        <div className='moblie_menu'>
+      </div>
+
+      <div className={showPasswordPage ? 'diaryList_password_formbox' : 'diaryList_formbox'}>
+      <div className='moblie_menu'>
             <SlideMenu/>
-        </div>
-        <div className='myinfo_inner_formbox'>
-            <div className='inner_title'>
-                <div className='title'>일기교환클럽<br/>
-                자기 소개서<span>(笑)</span>
+      </div>
+
+           {/* 클릭 시, 다이어리 비번*/}
+           {showPasswordPage ? (
+            <div className='diaryList_password_inner_formbox'>
+              <div className='close_password'>닫기</div>
+
+              <div className='password_box'>
+                <div className='password_box1'>Notice</div>
+                <div className='password_box2'>
+                  <div>암호를 입력하세요.</div>
+                  {/* 원래잉거<div>{is_diary_clicked && <input onChange={onDiaryPasswordHandler}value={diaryPassword} type="password"/>}</div>*/}
+                  <input onChange={onDiaryPasswordHandler}value={diaryPassword} type="password"/>
                 </div>
-                <img className="myinfo_pinkBubble"src={process.env.PUBLIC_URL + '/profile.png'} />
+              </div>
+
+              
+              {diaryNum !== 0 && (
+              <button className="diaryList_submit_button" type="button" onClick={onDiaryEnterHandler}>입장할래요</button>
+              )}
             </div>
-              <form className='myinfo_formbox_content'></form>
-      <h1>다이어리 목록</h1>
-      <div>{is_diary_clicked && <input onChange={onDiaryPasswordHandler}value={diaryPassword} type="password"/>}</div>
-      {diaryNum !== 0 && (
-      <button type="button" onClick={onDiaryEnterHandler}>다요리 입장</button>
-      )}
-      <ul>
-        {diaries.map((diary, index) => (
-          <li key={index} onClick={() => {
-            setClient_diaryId(diary.diaryId);
-            onPasswordHandler();
-            console.log("Client_diaryId:", diary.diaryId);
-          }}>
-            다이어리 ID: {diary.diaryId}, 이름: {diary.name}
-          </li>
-        ))}
-      </ul>
+          ) : (
+            <div className='diaryList_inner_formbox'>
+                <div className='inner_title'>
+                  <div className='title'>일기교환클럽<br/>
+                  내 일기들...
+                  </div>
+                  <div className='diaryList_logout'>※ 로그아웃</div>
+                </div>
+                <div className='diaryList_formbox_content'>
+                  <div className='diaryList_guide'>※ 일기를 열기 위해선 암호를 알아야해요.</div>
+                  <div className='diaryList_underline'></div>
+                  <ul>
+                    {diaries.map((diary, index) => (
+                      <li className="diaryList_icon"key={index} onClick={() => {
+                        setClient_diaryId(diary.diaryId);
+                        onPasswordHandler();
+                        handlePasswordPage();
+                        console.log("Client_diaryId:", diary.diaryId);
+                      }}>
+                        {diary.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <Link to='/diaryCreate'>
+                    <div className='diaryList_create'>교환일기장 신청</div>
+                </Link>
+            </div>
+          )}
+            <div>
+
     </div>
     </div>
     </div>
+    
 
   );
-}
+};
 
 export default DiaryListPage

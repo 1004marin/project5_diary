@@ -99,7 +99,6 @@ export default function DiaryWritePage() {
             <label>Title</label>
             <input type='text' value={DiaryTitle} onChange={onDiaryTitleHandler}></input>
 
-
             <label>Date</label>
             <DatePicker dateFormat='yyyy年 MM月 dd日'selected={startDate}
             shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
@@ -115,8 +114,7 @@ export default function DiaryWritePage() {
             <input type='text' value={DiaryMood} onChange={onDiaryMoodHandler}></input>
 
             <label>Content</label>
-            <input type='text' value={DiaryContent} onChange={onDiaryContentHandler} className="write_content"></input>
-
+            <textarea className="write_text" value={DiaryContent} onChange={onDiaryContentHandler} />
             
 
             <label>Draw</label>

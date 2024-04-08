@@ -57,5 +57,6 @@
   font-family: "Dongle-Regular";
   border: solid 1px #F39FD1;
   text-shadow: calc(1px * 1) 0 0 #ffe3e3, calc(1px * 0.9239) calc(1px * 0.3827) 0 #ffe3e3, calc(1px * 0.7071) calc(1px * 0.7071) 0 #ffe3e3, calc(1px * 0.3827) calc(1px * 0.9239) 0 #ffe3e3, 0 calc(1px * 1) 0 #ffe3e3, calc(1px * -0.3827) calc(1px * 0.9239) 0 #ffe3e3, calc(1px * -0.7071) calc(1px * 0.7071) 0 #ffe3e3, calc(1px * -0.9239) calc(1px * 0.3827) 0 #ffe3e3, calc(1px * -1) 0 0 #ffe3e3, calc(1px * -0.9239) calc(1px * -0.3827) 0 #ffe3e3, calc(1px * -0.7071) calc(1px * -0.7071) 0 #ffe3e3, calc(1px * -0.3827) calc(1px * -0.9239) 0 #ffe3e3, 0 calc(1px * -1) 0 #ffe3e3, calc(1px * 0.3827) calc(1px * -0.9239) 0 #ffe3e3, calc(1px * 0.7071) calc(1px * -0.7071) 0 #ffe3e3, calc(1px * 0.9239) calc(1px * -0.3827) 0 #ffe3e3, 5px 8px 5px rgba(0, 0, 0, 0.8);
-  height: 3vh;
+  height: 3.8vh;
+  line-height: 1.5vh;
 }/*# sourceMappingURL=diary_draw.css.map */

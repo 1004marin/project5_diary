@@ -160,22 +160,37 @@
   padding-left: 1vw;
   margin: 0.2vh 0 0.5vh 0;
   color: #ff989e;
+  font-family: "Dongle-Regular";
   text-shadow: calc(2px * 1) 0 0 #ffffff, calc(2px * 0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * 0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * 0.3827) calc(2px * 0.9239) 0 #ffffff, 0 calc(2px * 1) 0 #ffffff, calc(2px * -0.3827) calc(2px * 0.9239) 0 #ffffff, calc(2px * -0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * -0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * -1) 0 0 #ffffff, calc(2px * -0.9239) calc(2px * -0.3827) 0 #ffffff, calc(2px * -0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * -0.3827) calc(2px * -0.9239) 0 #ffffff, 0 calc(2px * -1) 0 #ffffff, calc(2px * 0.3827) calc(2px * -0.9239) 0 #ffffff, calc(2px * 0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * 0.9239) calc(2px * -0.3827) 0 #ffffff;
   width: 100%;
   box-sizing: border-box;
   font-size: 2.7vh;
-  font-weight: 300;
-  height: 3.5vh;
   border-radius: 9px;
   border: solid 1px #fbd5dc;
   background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%);
 }
 
-.diaryWrite_formbox_content input.write_content {
+.diaryWrite_formbox_content .write_text {
+  padding-left: 1vw;
+  margin: 0.2vh 0 0.5vh 0;
+  color: #ff989e;
+  font-family: "Dongle-Regular";
+  text-shadow: calc(2px * 1) 0 0 #ffffff, calc(2px * 0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * 0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * 0.3827) calc(2px * 0.9239) 0 #ffffff, 0 calc(2px * 1) 0 #ffffff, calc(2px * -0.3827) calc(2px * 0.9239) 0 #ffffff, calc(2px * -0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * -0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * -1) 0 0 #ffffff, calc(2px * -0.9239) calc(2px * -0.3827) 0 #ffffff, calc(2px * -0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * -0.3827) calc(2px * -0.9239) 0 #ffffff, 0 calc(2px * -1) 0 #ffffff, calc(2px * 0.3827) calc(2px * -0.9239) 0 #ffffff, calc(2px * 0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * 0.9239) calc(2px * -0.3827) 0 #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 2.7vh;
+  border-radius: 9px;
+  border: solid 1px #fbd5dc;
   background-image: url("../../public/diary_write_content.png");
   background-size: cover;
   background-position: center;
-  height: 50px;
+  overflow-wrap: break-word; /* 가로 너비를 초과할 경우 단어 단위로 줄 바꿈 */
+  word-wrap: break-word; /* IE 호환을 위해 추가 */
+  min-height: 15vh;
+  line-height: 3dvh;
+  height: auto;
+  padding: 0.8vh; /* 텍스트 입력란의 패딩을 설정합니다. */
+  resize: vertical; /* 사용자가 세로 방향으로만 크기를 조절할 수 있도록 합니다. */
 }
 
 @media screen and (min-width: 768px) and (max-width: 819px) {
