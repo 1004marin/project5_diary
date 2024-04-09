@@ -7,7 +7,12 @@ import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import NavBar from '../NavBar/NavBar';
+import SlideMenu from '../NavBar/SlideMenu';
+import '../../../css/diary_content.scss';
+
 import Calendar from 'react-calendar';
+import moment from "moment";
 import 'react-calendar/dist/Calendar.css';
 import './DiaryCalender.css'
 
@@ -19,7 +24,7 @@ function DiaryContentPage() {
 
     const { Client_diaryId } = location.state || {};
 
-    const [member_to_add,setMember_to_add] = useState("멤버")
+    const [member_to_add,setMember_to_add] = useState("멤버 이름")
     const [Client_postId, setClient_PostId] = useState("")
     const onPostIdHandler =(postId)=>{
         setClient_PostId(postId)
@@ -126,47 +131,66 @@ function DiaryContentPage() {
         })
     }
     return (
-        <div style={
-            { height:'100vh', display:"flex", flexDirection:"column", background:"#D2E1FF", 
-            justifyContent:'center', alignItems:'center'}}>       
+        <div className='diaryContent'>       
+            <div className='inner_navbar'>
+                <NavBar/>
+            </div>    
 
+            <div className='diaryContent_formbox'>
 
-            <label>다이어리입니당</label>
-            <div>
-            <Calendar
-    onChange={setDate}
-    value={date}
-    tileContent={tileContent}
-    onClickDay={(date) => handleTileClick(date)}
-    onActiveStartDateChange={handleActiveStartDateChange} 
-/>
-            <div>
-            {loading && <div>Loading...</div>} {/* 로딩 상태에 따라 로딩 UI 표시 */}
-                {selectedPost.map((post, index) => (
-                    <div key={index}>
-                        <p onClick={()=>{
-                            onPostIdHandler(post.id)
-                        }}>{post.title}</p>
-                        <p>{post.writer.username}</p>
-                        <p>{post.id}</p> 
+                <div className='moblie_menu'>
+                    <SlideMenu/>
+                </div>
+                <div className='diaryContent_inner_formbox'>
+                    <div className='inner_title'>
+                        <div className='title'>일기교환클럽<br/>먼슬리...</div>
                     </div>
-                ))} 
-            </div>
-            </div>
 
 
-            <br/>
-            <button onClick={onMemberInviteHandler}>멤버 초대</button>
-            <input value={member_to_add} onChange={onMember_to_addHandler}></input>
+                        <div className='calendar'>
+                        <Calendar className="calendar_custom"
+                            onChange={setDate}
+                            value={date}
+                            tileContent={tileContent}
+                            formatDay={(locale, date) => moment(date).format("DD")} /* 일 빼기 */
+                            onClickDay={(date) => handleTileClick(date)}
+                            onActiveStartDateChange={handleActiveStartDateChange} 
+                        />
+                        <div className='diaryContent_formbox_content'>
+                            <div>
+                            {loading && <div>Loading...</div>} {/* 로딩 상태에 따라 로딩 UI 표시 */}
+                                {selectedPost.map((post, index) => (
+                                    <div key={index}>
+                                        <p onClick={()=>{
+                                            onPostIdHandler(post.id)
+                                            
+                                        }}>
+                                             <label>Title</label>
+                                            <div className='diaryContent_post'>{post.title}</div>
+                                        </p>
 
-            <br/>
-            <button onClick={onDiaryInfoHandler}>다요리 정보</button>
-            <button type="button" onClick={onDiaryWriteHandler}>일기 쓰기</button>
+                                            <label>Writer</label>
+                                            <div className='diaryContent_post'>{post.writer.username}</div>
+                                            <span className='diaryContent_line'></span>
+                                    </div>
+                                ))} 
+                            </div>
+                        </div>
+                    
+                        <div className='diaryContent_invite_member'>
+                            <input value={member_to_add} onChange={onMember_to_addHandler}></input>
+                            <button onClick={onMemberInviteHandler}>초대</button>
+                        </div>
 
-            <br/>
-            <Link to='/diaryList'>  
-                <button>다이어리 리스트로</button>
-            </Link> 
+                        <div className='diaryContent_button'>
+                            <button onClick={onDiaryInfoHandler}>정보</button>
+                            <button type="button" onClick={onDiaryWriteHandler}>쓰기</button>
+                        </div>
+
+
+        </div>
+        </div>        
+        </div>
         </div>
 
     );

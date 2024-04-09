@@ -49,9 +49,13 @@ export default function DiaryWritePage() {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
         const storedAccessToken = localStorage.getItem("accessToken");
         axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
-        
+
+        const diary_formattedDate = startDate.toISOString().split('T')[0];
+        console.log('formattedDate:', diary_formattedDate);
+
                 console.log(drawingData)
            
                 const json_diary = {
@@ -59,7 +63,7 @@ export default function DiaryWritePage() {
                     weather: DiaryWeather,
                     mood: DiaryMood,
                     body: DiaryContent,
-                    date: startDate,
+                    date: diary_formattedDate,
                     imageData:drawingData
                 }
                 
@@ -102,7 +106,7 @@ export default function DiaryWritePage() {
             <label>Date</label>
             <DatePicker dateFormat='yyyy年 MM月 dd日'selected={startDate}
             shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
-                    onChange={(date) => setStartDate(date.toISOString().split('T')[0])}
+                    onChange={(date) => setStartDate(date)}
             >
             <div className='monthly_guide'style={{ }}>교환일기의 날짜 구다사이!!~</div>
             </DatePicker>
@@ -120,7 +124,7 @@ export default function DiaryWritePage() {
             <label>Draw</label>
             <DiaryDrawPage onSaveDrawing={setDrawingData} />
         </form>
-        <button className='diaryWrite_submit_button'type='submit'>
+        <button className='diaryWrite_submit_button'type='submit' onClick={onSubmit}>
                 제출할래요
         </button>
         </div>

@@ -1,7 +1,7 @@
 .post-marker {
-    background-color: skyblue;
-    width: 10px;
-    height: 10px;
+    background-image: linear-gradient(to top, #ffcccc, #ff83c7)!important; 
+    width: 3dvw;
+    height: 1.5dvh;
     border-radius: 50%;
     display: inline-block;
 }

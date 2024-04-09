@@ -7,8 +7,11 @@ import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu'
 import '../../../css/diary_list.scss'
 
+import { useDispatch } from 'react-redux'
+import {logoutUser } from '../../../_actions/user_action';
 function DiaryListPage() {
   const navigate = useNavigate();
+  const dispatch= useDispatch()
 
   const [diaries, setDiaries] = useState([]);
   const [diaryPassword, setDiaryPassword] = useState("")
@@ -16,7 +19,7 @@ function DiaryListPage() {
   const [Client_diaryId, setClient_diaryId] = useState("")
   const [diaryNum, setDiaryNum] = useState("")
   //비번페이지
-  const [showPasswordPage, setshowPasswordPage] = useState(true);
+  const [showPasswordPage, setshowPasswordPage] = useState(false);
   const handlePasswordPage = () => {
     setshowPasswordPage(!showPasswordPage);
   };
@@ -24,6 +27,19 @@ function DiaryListPage() {
   const onDiaryPasswordHandler =(e) => {
     setDiaryPassword(e.currentTarget.value)
   }
+
+//로그아웃
+const onLogoutHandler = () => {
+  dispatch(logoutUser())
+    .then(response => {
+      console.log(response);
+      navigate('/login')
+    })
+    .catch(error => {
+      // 로그아웃 중 에러가 발생한 경우 여기에 처리를 할 수 있습니다.
+      console.error('Logout Error:', error);
+    });
+};
 
   // 서버에서 다이어리 목록을 가져오는 함수
   useEffect(() => {
@@ -74,7 +90,6 @@ function DiaryListPage() {
       if(error.response.data.message === "비밀번호가 일치하지 않습니다"){
         console.log("다이어리 비번 에러:", error)
         alert("비번틀림")
-        setis_diary_clicked(false)//비번 입력창 보이게
       }
       else{
         alert("먼가 에러 발생!")
@@ -98,14 +113,14 @@ function DiaryListPage() {
            {/* 클릭 시, 다이어리 비번*/}
            {showPasswordPage ? (
             <div className='diaryList_password_inner_formbox'>
-              <div className='close_password'>닫기</div>
+              <div className='close_password' onClick={handlePasswordPage}>닫기</div>
 
               <div className='password_box'>
                 <div className='password_box1'>Notice</div>
                 <div className='password_box2'>
                   <div>암호를 입력하세요.</div>
-                  {/* 원래잉거<div>{is_diary_clicked && <input onChange={onDiaryPasswordHandler}value={diaryPassword} type="password"/>}</div>*/}
-                  <input onChange={onDiaryPasswordHandler}value={diaryPassword} type="password"/>
+                  {is_diary_clicked && <input onChange={onDiaryPasswordHandler}value={diaryPassword} type="password"/>}
+                  
                 </div>
               </div>
 
@@ -120,11 +135,11 @@ function DiaryListPage() {
                   <div className='title'>일기교환클럽<br/>
                   내 일기들...
                   </div>
-                  <div className='diaryList_logout'>※ 로그아웃</div>
+                  <div className='diaryList_logout'onClick={onLogoutHandler}>※ 로그아웃</div>
                 </div>
                 <div className='diaryList_formbox_content'>
                   <div className='diaryList_guide'>※ 일기를 열기 위해선 암호를 알아야해요.</div>
-                  <div className='diaryList_underline'></div>
+                  <div className='diaryList_underline'>.</div>
                   <ul>
                     {diaries.map((diary, index) => (
                       <li className="diaryList_icon"key={index} onClick={() => {

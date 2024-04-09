@@ -46,7 +46,7 @@ function LoginPage() {
         .then(response => {
             if (response.status === 200) {
                 alert('로그인 성공했습니다!');
-                navigate('/');
+                navigate('/diaryList');
             } 
         })
         .catch(error => {
