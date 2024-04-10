@@ -169,37 +169,39 @@ const toggleEraser = () => {
             </div>
 
             <div className='diaryDraw_form_content'>
-                <button type="button" onClick={initializeCanvas}>그림 그릴래요</button>
+                <button className="darw_start"type="button" onClick={initializeCanvas}>그림 그릴래요</button>
 
                 <div className='draw_add_1'>
                     <input type="text" value={textValue} onChange={(e) => setTextValue(e.target.value)} placeholder="Enter text" />
                     <button type="button" onClick={addText}>텍스트 추가</button>
-
+                </div>
+                <div className='draw_add_2'>
                     <input type="file" accept="image/*" onChange={(e) => addImage(e.target.files[0])} />
-
-                    
-
                 </div>
                 
-                <div className='draw_add_2'>
+                <div className='draw_add_3'>
                     <button type="button" onClick={() => addShape('circle')}>원 모양자</button>
                     <button type="button" onClick={() => addShape('rectangle')}>사각 모양자</button>
                     <input type="color" value={selectedColor} onChange={handleColorChange} />
-                    <button type="button" onClick={clearCanvas}>모두 지우기</button>
+
                 </div>
 
                 <div className='draw_pen'>
+                    <button type="button" onClick={clearCanvas}>모두 지우기</button>
                     <button type="button" onClick={toggleDrawingMode}>{drawingMode ? '샤프 반납' : '샤프 빌리기'}</button>
                     <button type="button" onClick={toggleEraser}>{isErasing ? '지우개 반납' : '지우개 빌리기'}</button>
-
-                    <input type="color" value={penColor} onChange={handlePenColorChange} />
+                </div>
+                <div className='draw_pen2'>
+                <input type="color" value={penColor} onChange={handlePenColorChange} />
                     <input type="range" min="1" max="10" value={penWidth} onChange={(e) => handlePenWidthChange(parseInt(e.target.value))} />
                     <input type="range" min="1" max="10" value={eraseWidth} onChange={(e) => handleEraseWidthChange(parseInt(e.target.value))} />
                 </div>
+                    
 
-                <button type="button" onClick={saveDrawingData}>그림 저장</button>
+
+                <button className="draw_finish" type="button" onClick={saveDrawingData}>그림 저장</button>
             </div>
-        </div>
+            </div>
     );
 };
 export default DiaryDrawPage;

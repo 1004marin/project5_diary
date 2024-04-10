@@ -112,7 +112,32 @@ export default function DiaryWritePage() {
             </DatePicker>
 
             <label>Weather</label>
-            <input type='text' value={DiaryWeather} onChange={onDiaryWeatherHandler}></input>
+            <div className="radio-container">
+                  <label>
+                    <input type="radio" name="option" value="SUNNY" checked={DiaryWeather === "SUNNY"} onChange={onDiaryWeatherHandler} />
+                    <span className='radio_icon'></span>
+                    <div className='weather_icon_1'/>
+                  </label>
+
+                  <label>
+                    <input type="radio" name="option" value="CLOUDY" checked={DiaryWeather === "CLOUDY"} onChange={onDiaryWeatherHandler} />
+                    <span className='radio_icon'></span>
+                    <div className='weather_icon_2'/>
+                  </label>
+
+                  <label>
+                    <input type="radio" name="option" value="SNOWY" checked={DiaryWeather === "SNOWY"} onChange={onDiaryWeatherHandler} />
+                    <span className='radio_icon'></span>
+                    <div className='weather_icon_3'/>
+                  </label>
+
+                  <label>
+                    <input type="radio" name="option" value="RAINY" checked={DiaryWeather === "RAINY"} onChange={onDiaryWeatherHandler} />
+                    <span className='radio_icon'></span>
+                    <div className='weather_icon_4'/>
+
+                  </label>
+                </div>
 
             <label>Mood</label>
             <input type='text' value={DiaryMood} onChange={onDiaryMoodHandler}></input>

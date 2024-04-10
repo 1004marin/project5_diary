@@ -126,10 +126,10 @@ const handleCheckboxChange = () => {
             </div>
               <form className='myinfo_formbox_content'>
                 <label>Email</label>
-                <div className='myinfo_fixed_input'>{Email}하이</div>
+                <div className='myinfo_fixed_input'>{Email}</div>
 
                 <label>Username</label>
-                <div className='myinfo_fixed_input'>{Username}gd하이</div>
+                <div className='myinfo_fixed_input'>{Username}</div>
 
                 <label>Nickname</label>
                 <input type="text" value ={Nickname} onChange={onNicknameHandler}/>

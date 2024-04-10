@@ -228,21 +228,79 @@
         padding: 0.8vh; /* 텍스트 입력란의 패딩을 설정합니다. */
         resize: vertical; /* 사용자가 세로 방향으로만 크기를 조절할 수 있도록 합니다. */
     }
+    //날씨 라디오박스
+    .radio-container{
+        display: flex;
+        justify-content: space-between;
+        label{
+            font-family: 'Dongle-Regular';
+            display: flex; 
+            align-items: center;
+            text-decoration: none;
+        }
+        //라디오박스
+        input[type="radio"]{
+            display: none;
+        }
+    }
+        /* 체크박스 꾸미기 - 활성화 x */
+        .radio_icon::before{
+            content:'';
+            display: inline-block;
+            position: relative;
+            box-sizing:border-box;
+            width: 5vw;
+            height: 3.5vh;
+            box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+            background-image:url("../../public/checkbox_none.png");
+            background-size: 100% 100%;
+        }
+        .radio_icon{
+            cursor: pointer;
+            margin-right: 4px;
+        }
+        /* 체크박스 꾸미기 - 활성화 */
+        input[type="radio"]:checked +.radio_icon::before{
+            background-image:url("../../public/checkbox_checked.png");
+            background-size: 100% 100%;
+        }
+    .weather_icon_1,.weather_icon_2,.weather_icon_3,.weather_icon_4{
+        background-repeat : no-repeat; /*가로 세로 */
+        background-size : 100% 100%;
+        width: 11dvw;
+        height: 7dvh;
+    }
+    .weather_icon_1{
+        background-image: url('../../public/sunny.png');
+    }
+    .weather_icon_2{
+        background-image: url('../../public/cloudy.png');
+    }
+    .weather_icon_3{
+        background-image: url('../../public/rainy.png');
+    }
+    .weather_icon_4{
+        background-image: url('../../public/snowy.png');
+    }
+
 
 //아이패드 미니 세로~
 @media screen and (min-width: 768px) and (max-width: 819px){
     .inner_title{
-        width: 48vw;
-        margin-bottom: 3vh;
+        width: 48dvw;
+        margin-bottom: 3dvh;
     }
     .title{
-        font-size: 5.9vh;
-        line-height: 6vh;
+        font-size: 5.9dvh;
+        line-height: 6dvh;
     }
-    .myinfo_pinkBubble{
-        width: 7rem;
-        height: 7rem;
-        margin-left: 16vw;
+    .diaryWrite_formbox_content{
+        margin-bottom: 10px;
+    }
+    .diaryWrite_pinkBubble{
+        width: 22dvw;
+        height: 9dvh;
+        margin-left: 24dvw;
     }
     label{
         font-size: 1.7rem;
@@ -251,12 +309,14 @@
         height: 2.3rem;
         font-size: 3vh;
     }
-    .myinfo_submit_button{
+    .diaryWrite_submit_button{
         font-size: 1.5rem;
     }
-    .myinfo_sub{
-        font-size: 2.6vh;
+    .weather_icon_1,.weather_icon_2,.weather_icon_3,.weather_icon_4{
+        width: 8dvw;
+        height: 9dvh;
     }
+
 }
 //아이패드에어 ~아이패드프로 세로
 @media screen and (min-width: 820px) and (max-width: 1024px){
@@ -268,10 +328,14 @@
         font-size: 6.5vh;
         line-height:7vh;
     }
-    .myinfo_pinkBubble{
-        width: 12rem;
-        height: 10rem;
-        margin-left: 18vw;
+    .diaryWrite_formbox_content{
+        margin-bottom: 10px;
+    }
+    .diaryWrite_pinkBubble{
+        width: 22dvw;
+        height: 9dvh;
+        margin-left: 28dvw;
+        margin-top: 7dvh;
     }
     label{
         font-size: 2.8vh;
@@ -280,23 +344,24 @@
         height: 3.6vh;
         font-size: 3.1vh;
     }
-    .myinfo_submit_button{
-        width: 15rem;
+    .diaryWrite_submit_button{
+        width: 16rem;
         height: 8vh;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
-    .myinfo_sub{
-        font-size: 2.7vh;
+    .weather_icon_1,.weather_icon_2,.weather_icon_3,.weather_icon_4{
+        width: 9dvw;
+        height: 9dvh;
     }
-}
 
+}
 //아이패드 & 모바일 가로&PC
 @media screen and (min-width: 1025px), (orientation: landscape) {
     .moblie_menu{
         display: none;
     }
 
-	.myinfo_formbox{
+	.diaryWrite_formbox{
         background-image: url('../../public/pc_background.png');
         background-repeat : no-repeat; /*가로 세로 */
         background-size : 100% 100%;
@@ -309,7 +374,7 @@
         left: 4vw; /* 왼쪽에 위치하도록 설정 */
         z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
     }
-    .myinfo_inner_formbox{
+    .diaryWrite_inner_formbox{
         height: 73vh;
         width: 62vw;
     }
@@ -318,31 +383,28 @@
         margin-bottom: -3rem;
     }
     .title{
-        font-size: 3.7vw;
+        font-size: 3.2vw;
         line-height: 4.3vw;
-        span{
-            margin-left: 1vw;
-        }
     }
     label{
         font-size: 2.8vh;
     }
-    .myinfo_pinkBubble{
-        width: 11vw;
-        height: 9vw;
-        margin-top: 1.5vh;
-        margin-left: 7vw;
+    .diaryWrite_pinkBubble{
+        width: 10vw;
+        height: 5vw;
+        margin-top: 9vh;
+        margin-left: 10vw;
     }
-    .myinfo_formbox_content{
+    .diaryWrite_formbox_content{
         width: 40%;
         height: 70%;
         margin-left: 19vw;
         z-index: 1;
         margin-bottom: -10rem;
-        background-color: #fbadb6;
+        margin-top: 6dvh;
         
     }
-    .myinfo_submit_button{
+    .diaryWrite_submit_button{
         width: 14vw;
         height: 10vh;
         font-size: 2.3vh;
@@ -352,4 +414,13 @@
         font-size: 1.9vw;
         height: 3.8vh;
     }
+    .weather_icon_1,.weather_icon_2,.weather_icon_3,.weather_icon_4{
+        width: 3dvw;
+        height: 7dvh;
+    }
+    .radio_icon::before{
+        width: 1.3vw;
+        height: 3vh;
+    }
+
 }

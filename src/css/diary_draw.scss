@@ -43,10 +43,12 @@
 .diaryDraw_form_content {
     display: flex;
     flex-direction: column;
-  
+    font-family: 'Dongle-Regular';
     .draw_add_1,
     .draw_add_2,
-    .draw_pen {
+    .draw_add_3,
+    .draw_pen,
+    .draw_pen2 {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -56,19 +58,29 @@
       input[type="text"] {
         margin-right: 5px; // 텍스트 입력란 사이에 간격 추가
       }
-  
-      button,
-      input[type="color"],
-      input[type="range"],
-      input[type="text"],
-      input[type="file"] {
-        margin: 0 5px; // 버튼, 컬러 입력, 레인지 입력 요소 사이에 간격 추가
-        font-size: 2vh;
-        font-family: 'Dongle-Regular';
-        border: solid 1px #F39FD1;
-        @include customTextShadow(1px, #ffe3e3); 
-        height: 3.8vh;
-        line-height: 1.5vh;
-      }
+    }
+    button,
+    input[type="color"],
+    input[type="range"],
+    input[type="text"],
+    input[type="file"] {
+      margin: 0 5px; // 버튼, 컬러 입력, 레인지 입력 요소 사이에 간격 추가
+      font-size: 2.2vh;
+      font-family: 'Dongle-Regular';
+      border: solid 1px #F39FD1;
+      @include customTextShadow(1px, #ffe3e3); 
+      height: 3.8vh;
+      line-height: 1.5vh;
+      background-image: linear-gradient(to bottom, #fff, #f1f1f1 , #d0d0d0 );
+    }
+    input[type="color"]{
+      width: 20%;
+    }
+    button{
+      width: 40%;
+    }
+    .darw_start, .draw_finish{
+      width: 96%;
+      margin-top: 4px;
     }
   }

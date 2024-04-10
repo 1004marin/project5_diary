@@ -148,44 +148,50 @@ function DiaryContentPage() {
 
 
                         <div className='calendar'>
-                        <Calendar className="calendar_custom"
-                            onChange={setDate}
-                            value={date}
-                            tileContent={tileContent}
-                            formatDay={(locale, date) => moment(date).format("DD")} /* 일 빼기 */
-                            onClickDay={(date) => handleTileClick(date)}
-                            onActiveStartDateChange={handleActiveStartDateChange} 
-                        />
-                        <div className='diaryContent_formbox_content'>
-                            <div>
-                            {loading && <div>Loading...</div>} {/* 로딩 상태에 따라 로딩 UI 표시 */}
-                                {selectedPost.map((post, index) => (
-                                    <div key={index}>
-                                        <p onClick={()=>{
-                                            onPostIdHandler(post.id)
-                                            
-                                        }}>
-                                             <label>Title</label>
-                                            <div className='diaryContent_post'>{post.title}</div>
-                                        </p>
+                            <div className='pc_1'>
+                                <Calendar className="calendar_custom"
+                                    onChange={setDate}
+                                    value={date}
+                                    tileContent={tileContent}
+                                    formatDay={(locale, date) => moment(date).format("DD")} /* 일 빼기 */
+                                    onClickDay={(date) => handleTileClick(date)}
+                                    onActiveStartDateChange={handleActiveStartDateChange} 
+                                />
+                                <div className='diaryContent_formbox_content'>
+                                    <div>
+                                    {loading && <div>Loading...</div>} {/* 로딩 상태에 따라 로딩 UI 표시 */}
+                                        {selectedPost.map((post, index) => (
+                                            <div key={index}>
+                                                <p onClick={()=>{
+                                                    onPostIdHandler(post.id)
+                                                    
+                                                }}>
+                                                    <label>Title</label>
+                                                    <div className='diaryContent_post'>{post.title}</div>
+                                                </p>
 
-                                            <label>Writer</label>
-                                            <div className='diaryContent_post'>{post.writer.username}</div>
-                                            <span className='diaryContent_line'></span>
+                                                    <label>Writer</label>
+                                                    <div className='diaryContent_post'>{post.writer.username}</div>
+                                                    <span className='diaryContent_line'></span>
+                                            </div>
+                                        ))} 
                                     </div>
-                                ))} 
+                                </div>
                             </div>
-                        </div>
-                    
-                        <div className='diaryContent_invite_member'>
-                            <input value={member_to_add} onChange={onMember_to_addHandler}></input>
-                            <button onClick={onMemberInviteHandler}>초대</button>
+                            <div className='pc_2'>
+                                <div className='diaryContent_invite_member'>
+                                    <input value={member_to_add} onChange={onMember_to_addHandler}></input>
+                                    <button onClick={onMemberInviteHandler}>초대</button>
+                                </div>
+
+                                <div className='diaryContent_button'>
+                                    <button onClick={onDiaryInfoHandler}>정보</button>
+                                    <button type="button" onClick={onDiaryWriteHandler}>쓰기</button>
+                                </div>
                         </div>
 
-                        <div className='diaryContent_button'>
-                            <button onClick={onDiaryInfoHandler}>정보</button>
-                            <button type="button" onClick={onDiaryWriteHandler}>쓰기</button>
-                        </div>
+                    
+
 
 
         </div>
