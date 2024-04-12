@@ -27,7 +27,7 @@ function LoginPage() {
 
     const onSubmitHandler = (e) =>{
         e.preventDefault()
-        console.log(Username+Password)
+
         if(Username === ""){
             alert("아이디를 입력해주세요")
             return;

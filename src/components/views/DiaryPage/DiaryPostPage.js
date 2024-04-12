@@ -22,6 +22,9 @@ function DiaryPostPage() {
     const navigate = useNavigate()
     const { Client_postId } = location.state || {};
     const { Client_diaryId } = location.state || {};
+    const { post_writer} = location.state || {};
+    const now_username = localStorage.getItem("logined_user");
+
     const [DiaryTitle, setDiaryTitle] = useState("")
     const [DiaryWeather, setDiaryWeather] = useState("")
     const [DiaryMood, setDiaryMood] = useState("")
@@ -76,6 +79,8 @@ function DiaryPostPage() {
       axios.post(`/api/v1/diary/${Client_diaryId}/${Client_postId}/react`, jsonStamp)
       .then(response => {
         console.log(response)
+        alert("도장을 찍었어요!")
+        window.location.reload();//업뎃 보여주기용
       })
       .catch(error=>{
         console.log(error)
@@ -85,6 +90,11 @@ function DiaryPostPage() {
 
     //일기 삭제
     const onDiaryDeleteHandler = ()=>{
+
+      if( post_writer !==now_username ){
+        alert("내가 쓴 일기가 아니에요! 삭제금지!ㅡㅡ")
+        return;
+      }
       const storedAccessToken = localStorage.getItem("accessToken");
         axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
@@ -97,6 +107,8 @@ function DiaryPostPage() {
         })
         .catch(error=>{
           console.log("포스트 삭제 에러", error)
+          alert("에러 발생! 돌아가주세요!")
+          navigate('/diaryList')
         })
 
     }
@@ -109,7 +121,7 @@ function DiaryPostPage() {
           }
         });
       } 
-      console.log(already_Stamped)  
+      console.log(already_Stamped)
     },[logined_username, StampList])
     
     useEffect(()=>{
@@ -130,11 +142,19 @@ function DiaryPostPage() {
             setDiaryImage(Post.imageData)
             setDiaryWeather(Post.weather)
         })
-        
+        .catch(error =>{
+          console.log(error)
+          alert("에러 발생! 돌아가주세요!")
+          navigate("/diaryList")
+        }
+        )
+
+
         axios.get(`/api/v1/diary/${Client_diaryId}/${Client_postId}/react`)
         .then(response=>{
           console.log(response)
           setStampList(response.data)
+
         })
         .catch(error=>{
             console.log(error)
@@ -163,28 +183,27 @@ function DiaryPostPage() {
             <div  className='diaryPost_data'>{moment(DiaryDate).format("YYYY年 MM月 DD日")}</div>
 
             <label>Weather</label>
-            <div>{DiaryWeather}</div>
             <div className="radio-container">
                   <label>
-                    <input type="radio" name="option" value="SUNNY" checked={DiaryWeather === "SUNNY"} onChange={onDiaryWeatherHandler} disabled />
+                    <input type="radio" name="option1" value="SUNNY" checked={DiaryWeather === "SUNNY"} onChange={onDiaryWeatherHandler} disabled />
                     <span className='radio_icon'></span>
                     <div className='weather_icon_1'/>
                   </label>
 
                   <label>
-                    <input type="radio" name="option" value="CLOUDY" checked={DiaryWeather === "CLOUDY"} onChange={onDiaryWeatherHandler}disabled />
+                    <input type="radio" name="option1" value="CLOUDY" checked={DiaryWeather === "CLOUDY"} onChange={onDiaryWeatherHandler}disabled />
                     <span className='radio_icon'></span>
                     <div className='weather_icon_2'/>
                   </label>
 
                   <label>
-                    <input type="radio" name="option" value="SNOWY" checked={DiaryWeather === "SNOWY"} onChange={onDiaryWeatherHandler} disabled/>
+                    <input type="radio" name="option1" value="SNOWY" checked={DiaryWeather === "SNOWY"} onChange={onDiaryWeatherHandler} disabled/>
                     <span className='radio_icon'></span>
                     <div className='weather_icon_3'/>
                   </label>
 
                   <label>
-                    <input type="radio" name="option" value="RAINY" checked={DiaryWeather === "RAINY"} onChange={onDiaryWeatherHandler} disabled/>
+                    <input type="radio" name="option1" value="RAINY" checked={DiaryWeather === "RAINY"} onChange={onDiaryWeatherHandler} disabled/>
                     <span className='radio_icon'></span>
                     <div className='weather_icon_4'/>
 
@@ -196,7 +215,7 @@ function DiaryPostPage() {
             <label>Content</label>
             <div className='write_text'>{DiaryContent}</div>
 
-            <label>Draw</label>
+            {DiaryImage &&(<label>Draw</label>)}
             {DiaryImage && (<img className="diaryPost_img" src={`data:image/png;base64,${DiaryImage}`}  alt="image"/>)}
             
             <label>Stamp</label>
@@ -205,9 +224,8 @@ function DiaryPostPage() {
               {StampList.length > 0 ? (
                 StampList.map((data, index) => (
                   <div className="diaryPost_react_box"key={index}>
-                    <div className='react_username'><div>유저네임</div>살라살{data.username}</div>
+                    <div className='react_username'><div>유저네임</div>{data.username}</div>
                     <img src={getImageForStamp(data.stamp)} alt={`Stamp ${data.stamp}`} />
-                    <hr />
                   </div>
                 ))
               ) : (
@@ -220,20 +238,20 @@ function DiaryPostPage() {
             <div className='diaryPost_line'></div>
             <div className="react_radio-container">
                   <label>
-                    <input type="radio" name="option" value="GOOD" checked={Stamp === "GOOD"} onChange={onStampHandler} />
-                    <span className='radio_icon'></span>
+                    <input type="radio" name="option2" value="GOOD" checked={Stamp === "GOOD"} onChange={onStampHandler} />
+                    <span className='react_icon'></span>
                     <div className='react_icon_1'/>
                   </label>
 
                   <label>
-                    <input type="radio" name="option" value="GREAT" checked={Stamp === "GREAT"} onChange={onStampHandler} />
-                    <span className='radio_icon'></span>
+                    <input type="radio" name="option2" value="GREAT" checked={Stamp === "GREAT"} onChange={onStampHandler} />
+                    <span className='react_icon'></span>
                     <div className='react_icon_2'/>
                   </label>
 
                   <label>
-                    <input type="radio" name="option" value="BAD" checked={Stamp === "BAD"} onChange={onStampHandler} />
-                    <span className='radio_icon'></span>
+                    <input type="radio" name="option2" value="BAD" checked={Stamp === "BAD"} onChange={onStampHandler} />
+                    <span className='react_icon'></span>
                     <div className='react_icon_3'/>
                   </label>
               </div>

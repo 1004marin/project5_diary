@@ -31,6 +31,11 @@ const onDiaryMaxHandler = (e) =>{
 
 const onSubmitHandler = (e) =>{
     e.preventDefault();
+
+    if(!DiaryName || !DiaryPassword || !DiaryMax){
+        alert("다이어리 신청에 필수 정보를 작성해주세요!")
+        return;
+    }
     const storedAccessToken = localStorage.getItem("accessToken");
     axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 

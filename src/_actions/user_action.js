@@ -1,8 +1,5 @@
 import axios from "axios";
 import { LOGIN_USER, REGISTER_USER, UNAUTHORIZED_ERROR,LOGOUT_USER, EXPIRED_REFRESH} from "./types"
-import { useNavigate } from "react-router-dom";
-//************************reducer: 로그아웃_유저타입시 false->true로바꾸엇음이거안되면다시원래대로false로 */
-//쓸지말지
 import store from "../_middleware/store";
 
 
@@ -69,6 +66,8 @@ export const refreshAccessToken = () => {
 
         console.log("액세스토큰 갱신 완료")
         alert("토큰 갱신! 다시시도해주세용")
+        window.location.reload();//업뎃 보여주기용
+        return;
       })
       .catch(error=>{
         console.log("리프레시 액션에서 에러요", error)

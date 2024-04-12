@@ -162,17 +162,20 @@
         border: 1px solid black; 
         margin-bottom: 0.3vh;
         cursor: pointer;
-        font-size: 2.7vh;
+        font-size: 2.4vh;
+        font-family: 'Dongle-Regular';
     }
     .list-member{
         border: 0.5px solid rgb(184, 184, 184);
         border-radius: 10px;
+
     }
     .list-member button {
         background: none;
         border: none;
         cursor: pointer;
-        font-size: 2.7vh;
+        font-size: 2.4vh;
+        font-family: 'Dongle-Regular';;
     }
     .btn-select:hover,
     .btn-select:focus {

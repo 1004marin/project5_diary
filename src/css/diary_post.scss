@@ -130,7 +130,6 @@
         flex-direction: column;
         height: 83vh;
         width: 70vw;
-        //background-color: rgb(232, 255, 255);
     }
     .inner_title{
         width: auto;
@@ -251,7 +250,8 @@
         }
     }
         /* 체크박스 꾸미기 - 활성화 x */
-        .radio_icon::before{
+        .radio_icon::before,
+        .react_icon::before{
             content:'';
             display: inline-block;
             position: relative;
@@ -262,15 +262,20 @@
             background-image:url("../../public/checkbox_none.png");
             background-size: 100% 100%;
         }
-        .radio_icon{
+        .radio_icon, .react_icon{
             cursor: pointer;
             margin-right: 4px;
         }
         /* 체크박스 꾸미기 - 활성화 */
-        input[type="radio"]:checked +.radio_icon::before{
+        input[type="radio"]:checked +.radio_icon::before,
+        input[type="radio"]:checked +.react_icon::before{
             background-image:url("../../public/checkbox_checked.png");
             background-size: 100% 100%;
         }
+        .radio-container input[type="radio"]:disabled + .radio_icon {
+            pointer-events: none;
+          }
+          
     .weather_icon_1,.weather_icon_2,.weather_icon_3,.weather_icon_4,
     .react_icon_1,.react_icon_2,.react_icon_3{
         background-repeat : no-repeat; /*가로 세로 */
@@ -317,14 +322,17 @@
         @include react-submit-style();
         display:flex;
         justify-content: space-between;
-
+        height: 7.5dvh;
+        padding: 5px 3px 5px 5px;
         .react_username{
         color: #FF858D;
         display: flex;
         flex-direction: column;
-        @include customText_NoneShadow(2px, #FFFFFF);
-        & div{
+        font-size: 1.9dvh;
         @include customText_NoneShadow(2.5px, #FFE9E9);
+        & div{
+        @include customText_NoneShadow(2px, #FFFFFF);
+        font-size: 1.5dvh;
         }
     }}
 
@@ -466,7 +474,8 @@
         width: 3dvw;
         height: 7dvh;
     }
-    .radio_icon::before{
+    .radio_icon::before,
+    .react_icon::before{
         width: 1.3vw;
         height: 3vh;
     }

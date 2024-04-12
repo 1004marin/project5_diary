@@ -4,6 +4,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
+import SlideMenu from '../NavBar/SlideMenu';
 import '../../../css/password.scss'
 
 function PasswordPage() {
@@ -80,6 +81,10 @@ function PasswordPage() {
         }
     }
     const onSubmitHandler = () =>{
+        if(!newPassword || !newPasswordConfirm){
+            alert("비번을 입력해주세요!")
+            return;//탈출
+        }
         if(newPassword !== newPasswordConfirm){
             alert("비번이 일치하지 않네용")
             return;//탈출
@@ -117,6 +122,9 @@ function PasswordPage() {
             <NavBar/>
         </div>
         <div className='password_formbox'>
+        <div className='moblie_menu'>
+            <SlideMenu/>
+        </div>
             <div className='password_inner_formbox'>
                 <div className='inner_title'>
                         <div className='title'>일기교환클럽<br/>

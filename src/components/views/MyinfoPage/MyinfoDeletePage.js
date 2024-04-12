@@ -26,8 +26,12 @@ function MyinfoDeletePage() {
         
             if(!DeletePassword){
             alert("비번을 입력하세요")
-        
             return
+            }
+
+            if(!isChecked){
+                alert("탈퇴 약관에 동의해주세요ㅡㅡ")
+                return
             }
             const storedAccessToken = localStorage.getItem("accessToken");
             axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;

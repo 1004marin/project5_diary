@@ -224,7 +224,6 @@
     .diaryContent_formbox_content{
         width: 100%;
         height: 25dvh;
-        background-color: #fff6f6;
         display: flex;
         flex-direction: column;
         margin-top: 1dvh;
@@ -257,7 +256,7 @@
         justify-content: space-between;
         margin-bottom: 1dvh;
         height: 4dvh;
-        & input, button{
+        & input, button, input::placeholder{
             background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
             font-family: 'DOSSaemmul';
             font-size: 1.5dvh;
@@ -269,7 +268,6 @@
             width: 60%;
             border: none;
             border-bottom: 1px solid #000; /* 아래쪽에만 점선 테두리를 적용합니다. */
-
         }
         & button{
             width: 30%;
@@ -295,10 +293,7 @@
         color: #fff;
     }
 
-    .diaryInfo_delete_notice{
-        @include customText_NoneShadow(2px,#FDDDEE);
-        color:#464646;
-    }
+
 }
     
 
@@ -423,7 +418,6 @@
     .diaryContent_inner_formbox{
         height: 53vh;
         width: 62vw;
-        background-color: #e6ffef;
         display: flex;
         .pc_1, .pc_2{
             display: flex;
@@ -433,7 +427,6 @@
             height: fit-content;
             margin: auto;
             margin-top: 22dvh;
-            background-color: #53535371;
             display: flex;
             flex-direction: column;
 
@@ -486,10 +479,7 @@
         margin: 0 0 0dvh 2dvw;
     }
 }
-.pc_1{
-    background-color: #000
-;
-}
+
 .pc_2{
     flex-direction: column;
     width: 48%;//이거모바일에서적용안되게!

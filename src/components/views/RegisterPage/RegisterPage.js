@@ -76,8 +76,12 @@ function RegisterPage() {
             setDuplicateEmail("success")
 
 
-            const codeResponse = axios.post('/mail', jsonEmail)
-            setRealcode(codeResponse.data)
+            axios.post('/mail', jsonEmail).then(
+                response=>{
+                    console.log(response)
+                    setRealcode(response.data)
+                }
+            )
             setEmailDuplicate_notice("인증 메일을 보냈어요.")
 
         }})
@@ -109,7 +113,6 @@ function RegisterPage() {
             if(response.status === 200){
                 console.log(nameCheck)
                 console.log(response.status)
-                console.log("이건 가능할때요")
                 setDuplicateUsername("success")
                 setNameDuplicate_notice("처음 온 부원이네요.")
                 return;
@@ -117,7 +120,6 @@ function RegisterPage() {
             else { 
                 console.log(nameCheck)
                 console.log(response.status)
-                console.log("이건 불 가능할때요")
                 setDuplicateUsername("false")
                 setNameDuplicate_notice("이미 존재하는 부원이에요.")
             }
@@ -137,7 +139,6 @@ function RegisterPage() {
     }
 
     const onEmailCode_CheckHandler = () => {
-        console.log(Realcode)
         if(EmailCode === ""){//입력 안했을때
             return alert("인증번호를 입력하세요")
         }
@@ -157,11 +158,10 @@ function RegisterPage() {
       if(Password !== ConfirmPassword){
         return alert('비밀번호와 비밀번호 확인은 같아야 합니다.')
       }//틀리면 아래 진입 불가
-      /*
-      if(!EmailCode_Check){
-        return alert('이메일인증햇어?')
+      if(!isChecked){
+        alert("일기교환클럽 약관에 동의해주세요!")
+        return;
       }
-      */
       if(EmailCode_Check && DuplicateUsername && DuplicateEmail === "success" ){
         let body = {
             password: Password,
@@ -175,13 +175,13 @@ function RegisterPage() {
             console.log(response)
             if(response.payload === '회원 가입 완료'){
                 navigate('/registerComplete')
-                alert('회원가입성공땨')
+                alert('일기교환 클럽의 부원이 되었어요!')
             } else{
                 alert('회원가입에러에용')
             }
         })
       }
-      else(alert("다채운거맞아?>"))
+      else(alert("다 채워주지 않으면 부원이 힘들어요"))
   }
 
   return (//form과 button에 모두 submit주는 이유는, and design때매!

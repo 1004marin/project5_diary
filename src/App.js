@@ -28,10 +28,11 @@ import DiaryCreateCompletePage from './components/views/DiaryPage/DiaryCreateCom
 const is_refreshToken = localStorage.getItem("refreshToken");
 const is_accessToken = localStorage.getItem("accessToken");
 const is_logined = localStorage.getItem("is_logined");
+const is_user = localStorage.getItem("logined_user");
     console.log("app액세스",is_accessToken)
     console.log("app리프레시",is_refreshToken)
     console.log("로긘상태",is_logined)
-  
+    console.log("윶이름",is_user)
 
 function App() {
 

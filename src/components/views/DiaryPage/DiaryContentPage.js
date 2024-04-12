@@ -24,14 +24,18 @@ function DiaryContentPage() {
 
     const { Client_diaryId } = location.state || {};
 
-    const [member_to_add,setMember_to_add] = useState("멤버 이름")
+    const [post_writer, setPost_writer] = useState("")
+    const [member_to_add,setMember_to_add] = useState("")
     const [Client_postId, setClient_PostId] = useState("")
-    const onPostIdHandler =(postId)=>{
+
+    const onPostIdHandler =(postId, postWriter)=>{
         setClient_PostId(postId)
+        setPost_writer(postWriter)
         navigate('/diaryPost', {
             state: { 
                 Client_postId: postId,
-                Client_diaryId
+                Client_diaryId,
+                post_writer
               }
         })
     }
@@ -121,9 +125,11 @@ function DiaryContentPage() {
             console.log(error)
             if(error.response.data.message === 'Diary member limit exceeded'){
                 alert("멤버제한 초과에요!")
+                return;
             }
             if(error.response.data.message === '존재하지 않는 회원입니다.'){
-                alert("없는 회원이에용!")
+                alert("존재하지 않는 부원이에용!")
+                return;
             }
             else{
                 alert("멤버 추가 에러!")
@@ -163,7 +169,7 @@ function DiaryContentPage() {
                                         {selectedPost.map((post, index) => (
                                             <div key={index}>
                                                 <p onClick={()=>{
-                                                    onPostIdHandler(post.id)
+                                                    onPostIdHandler(post.id, post.writer.username)
                                                     
                                                 }}>
                                                     <label>Title</label>
@@ -180,7 +186,7 @@ function DiaryContentPage() {
                             </div>
                             <div className='pc_2'>
                                 <div className='diaryContent_invite_member'>
-                                    <input value={member_to_add} onChange={onMember_to_addHandler}></input>
+                                    <input value={member_to_add} placeholder="멤버 이름"onChange={onMember_to_addHandler}></input>
                                     <button onClick={onMemberInviteHandler}>초대</button>
                                 </div>
 

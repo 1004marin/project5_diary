@@ -74,6 +74,11 @@
     height: 100vh;
     width: 100%;
     position: relative;
+    & p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 }
 .inner_navbar{
     display: none;
@@ -202,9 +207,10 @@
     }
     .diaryInfo_info p{
         @include info-member-style();
+ 
     }
-    .diaryInfo_member_info p{
-        @include diary-input-style;       
+    .diaryInfo_member_list p{
+        @include diary-input-style();   
         background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%); 
     }
     .diaryInfo_member_title{

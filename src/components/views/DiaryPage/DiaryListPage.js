@@ -92,7 +92,8 @@ const onLogoutHandler = () => {
         alert("비번틀림")
       }
       else{
-        alert("먼가 에러 발생!")
+        alert("에러가 발생했어요! 다시 돌아가주세요!")
+        navigate('/diaryList')
       }
     }
     )

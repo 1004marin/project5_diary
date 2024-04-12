@@ -17,15 +17,9 @@ function MyinfoPage() {
   const [Motto, setMotto] = useState("")
   const [Address, setAddress] = useState("")
 
-
-  const [isChecked, setIsChecked] = useState(false);//체크박스
-  const navigate = useNavigate();
 //내 정보 뿌리기
 
   useEffect(() => {
-    //체크
-  
-    console.log("데이터불러올게요")
     const storedAccessToken = localStorage.getItem("accessToken");
     axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
@@ -41,7 +35,6 @@ function MyinfoPage() {
       .catch(error => {
         console.log(error);
         alert("회원 권한이 없슴니당 로그인하셔요")
-        //navigate('/login')
       });
   }, []); // 빈 배열을 전달하여 컴포넌트 마운트 시에만 호출되도록 설정
 
@@ -68,7 +61,6 @@ const onAddressHandler = (e) =>{
 
 const onSubmitHandler = (e) => {
   e.preventDefault(); // 새로 고침 방지
-  console.log("데이터보낼게요")
     const body = {
     "address": Address,
     "bloodType": BloodType,
@@ -85,24 +77,21 @@ const onSubmitHandler = (e) => {
   axios.patch("/api/v1/user", body)
     .then(response => {
       const update = response.data;
-      console.log(update);
 
       if (update === "업데이트 성공") {
-        alert("업데이트에 성공하였습니다.");
+        alert("내 정보 업데이트에 성공하였습니다!");
       } else {
         // 서버로부터 다른 응답이 온 경우에 대한 처리 추가
-        alert("업데이트에 실패하였습니다. 다시 시도해주세요.");
+        alert("업데이트에 실패하였습니다. 다시 시도해주세요ㅜ^ㅜ");
       }
     })
     .catch(error => {
       console.error('Error from server:', error);
       // 서버로의 요청에서 오류가 발생한 경우 콘솔에 오류 메시지 출력
-      alert("서버 오류가 발생하였습니다.");
+      alert("서버 오류가 발생하였습니다ㅜ^ㅜ");
     });
 };
-const handleCheckboxChange = () => {
-  setIsChecked(!isChecked);
-};
+
 
 
 //내정보를 다른 페이지에서도 접근할일이 있나?

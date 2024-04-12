@@ -20,11 +20,9 @@ export default function DiaryWritePage() {
     const [drawingData, setDrawingData] = useState(null);//props
 
     const [DiaryTitle, setDiaryTitle] = useState("")
-    //그림으로 선택해서 값 CLOUDY 등 지정해두기
     const [DiaryWeather, setDiaryWeather] = useState("")
     const [DiaryMood, setDiaryMood] = useState("")
     const [DiaryContent, setDiaryContent] = useState("")
-    const [DiaryDate, setDiaryDate] = useState("")
 
     //
     const [startDate, setStartDate] = useState(new Date());
@@ -41,22 +39,20 @@ export default function DiaryWritePage() {
     const onDiaryContentHandler =(e) => {
         setDiaryContent(e.currentTarget.value)
     }
-    const onDiaryDateHandler =(e) => {
-        setDiaryDate(e.currentTarget.value)
-    }
+
     
   
 
     const onSubmit = (e) => {
         e.preventDefault();
-
+        if(!DiaryTitle || !DiaryWeather || !DiaryContent){
+            alert("다이어리 필수 정보를 입력해주세요!ㅡㅡ")
+            return
+        }
         const storedAccessToken = localStorage.getItem("accessToken");
         axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
         const diary_formattedDate = startDate.toISOString().split('T')[0];
-        console.log('formattedDate:', diary_formattedDate);
-
-                console.log(drawingData)
            
                 const json_diary = {
                     title: DiaryTitle,
@@ -79,7 +75,7 @@ export default function DiaryWritePage() {
                 })
                 .catch(error =>{
                     alert("다요리 쓰기 에러 발생")
-                    navigate("/diaryContent", {state: {Client_diaryId}})
+                    navigate("/diaryList")
                     console.log(error)
                 })
         }

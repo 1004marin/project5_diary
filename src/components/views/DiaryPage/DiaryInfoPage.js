@@ -15,7 +15,7 @@ function DiaryInfoPage() {
     const [diaryInfo, setDiaryInfo] = useState(null);
     const [diaryIntroduce, setDiaryIntroduce] = useState("")
     const [want_to_delete, setWant_to_delete] = useState("")
-    const [diaryDelete_notice, setDiaryDelete_notice] = useState("※ 해당 일기의 남은 부원이 나뿐이라, 교환일기 자체가 이 세상에서 사라져요.")
+    const [diaryDelete_notice, setDiaryDelete_notice] = useState("")
     const [visible_yesOrNo, setVisible_yesOrNo]=useState(false)
 
 
@@ -27,8 +27,6 @@ function DiaryInfoPage() {
         axios.get(`/api/v1/diary/${Client_diaryId}/memberCount`).then(
             response=>{
                 if(response.data >= 2){
-                    console.log("멤버2명이상")
-
                     axios.post(`/api/v1/diary/${Client_diaryId}/exit`).then(
                         response=>{
                             if(response.data === "탈퇴 완료"){
@@ -43,10 +41,9 @@ function DiaryInfoPage() {
                     }
                     )
                 }
-                else{
-                    setDiaryDelete_notice("한명남아서 데이터 삭제되요. 괜찬아요?")
+                else{//멤버1명
+                    setDiaryDelete_notice("※ 해당 일기의 남은 부원이 나뿐이라, 교환일기 자체가 이 세상에서 사라져요.")
                     setVisible_yesOrNo(true)
-                    console.log("멤버1명")
                 }
             }
         )
@@ -73,7 +70,7 @@ function DiaryInfoPage() {
         }
     }
     const onDiaryDeleteHandler=()=>{
-        setDiaryDelete_notice("디비에서 아예 날라가용 ㄱㅊ?")
+        setDiaryDelete_notice("※ 해당 일기의 남은 부원이 나뿐이라, 교환일기 자체가 이 세상에서 사라져요.")
         setVisible_yesOrNo(true)        
     }
     const onIntroduceHandler=()=>{
@@ -110,6 +107,8 @@ function DiaryInfoPage() {
         )
         .catch(error=>{
             console.log(error)
+            alert("다이어리 찾기에 실패했어요! 다시 입장해주세요!")
+            navigate("/diaryList")
         })
     },[Client_diaryId])
 
@@ -127,57 +126,57 @@ function DiaryInfoPage() {
             <div className='title'>일기교환클럽<br/>내 일기 정보...</div>
         </div>
     <div className='diaryInfo_formbox_content'>
- 
+            {diaryInfo && (
                 <div className='diaryInfo_info'>
                     <label>Title</label>
-                    <p>asdf</p>
+                    <p>{diaryInfo.diaryInfoResponse.name}</p>
                     <label>Introduce</label>
-                    <p>asf</p>
+                    <p>{diaryInfo.diaryInfoResponse.introduce}</p>
                     <label>Max</label>
-                    <p>asdf</p>
-                </div>
+                    <p>{diaryInfo.diaryInfoResponse.max}</p>
+
                     <div className='diaryInfo_member'>
                     <div className='diaryInfo_member_title'>부원...</div>
                     </div>
 
                     <ul>
-                      
-                            <li className='diaryInfo_member_info' >
+                        {diaryInfo.users && diaryInfo.users.map((user, index) => (
+                            <li className="diaryInfo_member_list "key={index}>
                                 <label>Username</label>
-                                <p>fg</p>
+                                <p>{user.username}</p>
                                 <label>Email</label>
-                                <p>이메일:</p>
+                                <p>{user.email}</p>
                                 <label>Nickname</label>
-                                <p>닉네임:</p>
+                                <p>{user.nickname}</p>
+                                <div className='diaryInfo_line'/>
                             </li>
-  
+                        ))}
                     </ul>
 
-                    <div className='diaryInfo_line'/>
+
                     
                     <div className='diaryInfo_introduce'>
                         <input value={diaryIntroduce} placeholder="Introduce" onChange={onDiaryIntroduceHandler}></input>
                         <button onClick={onIntroduceHandler}>소개 수정할래요</button>
                     </div>
 
-
                     <div className='diaryInfo_delete'>
                         <button onClick={onDiaryLeaveHandler}>탈퇴</button>
                         <button onClick={onDiaryDeleteHandler}>소멸</button>
                     </div>
 
-
                     <div className='diaryInfo_delete_notice'>{diaryDelete_notice}</div> 
-                    { (<div className='diaryInfo_delete_check'>
+                    { visible_yesOrNo && (<div className='diaryInfo_delete_check'>
                         <button onClick={()=>onButtonHandler('yes')}>네</button>
                         <button onClick={()=>onButtonHandler('no')}>아니오</button>
                     </div>)}
                 </div>
-            
+            )}
 
 
 
 
+        </div>
         </div>
         </div>
         </div>
