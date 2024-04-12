@@ -3,7 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useLocation,useNavigate } from 'react-router-dom'
 
-import '../../../css/diary_info.scss'
+import '../../../css/diary_post.scss'
 import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu';
 
@@ -15,7 +15,7 @@ function DiaryInfoPage() {
     const [diaryInfo, setDiaryInfo] = useState(null);
     const [diaryIntroduce, setDiaryIntroduce] = useState("")
     const [want_to_delete, setWant_to_delete] = useState("")
-    const [diaryDelete_notice, setDiaryDelete_notice] = useState("※ 해당 일기의 남은 부원이 나뿐이라, 교환일기 자체가 이 세상에서 사라져요.")
+    const [diaryDelete_notice, setDiaryDelete_notice] = useState("")
     const [visible_yesOrNo, setVisible_yesOrNo]=useState(false)
 
 
@@ -127,57 +127,49 @@ function DiaryInfoPage() {
             <div className='title'>일기교환클럽<br/>내 일기 정보...</div>
         </div>
     <div className='diaryInfo_formbox_content'>
- 
-                <div className='diaryInfo_info'>
+            {diaryInfo && (
+                <div>
                     <label>Title</label>
-                    <p>asdf</p>
+                    <p>{diaryInfo.diaryInfoResponse.name}</p>
                     <label>Introduce</label>
-                    <p>asf</p>
+                    <p>{diaryInfo.diaryInfoResponse.introduce}</p>
                     <label>Max</label>
-                    <p>asdf</p>
-                </div>
-                    <div className='diaryInfo_member'>
-                    <div className='diaryInfo_member_title'>부원...</div>
-                    </div>
+                    <p>{diaryInfo.diaryInfoResponse.max}</p>
 
+                    <div className='diaryInfo_member_title'>부원...</div>
                     <ul>
-                      
-                            <li className='diaryInfo_member_info' >
+                        {diaryInfo.users && diaryInfo.users.map((user, index) => (
+                            <li key={index}>
                                 <label>Username</label>
-                                <p>fg</p>
+                                <p>{user.username}</p>
                                 <label>Email</label>
-                                <p>이메일:</p>
+                                <p>이메일: {user.email}</p>
                                 <label>Nickname</label>
-                                <p>닉네임:</p>
+                                <p>닉네임: {user.nickname}</p>
                             </li>
-  
+                        ))}
                     </ul>
 
-                    <div className='diaryInfo_line'/>
+                    <div className='diaryPost_line'/>
                     
-                    <div className='diaryInfo_introduce'>
-                        <input value={diaryIntroduce} placeholder="Introduce" onChange={onDiaryIntroduceHandler}></input>
-                        <button onClick={onIntroduceHandler}>소개 수정할래요</button>
-                    </div>
+                    <input value={diaryIntroduce} onChange={onDiaryIntroduceHandler}></input>
+                    <button onClick={onIntroduceHandler}>소개 수정할래요</button>
 
+                    <button onClick={onDiaryLeaveHandler}>탈퇴</button>
+                    <button onClick={onDiaryDeleteHandler}>소.멸.</button>
 
-                    <div className='diaryInfo_delete'>
-                        <button onClick={onDiaryLeaveHandler}>탈퇴</button>
-                        <button onClick={onDiaryDeleteHandler}>소멸</button>
-                    </div>
-
-
-                    <div className='diaryInfo_delete_notice'>{diaryDelete_notice}</div> 
-                    { (<div className='diaryInfo_delete_check'>
+                    <div>{diaryDelete_notice}</div> 
+                    {visible_yesOrNo && (<div className='diaryInfo_button'>
                         <button onClick={()=>onButtonHandler('yes')}>네</button>
-                        <button onClick={()=>onButtonHandler('no')}>아니오</button>
+                        <button onClick={()=>onButtonHandler('no')}>아니요</button>
                     </div>)}
                 </div>
-            
+            )}
 
 
 
 
+        </div>
         </div>
         </div>
         </div>

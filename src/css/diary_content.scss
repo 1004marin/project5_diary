@@ -294,6 +294,11 @@
         font-size: 1.8vh;
         color: #fff;
     }
+
+    .diaryInfo_delete_notice{
+        @include customText_NoneShadow(2px,#FDDDEE);
+        color:#464646;
+    }
 }
     
 
@@ -487,7 +492,7 @@
 }
 .pc_2{
     flex-direction: column;
-    width: 48%;
+    width: 48%;//이거모바일에서적용안되게!
     margin-top: 1dvh;
 }
     .diaryContent_invite_member{

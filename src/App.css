@@ -56,3 +56,6 @@
 .react-datepicker__day--selected {
   background-image: linear-gradient(to top, #ffcccc, #ff8383)!important; 
 }
+input:focus {
+  border-color: rgb(255, 168, 204); /* 클릭 시 색상 변경 */
+}

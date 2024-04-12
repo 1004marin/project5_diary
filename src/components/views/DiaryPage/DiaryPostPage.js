@@ -1,9 +1,21 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useLocation,useNavigate } from 'react-router-dom'
 import store from '../../../_middleware/store'
+import moment from 'moment'
+import '../../../css/diary_post.scss'
+import NavBar from '../NavBar/NavBar';
+import SlideMenu from '../NavBar/SlideMenu';
+
+
+import stamp_good from './good.png';
+import stamp_great from './great.png';
+import stamp_bad from './bad.png';
+
+
+
+
 
 function DiaryPostPage() {
     const location = useLocation();
@@ -19,11 +31,38 @@ function DiaryPostPage() {
     
     const logined_username = localStorage.getItem("logined_user");
     const [Stamp, setStamp] = useState("")
+    const [Stamp_route, setStamp_route] = useState("")
     const [StampList, setStampList] = useState([])
     const [already_Stamped, setAlready_Stamped] = useState(false)
     
+    const onDiaryTitleHandler =(e) => {
+      setDiaryTitle(e.currentTarget.value)
+  }
+  const onDiaryWeatherHandler =(e) => {
+      setDiaryWeather(e.currentTarget.value)
+  }
+  const onDiaryMoodHandler =(e) => {
+      setDiaryMood(e.currentTarget.value)
+  }
+  const onDiaryContentHandler =(e) => {
+      setDiaryContent(e.currentTarget.value)
+  }
+  const onDiaryDateHandler =(e) => {
+      setDiaryDate(e.currentTarget.value)
+  }
     //반응
-
+    const getImageForStamp = (Stamp) => {
+      if (Stamp === 'GOOD') {
+        return stamp_good;
+      } else if (Stamp === 'GREAT') {
+        return stamp_great;
+      } else if (Stamp === 'BAD') {
+        return stamp_bad;
+      } else {
+        // 예외 처리: 다른 값이 들어온 경우
+        return null;
+      }
+    };
     const onStampHandler=(e)=>{
       setStamp(e.currentTarget.value)
     }
@@ -101,60 +140,111 @@ function DiaryPostPage() {
             console.log(error)
         })
     },[])
+
   return (
-    <div style={
-        { height:'100vh', display:"flex", flexDirection:"column", background:"#D2E1FF", 
-        justifyContent:'center', alignItems:'center'}}>
+    <div className='DiaryPost'>
+        <div className='inner_navbar'>
+            <NavBar/>
+        </div>    
+        <div className='diaryPost_formbox'>
+        <div className='moblie_menu'>
+            <SlideMenu/>
+        </div>
+        <div className='diaryPost_inner_formbox'>
+            <div className='inner_title'>
+                <div className='title'>쉿! 교환일기<br/>읽는 중...<span>☞☜</span></div>
+                <img className="diaryPost_pinkBubble"src={process.env.PUBLIC_URL + '/diary.png'} />
+            </div>
+        <div className='diaryPost_formbox_content'>
+            <label>Title</label>
+            <div  className='diaryPost_data'>{DiaryTitle}</div>
 
-            <label>제목</label>
-            <div>{DiaryTitle}</div>
+            <label>Date</label>
+            <div  className='diaryPost_data'>{moment(DiaryDate).format("YYYY年 MM月 DD日")}</div>
 
-            <label>날짜</label>
-            <div>{DiaryDate}</div>
-            
-            <label>날씨</label>
+            <label>Weather</label>
             <div>{DiaryWeather}</div>
+            <div className="radio-container">
+                  <label>
+                    <input type="radio" name="option" value="SUNNY" checked={DiaryWeather === "SUNNY"} onChange={onDiaryWeatherHandler} disabled />
+                    <span className='radio_icon'></span>
+                    <div className='weather_icon_1'/>
+                  </label>
 
-            <label>기분</label>
-            <div>{DiaryMood}</div>
+                  <label>
+                    <input type="radio" name="option" value="CLOUDY" checked={DiaryWeather === "CLOUDY"} onChange={onDiaryWeatherHandler}disabled />
+                    <span className='radio_icon'></span>
+                    <div className='weather_icon_2'/>
+                  </label>
 
-            <label>내용</label>
-            <div>{DiaryContent}</div>
+                  <label>
+                    <input type="radio" name="option" value="SNOWY" checked={DiaryWeather === "SNOWY"} onChange={onDiaryWeatherHandler} disabled/>
+                    <span className='radio_icon'></span>
+                    <div className='weather_icon_3'/>
+                  </label>
 
-            <label>그림일기</label>
-            {DiaryImage && (<img style={{width: 400, height: 250}}src={`data:image/png;base64,${DiaryImage}`}  alt="image"/>)}
+                  <label>
+                    <input type="radio" name="option" value="RAINY" checked={DiaryWeather === "RAINY"} onChange={onDiaryWeatherHandler} disabled/>
+                    <span className='radio_icon'></span>
+                    <div className='weather_icon_4'/>
 
+                  </label>
+                </div>
+            <label>Mood</label>
+            <div className='diaryPost_data'>{DiaryMood}</div>
 
-            <button onClick={onDiaryDeleteHandler}>일기 삭제</button>
-            <br/>
+            <label>Content</label>
+            <div className='write_text'>{DiaryContent}</div>
+
+            <label>Draw</label>
+            {DiaryImage && (<img className="diaryPost_img" src={`data:image/png;base64,${DiaryImage}`}  alt="image"/>)}
             
-            <label>반응 목록</label>
+            <label>Stamp</label>
             <div>
+              {/* */}
               {StampList.length > 0 ? (
                 StampList.map((data, index) => (
-                  <div key={index}>
-                    <div>Username: {data.username}</div>
-                    <div>Post ID: {data.postId}</div>
-                    <div>Stamp: {data.stamp}</div>
+                  <div className="diaryPost_react_box"key={index}>
+                    <div className='react_username'><div>유저네임</div>살라살{data.username}</div>
+                    <img src={getImageForStamp(data.stamp)} alt={`Stamp ${data.stamp}`} />
                     <hr />
                   </div>
                 ))
               ) : (
-                <div>No stamps available</div>
+                <div>아직 부원이 남긴 반응이 업서요...</div>
               )}
             </div>
 
 
+            
+            <div className='diaryPost_line'></div>
+            <div className="react_radio-container">
+                  <label>
+                    <input type="radio" name="option" value="GOOD" checked={Stamp === "GOOD"} onChange={onStampHandler} />
+                    <span className='radio_icon'></span>
+                    <div className='react_icon_1'/>
+                  </label>
 
-            <label>반응 남기기</label>
-            <select value={Stamp} onChange={onStampHandler}>
-              <option value="GREAT">그렛</option>
-              <option value="GOOD">귯</option>
-              <option value="BAD">밷</option>
-            {/* 다른 옵션들 추가 */}
-            </select>
+                  <label>
+                    <input type="radio" name="option" value="GREAT" checked={Stamp === "GREAT"} onChange={onStampHandler} />
+                    <span className='radio_icon'></span>
+                    <div className='react_icon_2'/>
+                  </label>
 
-            {!already_Stamped && <button onClick={onStampSubmitHandler}>반응 전송</button> }
+                  <label>
+                    <input type="radio" name="option" value="BAD" checked={Stamp === "BAD"} onChange={onStampHandler} />
+                    <span className='radio_icon'></span>
+                    <div className='react_icon_3'/>
+                  </label>
+              </div>
+
+            {!already_Stamped && <button className='diaryPost_submit_react' onClick={onStampSubmitHandler}>도장 찍기</button> }
+
+            
+    </div>
+    <button type='button' className='diaryPost_submit_button' onClick={onDiaryDeleteHandler}>삭제</button>
+    </div>
+    </div>
     </div>
   )
 }

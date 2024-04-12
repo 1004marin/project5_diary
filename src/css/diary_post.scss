@@ -53,24 +53,27 @@
       calc(#{$thickness} * 0.7071) calc(#{$thickness} * -0.7071) 0 $color,
       calc(#{$thickness} * 0.9239) calc(#{$thickness} * -0.3827) 0 $color
   }
-  @mixin info-member-style {
+  @mixin react-submit-style {
     padding: 1dvw;
     color: #ff989e;
     @include customText_NoneShadow(2px, #ffffff);
     width: 100%;
     box-sizing: border-box;
-    font-family: 'Dongle-Regular';
-    font-size: 2.7dvh;
-    height: 4dvh;
+    font-family: 'DOSSaemmul';
+    font-size: 1.7vh;
+    height: 5dvh;
     background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
     border: solid 1.5px #f39fd1;
-    display: flex;
-    align-items: center;
-    border-radius: 0;
 }
-
+//달력
+.monthly_guide{
+    color: #ff9494;
+    font-size:2.5vh;
+    font-Family:'Dongle-Regular';
+    @include customTextShadow(4px, #ffffff); // thickness와 color를 여기서 조절합니다.
+}
 //
-.DiaryInfo{
+.DiaryPost{
     height: 100vh;
     width: 100%;
     position: relative;
@@ -78,12 +81,12 @@
 .inner_navbar{
     display: none;
 }
-.diaryInfo_formbox{
+.diaryPost_formbox{
     height: 100vh;
     width: 100%;
     padding-bottom: 200px;
 }
-.diaryInfo_formbox_content{
+.diaryPost_formbox_content{
     font-family: 'Dongle-Regular';
 }
 
@@ -107,11 +110,11 @@
         //background-color: antiquewhite;
         width: 2vw;
     }
-    .diaryInfo_formbox{
+    .diaryPost_formbox{
         font-size: 16px;
         line-height: normal;
         color: #1e1e1e;
-        background-image: url('../../public/mobile_diary_info.png');
+        background-image: url('../../public/mobile_background.png');
         background-repeat : no-repeat; /*가로 세로 */
         background-size : 100% 100%;
         padding:10vh 9.5% 0 0%; //시계방향 상 우 하 좌
@@ -122,7 +125,7 @@
         overflow: hidden; /* 내부 컨텐츠의 넘침을 가리기 위해 overflow 속성을 hidden으로 설정 */
     }
 
-    .diaryInfo_inner_formbox{
+    .diaryPost_inner_formbox{
         display:flex;
         flex-direction: column;
         height: 83vh;
@@ -143,20 +146,34 @@
         letter-spacing: 0;
         flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
         position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
-        line-height: 7vh;
+        line-height: 5vh;
         @include customTextShadow(5px, #ffffff); // thickness와 color를 여기서 조절합니다.
+        span{
+            font-family: 'DOSSaemmul';
+            font-size: 3vh;
+            margin-left: 1.5vw;
+        }
     }
-    .diaryInfo_formbox_content{
+    .diaryPost_inner_formbox .title span{
+        font-size: 3vh;
+        font-family: 'Galmuri11';
+    }
+    .diaryPost_pinkBubble{
+        width:32vw;
+        height:8vh;
+        margin: 6vh 0 0 34vw;
+    }
+    .diaryPost_formbox_content{
         width: 100%;
-        height: 68dvh;
+        height: 55dvh;
         //background-color: #fae0e0;
         display: flex;
         flex-direction: column;
-        margin-top: 13dvh;
-        font-size: 2.5dvh;
+        margin-top: 2vh;
+        font-size: 2.5vh;
         overflow-y: auto; /* 세로 스크롤바를 추가하기 위해 overflow-y 속성을 auto로 설정 */
         overflow-x: hidden; 
-        & .diaryInfo_line{
+        & .diaryPost_line{
             display: block;
             width: 100%;
             border-top: 2px dashed #f957a3;
@@ -200,93 +217,116 @@
         border-radius: 9px;
         border: solid 1px #fbd5dc;
     }
-    .diaryInfo_info p{
-        @include info-member-style();
-    }
-    .diaryInfo_member_info p{
-        @include diary-input-style;       
+    .diaryPost_data{
+        @include diary-input-style;
         background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%); 
     }
-    .diaryInfo_member_title{
-        background-image: url('../../public/diary_info_member.png');
-        width: 100%;
-        height: 6dvh;
-        background-repeat : no-repeat; /*가로 세로 */
-        background-size : 100% 100%;
-        padding: 0.5dvh 0 1dvh 1.5dvh;
-        margin-top: 2dvh;
-        @include customTextShadow(2px, white);
-        font-size: 3.5dvh;
-    }
-    @mixin diary-info-button{
-        background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
-        font-family: 'DOSSaemmul';
-        font-size: 1.5dvh;
-        width: 100%;
-        color: white;
-        @include customText_NoneShadow(1px, #a6a6a6); // thickness와 color를 여기서 조절합니다.
-    }
-    .diaryInfo_introduce{
+    .diaryPost_formbox_content .write_text{
+        @include diary-input-style;
+        background-image: url('../../public/diary_write_content.png') ;
+        background-size: cover;
+        background-position: center;
+        overflow-wrap: break-word; /* 가로 너비를 초과할 경우 단어 단위로 줄 바꿈 */
+        word-wrap: break-word; /* IE 호환을 위해 추가 */
 
-        & input, button{
-            @include diary-info-button()
-        }
-        & input{
-            border: none;
-            border-bottom: 1px solid #000;
-            font-size: 2.5dvh;
-            font-family: 'Dongle-Regular';
-            &::placeholder{
-                font-family: 'Cuprum';
-                color: white;
-            }
-        }
-        & button{
-            border: solid 1px #a6a6a6;
-            margin-top: 0;
-            height: 3dvh;
-        }
+        min-height: 15vh;
+        line-height: 3dvh;
+        height: auto;
+        padding: 0.8vh; /* 텍스트 입력란의 패딩을 설정합니다. */
+        resize: vertical; /* 사용자가 세로 방향으로만 크기를 조절할 수 있도록 합니다. */
     }
-    .diaryInfo_delete {
+    //날씨 라디오박스
+    .radio-container, .react_radio-container{
         display: flex;
         justify-content: space-between;
-        width: 100%;
-        & button{
-            border-width: 0;
-            width: 25dvw;
-            height: 8dvh;
-            border-radius: 30px;
-            box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-            background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0 , #fff );
-            text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
-            font-family: 'DOSSaemmul';
-            font-size: 1.8vh;
-            color: #fff;
+        label{
+            font-family: 'Dongle-Regular';
+            display: flex; 
+            align-items: center;
+            text-decoration: none;
+        }
+        //라디오박스
+        input[type="radio"]{
+            display: none;
         }
     }
-    .diaryInfo_delete_notice{
-        @include customTextShadow(2px,#FDDDEE);
-        color:#464646;
-        font-family: 'DOSSaemmul';
-        font-size: 1.5dvh;
-        margin-top: 10px;
-    } 
-    .diaryInfo_delete_check{
-        font-family: 'DOSSaemmul';
+        /* 체크박스 꾸미기 - 활성화 x */
+        .radio_icon::before{
+            content:'';
+            display: inline-block;
+            position: relative;
+            box-sizing:border-box;
+            width: 5vw;
+            height: 3.5vh;
+            box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+            background-image:url("../../public/checkbox_none.png");
+            background-size: 100% 100%;
+        }
+        .radio_icon{
+            cursor: pointer;
+            margin-right: 4px;
+        }
+        /* 체크박스 꾸미기 - 활성화 */
+        input[type="radio"]:checked +.radio_icon::before{
+            background-image:url("../../public/checkbox_checked.png");
+            background-size: 100% 100%;
+        }
+    .weather_icon_1,.weather_icon_2,.weather_icon_3,.weather_icon_4,
+    .react_icon_1,.react_icon_2,.react_icon_3{
+        background-repeat : no-repeat; /*가로 세로 */
+        background-size : 100% 100%;
+        width: 11dvw;
+        height: 7dvh;
     }
-    .diaryInfo_delete_check {
-        margin-top: 20px;
+
+    .diaryPost_img{
+        width: 99%;
+        height: 30dvh;
+        margin-bottom: 20px;
+        border: 2px #ffc1c1 solid;
+        border-radius: 10px;
+        box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+    .weather_icon_1{
+        background-image: url('../../public/sunny.png');
+    }
+    .weather_icon_2{
+        background-image: url('../../public/cloudy.png');
+    }
+    .weather_icon_3{
+        background-image: url('../../public/rainy.png');
+    }
+    .weather_icon_4{
+        background-image: url('../../public/snowy.png');
+    }
+    .diaryPost_submit_react{
+        @include react-submit-style();
         display: flex;
-        & button{
-            @include diary-info-button();
-            border: 1px solid;
-            margin-right: 2px;
-        }
-
-        
+        justify-content: center; /* 가로 중앙 정렬 */
+        align-items: center;
     }
-}
+    //반응 남기기
+    .react_icon_1{
+        background-image: url('../components/views/DiaryPage/good.png')}
+    .react_icon_2{
+        background-image: url('../components/views/DiaryPage/great.png')}}
+    .react_icon_3{
+        background-image: url('../components/views/DiaryPage/bad.png')}
+    //반응 박스
+    .diaryPost_react_box{
+        @include react-submit-style();
+        display:flex;
+        justify-content: space-between;
 
+        .react_username{
+        color: #FF858D;
+        display: flex;
+        flex-direction: column;
+        @include customText_NoneShadow(2px, #FFFFFF);
+        & div{
+        @include customText_NoneShadow(2.5px, #FFE9E9);
+        }
+    }}
 
 
 //아이패드 미니 세로~
@@ -299,8 +339,13 @@
         font-size: 5.9dvh;
         line-height: 6dvh;
     }
-    .diaryInfo_formbox_content{
+    .diaryPost_formbox_content{
         margin-bottom: 10px;
+    }
+    .diaryPost_pinkBubble{
+        width: 22dvw;
+        height: 9dvh;
+        margin-left: 24dvw;
     }
     label{
         font-size: 1.7rem;
@@ -309,7 +354,13 @@
         height: 2.3rem;
         font-size: 3vh;
     }
-
+    .diaryPost_submit_button{
+        font-size: 1.5rem;
+    }
+    .weather_icon_1,.weather_icon_2,.weather_icon_3,.weather_icon_4{
+        width: 8dvw;
+        height: 9dvh;
+    }
 
 }
 //아이패드에어 ~아이패드프로 세로
@@ -322,8 +373,14 @@
         font-size: 6.5vh;
         line-height:7vh;
     }
-    .diaryInfo_formbox_content{
+    .diaryPost_formbox_content{
         margin-bottom: 10px;
+    }
+    .diaryPost_pinkBubble{
+        width: 22dvw;
+        height: 9dvh;
+        margin-left: 28dvw;
+        margin-top: 7dvh;
     }
     label{
         font-size: 2.8vh;
@@ -332,6 +389,16 @@
         height: 3.6vh;
         font-size: 3.1vh;
     }
+    .diaryPost_submit_button{
+        width: 16rem;
+        height: 8vh;
+        font-size: 1.5rem;
+    }
+    .weather_icon_1,.weather_icon_2,.weather_icon_3,.weather_icon_4{
+        width: 9dvw;
+        height: 9dvh;
+    }
+
 }
 //아이패드 & 모바일 가로&PC
 @media screen and (min-width: 1025px), (orientation: landscape) {
@@ -339,8 +406,8 @@
         display: none;
     }
 
-	.diaryInfo_formbox{
-        background-image: url('../../public/pc_diary_info.png');
+	.diaryPost_formbox{
+        background-image: url('../../public/pc_background.png');
         background-repeat : no-repeat; /*가로 세로 */
         background-size : 100% 100%;
         padding:19vh 0 10vh 33vw; //시계방향 상 우 하 좌
@@ -352,7 +419,7 @@
         left: 4vw; /* 왼쪽에 위치하도록 설정 */
         z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
     }
-    .diaryInfo_inner_formbox{
+    .diaryPost_inner_formbox{
         height: 73vh;
         width: 62vw;
     }
@@ -367,22 +434,47 @@
     label{
         font-size: 2.8vh;
     }
-    .diaryInfo_formbox_content{
+    .diaryPost_pinkBubble{
+        width: 10vw;
+        height: 5vw;
+        margin-top: 9vh;
+        margin-left: 10vw;
+    }
+    .diaryPost_formbox_content{
         width: 40%;
         height: 70%;
         margin-left: 19vw;
         z-index: 1;
         margin-bottom: -10rem;
-        margin-top: 24dvh;
+        margin-top: 6dvh;
         
+    }
+    .diaryPost_submit_button{
+        width: 14vw;
+        height: 10vh;
+        font-size: 2.3vh;
+        z-index: 2;
     }
     input{
         font-size: 1.9vw;
         height: 3.8vh;
     }
-    .diaryInfo_delete {
-        & button{
-            width: 9dvw;
-        }
+    .weather_icon_1,.weather_icon_2,.weather_icon_3,.weather_icon_4,
+    .react_icon_1,.react_icon_2,.react_icon_3
+    
+    {
+        width: 3dvw;
+        height: 7dvh;
     }
+    .radio_icon::before{
+        width: 1.3vw;
+        height: 3vh;
+    }
+    .diaryPost_submit_react{
+        margin-bottom: 20px;
+        height: 1.4dvh;
+        font-size: 1.7dvh;
+
+    }
+
 }
