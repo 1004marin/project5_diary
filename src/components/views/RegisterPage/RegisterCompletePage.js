@@ -17,7 +17,7 @@ function RegisterCompletePage() {
                 축하해요
               </div>
             </div>
-            <Link to='/login'>
+            <Link to='/'>
                 <div className='complete_toLogin'>※ 부원 인증하러가기</div>
             </Link>
         </div>

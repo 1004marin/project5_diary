@@ -4,6 +4,7 @@ import {useDispatch} from 'react-redux';
 import axios from 'axios';
 import { registerUser } from '../../../_actions/user_action';
 import '../../../css/register.scss'
+
 import NavBar from '../NavBar/NavBar';
 
 function RegisterPage() {

@@ -7,7 +7,6 @@ import { Link,useNavigate } from 'react-router-dom'
 
 function SlideMenu() {
 
-//로그아웃
 const dispatch= useDispatch()
 const navigate = useNavigate()
 
@@ -16,22 +15,38 @@ const onLogoutHandler = () => {
   dispatch(logoutUser())
     .then(response => {
       console.log(response);
-      navigate('/login')
+      navigate('/')
     })
     .catch(error => {
       // 로그아웃 중 에러가 발생한 경우 여기에 처리를 할 수 있습니다.
       console.error('Logout Error:', error);
     });
 };
+//
+const onLinkHandler1= () =>{
+  if(localStorage.getItem("is_logined")){
+    navigate('/myinfo')
+  }
+  else{
+    alert("로그인 먼저 해주세요!")
+    navigate('/')
+  }
+}
+const onLinkHandler2= () =>{
+  if(localStorage.getItem("is_logined")){
+    navigate('/diaryList')
+  }
+  else{
+    alert("로그인 먼저 해주세요!")
+    navigate('/')
+  }
+}
 
 //메뉴
 const [isOpen, setIsOpen] = useState(false); // 사이드바의 열림/닫힘 상태를 관리하는 상태
 const outside = useRef(null); // 외부를 클릭하는지 감지하기 위한 ref
 
 const toggleSide = () => {    setIsOpen(true);  };
-const toggleClose = () => {
-      setIsOpen(false);
-};
 // 외부를 클릭할 때 사이드바를 닫기 위한 이벤트 핸들러
 const handleClickOutside = (event) => {
     if (outside.current && !outside.current.contains(event.target)) {
@@ -55,8 +70,6 @@ const handleClickOutside = (event) => {
          {
         <div id="sidebar"
         ref={outside} className={isOpen ? 'open' : ''}>
-
-            <div className='closeSlideMenu'  onClick={toggleClose}>닫기</div>
             <div className='mobile_navbar_title'>목차...</div>
             <div className='mobile_navbar_sub'>일기교환클럽으로<br/>새로운 만남이<br/>생길지도..ww</div>
 
@@ -64,12 +77,12 @@ const handleClickOutside = (event) => {
                 {localStorage.getItem("is_logined") ? (
                     <li onClick={onLogoutHandler}>로그아웃...............3</li>
                     ) : (
-                    <Link to='/login'>
+                    <Link to='/'>
                     <li className='link'>로그인................3</li>
                     </Link>
                     )}
-                    <li>자기소개서...........12</li>
-                    <li>내 교환일기들........34</li>
+                    <li onClick={onLinkHandler1}>자기소개서...........12</li>
+                    <li onClick={onLinkHandler2}>내 교환일기들........34</li>
             </ul>
 
             <div className='mobile_navbar_sub mobileRight'>오늘은 어떤 일기가<br/>기다리고 있을까</div>

@@ -1,13 +1,10 @@
 
 import './App.css';
 import {Route, Routes} from "react-router-dom"
-import axios from 'axios';
-import { useEffect } from 'react';
 
 import NavBar from './components/views/NavBar/NavBar';
 import SlideMenu from './components/views/NavBar/SlideMenu';
 
-import LandingPage from './components/views/LandingPage/LandingPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import RegisterCompletePage from './components/views/RegisterPage/RegisterCompletePage';
@@ -43,10 +40,10 @@ function App() {
 
         <Route path="/register" element={<RegisterPage/>} />
         <Route path="/registerComplete" element={<RegisterCompletePage/>} />
-        <Route path="/" element={<LandingPage/>}/>
+
         <Route path="/myinfo" element={<MyinfoPage/>}/>
         <Route path="/myinfoDelete" element={<MyinfoDeletePage/>}/>
-        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/" element={<LoginPage/>}/>
         <Route path="/password" element={<PasswordPage/>}/>
 
         <Route path="/diaryCreate" element={<DiaryCreatePage/>}/>

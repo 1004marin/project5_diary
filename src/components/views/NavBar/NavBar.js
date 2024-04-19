@@ -15,7 +15,7 @@ function NavBar() {
           .then(response => {
             // 로그아웃이 성공한 경우 여기에 추가적인 처리를 할 수 있습니다.
             console.log(response);
-            navigate('/login')
+            navigate('/')
 
           })
           .catch(error => {
@@ -23,23 +23,42 @@ function NavBar() {
             console.error('Logout Error:', error);
           });
       };
+
+  const onLinkHandler1= () =>{
+    if(localStorage.getItem("is_logined")){
+      navigate('/myinfo')
+    }
+    else{
+      alert("로그인 먼저 해주세요!")
+      navigate('/')
+    }
+  }
+  const onLinkHandler2= () =>{
+    if(localStorage.getItem("is_logined")){
+      navigate('/diaryList')
+    }
+    else{
+      alert("로그인 먼저 해주세요!")
+      navigate('/')
+    }
+  }
   return (
     <div className='navbar'>
       <div className='navbar_content'>
         <div className='navbar_title'>목차...</div>
-        <div className='navbar_sub'>일기교환클럽으로<br/>새로운 만남이<br/>생길지도..ww</div>
+        <div className='navbar_sub'>일기교환클럽으로<br/>새로운 추억이<br/>생길지도..ww</div>
 
 
         <ul className='navbar_menu'>
           {localStorage.getItem("is_logined") ? (
               <li onClick={onLogoutHandler}>로그아웃...............3</li>
             ) : (
-            <Link to='/login'>
+            <Link to='/'>
               <li className='link'>로그인................3</li>
             </Link>
             )}
-              <li>자기소개서...........12</li>
-              <li>내 교환일기들........34</li>
+              <li onClick={onLinkHandler1}>자기소개서...........12</li>
+              <li onClick={onLinkHandler2}>내 교환일기들........34</li>
         </ul>
 
         <div className='navbar_sub right'>오늘은 어떤 일기가<br/>기다리고 있을까</div>

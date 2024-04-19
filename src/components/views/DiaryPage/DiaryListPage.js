@@ -33,7 +33,7 @@ const onLogoutHandler = () => {
   dispatch(logoutUser())
     .then(response => {
       console.log(response);
-      navigate('/login')
+      navigate('/')
     })
     .catch(error => {
       // 로그아웃 중 에러가 발생한 경우 여기에 처리를 할 수 있습니다.

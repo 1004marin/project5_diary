@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { loginUser, logoutUser,logout_requested } from '../../../_actions/user_action';
 import '../../../css/login.scss'
+
+import SlideMenu from '../NavBar/SlideMenu'
 import NavBar from '../NavBar/NavBar';
 import { Link } from 'react-router-dom';
 
@@ -60,6 +62,9 @@ function LoginPage() {
         <NavBar/>
     </div>
     <div className='login_formbox'>
+        <div className='moblie_menu'>
+            <SlideMenu/>
+        </div>
         <div className='login_inner_formbox'>
             <div className='inner_title'>
                 <div className='title'>일기교환클럽<br/>

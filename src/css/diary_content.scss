@@ -202,6 +202,28 @@
                     background: #ffd9d9;
                   }
             }
+            & .pc_2{
+                width: 100%;//모바일만
+                .diaryContent_button {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                
+                    & button{
+                        border-width: 0;
+                        width: 23vw;
+                        height: 6vh;
+                        border-radius: 40px;
+                        box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+                        background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0 , #fff );
+                        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
+                        font-family: 'DOSSaemmul';
+                        font-size: 1.8vh;
+                        color: #fff;
+                    }
+                }
+                   
+            }
         }
     }
     .inner_title{
@@ -275,27 +297,7 @@
             margin-top: 0;
         }
     }
-    .diaryContent_button {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-
-    & button{
-        border-width: 0;
-        width: 23vw;
-        height: 6vh;
-        border-radius: 40px;
-        box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-        background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0 , #fff );
-        text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
-        font-family: 'DOSSaemmul';
-        font-size: 1.8vh;
-        color: #fff;
-    }
-
-
-}
-    
+ 
 
 
 
@@ -332,21 +334,23 @@
                     height: fit-content;
                 }
             }
+            & .pc_2{
+                & .diaryContent_button {
+    
+                    & button{
+                        width: 15vw;
+                        height: 7vh;
+                    }}
+                    .diaryContent_formbox_content{
+                        height: 20dvh;
+                    }
+            }
         }
     }
     .diaryContent_invite_member{
         margin-top: 3dvh;
         height: 3dvh;
     }
-    .diaryContent_button {
-    
-        & button{
-            width: 15vw;
-            height: 7vh;
-        }}
-        .diaryContent_formbox_content{
-            height: 20dvh;
-        }
 }
 //아이패드에어 ~아이패드프로 세로
 @media screen and (min-width: 820px) and (max-width: 1024px){
@@ -385,14 +389,17 @@
                     height: fit-content;
                 }
             }
+            & .pc_2{
+                & .diaryContent_button {
+    
+                    & button{
+                        width: 15vw;
+                        height: 6vh;
+                    }}
+            }
         }
     }
-    .diaryContent_button {
-    
-        & button{
-            width: 15vw;
-            height: 6vh;
-        }}
+
     .diaryContent_formbox_content{
         height: 20dvh;
     }
@@ -432,10 +439,11 @@
 
             & .calendar_custom{
                 height: fit-content;
-                width: fit-content;
+                width: 90%;
                 padding: 1px;
                 .react-calendar__navigation__label__labelText{
-                    font-size: 2.5dvh;
+                    font-size: 2dvh;
+                    margin: 0;
                 }
                 .react-calendar__month-view{
                     font-family: 'Dongle-Regular';
@@ -458,7 +466,24 @@
                     padding: 1.5dvh;
                     height: fit-content;
                 }
+                .react-calendar__navigation {
+                    margin-bottom: 2dvh;
+                    & button{
+                        margin: 0;
+                    }
+                }
             }
+            & .pc_2{
+                flex-direction: column;
+                width: 45.7%;//이거모바일에서적용안되게!
+                margin-top: 1dvh;
+                & .diaryContent_button {
+                & button{
+                    width: 8vw;
+                    height: 5vh;
+                    font-size: 1.8vh;
+                }
+            }}
         }
     }
     .inner_title{
@@ -478,13 +503,6 @@
         background-color: #fff6f6;
         margin: 0 0 0dvh 2dvw;
     }
-}
-
-.pc_2{
-    flex-direction: column;
-    width: 48%;//이거모바일에서적용안되게!
-    margin-top: 1dvh;
-}
     .diaryContent_invite_member{
         margin-bottom: 0.5dvh;
         height: 4dvh;
@@ -495,13 +513,9 @@
             width: 50%;
         }
     }
-    .diaryContent_button {
 
-    & button{
-        width: 8vw;
-        height: 5vh;
-        font-size: 1.8vh;
-
-    }
 
 }
+
+
+
