@@ -63,6 +63,7 @@
     input[type="color"],
     input[type="range"],
     input[type="text"],
+    input[type=file]::file-selector-button,
     input[type="file"] {
       margin: 0 5px; // 버튼, 컬러 입력, 레인지 입력 요소 사이에 간격 추가
       font-size: 2.2vh;
@@ -72,6 +73,10 @@
       height: 3.8vh;
       line-height: 1.5vh;
       background-image: linear-gradient(to bottom, #fff, #f1f1f1 , #d0d0d0 );
+      &:hover {
+        background: rgb(255, 235, 235);
+        color: #ff8181;
+      }
     }
     input[type="color"]{
       width: 20%;
@@ -81,6 +86,22 @@
     }
     .darw_start, .draw_finish{
       width: 96%;
-      margin-top: 4px;
+      margin-top: 5px;
+      margin-bottom: 5px;
     }
+
+    input[type="range"]{
+      background: linear-gradient(to right, #ffe5ed 0%, #ffb1c5 , #ff9a9a , #ff8787);
+      border-radius: 8px;
+      outline: none;
+      -webkit-appearance: none;
+      accent-color: #ff6075;
+  }
+
+  //파일선택 커스텀
+  input[type=file]::file-selector-button {
+    width: 150px;
+    font-family: "Dongle-Regular";
+    cursor: pointer;
+  }
   }

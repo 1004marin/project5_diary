@@ -176,7 +176,7 @@ const toggleEraser = () => {
                     <button type="button" onClick={addText}>텍스트 추가</button>
                 </div>
                 <div className='draw_add_2'>
-                    <input type="file" accept="image/*" onChange={(e) => addImage(e.target.files[0])} />
+                    <input type="file" id="file" accept="image/*" onChange={(e) => addImage(e.target.files[0])} />
                 </div>
                 
                 <div className='draw_add_3'>
@@ -192,7 +192,7 @@ const toggleEraser = () => {
                     <button type="button" onClick={toggleEraser}>{isErasing ? '지우개 반납' : '지우개 빌리기'}</button>
                 </div>
                 <div className='draw_pen2'>
-                <input type="color" value={penColor} onChange={handlePenColorChange} />
+                <input type="color" value={penColor} onChange={handlePenColorChange}style={{ verticalAlign: 'middle' }} />
                     <input type="range" min="1" max="10" value={penWidth} onChange={(e) => handlePenWidthChange(parseInt(e.target.value))} />
                     <input type="range" min="1" max="10" value={eraseWidth} onChange={(e) => handleEraseWidthChange(parseInt(e.target.value))} />
                 </div>
