@@ -97,7 +97,7 @@ export default function DiaryWritePage() {
             </div>
         <form className='diaryWrite_formbox_content' onSubmit={onSubmit}>
             <label>Title</label>
-            <input type='text' value={DiaryTitle} onChange={onDiaryTitleHandler}></input>
+            <input type='text' value={DiaryTitle} onChange={onDiaryTitleHandler} maxLength={25}></input>
 
             <label>Date</label>
             <DatePicker dateFormat='yyyy年 MM月 dd日'selected={startDate}
@@ -136,10 +136,10 @@ export default function DiaryWritePage() {
                 </div>
 
             <label>Mood</label>
-            <input type='text' value={DiaryMood} onChange={onDiaryMoodHandler}></input>
+            <input type='text' value={DiaryMood} onChange={onDiaryMoodHandler}maxLength={30}></input>
 
             <label>Content</label>
-            <textarea className="write_text" value={DiaryContent} onChange={onDiaryContentHandler} />
+            <textarea className="write_text" value={DiaryContent} onChange={onDiaryContentHandler} maxLength={300}/>
             
 
             <label>Draw</label>

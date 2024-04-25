@@ -94,13 +94,13 @@ const handleOptionClick = (option) => {
             </div>
             <div className='diaryCreate_formbox_content'>
                 <label>Name</label>
-                <input type="text" value={DiaryName} onChange={onDiaryNameHandler}></input>
+                <input type="text" value={DiaryName} onChange={onDiaryNameHandler} maxLength={10}></input>
 
                 <label>Introduce</label>
-                <input type="text" value={DiaryIntroduce} onChange={onDiaryIntroduceHandler}></input>
+                <input type="text" value={DiaryIntroduce} onChange={onDiaryIntroduceHandler} maxLength={15}></input>
 
                 <label>Password</label>
-                <input type="password" value={DiaryPassword} onChange={onDiaryPasswordHandler}></input>
+                <input type="password" value={DiaryPassword} onChange={onDiaryPasswordHandler} maxLength={8}></input>
 
                 <label>Max</label>
                 <button className="btn-select" onClick={handleButtonClick}>

@@ -156,7 +156,7 @@ function DiaryInfoPage() {
 
                     
                     <div className='diaryInfo_introduce'>
-                        <input value={diaryIntroduce} placeholder="Introduce" onChange={onDiaryIntroduceHandler}></input>
+                        <input value={diaryIntroduce} placeholder="Introduce" onChange={onDiaryIntroduceHandler} maxLength={15}></input>
                         <button onClick={onIntroduceHandler}>소개 수정할래요</button>
                     </div>
 

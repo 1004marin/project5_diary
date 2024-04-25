@@ -18,7 +18,7 @@
 
 .registerComplete {
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   background-image: url("../../public/mobile_registerComplete.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -29,12 +29,12 @@
 
 .registerComplete_box {
   position: absolute;
-  top: 33vh; /* 부모 요소의 상단에 배치합니다. */
+  top: 33dvh; /* 부모 요소의 상단에 배치합니다. */
   right: 0; /* 부모 요소의 오른쪽 끝에 배치합니다. */
   display: flex;
   flex-direction: column;
-  height: 50vh;
-  width: 80vw;
+  height: 50dvh;
+  width: 80dvw;
 }
 
 .complete_message {
@@ -42,11 +42,11 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: auto;
-  height: 26vh;
-  padding-left: 23vw;
-  padding-top: 7vh;
+  height: 26dvh;
+  padding-left: 23dvw;
+  padding-top: 7dvh;
   line-height: 30px;
-  font-size: 3.7vh;
+  font-size: 3.7dvh;
   color: #DA98B4;
   text-shadow: calc(5px * 1) 0 0 #F8F8F8, calc(5px * 0.9239) calc(5px * 0.3827) 0 #F8F8F8, calc(5px * 0.7071) calc(5px * 0.7071) 0 #F8F8F8, calc(5px * 0.3827) calc(5px * 0.9239) 0 #F8F8F8, 0 calc(5px * 1) 0 #F8F8F8, calc(5px * -0.3827) calc(5px * 0.9239) 0 #F8F8F8, calc(5px * -0.7071) calc(5px * 0.7071) 0 #F8F8F8, calc(5px * -0.9239) calc(5px * 0.3827) 0 #F8F8F8, calc(5px * -1) 0 0 #F8F8F8, calc(5px * -0.9239) calc(5px * -0.3827) 0 #F8F8F8, calc(5px * -0.7071) calc(5px * -0.7071) 0 #F8F8F8, calc(5px * -0.3827) calc(5px * -0.9239) 0 #F8F8F8, 0 calc(5px * -1) 0 #F8F8F8, calc(5px * 0.3827) calc(5px * -0.9239) 0 #F8F8F8, calc(5px * 0.7071) calc(5px * -0.7071) 0 #F8F8F8, calc(5px * 0.9239) calc(5px * -0.3827) 0 #F8F8F8, 5px 8px 5px rgba(0, 0, 0, 0.8);
 }
@@ -61,21 +61,26 @@
   color: #464646;
   font-size: 1.8rem;
   bottom: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: #464646;
   text-decoration: none;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .registerComplete_box {
-    top: 23vh;
-    height: 60vh;
-    width: 63vw;
+    top: 23dvh;
+    height: 60dvh;
+    width: 63dvw;
   }
   .complete_message {
-    height: 35vh;
-    padding-left: 18vw;
-    padding-top: 10vh;
+    height: 35dvh;
+    padding-left: 18dvw;
+    padding-top: 10dvh;
     line-height: 40px;
-    font-size: 3.7vh;
+    font-size: 3.7dvh;
   }
   .complete_toLogin {
     font-size: 2rem;
@@ -86,20 +91,20 @@
     background-image: url("../../public/pc_registerComplete.png");
   }
   .registerComplete_box {
-    top: 33vh; /* 부모 요소의 상단에 배치합니다. */
-    height: 53vh;
-    width: 55vw;
+    top: 33dvh; /* 부모 요소의 상단에 배치합니다. */
+    height: 53dvh;
+    width: 55dvw;
     overflow: hidden; /* 자식이 부모 넘지 않도록 ->스크롤 막기 */
     padding-left: 0;
   }
   .complete_message {
-    height: 44vh;
+    height: 44dvh;
     right: 0;
-    padding-left: 9vw;
-    padding-top: 11vh;
-    line-height: 5vh;
-    font-size: 3.7vh;
-    width: 22vw;
+    padding-left: 9dvw;
+    padding-top: 11dvh;
+    line-height: 5dvh;
+    font-size: 3.7dvh;
+    width: 22dvw;
     position: absolute;
   }
   .complete_toLogin {

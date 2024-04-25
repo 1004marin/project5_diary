@@ -211,15 +211,15 @@ function RegisterPage() {
                 <div className='margin_bottom'>{EmailCodeCheck_notice}</div>
 
                 <label>Username</label>
-                <input type="text" value={Name} onChange={onNameHandler}/>
+                <input type="text" value={Name} onChange={onNameHandler} maxLength={10}/>
                 <button type="button"onClick={onDuplicateUserNameHandler}>이미 부원인가요?</button>
                 <div className='margin_bottom'>{NameDuplicate_notice}</div>
 
                 <label>Password</label>
-                <input className='margin_bottom'type="password" value={Password} onChange={onPasswordHandler}/>
+                <input className='margin_bottom'type="password" value={Password} onChange={onPasswordHandler} maxLength={15}/>
 
                 <label>Comfirm Password</label>
-                <input className='margin_bottom'type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler}/>
+                <input className='margin_bottom'type="password" value={ConfirmPassword} onChange={onConfirmPasswordHandler}maxLength={15}/>
                 <label className='register_agree'>
                     <input
                     className='check'

@@ -9,14 +9,14 @@
 }
 .mobile_navbar {
   width: 100%;
-  height: 10vh;
-  margin-top: -8vh;
-  margin-left: 1.9vw;
-  line-height: 3.5vh;
+  height: 10dvh;
+  margin-top: -8dvh;
+  margin-left: 1.9dvw;
+  line-height: 3.5dvh;
 }
 
 .menuButton {
-  font-size: 2.4vh;
+  font-size: 2.4dvh;
   width: -moz-fit-content;
   width: fit-content;
   right: 0;
@@ -44,24 +44,25 @@
 }
 
 .mobile_navbar_title {
-  margin-top: 9vh;
+  margin-top: 9dvh;
   color: white;
-  height: 10vh;
-  font-size: 3.5vh;
+  height: 10dvh;
+  font-size: 3.5dvh;
   letter-spacing: 0;
   text-shadow: 4.5px 0 0 #5a5a5a, 4.15755px 1.72215px 0 #5a5a5a, 3.18195px 3.18195px 0 #5a5a5a, 1.72215px 4.15755px 0 #5a5a5a, 0 4.5px 0 #5a5a5a, -1.72215px 4.15755px 0 #5a5a5a, -3.18195px 3.18195px 0 #5a5a5a, -4.15755px 1.72215px 0 #5a5a5a, -4.5px 0 0 #5a5a5a, -4.15755px -1.72215px 0 #5a5a5a, -3.18195px -3.18195px 0 #5a5a5a, -1.72215px -4.15755px 0 #5a5a5a, 0 -4.5px 0 #5a5a5a, 1.72215px -4.15755px 0 #5a5a5a, 3.18195px -3.18195px 0 #5a5a5a, 4.15755px -1.72215px 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);
 }
 
 .mobile_navbar_sub {
   color: #464646;
-  font-size: 2vh;
+  font-size: 1.7dvh;
+  line-height: 2.5dvh;
   text-shadow: 2px 0 0 #fdddee, 1.8478px 0.7654px 0 #fdddee, 1.4142px 1.4142px 0 #fdddee, 0.7654px 1.8478px 0 #fdddee, 0 2px 0 #fdddee, -0.7654px 1.8478px 0 #fdddee, -1.4142px 1.4142px 0 #fdddee, -1.8478px 0.7654px 0 #fdddee, -2px 0 0 #fdddee, -1.8478px -0.7654px 0 #fdddee, -1.4142px -1.4142px 0 #fdddee, -0.7654px -1.8478px 0 #fdddee, 0 -2px 0 #fdddee, 0.7654px -1.8478px 0 #fdddee, 1.4142px -1.4142px 0 #fdddee, 1.8478px -0.7654px 0 #fdddee, 5px 8px 5px rgba(0, 0, 0, 0.8);
 }
 
 .mobile_navbar_menu {
   color: white;
-  font-size: 2.2vh;
-  margin-top: 7vh;
+  font-size: 2.2dvh;
+  margin-top: 7dvh;
   letter-spacing: 0;
   line-height: 35px;
   text-shadow: 3px 0 0 #5a5a5a, 2.7717px 1.1481px 0 #5a5a5a, 2.1213px 2.1213px 0 #5a5a5a, 1.1481px 2.7717px 0 #5a5a5a, 0 3px 0 #5a5a5a, -1.1481px 2.7717px 0 #5a5a5a, -2.1213px 2.1213px 0 #5a5a5a, -2.7717px 1.1481px 0 #5a5a5a, -3px 0 0 #5a5a5a, -2.7717px -1.1481px 0 #5a5a5a, -2.1213px -2.1213px 0 #5a5a5a, -1.1481px -2.7717px 0 #5a5a5a, 0 -3px 0 #5a5a5a, 1.1481px -2.7717px 0 #5a5a5a, 2.1213px -2.1213px 0 #5a5a5a, 2.7717px -1.1481px 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);
@@ -74,22 +75,23 @@
 
 .mobileRight {
   position: absolute; /* 절대적인 위치로 설정 */
-  bottom: 20vh; /* 아래쪽으로 위치시킵니다. */
-  right: 10vw; /* 오른쪽으로 위치시킵니다. */
+  bottom: 20dvh; /* 아래쪽으로 위치시킵니다. */
+  right: 10dvw; /* 오른쪽으로 위치시킵니다. */
 }
 
 a {
   text-decoration: none;
-} 
+}
+
 #sidebar {
   z-index: 99;
-  padding: 3vh 1vh 0 3vh;
+  padding: 3dvh 1dvh 0 3dvh;
   box-sizing: border-box;
   background-image: url("../../public/mobile_slidemenu.png");
   background-repeat: no-repeat; /*가로 세로 */
   background-size: 100% 100%;
-  height: 100vh;
-  width: 85vw;
+  height: 100dvh;
+  width: 85dvw;
   right: -100%;
   top: 0;
   position: fixed;

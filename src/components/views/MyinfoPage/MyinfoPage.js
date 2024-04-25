@@ -10,6 +10,7 @@ import SlideMenu from '../NavBar/SlideMenu'
 import '../../../css/myinfo.scss'
 function MyinfoPage() {
 
+  const navigate = useNavigate();
   const [Email, setEmail] = useState("")
   const [Username,setUsername] = useState("")
   const [Nickname,setNickname] = useState("")
@@ -34,14 +35,14 @@ function MyinfoPage() {
       })
       .catch(error => {
         console.log(error);
-        alert("회원 권한이 없슴니당 로그인하셔요")
+        alert("권한이 없습니다. 부원 인증을 해주세요!")
+        navigate('/')
       });
   }, []); // 빈 배열을 전달하여 컴포넌트 마운트 시에만 호출되도록 설정
 
 const onNicknameHandler = (e) =>{
   const updatedNickname = e.currentTarget.value//동기비동기문제
   setNickname(updatedNickname)
-  console.log(Nickname)
 }
 const onBloodTypeHandler = (e) =>{
   setBloodType(e.currentTarget.value);
@@ -52,7 +53,6 @@ const onBloodTypeHandler = (e) =>{
 const onMottoHandler = (e) => {
   const updatedMotto = e.currentTarget.value;
   setMotto(updatedMotto);
-  console.log(Motto)
 };
 const onAddressHandler = (e) =>{
   setAddress(e.currentTarget.value)
@@ -94,8 +94,6 @@ const onSubmitHandler = (e) => {
 
 
 
-//내정보를 다른 페이지에서도 접근할일이 있나?
-//=>다이어리작성할때(나중에 reducer에 저장하기!)
   return (
 <div className='Myinfo'>
     
@@ -121,7 +119,7 @@ const onSubmitHandler = (e) => {
                 <div className='myinfo_fixed_input'>{Username}</div>
 
                 <label>Nickname</label>
-                <input type="text" value ={Nickname} onChange={onNicknameHandler}/>
+                <input type="text" value ={Nickname} onChange={onNicknameHandler} maxLength={10}/>
 
                 <div className="radio-container">
                   <label>
@@ -153,10 +151,10 @@ const onSubmitHandler = (e) => {
                 
                 
                 <label>Motto</label>
-                <input type="text" value ={Motto} onChange={onMottoHandler}/>
+                <input type="text" value ={Motto} onChange={onMottoHandler} maxLength={25}/>
 
                 <label>Address</label>
-                <input type="text" value ={Address} onChange={onAddressHandler}/>
+                <input type="text" value ={Address} onChange={onAddressHandler} maxLength={35}/>
 
                 <Link to='/myinfoDelete'>
                   <div className='quit'>※ 클럽을 그만둘래요</div>

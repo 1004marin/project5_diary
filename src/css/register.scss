@@ -36,7 +36,7 @@
 
 //
 .RegisterBox{
-    height: 100vh;
+    height: 100dvh;
     width: 100%;
     position: relative; /* RegisterBox를 상대적인 위치로 설정 */
 }
@@ -62,7 +62,7 @@
         background-image: url('../../public/mobile_background.png');
         background-repeat : no-repeat; /*가로 세로 */
         background-size : 100% 100%;
-        padding:10vh 20% 0 20%; //시계방향 상 우 하 좌
+        padding:10dvh 20% 0 20%; //시계방향 상 우 하 좌
         box-sizing: border-box; /* 내부 패딩과 테두리를 요소의 크기에 포함시킵니다 */
         background-position: center;
         background-attachment: scroll;
@@ -70,31 +70,32 @@
     .inner_formBox{
         display:flex;
         flex-direction: column;
-        height: 83vh;
-        width: 70vw;
+        height: 83dvh;
+        width: 70dvw;
+        &    .title{
+            font-family: 'Dongle-Regular';
+            align-self: stretch;
+            color: #686868;
+            font-size: 5.2dvh;
+            letter-spacing: 0;
+            flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
+            position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
+            line-height: 6.3dvh;
+            @include customTextShadow(5px, #ffffff); // thickness와 color를 여기서 조절합니다.
+        }
     }
     .inner_formBox_title{
         width: auto;
         display: flex;
         position: relative;
-        margin-bottom: 3.2vh;
-    }
-    .title{
-        font-family: 'Dongle-Regular';
-        align-self: stretch;
-        color: #686868;
-        font-size: 5.7vh;
-        letter-spacing: 0;
-        flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
-        position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
-        line-height: 6.7vh;
-        @include customTextShadow(5px, #ffffff); // thickness와 color를 여기서 조절합니다.
+        margin-bottom: 3.2dvh;
     }
 
+
 .letter{
-    width:29vw;
-    height: 12vh;
-    margin-left: 30vw;
+    width:29dvw;
+    height: 12dvh;
+    margin-left: 30dvw;
 }
 .inner_formBox_content{
     width: 100%;
@@ -104,16 +105,16 @@
     margin-top: 0;
 }
 .inner_formBox_content .margin_bottom{
-    margin-bottom: 0.2vh;
+    margin-bottom: 0.2dvh;
     font-family: 'Dongle-Regular';
-    font-size: 2vh;
+    font-size: 2dvh;
 }
 
 label{
     text-decoration: underline;
     text-shadow: 3px 4px 4.2px #00000040, 2px 1px 0px #ffffff;
     letter-spacing: 0;
-    font-size: 2.4vh;
+    font-size: 2.4dvh;
     display: block;
     font-family: 'Cuprum';
     margin-bottom: 0.1em;
@@ -130,18 +131,18 @@ label{
     display: flex; /* Flexbox를 사용하여 요소를 가로로 배치합니다. */
     justify-content: center; /* 텍스트를 수평으로 가운데 정렬합니다. */
     align-items: center; /* 텍스트를 수직으로 가운데 정렬합니다. */
-    margin-top: 0vh;
+    margin-top: 0dvh;
 }
 .register_submit_button{
     border-width: 0;
-    width: 32vw;
-    height: 8vh;
+    width: 32dvw;
+    height: 8dvh;
     border-radius: 25px;
     box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0 , #fff );
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
     font-family: 'DOSSaemmul';
-    font-size: 1.7vh;
+    font-size: 1.7dvh;
     color: #fff;
     margin-top: auto; /* 마지막 요소를 가장 하단에 배치합니다. */
     margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
@@ -152,7 +153,7 @@ label{
     width: 100%;
     box-sizing: border-box;
     font-family: 'Dongle-Regular';
-    font-size: 2.4vh;
+    font-size: 2.4dvh;
     font-weight: 300;
     height: 33px;
     border: solid 1px #000;
@@ -167,8 +168,8 @@ input[type="checkbox"]{
     display: inline-block;
     position: relative;
     box-sizing:border-box;
-    width: 4.5vw;
-    height: 3vh;
+    width: 4.5dvw;
+    height: 3dvh;
     box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     background-image:url("../../public/checkbox_none.png");
     background-size: 100% 100%;
@@ -183,7 +184,7 @@ input[type="checkbox"]{
 }
 .register_agree{
     //background-color: cadetblue;
-    font-size:2.2vh;
+    font-size:2.2dvh;
     display: flex;
     margin-top: 1px;
     align-items: center;
@@ -198,18 +199,18 @@ input[type="checkbox"]{
 //아이패드 미니 세로~
 @media screen and (min-width: 768px) and (max-width: 819px){
     .inner_formBox_title{
-        width: 48vw;
-        margin-bottom: 3vh;
+        width: 48dvw;
+        margin-bottom: 3dvh;
     }
     .title{
-        font-size: 5.9vh;
-        line-height: 6vh;
+        font-size: 5.9dvh;
+        line-height: 6dvh;
 
     }
     .letter{
         width: 9rem;
         height: 8rem;
-        margin-left: 20vw;
+        margin-left: 20dvw;
     }
     label{
         font-size: 1.7rem;
@@ -219,11 +220,11 @@ input[type="checkbox"]{
     }
     input{
         height: 2.3rem;
-        font-size: 3vh;
+        font-size: 3dvh;
     }
     button{
         font-size: 1.7rem;
-        height: 3vh;
+        height: 3dvh;
     }
     .register_submit_button{
         font-size: 1.5rem;
@@ -232,43 +233,43 @@ input[type="checkbox"]{
 //아이패드에어 ~아이패드프로 세로
 @media screen and (min-width: 820px) and (max-width: 1024px){
     .inner_formBox_title{
-        width: 48vw;
-        margin-bottom: 4.5vh;
+        width: 48dvw;
+        margin-bottom: 4.5dvh;
     }
     .title{
-        font-size: 6.5vh;
-        line-height:7vh;
+        font-size: 6.5dvh;
+        line-height:7dvh;
     }
     .letter{
         width: 12rem;
         height: 10rem;
-        margin-left: 24vw;
+        margin-left: 24dvw;
     }
     button{
-        height: 3.3vh;
-        font-size: 2.7vh;
+        height: 3.3dvh;
+        font-size: 2.7dvh;
         border: 2px solid #A6A6A6; /* 테두리 설정 */
     }
     label{
-        font-size: 2.7vh;
+        font-size: 2.7dvh;
     }
     input{
-        height: 3.6vh;
-        font-size: 2.8vh;
+        height: 3.6dvh;
+        font-size: 2.8dvh;
     }
     .formBox{
         padding:14% 20% 0 20%; //시계방향 상 우 하 좌
     }
     .inner_formBox_content{
-        margin-top: 1vh;
+        margin-top: 1dvh;
     }
     .register_agree{
-        font-size: 3.6vw;
+        font-size: 3.6dvw;
     }
     .register_submit_button{
-        width: 25vw;
-        height: 7vh;
-        font-size: 2.7vw;
+        width: 25dvw;
+        height: 7dvh;
+        font-size: 2.7dvw;
     }
     .check_text{
         margin-bottom: 23px;
@@ -281,44 +282,45 @@ input[type="checkbox"]{
         background-image: url('../../public/pc_background.png');
         background-repeat : no-repeat; /*가로 세로 */
         background-size : 100% 100%;
-        padding:19vh 0 10vh 33vw; //시계방향 상 우 하 좌
+        padding:19dvh 0 10dvh 33dvw; //시계방향 상 우 하 좌
         
     }
     .inner_navber{
         display: block;
         position: absolute;
-        top: 21vh; /* 상단에 위치하도록 설정 */
-        left: 4vw; /* 왼쪽에 위치하도록 설정 */
+        top: 21dvh; /* 상단에 위치하도록 설정 */
+        left: 4dvw; /* 왼쪽에 위치하도록 설정 */
         z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
     }
     .inner_formBox{
-        height: 73vh;
-        width: 62vw;
+        height: 73dvh;
+        width: 62dvw;
+        & .title{
+            font-size: 3.2dvw;
+            line-height: 4.3dvw;
+        }
     }
     .inner_formBox_title{
-        width: 27vw;
+        width: 27dvw;
         margin-bottom: -3rem;
     }
-    .title{
-        font-size: 3.7vw;
-        line-height: 4.3vw;
-    }
+
     label{
-        font-size: 2.8vh;
+        font-size: 2.8dvh;
     }
     .letter{
-        width: 11vw;
-        height: 9vw;
-        margin-top: 2vh;
-        margin-left: 12vw;
+        width: 9dvw;
+        height:7dvw;
+        margin-top: 2dvh;
+        margin-left: 12dvw;
     }
     .register_agree{
-        font-size: 2.8vh;
+        font-size: 2.8dvh;
     }
     .inner_formBox_content{
         width: 40%;
         height: 70%;
-        margin-left: 19vw;
+        margin-left: 19dvw;
         z-index: 1;
         margin-bottom: -10rem;
     }
@@ -327,25 +329,25 @@ input[type="checkbox"]{
     }
     button{
         width: 100%;
-        height: 3.4vh;
-        font-size: 2.5vh;
+        height: 3.4dvh;
+        font-size: 2.5dvh;
         margin-top: 0.1em;
     }
     .register_submit_button{
-        width: 14vw;
-        height: 10vh;
-        font-size: 2.6vh;
+        width: 14dvw;
+        height: 10dvh;
+        font-size: 2.3dvh;
         z-index: 2;
     }
     input{
-        font-size: 1.9vw;
-        height: 3.8vh;
+        font-size: 1.9dvw;
+        height: 3.8dvh;
     }
     .register_agree .check_icon::before{
-        width: 1.3vw;
-        height: 3.5vh;
+        width: 1.3dvw;
+        height: 3.5dvh;
     }
     .check_text{
-        margin-bottom:2vh;
+        margin-bottom:2dvh;
     }
 }

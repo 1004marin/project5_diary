@@ -192,7 +192,7 @@ const toggleEraser = () => {
                     <button type="button" onClick={toggleEraser}>{isErasing ? '지우개 반납' : '지우개 빌리기'}</button>
                 </div>
                 <div className='draw_pen2'>
-                <input type="color" value={penColor} onChange={handlePenColorChange}style={{ verticalAlign: 'middle' }} />
+                    <input type="color" value={penColor} onChange={handlePenColorChange} />
                     <input type="range" min="1" max="10" value={penWidth} onChange={(e) => handlePenWidthChange(parseInt(e.target.value))} />
                     <input type="range" min="1" max="10" value={eraseWidth} onChange={(e) => handleEraseWidthChange(parseInt(e.target.value))} />
                 </div>

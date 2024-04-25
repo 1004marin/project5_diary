@@ -55,7 +55,11 @@ const onLogoutHandler = () => {
         console.log(response.data)
         console.log(response.data.length)
       } catch (error) {
+
         console.error('Error fetching diaries:', error);
+        alert("다이어리 찾기에 실패했어요! 부원인지 다시 증명해주세요!")
+        navigate("/")
+      
       }
     };
 

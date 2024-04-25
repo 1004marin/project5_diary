@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useRef,useEffect } from 'react';
-import '../../../css/slidemenu.css';
+import '../../../css/slidemenu.scss';
 import { useDispatch } from 'react-redux'
 import {logoutUser } from '../../../_actions/user_action';
 import { Link,useNavigate } from 'react-router-dom'

@@ -1,0 +1,446 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400..700;1,400..700&display=swap");
+@import "reset.css";
+@import url("https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css");
+@font-face {
+  font-family: "DOSSaemmul";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSSaemmul.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Dongle-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108_2@1.0/Dongle-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+.DiaryContent {
+  height: 100dvh;
+  width: 100%;
+  position: relative;
+}
+
+.inner_navbar {
+  display: none;
+}
+
+.diaryContent_formbox {
+  height: 100dvh;
+  width: 100%;
+  padding-bottom: 200px;
+}
+
+.diaryContent_formbox_content {
+  font-family: "Dongle-Regular";
+}
+
+/* Webkit 브라우저(크롬, 사파리)의 스크롤 바 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* 스크롤 바 색상 */
+::-webkit-scrollbar-thumb {
+  background-color: #ffdede; /* 스크롤 바의 색상 */
+  border-radius: 6px; /* 스크롤 바의 둥근 모서리 반지름 */
+}
+
+/* 호버 시 스크롤 바 색상 */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffc0c0; /* 스크롤 바 호버 시 색상 */
+}
+
+@media screen and (min-width: 280px) {
+  .moblie_menu {
+    width: 2dvw;
+  }
+  .diaryContent_formbox {
+    font-size: 16px;
+    line-height: normal;
+    color: #1e1e1e;
+    background-image: url("../../public/mobile_diary_content.png");
+    background-repeat: no-repeat; /*가로 세로 */
+    background-size: 100% 100%;
+    padding: 10dvh 9.5% 0 0%;
+    box-sizing: border-box; /* 내부 패딩과 테두리를 요소의 크기에 포함시킵니다 */
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden; /* 내부 컨텐츠의 넘침을 가리기 위해 overflow 속성을 hidden으로 설정 */
+  }
+  .diaryContent_inner_formbox {
+    display: flex;
+    flex-direction: column;
+    height: 80dvh;
+    width: 70dvw;
+  }
+  .diaryContent_inner_formbox .calendar {
+    margin-top: 13dvh;
+    height: 85%;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 1px;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__navigation__label__labelText {
+    font-size: 2dvh;
+    line-height: 1.5dvh;
+    width: 20px;
+    margin: 0 10px 0 10px;
+    font-family: "Dongle-Regular";
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__month-view {
+    font-family: "Dongle-Regular";
+    font-size: 2.5dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__month-view__weekdays abbr { /*월,화,수... 글자 부분*/
+    color: rgb(182, 182, 182);
+    font-size: 2.4dvh;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__month-view__days__day--weekend {
+    color: #d4779b;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__tile--active {
+    background-image: linear-gradient(to top, #ffcccc, #ff8383) !important;
+    border-radius: 5px;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__year-view__months abbr {
+    font-family: "Dongle-Regular";
+    font-size: 2.4dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__year-view .react-calendar__tile,
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__decade-view .react-calendar__tile,
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__century-view .react-calendar__tile {
+    font-family: "Dongle-Regular";
+    font-size: 4.8dvw;
+    padding: 1dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__navigation {
+    display: flex;
+    height: 5dvh;
+    margin-bottom: 0dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__navigation button {
+    min-width: 10px;
+    margin: 0 1.5% 0 1.5%;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__tile {
+    padding: 0.5dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__navigation button:enabled:hover,
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__navigation button:enabled:focus,
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__navigation button:disabled {
+    background-color: #ffeeee;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__tile--hasActive {
+    background-image: linear-gradient(to top, #ffcccc, #ff8383) !important;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar--selectRange .react-calendar__tile--hover {
+    background-color: #ffc7c7;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__tile--now {
+    background: #fff7f7;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__tile--now:enabled:hover,
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__tile--now:enabled:focus {
+    background: #ffd9d9;
+  }
+  .diaryContent_inner_formbox .calendar .pc_2 {
+    width: 100%;
+  }
+  .diaryContent_inner_formbox .calendar .pc_2 .diaryContent_button {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .diaryContent_inner_formbox .calendar .pc_2 .diaryContent_button button {
+    border-width: 0;
+    width: 23dvw;
+    height: 6dvh;
+    border-radius: 40px;
+    box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0, #fff);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
+    font-family: "DOSSaemmul";
+    font-size: 1.8dvh;
+    color: #fff;
+  }
+  .inner_title {
+    width: auto;
+    display: flex;
+    position: relative;
+    margin-bottom: 3.2dvh;
+  }
+  .title {
+    font-family: "Dongle-Regular";
+    align-self: stretch;
+    color: #686868;
+    font-size: 5.7dvh;
+    letter-spacing: 0;
+    flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
+    position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
+    line-height: 5dvh;
+    text-shadow: calc(5px * 1) 0 0 #ffffff, calc(5px * 0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * 0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * 0.3827) calc(5px * 0.9239) 0 #ffffff, 0 calc(5px * 1) 0 #ffffff, calc(5px * -0.3827) calc(5px * 0.9239) 0 #ffffff, calc(5px * -0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * -0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * -1) 0 0 #ffffff, calc(5px * -0.9239) calc(5px * -0.3827) 0 #ffffff, calc(5px * -0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * -0.3827) calc(5px * -0.9239) 0 #ffffff, 0 calc(5px * -1) 0 #ffffff, calc(5px * 0.3827) calc(5px * -0.9239) 0 #ffffff, calc(5px * 0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * 0.9239) calc(5px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
+  }
+  .diaryContent_formbox_content {
+    width: 100%;
+    height: 25dvh;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1dvh;
+    margin-bottom: 1dvh;
+    font-size: 2.5dvh;
+    overflow-y: auto; /* 세로 스크롤바를 추가하기 위해 overflow-y 속성을 auto로 설정 */
+    overflow-x: hidden;
+  }
+  .diaryContent_formbox_content .diaryContent_line {
+    display: block;
+    width: 100%;
+    border-top: 2px dashed #f957a3;
+    margin: 10px 0 10px 0;
+  }
+  .diaryContent_formbox_content .diaryContent_post {
+    padding-left: 1dvw;
+    color: #ff989e;
+    text-shadow: calc(2px * 1) 0 0 #ffffff, calc(2px * 0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * 0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * 0.3827) calc(2px * 0.9239) 0 #ffffff, 0 calc(2px * 1) 0 #ffffff, calc(2px * -0.3827) calc(2px * 0.9239) 0 #ffffff, calc(2px * -0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * -0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * -1) 0 0 #ffffff, calc(2px * -0.9239) calc(2px * -0.3827) 0 #ffffff, calc(2px * -0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * -0.3827) calc(2px * -0.9239) 0 #ffffff, 0 calc(2px * -1) 0 #ffffff, calc(2px * 0.3827) calc(2px * -0.9239) 0 #ffffff, calc(2px * 0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * 0.9239) calc(2px * -0.3827) 0 #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: "Dongle-Regular";
+    font-size: 2.4dvh;
+    height: 3dvh;
+    background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
+    border: solid 1.5px #f39fd1;
+  }
+  label {
+    text-decoration: underline;
+    text-shadow: 3px 4px 4.2px rgba(0, 0, 0, 0.2509803922), 2px 1px 0px #ffffff;
+    letter-spacing: 0;
+    font-size: 2.4dvh;
+    display: block;
+    font-family: "Cuprum";
+    margin-bottom: 0.2em;
+  }
+}
+.diaryContent_invite_member {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1dvh;
+  height: 4dvh;
+}
+.diaryContent_invite_member input::-moz-placeholder {
+  background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
+  font-family: "DOSSaemmul";
+  font-size: 1.5dvh;
+  height: 100%;
+  color: white;
+  text-shadow: calc(1px * 1) 0 0 #a6a6a6, calc(1px * 0.9239) calc(1px * 0.3827) 0 #a6a6a6, calc(1px * 0.7071) calc(1px * 0.7071) 0 #a6a6a6, calc(1px * 0.3827) calc(1px * 0.9239) 0 #a6a6a6, 0 calc(1px * 1) 0 #a6a6a6, calc(1px * -0.3827) calc(1px * 0.9239) 0 #a6a6a6, calc(1px * -0.7071) calc(1px * 0.7071) 0 #a6a6a6, calc(1px * -0.9239) calc(1px * 0.3827) 0 #a6a6a6, calc(1px * -1) 0 0 #a6a6a6, calc(1px * -0.9239) calc(1px * -0.3827) 0 #a6a6a6, calc(1px * -0.7071) calc(1px * -0.7071) 0 #a6a6a6, calc(1px * -0.3827) calc(1px * -0.9239) 0 #a6a6a6, 0 calc(1px * -1) 0 #a6a6a6, calc(1px * 0.3827) calc(1px * -0.9239) 0 #a6a6a6, calc(1px * 0.7071) calc(1px * -0.7071) 0 #a6a6a6, calc(1px * 0.9239) calc(1px * -0.3827) 0 #a6a6a6;
+}
+.diaryContent_invite_member input, .diaryContent_invite_member button, .diaryContent_invite_member input::placeholder {
+  background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
+  font-family: "DOSSaemmul";
+  font-size: 1.5dvh;
+  height: 100%;
+  color: white;
+  text-shadow: calc(1px * 1) 0 0 #a6a6a6, calc(1px * 0.9239) calc(1px * 0.3827) 0 #a6a6a6, calc(1px * 0.7071) calc(1px * 0.7071) 0 #a6a6a6, calc(1px * 0.3827) calc(1px * 0.9239) 0 #a6a6a6, 0 calc(1px * 1) 0 #a6a6a6, calc(1px * -0.3827) calc(1px * 0.9239) 0 #a6a6a6, calc(1px * -0.7071) calc(1px * 0.7071) 0 #a6a6a6, calc(1px * -0.9239) calc(1px * 0.3827) 0 #a6a6a6, calc(1px * -1) 0 0 #a6a6a6, calc(1px * -0.9239) calc(1px * -0.3827) 0 #a6a6a6, calc(1px * -0.7071) calc(1px * -0.7071) 0 #a6a6a6, calc(1px * -0.3827) calc(1px * -0.9239) 0 #a6a6a6, 0 calc(1px * -1) 0 #a6a6a6, calc(1px * 0.3827) calc(1px * -0.9239) 0 #a6a6a6, calc(1px * 0.7071) calc(1px * -0.7071) 0 #a6a6a6, calc(1px * 0.9239) calc(1px * -0.3827) 0 #a6a6a6;
+}
+.diaryContent_invite_member input {
+  width: 60%;
+  border: none;
+  border-bottom: 1px solid #000; /* 아래쪽에만 점선 테두리를 적용합니다. */
+}
+.diaryContent_invite_member button {
+  width: 30%;
+  border: solid 1px #a6a6a6;
+  margin-top: 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 819px) {
+  .inner_title {
+    width: 48dvw;
+    margin-bottom: 3dvh;
+  }
+  .title {
+    font-size: 5.9dvh;
+    line-height: 6dvh;
+  }
+  label {
+    font-size: 1.7rem;
+  }
+  .diaryContent_inner_formbox .calendar {
+    width: 80%;
+    margin: auto;
+    margin-top: 15dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__navigation__label__labelText {
+    font-size: 2.5dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__year-view .react-calendar__tile,
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__decade-view .react-calendar__tile,
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__century-view .react-calendar__tile {
+    font-size: 3.5dvw;
+    padding: 2dvh;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .diaryContent_inner_formbox .calendar .pc_2 .diaryContent_button button {
+    width: 15dvw;
+    height: 7dvh;
+  }
+  .diaryContent_inner_formbox .calendar .pc_2 .diaryContent_formbox_content {
+    height: 20dvh;
+  }
+  .diaryContent_invite_member {
+    margin-top: 3dvh;
+    height: 3dvh;
+  }
+}
+@media screen and (min-width: 820px) and (max-width: 1024px) {
+  .inner_title {
+    width: 48dvw;
+    margin-bottom: 3dvh;
+  }
+  .title {
+    font-size: 5.9dvh;
+    line-height: 6dvh;
+  }
+  label {
+    font-size: 1.7rem;
+  }
+  .diaryContent_invite_member {
+    margin-top: 3dvh;
+    height: 3dvh;
+  }
+  .diaryContent_inner_formbox .calendar {
+    width: 80%;
+    margin: auto;
+    margin-top: 15dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__navigation__label__labelText {
+    font-size: 2.5dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__year-view .react-calendar__tile,
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__decade-view .react-calendar__tile,
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__century-view .react-calendar__tile {
+    font-size: 3.5dvw;
+    padding: 2dvh;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .diaryContent_inner_formbox .calendar .pc_2 .diaryContent_button button {
+    width: 15dvw;
+    height: 6dvh;
+  }
+  .diaryContent_formbox_content {
+    height: 20dvh;
+  }
+}
+@media screen and (min-width: 1025px), (orientation: landscape) {
+  .moblie_menu {
+    display: none;
+  }
+  .diaryContent_formbox {
+    background-image: url("../../public/pc_diary_content.png");
+    padding: 19dvh 0 10dvh 33dvw;
+  }
+  .inner_navbar {
+    display: block;
+    position: absolute;
+    top: 21dvh; /* 상단에 위치하도록 설정 */
+    left: 4dvw; /* 왼쪽에 위치하도록 설정 */
+    z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
+  }
+  .diaryContent_inner_formbox {
+    height: 53dvh;
+    width: 62dvw;
+    display: flex;
+  }
+  .diaryContent_inner_formbox .pc_1, .diaryContent_inner_formbox .pc_2 {
+    display: flex;
+  }
+  .diaryContent_inner_formbox .calendar {
+    width: 70%;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: auto;
+    margin-top: 22dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom {
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 90%;
+    padding: 1px;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__navigation__label__labelText {
+    font-size: 2dvh;
+    margin: 0;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__month-view {
+    font-family: "Dongle-Regular";
+    font-size: 2.5dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__month-view__weekdays abbr { /*월,화,수... 글자 부분*/
+    font-size: 2.7dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__year-view__months abbr {
+    font-family: "Dongle-Regular";
+    font-size: 2.4dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__year-view .react-calendar__tile,
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__decade-view .react-calendar__tile,
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__century-view .react-calendar__tile {
+    font-size: 2.5dvh;
+    padding: 1.5dvh;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__navigation {
+    margin-bottom: 2dvh;
+  }
+  .diaryContent_inner_formbox .calendar .calendar_custom .react-calendar__navigation button {
+    margin: 0;
+  }
+  .diaryContent_inner_formbox .calendar .pc_2 {
+    flex-direction: column;
+    width: 45.7%;
+    margin-top: 1dvh;
+  }
+  .diaryContent_inner_formbox .calendar .pc_2 .diaryContent_button button {
+    width: 8dvw;
+    height: 5dvh;
+    font-size: 1.8dvh;
+  }
+  .inner_title {
+    width: 27dvw;
+    margin-bottom: -3rem;
+  }
+  .title {
+    font-size: 3.2dvw;
+    line-height: 4.3dvw;
+  }
+  label {
+    font-size: 2.8dvh;
+  }
+  .diaryContent_formbox_content {
+    width: 100%;
+    height: 60%;
+    background-color: #fff6f6;
+    margin: 0 0 0dvh 2dvw;
+  }
+  .diaryContent_invite_member {
+    margin-bottom: 0.5dvh;
+    height: 4dvh;
+  }
+  .diaryContent_invite_member input, .diaryContent_invite_member button {
+    font-size: 1.5dvh;
+  }
+  .diaryContent_invite_member input {
+    width: 50%;
+  }
+}/*# sourceMappingURL=diary_content.css.map */

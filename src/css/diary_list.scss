@@ -82,7 +82,7 @@ $bg-pc-image-alt: url('../../public/pc_diary_password.png');
         background-image: $bg-image;
         background-repeat : no-repeat;
         background-size : 100% 100%;
-        padding:10vh 9.5% 0 0%; //시계방향 상 우 하 좌
+        padding:10dvh 9.5% 0 0%; //시계방향 상 우 하 좌
         box-sizing: border-box; /* 내부 패딩과 테두리를 요소의 크기에 포함시킵니다 */
         display: flex;
         justify-content: space-between;
@@ -236,14 +236,14 @@ $bg-pc-image-alt: url('../../public/pc_diary_password.png');
             }
             .diaryList_submit_button{
                 border-width: 0;
-                width: 32vw;
-                height: 8vh;
+                width: 32dvw;
+                height: 8dvh;
                 border-radius: 25px;
                 box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
                 background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0 , #fff );
                 text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
                 font-family: 'DOSSaemmul';
-                font-size: 1.7vh;
+                font-size: 1.7dvh;
                 color: #fff;
                 margin-top: auto; /* 마지막 요소를 가장 하단에 배치합니다. */
                 margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
@@ -258,8 +258,8 @@ $bg-pc-image-alt: url('../../public/pc_diary_password.png');
 @media screen and (min-width: 768px) and (max-width: 819px){
     .diaryList_inner_formbox, .diaryList_password_inner_formbox{
         & .title{
-            font-size: 5.9vh;
-            line-height: 6vh;
+            font-size: 5.9dvh;
+            line-height: 6dvh;
         }
     }
     .diaryList_create {
@@ -304,8 +304,8 @@ $bg-pc-image-alt: url('../../public/pc_diary_password.png');
             }
             .diaryList_submit_button{
                 font-size: 1.3rem;
-                width: 27vw;
-                height: 9vh;
+                width: 27dvw;
+                height: 9dvh;
             }
         }
         
@@ -315,8 +315,8 @@ $bg-pc-image-alt: url('../../public/pc_diary_password.png');
 @media screen and (min-width: 820px) and (max-width: 1024px){
     .diaryList_inner_formbox, .diaryList_password_inner_formbox{
         & .title{
-            font-size: 5.9vh;
-            line-height: 6vh;
+            font-size: 5.9dvh;
+            line-height: 6dvh;
         }
     }
     .diaryList_create {
@@ -361,7 +361,7 @@ $bg-pc-image-alt: url('../../public/pc_diary_password.png');
             }
             .diaryList_submit_button{
                 width: 15rem;
-                height: 8vh;
+                height: 8dvh;
                 font-size: 1.6rem;
             }
         }
@@ -377,22 +377,22 @@ $bg-pc-image-alt: url('../../public/pc_diary_password.png');
         background-image: $bg-pc-image;
         background-repeat : no-repeat; /*가로 세로 */
         background-size : 100% 100%;
-        padding:19vh 0 10vh 33vw; //시계방향 상 우 하 좌
+        padding:19dvh 0 10dvh 33dvw; //시계방향 상 우 하 좌
     }
     .inner_navbar{
         display: block;
         position: absolute;
-        top: 21vh; /* 상단에 위치하도록 설정 */
-        left: 4vw; /* 왼쪽에 위치하도록 설정 */
+        top: 21dvh; /* 상단에 위치하도록 설정 */
+        left: 4dvw; /* 왼쪽에 위치하도록 설정 */
         z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
     }
     .diaryList_inner_formbox{
-        height: 73vh;
-        width: 62vw;
+        height: 73dvh;
+        width: 62dvw;
         //background-color: #fff;
         margin-left: 0dvw;
         &     .inner_title{
-            width: 27vw;
+            width: 27dvw;
             margin-bottom: -3rem;
             
             .diaryList_logout{
@@ -402,8 +402,8 @@ $bg-pc-image-alt: url('../../public/pc_diary_password.png');
             }
         }
         &    .title{
-            font-size: 3.2vw;
-            line-height: 3.7vw;
+            font-size: 3.2dvw;
+            line-height: 3.7dvw;
 
         }
     }
@@ -411,7 +411,7 @@ $bg-pc-image-alt: url('../../public/pc_diary_password.png');
         width: 55%;
         height: 60%;
         z-index: 1;
-        margin-left: 22vw;
+        margin-left: 22dvw;
         margin-bottom: 10dvh;
         margin-top:17dvh;
         //background-color: #464646;
@@ -461,9 +461,9 @@ $bg-pc-image-alt: url('../../public/pc_diary_password.png');
 
             }
             .diaryList_submit_button{
-                width: 14vw;
-                height: 10vh;
-                font-size: 2.3vh;
+                width: 14dvw;
+                height: 10dvh;
+                font-size: 2.3dvh;
                 z-index: 2;
             }
         }

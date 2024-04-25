@@ -8,16 +8,14 @@
   font-style: normal;
 }
 .mobile_navbar{
-    //background-color: #5a5a5a;
     width: 100%;
-    height: 10vh;
-    margin-top: -8vh;
-    margin-left: 1.9vw;
-    line-height: 3.5vh;
+    height: 10dvh;
+    margin-top: -8dvh;
+    margin-left: 1.9dvw;
+    line-height: 3.5dvh;
 }
 .menuButton{
-    font-size: 2.4vh;
-    //background-color: #e6b9b9;
+    font-size: 2.4dvh;
     width: fit-content;
     right: 0;
     top:0;
@@ -29,7 +27,6 @@
   flex-direction: column;
   width: fit-content;
   height: fit-content;
-  //background-color: rgb(234, 255, 248);
   position: relative; /* 부모 컨테이너를 상대적인 위치로 설정 */
 }
 .closeSlideMenu{
@@ -39,26 +36,25 @@
     height: fit-contents;
 }
 .mobile_navbar_title {
-
-    margin-top: 9vh;
+  margin-top: 9dvh;
   color: white;
-  height: 10vh;
-  font-size: 3.5vh;
+  height: 10dvh;
+  font-size: 3.5dvh;
   letter-spacing: 0;
   text-shadow: calc(4.5px * 1) 0 0 #5a5a5a, calc(4.5px * 0.9239) calc(4.5px * 0.3827) 0 #5a5a5a, calc(4.5px * 0.7071) calc(4.5px * 0.7071) 0 #5a5a5a, calc(4.5px * 0.3827) calc(4.5px * 0.9239) 0 #5a5a5a, 0 calc(4.5px * 1) 0 #5a5a5a, calc(4.5px * -0.3827) calc(4.5px * 0.9239) 0 #5a5a5a, calc(4.5px * -0.7071) calc(4.5px * 0.7071) 0 #5a5a5a, calc(4.5px * -0.9239) calc(4.5px * 0.3827) 0 #5a5a5a, calc(4.5px * -1) 0 0 #5a5a5a, calc(4.5px * -0.9239) calc(4.5px * -0.3827) 0 #5a5a5a, calc(4.5px * -0.7071) calc(4.5px * -0.7071) 0 #5a5a5a, calc(4.5px * -0.3827) calc(4.5px * -0.9239) 0 #5a5a5a, 0 calc(4.5px * -1) 0 #5a5a5a, calc(4.5px * 0.3827) calc(4.5px * -0.9239) 0 #5a5a5a, calc(4.5px * 0.7071) calc(4.5px * -0.7071) 0 #5a5a5a, calc(4.5px * 0.9239) calc(4.5px * -0.3827) 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);
 }
 
 .mobile_navbar_sub {
   color: #464646;
-  font-size: 2vh;
+  font-size: 1.7dvh;
+  line-height: 2.5dvh;
   text-shadow: calc(2px * 1) 0 0 #fdddee, calc(2px * 0.9239) calc(2px * 0.3827) 0 #fdddee, calc(2px * 0.7071) calc(2px * 0.7071) 0 #fdddee, calc(2px * 0.3827) calc(2px * 0.9239) 0 #fdddee, 0 calc(2px * 1) 0 #fdddee, calc(2px * -0.3827) calc(2px * 0.9239) 0 #fdddee, calc(2px * -0.7071) calc(2px * 0.7071) 0 #fdddee, calc(2px * -0.9239) calc(2px * 0.3827) 0 #fdddee, calc(2px * -1) 0 0 #fdddee, calc(2px * -0.9239) calc(2px * -0.3827) 0 #fdddee, calc(2px * -0.7071) calc(2px * -0.7071) 0 #fdddee, calc(2px * -0.3827) calc(2px * -0.9239) 0 #fdddee, 0 calc(2px * -1) 0 #fdddee, calc(2px * 0.3827) calc(2px * -0.9239) 0 #fdddee, calc(2px * 0.7071) calc(2px * -0.7071) 0 #fdddee, calc(2px * 0.9239) calc(2px * -0.3827) 0 #fdddee, 5px 8px 5px rgba(0, 0, 0, 0.8);
-
 }
 
 .mobile_navbar_menu {
   color: white;
-  font-size: 2.2vh;
-  margin-top: 7vh;
+  font-size: 2.2dvh;
+  margin-top: 7dvh;
   letter-spacing: 0;
   line-height: 35px;
   text-shadow: calc(3px * 1) 0 0 #5a5a5a, calc(3px * 0.9239) calc(3px * 0.3827) 0 #5a5a5a, calc(3px * 0.7071) calc(3px * 0.7071) 0 #5a5a5a, calc(3px * 0.3827) calc(3px * 0.9239) 0 #5a5a5a, 0 calc(3px * 1) 0 #5a5a5a, calc(3px * -0.3827) calc(3px * 0.9239) 0 #5a5a5a, calc(3px * -0.7071) calc(3px * 0.7071) 0 #5a5a5a, calc(3px * -0.9239) calc(3px * 0.3827) 0 #5a5a5a, calc(3px * -1) 0 0 #5a5a5a, calc(3px * -0.9239) calc(3px * -0.3827) 0 #5a5a5a, calc(3px * -0.7071) calc(3px * -0.7071) 0 #5a5a5a, calc(3px * -0.3827) calc(3px * -0.9239) 0 #5a5a5a, 0 calc(3px * -1) 0 #5a5a5a, calc(3px * 0.3827) calc(3px * -0.9239) 0 #5a5a5a, calc(3px * 0.7071) calc(3px * -0.7071) 0 #5a5a5a, calc(3px * 0.9239) calc(3px * -0.3827) 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);
@@ -70,23 +66,23 @@
 
 .mobileRight {
   position: absolute; /* 절대적인 위치로 설정 */
-  bottom: 20vh; /* 아래쪽으로 위치시킵니다. */
-  right: 10vw; /* 오른쪽으로 위치시킵니다. */
+  bottom: 20dvh; /* 아래쪽으로 위치시킵니다. */
+  right: 10dvw; /* 오른쪽으로 위치시킵니다. */
 }
 
 a {
   text-decoration: none;
-}/*# sourceMappingURL=navbar.css.map */
+}
 
     //메뉴 액션
     #sidebar{
         z-index: 99;  
-        padding: 3vh 1vh 0 3vh; 
+        padding: 3dvh 1dvh 0 3dvh; 
         box-sizing: border-box;
         background-image: url("../../public/mobile_slidemenu.png");
         background-repeat: no-repeat; /*가로 세로 */
         background-size: 100% 100%;
-        height: 100vh;  width: 85vw;  right: -100%;  top: 0; 
+        height: 100dvh;  width: 85dvw;  right: -100%;  top: 0; 
         position: fixed;  transition: 0.5s ease;  
         &.open {    right: 0;    transition: 0.5s ease;  }
     }

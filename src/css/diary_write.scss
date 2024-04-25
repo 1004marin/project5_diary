@@ -95,8 +95,7 @@
 //모바일 세로
 @media screen and (min-width: 280px){
     .moblie_menu{
-        //background-color: antiquewhite;
-        width: 2vw;
+        width: 2dvw;
     }
     .diaryWrite_formbox{
         font-size: 16px;
@@ -117,39 +116,40 @@
         display:flex;
         flex-direction: column;
         height: 83dvh;
-        width: 70vw;
-        //background-color: rgb(232, 255, 255);
+        width: 70dvw;
+        &    .title{
+            font-family: 'Dongle-Regular';
+            align-self: stretch;
+            color: #686868;
+            font-size: 5.2dvh;
+            letter-spacing: 0;
+            flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
+            position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
+            line-height: 6dvh;
+            @include customTextShadow(5px, #ffffff); // thickness와 color를 여기서 조절합니다.
+            span{
+                font-family: 'DOSSaemmul';
+                font-size: 3dvh;
+                margin-left: 1.5dvw;
+            }
+        }
     }
+    
     .inner_title{
         width: auto;
         display: flex;
         position: relative;
         margin-bottom: 3.2dvh;
     }
-    .title{
-        font-family: 'Dongle-Regular';
-        align-self: stretch;
-        color: #686868;
-        font-size: 5.7dvh;
-        letter-spacing: 0;
-        flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
-        position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
-        line-height: 5dvh;
-        @include customTextShadow(5px, #ffffff); // thickness와 color를 여기서 조절합니다.
-        span{
-            font-family: 'DOSSaemmul';
-            font-size: 3dvh;
-            margin-left: 1.5vw;
-        }
-    }
+
     .diaryWrite_inner_formbox .title span{
         font-size: 3dvh;
         font-family: 'Galmuri11';
     }
     .diaryWrite_pinkBubble{
-        width:32vw;
+        width:32dvw;
         height:8dvh;
-        margin: 6dvh 0 0 34vw;
+        margin: 6dvh 0 0 34dvw;
     }
     .diaryWrite_formbox_content{
         width: 100%;
@@ -184,7 +184,7 @@
 }
     .diaryWrite_submit_button{
         border-width: 0;
-        width: 32vw;
+        width: 32dvw;
         height: 8dvh;
         border-radius: 25px;
         box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
@@ -199,7 +199,7 @@
     
     //input중복코드
     @mixin diary-input-style {
-        padding-left: 1vw;
+        padding-left: 1dvw;
         margin: 0.2dvh 0 0.5dvh 0;
         color: #ff989e;
         font-family: 'Dongle-Regular';
@@ -249,7 +249,7 @@
             display: inline-block;
             position: relative;
             box-sizing:border-box;
-            width: 5vw;
+            width: 5dvw;
             height: 3.5dvh;
             box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
             background-image:url("../../public/checkbox_none.png");
@@ -300,7 +300,7 @@
     .diaryWrite_pinkBubble{
         width: 22dvw;
         height: 9dvh;
-        margin-left: 24dvw;
+        margin-left: 21dvw;
     }
     label{
         font-size: 1.7rem;
@@ -310,7 +310,7 @@
         font-size: 3dvh;
     }
     .diaryWrite_submit_button{
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     .weather_icon_1,.weather_icon_2,.weather_icon_3,.weather_icon_4{
         width: 8dvw;
@@ -321,7 +321,7 @@
 //아이패드에어 ~아이패드프로 세로
 @media screen and (min-width: 820px) and (max-width: 1024px){
     .inner_title{
-        width: 48vw;
+        width: 48dvw;
         margin-bottom: 4.5dvh;
     }
     .title{
@@ -334,7 +334,7 @@
     .diaryWrite_pinkBubble{
         width: 22dvw;
         height: 9dvh;
-        margin-left: 28dvw;
+        margin-left: 21dvw;
         margin-top: 7dvh;
     }
     label{
@@ -365,53 +365,53 @@
         background-image: url('../../public/pc_background.png');
         background-repeat : no-repeat; /*가로 세로 */
         background-size : 100% 100%;
-        padding:19dvh 0 10dvh 33vw; //시계방향 상 우 하 좌
+        padding:19dvh 0 10dvh 33dvw; //시계방향 상 우 하 좌
     }
     .inner_navbar{
         display: block;
         position: absolute;
         top: 21dvh; /* 상단에 위치하도록 설정 */
-        left: 4vw; /* 왼쪽에 위치하도록 설정 */
+        left: 4dvw; /* 왼쪽에 위치하도록 설정 */
         z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
     }
     .diaryWrite_inner_formbox{
         height: 73dvh;
-        width: 62vw;
+        width: 62dvw;
     }
     .inner_title{
-        width: 27vw;
+        width: 27dvw;
         margin-bottom: -3rem;
     }
     .title{
-        font-size: 3.2vw;
-        line-height: 4.3vw;
+        font-size: 3.2dvw;
+        line-height: 4.3dvw;
     }
     label{
         font-size: 2.8dvh;
     }
     .diaryWrite_pinkBubble{
-        width: 10vw;
-        height: 5vw;
+        width: 10dvw;
+        height: 5dvw;
         margin-top: 9dvh;
-        margin-left: 10vw;
+        margin-left: 10dvw;
     }
     .diaryWrite_formbox_content{
         width: 40%;
         height: 70%;
-        margin-left: 19vw;
+        margin-left: 19dvw;
         z-index: 1;
         margin-bottom: -10rem;
         margin-top: 6dvh;
         
     }
     .diaryWrite_submit_button{
-        width: 14vw;
+        width: 14dvw;
         height: 10dvh;
         font-size: 2.3dvh;
         z-index: 2;
     }
     input{
-        font-size: 1.9vw;
+        font-size: 1.9dvw;
         height: 3.8dvh;
     }
     .weather_icon_1,.weather_icon_2,.weather_icon_3,.weather_icon_4{
@@ -419,7 +419,7 @@
         height: 7dvh;
     }
     .radio_icon::before{
-        width: 1.3vw;
+        width: 1.3dvw;
         height: 3dvh;
     }
 

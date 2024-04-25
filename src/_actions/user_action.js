@@ -40,7 +40,7 @@ export const NotLogin=()=> {
 
   return async()=>{
     try{
-      alert("권한이 없습니다. 로그인하세요")
+      alert("권한이 없습니다. 부원 증명을 해주세요!")
     }
     catch (error){
       console.error(error);
@@ -65,7 +65,7 @@ export const refreshAccessToken = () => {
         localStorage.setItem('accessToken', newAccessToken);
 
         console.log("액세스토큰 갱신 완료")
-        alert("토큰 갱신! 다시시도해주세용")
+        alert("토큰 갱신! 다시 시도해주세용")
         window.location.reload();//업뎃 보여주기용
         return;
       })
@@ -97,8 +97,7 @@ export const ExpiredRefreshError = () => {
       type: EXPIRED_REFRESH
     });
      console.log("액세스,리프레시 만료: 로그아웃!")
-     alert("토큰이 만료되었어용. 다시 로그인하세요")
-//.로그인페이지로 이동 법
+     alert("토큰이 만료되었어용. 다시 부원 인증해주세요!")
   }
 
 }
