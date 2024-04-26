@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400..700;1,400..700&display=swap");
 @import "reset.css";
 @font-face {
@@ -24,6 +25,8 @@
   display: flex;
   flex-direction: column;
   font-family: "Dongle-Regular";
+  /*webkit (Chrome)의 경우*/
+  /*Firefox의 경우*/
 }
 .diaryDraw_form_content .draw_add_1,
 .diaryDraw_form_content .draw_add_2,
@@ -79,11 +82,47 @@
   margin-bottom: 5px;
 }
 .diaryDraw_form_content input[type=range] {
-  background: linear-gradient(to right, #ffe5ed 0%, #ffb1c5, #ff9a9a, #ff8787);
-  border-radius: 8px;
-  outline: none;
+  -webkit-appearance: none; /* 기본슬라이드 숨기기*/
+  width: 100%; /* Firefox에서는 특정한 넓이가 필요*/
+  background: transparent; /* Chrome에서 투명하게 출력 */
+  border: none;
+  padding: 0;
+}
+.diaryDraw_form_content input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1.3dvh;
+  cursor: pointer;
+  box-shadow: inset 0 0.5px 0.5px 0 rgba(0, 0, 0, 0.25);
+  background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0, #fff);
+}
+.diaryDraw_form_content input[type=range]::-webkit-slider-thumb {
+  height: 2.6dvh;
+  width: 2dvh;
+  border: 3px solid rgb(255, 186, 186);
+  border-radius: 10%;
+  background-color: #ffffff;
+  cursor: pointer;
   -webkit-appearance: none;
-  accent-color: #ff6075;
+  margin-top: -0.5dvh; /*chrome의 경우 margin-top값을 부여해야합니다.*/
+}
+.diaryDraw_form_content input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ffdbdb; /*네모버튼에 포커스를 줬을때 뒤에 라인(ㅡ)의 효과*/
+}
+.diaryDraw_form_content input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 7px;
+  cursor: pointer;
+  box-shadow: inset 0 0.5px 0.5px 0 rgba(0, 0, 0, 0.25);
+  background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0, #fff);
+}
+.diaryDraw_form_content input[type=range]::-moz-range-thumb {
+  height: 2dvh;
+  width: 15px;
+  border: 3px solid rgb(255, 186, 186);
+  border-radius: 10%;
+  background-color: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
 }
 .diaryDraw_form_content input[type=file]::file-selector-button {
   width: 150px;
