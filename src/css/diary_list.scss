@@ -144,7 +144,9 @@ $bg-pc-image-alt: url('../../public/pc_diary_password.png');
             font-size: 1.35dvh;
             font-family: 'DOSSaemmul';
         }
-
+        a{
+            color: #1e1e1e;
+        }
         ul{
             display: flex;
             flex-wrap: wrap; /* 자식 요소가 가로로 넘칠 때 줄 바꿈*/

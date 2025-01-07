@@ -32,12 +32,11 @@ function DiaryListPage() {
 const onLogoutHandler = () => {
   dispatch(logoutUser())
     .then(response => {
-      console.log(response);
       navigate('/')
     })
     .catch(error => {
       // 로그아웃 중 에러가 발생한 경우 여기에 처리를 할 수 있습니다.
-      console.error('Logout Error:', error);
+      //console.error('Logout Error:', error);
     });
 };
 
@@ -52,11 +51,9 @@ const onLogoutHandler = () => {
         setDiaries(response.data)
         setDiaryNum(response.data.length)
 
-        console.log(response.data)
-        console.log(response.data.length)
       } catch (error) {
 
-        console.error('Error fetching diaries:', error);
+        //console.error('Error fetching diaries:', error);
         alert("다이어리 찾기에 실패했어요! 부원인지 다시 증명해주세요!")
         navigate("/")
       
@@ -74,7 +71,6 @@ const onLogoutHandler = () => {
 
 //다이어리 입장 버튼: 1)다이어리 id가 선택되었을 때만 2) 선택했을 때만 버튼 보이게 수정
   const onDiaryEnterHandler =() => {
-    console.log("다요리 enter:", Client_diaryId)
     const storedAccessToken = localStorage.getItem("accessToken");
     axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
@@ -84,16 +80,13 @@ const onLogoutHandler = () => {
 
     axios.post(`/api/v1/diary/${Client_diaryId}/password`, jsonDiaryPassword)
     .then(response=> {
-      console.log(response.data)
       if(response.data === '비밀번호 일치'){
-        console.log(Client_diaryId)
         setis_diary_clicked(false)//비번 입력창 보이게
         navigate('/diaryContent', { state: { Client_diaryId } })
       }})   
     .catch(error => {
       if(error.response.data.message === "비밀번호가 일치하지 않습니다"){
-        console.log("다이어리 비번 에러:", error)
-        alert("비번틀림")
+        alert("암호가 틀렸어요!")
       }
       else{
         alert("에러가 발생했어요! 다시 돌아가주세요!")
@@ -151,7 +144,6 @@ const onLogoutHandler = () => {
                         setClient_diaryId(diary.diaryId);
                         onPasswordHandler();
                         handlePasswordPage();
-                        console.log("Client_diaryId:", diary.diaryId);
                       }}>
                         {diary.name}
                       </li>

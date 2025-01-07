@@ -43,26 +43,53 @@ const DiaryDrawPage = ({ onSaveDrawing }) => {
         });
         canvas.add(text);
     };
-    // 이미지 삽입
-    const addImage = (file) => {
-        if (!canvas || !file) return;
-    
-        const reader = new FileReader();
-        reader.onload = function (event) {
-            const imgObj = new Image();
-            imgObj.src = event.target.result;
-            imgObj.onload = function () {
-                const image = new fabric.Image(imgObj, {
-                    left: 100,
-                    top: 100,
-                    scaleX: 0.5,
-                    scaleY: 0.5,
-                });
-                canvas.add(image);
-            };
-        };
-        reader.readAsDataURL(file);
+// 이미지 삽입
+const addImage = (file) => {
+    if (!canvas || !file) return;
+  
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const imgObj = new Image();
+      imgObj.src = event.target.result;
+  
+      imgObj.onload = function () {
+        // 이미지 크기 계산 (캔버스 크기에 맞게 리사이즈)
+        const canvasWidth = canvas.getWidth();  // 캔버스의 너비
+        const canvasHeight = canvas.getHeight();  // 캔버스의 높이
+  
+        const imgWidth = imgObj.width;
+        const imgHeight = imgObj.height;
+  
+        // 이미지 비율 계산
+        const imgRatio = imgWidth / imgHeight;
+        const canvasRatio = canvasWidth / canvasHeight;
+  
+        let scaledWidth, scaledHeight;
+  
+        // 이미지가 캔버스보다 클 경우 비율을 유지하여 리사이즈
+        if (imgRatio > canvasRatio) {
+          scaledWidth = canvasWidth;
+          scaledHeight = scaledWidth / imgRatio;
+        } else {
+          scaledHeight = canvasHeight;
+          scaledWidth = scaledHeight * imgRatio;
+        }
+  
+        // 이미지 삽입
+        const image = new fabric.Image(imgObj, {
+          left: (canvasWidth - scaledWidth) / 2,  // 중앙 배치
+          top: (canvasHeight - scaledHeight) / 2,  // 중앙 배치
+          scaleX: scaledWidth / imgWidth,  // 가로 비율 조정
+          scaleY: scaledHeight / imgHeight,  // 세로 비율 조정
+        });
+  
+        // 캔버스에 이미지 추가
+        canvas.add(image);
+      };
     };
+  
+    reader.readAsDataURL(file);
+  };
     // 도형 삽입
     const addShape = (shapeType) => {
         if (!canvas) return;

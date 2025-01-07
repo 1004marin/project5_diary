@@ -61,7 +61,7 @@ function RegisterPage() {
             return;
           } 
           if(Email === ""){
-            alert("이메일입력해")
+            alert("이메일을 입력해주세요.")
             return;
         }
 
@@ -70,7 +70,6 @@ function RegisterPage() {
         .then(response => {
         const emailCheck = response.data;
 
-        console.log(emailCheck)
         if(emailCheck === "사용 가능한 이메일"){
 
             setEmailDuplicate_notice("기존 부원과 겹치지 않아요.")
@@ -79,7 +78,6 @@ function RegisterPage() {
 
             axios.post('/mail', jsonEmail).then(
                 response=>{
-                    console.log(response)
                     setRealcode(response.data)
                 }
             )
@@ -100,37 +98,29 @@ function RegisterPage() {
      //닉네임중복체크
      const onDuplicateUserNameHandler = (e) => {
         if(Name === ""){
-            alert("닉네임을 입력하세용")
+            alert("닉네임을 입력하세요.")
             return;//탈출
         }
         const jsonName = {"username" : Name}
-        console.log(Name)
 
         axios.post('/duplicateUsername', jsonName)
         .then(response => {
-
-            const nameCheck = response.data; //데이터
-
             if(response.status === 200){
-                console.log(nameCheck)
-                console.log(response.status)
                 setDuplicateUsername("success")
                 setNameDuplicate_notice("처음 온 부원이네요.")
                 return;
             }
-            else { 
-                console.log(nameCheck)
-                console.log(response.status)
-                setDuplicateUsername("false")
-                setNameDuplicate_notice("이미 존재하는 부원이에요.")
-            }
             }
         )
-        .catch( err => {
-            console.log(err)
+        .catch(err => {
+            if(err.response.data.message ==="이미 존재하는 이름입니다."){
+            setDuplicateUsername("false")
+            setNameDuplicate_notice("이미 존재하는 부원이에요.")}
+            else{
+                return alert('이메일 중복 체크 에러')
+            }
         }
         )
-        //console.log(Name)
     }
 
 
@@ -141,14 +131,14 @@ function RegisterPage() {
 
     const onEmailCode_CheckHandler = () => {
         if(EmailCode === ""){//입력 안했을때
-            return alert("인증번호를 입력하세요")
+            return alert("인증번호를 입력하세요.")
         }
         if(EmailCode === Realcode){
-            setEmailCodeCheck_notice("인증번호 일치하긔")
+            setEmailCodeCheck_notice("인증번호가 일치해요.")
             setEmailCode_Check("success")
         }
         else{
-            return setEmailCodeCheck_notice("인증번호를 다시 체크해주세요")
+            return setEmailCodeCheck_notice("인증번호를 다시 체크해주세요.")
         }
     }
 
@@ -173,7 +163,6 @@ function RegisterPage() {
   
         dispatch(registerUser(body))
         .then(response => {
-            console.log(response)
             if(response.payload === '회원 가입 완료'){
                 navigate('/registerComplete')
                 alert('일기교환 클럽의 부원이 되었어요!')
@@ -196,7 +185,7 @@ function RegisterPage() {
             <div className='inner_formBox_title'>
                 <div className='title'>일기교환클럽<br/>
                     입부 신청서...</div>
-                <img className="letter"src={process.env.PUBLIC_URL + '/letter.png'} />
+                <img className="letter"src={process.env.PUBLIC_URL + '/letter.png'} alt=""/>
             </div>
             <div className='inner_formBox_content'>
 

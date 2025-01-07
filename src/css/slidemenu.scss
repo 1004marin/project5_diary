@@ -59,6 +59,12 @@
   line-height: 35px;
   text-shadow: calc(3px * 1) 0 0 #5a5a5a, calc(3px * 0.9239) calc(3px * 0.3827) 0 #5a5a5a, calc(3px * 0.7071) calc(3px * 0.7071) 0 #5a5a5a, calc(3px * 0.3827) calc(3px * 0.9239) 0 #5a5a5a, 0 calc(3px * 1) 0 #5a5a5a, calc(3px * -0.3827) calc(3px * 0.9239) 0 #5a5a5a, calc(3px * -0.7071) calc(3px * 0.7071) 0 #5a5a5a, calc(3px * -0.9239) calc(3px * 0.3827) 0 #5a5a5a, calc(3px * -1) 0 0 #5a5a5a, calc(3px * -0.9239) calc(3px * -0.3827) 0 #5a5a5a, calc(3px * -0.7071) calc(3px * -0.7071) 0 #5a5a5a, calc(3px * -0.3827) calc(3px * -0.9239) 0 #5a5a5a, 0 calc(3px * -1) 0 #5a5a5a, calc(3px * 0.3827) calc(3px * -0.9239) 0 #5a5a5a, calc(3px * 0.7071) calc(3px * -0.7071) 0 #5a5a5a, calc(3px * 0.9239) calc(3px * -0.3827) 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);
 }
+.mobile_navbar_menu li {
+  display: flex; /* Flexbox로 자식 요소 배치 */
+  justify-content: space-between; /* 양쪽 끝에 배치 */
+  align-items: center; /* 세로 중앙 정렬 */
+  width: 63dvw;
+}
 .mobile_navbar_menu .link {
   color: white;
   text-shadow: calc(3px * 1) 0 0 #5a5a5a, calc(3px * 0.9239) calc(3px * 0.3827) 0 #5a5a5a, calc(3px * 0.7071) calc(3px * 0.7071) 0 #5a5a5a, calc(3px * 0.3827) calc(3px * 0.9239) 0 #5a5a5a, 0 calc(3px * 1) 0 #5a5a5a, calc(3px * -0.3827) calc(3px * 0.9239) 0 #5a5a5a, calc(3px * -0.7071) calc(3px * 0.7071) 0 #5a5a5a, calc(3px * -0.9239) calc(3px * 0.3827) 0 #5a5a5a, calc(3px * -1) 0 0 #5a5a5a, calc(3px * -0.9239) calc(3px * -0.3827) 0 #5a5a5a, calc(3px * -0.7071) calc(3px * -0.7071) 0 #5a5a5a, calc(3px * -0.3827) calc(3px * -0.9239) 0 #5a5a5a, 0 calc(3px * -1) 0 #5a5a5a, calc(3px * 0.3827) calc(3px * -0.9239) 0 #5a5a5a, calc(3px * 0.7071) calc(3px * -0.7071) 0 #5a5a5a, calc(3px * 0.9239) calc(3px * -0.3827) 0 #5a5a5a, 5px 8px 5px rgba(0, 0, 0, 0.8);

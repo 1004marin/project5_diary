@@ -20,16 +20,11 @@ import DiaryWritePage from './components/views/DiaryPage/DiaryWritePage';
 import DiaryInfoPage from './components/views/DiaryPage/DiaryInfoPage';
 import DiaryDrawPage from './components/views/DiaryPage/DiaryDrawPage';
 import DiaryPostPage from './components/views/DiaryPage/DiaryPostPage';
-import DiaryCreateCompletePage from './components/views/DiaryPage/DiaryCreateCompletePage';
 
 const is_refreshToken = localStorage.getItem("refreshToken");
 const is_accessToken = localStorage.getItem("accessToken");
 const is_logined = localStorage.getItem("is_logined");
 const is_user = localStorage.getItem("logined_user");
-    console.log("app액세스",is_accessToken)
-    console.log("app리프레시",is_refreshToken)
-    console.log("로긘상태",is_logined)
-    console.log("윶이름",is_user)
 
 function App() {
 
@@ -47,7 +42,6 @@ function App() {
         <Route path="/password" element={<PasswordPage/>}/>
 
         <Route path="/diaryCreate" element={<DiaryCreatePage/>}/>
-        <Route path="/diaryCreateComplete" element={<DiaryCreateCompletePage/>}/>
         <Route path="/diaryList" element={<DiaryListPage/>}/>
         <Route path="/diaryContent" element={<DiaryContentPage/>}/>
         <Route path="/diaryWrite" element={<DiaryWritePage/>}/>

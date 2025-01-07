@@ -54,7 +54,11 @@
     flex-direction: column;
     height: 50dvh;
     width: 80dvw;
-    //background-color: antiquewhite;
+
+    & a{
+      margin-right: 12%;
+      margin-top: 20%;
+    }
   }
 .complete_message{
     background-image: url('../../public/letter_complete.png');
@@ -73,14 +77,9 @@
   transform: rotate(-358.07deg);
 }
 .complete_toLogin{
-  position: absolute;
   @include customTextShadow(2px, #fdddee); 
   color: #464646;
-  font-size: 1.8rem;
-  bottom:0;
-  width: fit-content;
-  height: fit-content;
-  background-color: #464646;
+  font-size: 1.5rem;
   text-decoration: none;
 }
 //모바일 세로~
@@ -112,24 +111,27 @@
     background-image: url('../../public/pc_registerComplete.png');
   }
   .registerComplete_box{
-    top: 33dvh; /* 부모 요소의 상단에 배치합니다. */
-    height: 53dvh;
-    width:55dvw;
+    top: 27dvh; /* 부모 요소의 상단에 배치합니다. */
+    height: 70%;
+    width:35dvw;
     overflow: hidden; /* 자식이 부모 넘지 않도록 ->스크롤 막기 */
     padding-left: 0;
+      & a{
+        margin-right: 12%;
+        margin-top: 50dvh;
+      }
   }
 .complete_message{
-    height: 44dvh;
+    width: 20dvw;
+    height: 35dvh;
     right: 0;
-    padding-left:9dvw;
-    padding-top: 11dvh;
-    line-height: 5dvh;
-    font-size:3.7dvh;
-    width: 22dvw;
+    padding-left:8dvw;
+    padding-top: 9dvh;
+    line-height: 4.3dvh;
+    font-size:3.4dvh;
     position: absolute;
 }
 .complete_toLogin{
-  font-size: 2rem;
-  display: block; /* 작은 화면에서 보이도록 표시합니다. */
+  font-size: 3dvh;
 }
 }

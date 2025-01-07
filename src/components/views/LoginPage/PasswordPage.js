@@ -38,7 +38,7 @@ function PasswordPage() {
     const onEmailCode_SendHandler = () =>{
         //이메일형식
          if (!validateEmail(Email)) {
-            alert('올바른 이메일 형식이 아닙니다.');
+            alert('올바른 이메일 형식이 아니에요.');
             return;
         } 
         const jsonEmail = {
@@ -53,14 +53,13 @@ function PasswordPage() {
                 setRealcode(response.data)
                 console.log(Realcode)
 
-                setEmailCode_notice("메일보냇으니 입력하세요")
+                setEmailCode_notice("메일 보냈으니 입력하세요")
             })
         .catch(error=>{
-            if(Realcode === "존재하지 않는 이메일입니다."){
-                alert("이메일이 없네여")
+            if(error.response.data.message === "존재하지 않는 이메일입니다."){
+                alert("존재하지 않는 이메일이에요")
             }
             else{
-                console.error('에러 발생:', error);
                 alert('서버에 문제가 발생했습니다. 나중에 다시 시도해주세요.');
             }
         })
@@ -70,7 +69,7 @@ function PasswordPage() {
     }
     const onEmailCode_CheckHandler = () => {
         if(EmailCode === ""){
-            alert("인증번호를 입력해주세용")
+            alert("인증번호를 입력해주세요")
         }
         if(EmailCode === Realcode){
             setEmailCode_notice("인증번호가 일치해요")
@@ -107,11 +106,11 @@ function PasswordPage() {
         ).catch(
             error => {
                 if(error.response.data.message === "동일한 비밀번호로 변경할 수 없습니다."){
-                    alert("동일한 비번이라 안되용")
+                    alert("동일한 비번이라 변경이 불가능해요")
                 }
                 else{
-                    alert("서버에 에러가 발생했어용")
-                    console.log(error)
+                    alert("서버에 에러가 발생했어요")
+                    //console.log(error)
                 }
             }
         )

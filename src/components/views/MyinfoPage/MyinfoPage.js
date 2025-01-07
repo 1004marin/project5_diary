@@ -29,12 +29,11 @@ function MyinfoPage() {
         setEmail(response.data.email);
         setUsername(response.data.username);
         setMotto(response.data.motto);
-        setBloodType(response.data.bloodType);
+        setBloodType(response.data.bloodType || null); // null 처리
         setAddress(response.data.address);
         setNickname(response.data.nickname);
       })
       .catch(error => {
-        console.log(error);
         alert("권한이 없습니다. 부원 인증을 해주세요!")
         navigate('/')
       });
@@ -61,18 +60,19 @@ const onAddressHandler = (e) =>{
 
 const onSubmitHandler = (e) => {
   e.preventDefault(); // 새로 고침 방지
-    const body = {
+  const body = {
     "address": Address,
-    "bloodType": BloodType,
     "motto": Motto,
-    "nickname": Nickname
+    "nickname": Nickname,
   };
+  if (BloodType === null) {
+    body.bloodType = "NONE";
+  }
+  else{
+    body.bloodType = BloodType;
+  }
   const storedAccessToken = localStorage.getItem("accessToken");
   const storedRefreshToken = localStorage.getItem("refreshToken");
-  
-  console.log(storedAccessToken)
-  console.log(storedRefreshToken)
-  console.log(body)
 
   axios.patch("/api/v1/user", body)
     .then(response => {
@@ -86,9 +86,11 @@ const onSubmitHandler = (e) => {
       }
     })
     .catch(error => {
-      console.error('Error from server:', error);
+      console.log(body)
+      console.log("업뎃실패에요", error)
       // 서버로의 요청에서 오류가 발생한 경우 콘솔에 오류 메시지 출력
       alert("서버 오류가 발생하였습니다ㅜ^ㅜ");
+
     });
 };
 

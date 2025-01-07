@@ -229,7 +229,9 @@
         overflow-wrap: break-word; /* 가로 너비를 초과할 경우 단어 단위로 줄 바꿈 */
         word-wrap: break-word; /* IE 호환을 위해 추가 */
 
-        min-height: 15vh;
+        min-height: 30dvh;/*최소 높이 설정 */
+        max-height: 50dvh; /* 최대 높이 설정 */
+        overflow-y: auto; /* 세로 스크롤 추가 */
         line-height: 3dvh;
         height: auto;
         padding: 0.8vh; /* 텍스트 입력란의 패딩을 설정합니다. */
@@ -284,15 +286,25 @@
         width: 11dvw;
         height: 7dvh;
     }
-
-    .diaryPost_img{
-        width: 99%;
-        height: 30dvh;
-        margin-bottom: 20px;
+    .diaryPost_img-wrapper {
+        overflow: hidden; /* 이미지가 부모 요소를 벗어나지 않도록 자르기 */
+        height: 80vh; /* 부모의 세로 크기 설정 */
+        width: 100%; /* 부모의 가로 크기를 제한 */
+        display: flex;
+        justify-content: center; /* 이미지를 중앙에 정렬 */
+        align-items: center; /* 이미지를 중앙에 정렬 */
+        background-color: #573131; /* 배경색으로 이미지가 안 보일 경우 확인 가능 */
+    }
+    
+    .diaryPost_img {
+        max-width: 100%; /* 부모 너비를 넘지 않도록 제한 */
+        max-height: 100%; /* 부모 높이를 넘지 않도록 제한 */
+        object-fit: contain; /* 이미지 비율을 유지하면서 부모 영역에 맞추기 */
         border: 2px #ffc1c1 solid;
         border-radius: 10px;
         box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     }
+    
     .weather_icon_1{
         background-image: url('../../public/sunny.png');
     }
@@ -325,6 +337,7 @@
         justify-content: space-between;
         height: 7.5dvh;
         padding: 5px 3px 5px 5px;
+        margin-bottom: 1dvh;
         .react_username{
         color: #FF858D;
         display: flex;

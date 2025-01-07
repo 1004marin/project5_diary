@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 function LoginPage() {
     const dispatch= useDispatch()
-  const navigate = useNavigate();
+    const navigate = useNavigate();
     const [Username, setUsername] = useState("")
     const [Password, setPassword] = useState("")
 
@@ -47,13 +47,12 @@ function LoginPage() {
     dispatch(loginUser(body))
         .then(response => {
             if (response.status === 200) {
-                alert('로그인 성공했습니다!');
+                alert('로그인에 성공했어요');
                 navigate('/diaryList');
             } 
         })
         .catch(error => {
-            alert('아디 비번 확인하세요! 에러에용');
-            console.error('Async Action Error:', error);
+            alert('아이디 비번 확인하세요! 에러에요');
         });
     }
   return (
@@ -69,7 +68,6 @@ function LoginPage() {
             <div className='inner_title'>
                 <div className='title'>일기교환클럽<br/>
                                 부원 확인 중...</div>
-                <img className="login_pinkBubble"src={process.env.PUBLIC_URL + '/pink.png'} />
             </div>
     <form className='login_formbox_content' onSubmit={onSubmitHandler}>
         <div className='login_card'>

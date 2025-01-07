@@ -35,7 +35,7 @@ function DiaryContentPage() {
             state: { 
                 Client_postId: postId,
                 Client_diaryId,
-                post_writer
+                post_writer: postWriter
               }
         })
     }
@@ -64,7 +64,6 @@ function DiaryContentPage() {
         axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
         // 서버에서 해당 월에 있는 포스트를 가져오는 API를 호출합니다.
             try {
-                console.log('실행')
                 setLoading(true); // 데이터 가져오는 중 로딩 시작
                 const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-01`;
                 const response =await axios.get(`/api/v1/diary/${Client_diaryId}`, { params: { yearMonth: formattedDate } });
@@ -73,10 +72,9 @@ function DiaryContentPage() {
                 //setSelectedPost([]);
                 //1)달 바꾸고 [빈배열]=> 2) post있는 날짜 클릭[selected]  => 3)2)로 인해 컴포넌트 마운트되면서 다시 
             } catch (error) {
-                console.error('Error getting posts:', error);
+                //console.error('Error getting posts:', error);
             } finally {
                 setLoading(false); // 데이터 가져오기 완료 후 로딩 종료
-                console.log('실행ㅇㄹ')
             }
             
 
@@ -106,7 +104,10 @@ function DiaryContentPage() {
         navigate('/diaryInfo', { state: { Client_diaryId } })
     }
     const onMemberInviteHandler=()=>{
-
+        if(member_to_add === ""){
+            alert("부원 이름을 입력하셨나요?")
+            return;
+        }
         const storedAccessToken = localStorage.getItem("accessToken");
         axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
@@ -115,20 +116,22 @@ function DiaryContentPage() {
         }
         axios.post(`/api/v1/diary/${Client_diaryId}/member`, jsonAddMem)
         .then(response=>{
-            console.log(response.data)
 
             if(response.data === "멤버 추가 완료"){
                 alert("멤버 추가 성공!")
             }
         })
         .catch(error=>{
-            console.log(error)
+            if(error.response.data.message === '이미 초대된 회원입니다.'){
+                alert("이미 초대한 부원!")
+                return;
+            }
             if(error.response.data.message === 'Diary member limit exceeded'){
-                alert("멤버제한 초과에요!")
+                alert("최대 멤버 인원 초과!")
                 return;
             }
             if(error.response.data.message === '존재하지 않는 회원입니다.'){
-                alert("존재하지 않는 부원이에용!")
+                alert("존재하지 않는 부원!")
                 return;
             }
             else{

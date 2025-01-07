@@ -60,6 +60,8 @@
 }
 
 .mobile_navbar_menu {
+  display: flex;
+  justify-content: space-between; /* 양쪽 끝으로 배치 */
   color: white;
   font-size: 2.2dvh;
   margin-top: 7dvh;

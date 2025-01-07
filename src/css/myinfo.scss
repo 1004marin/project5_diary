@@ -178,11 +178,20 @@
         border-radius: 9px;
         border: solid 1px #fbd5dc;
         background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%);
-
         overflow-x: auto;
     }
     .myinfo_fixed_input{
-        @extend input
+        padding-left: 1dvw;
+        color: #ff989e;
+        @include customText_NoneShadow(2px, #ffffff); // thickness와 color를 여기서 조절합니다.
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 2.7dvh;
+        font-weight: 300;
+        height: 4dvh;
+        border-radius: 9px;
+        border: solid 1px #fbd5dc;
+        background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%);
     }
     
     .radio-container{

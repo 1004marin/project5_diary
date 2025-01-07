@@ -23,20 +23,17 @@ function DiaryInfoPage() {
         setDiaryIntroduce(e.currentTarget.value)
     }
     const onDiaryLeaveHandler=()=>{
-        console.log("핸들러")
         axios.get(`/api/v1/diary/${Client_diaryId}/memberCount`).then(
             response=>{
                 if(response.data >= 2){
                     axios.post(`/api/v1/diary/${Client_diaryId}/exit`).then(
                         response=>{
                             if(response.data === "탈퇴 완료"){
-                                console.log("다요리 탈퇴 완료") 
                                 alert("다요리 탈퇴 완료!")
                                 navigate('/diaryList')
                             }
                         }
                     ).catch(error=>{
-                        console.log(error)
                         alert("다요리 탈퇴 에러!")
                     }
                     )
@@ -52,20 +49,19 @@ function DiaryInfoPage() {
         if(value === 'yes'){
             axios.delete(`/api/v1/diary/${Client_diaryId}`).then(
                 response=>{
-                    console.log(response)
                     if(response.data === '삭제 완료'){
-                        alert('삭제 완료되었어용')
+                        alert('삭제 완료되었어요!')
                         navigate('/diaryList')
                     }
                 }
             ).catch(error=>{
-                console.log("다이어리 삭제 에러:",error)
+                //console.log("다이어리 삭제 에러:",error)
             })
 
         }
         if(value === 'no'){
             setVisible_yesOrNo(false)
-            alert("삭제 안할게요")
+            alert("삭제 안할게요!")
             setDiaryDelete_notice("")
         }
     }
@@ -81,14 +77,13 @@ function DiaryInfoPage() {
         }
         axios.patch(`/api/v1/diary/${Client_diaryId}/introduce`, jsonIntroduce)
         .then(response=>{
-            console.log(response)
             if(response.status === 200){
                 alert("소개 업뎃 완료!")
             }
             window.location.reload();//업뎃 보여주기용
         })
         .catch(error=>{
-            console.log(error)
+            //console.log(error)
             alert("소개 업뎃 에러")
         }
 
@@ -101,12 +96,10 @@ function DiaryInfoPage() {
 
         axios.get(`/api/v1/diary/${Client_diaryId}/info`)
         .then(response=>{
-            console.log(response)
             setDiaryInfo(response.data);
         }
         )
         .catch(error=>{
-            console.log(error)
             alert("다이어리 찾기에 실패했어요! 다시 입장해주세요!")
             navigate("/diaryList")
         })

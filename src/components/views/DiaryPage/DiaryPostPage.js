@@ -70,7 +70,10 @@ function DiaryPostPage() {
       setStamp(e.currentTarget.value)
     }
     const onStampSubmitHandler=()=>{
-      console.log(Stamp)
+      if(Stamp ===""){
+        alert("도장을 고르셨나요?")
+        return;
+      }
       const jsonStamp = {stamp: Stamp}
 
       const storedAccessToken = localStorage.getItem("accessToken");
@@ -78,7 +81,6 @@ function DiaryPostPage() {
 
       axios.post(`/api/v1/diary/${Client_diaryId}/${Client_postId}/react`, jsonStamp)
       .then(response => {
-        console.log(response)
         alert("도장을 찍었어요!")
         window.location.reload();//업뎃 보여주기용
       })
@@ -90,7 +92,6 @@ function DiaryPostPage() {
 
     //일기 삭제
     const onDiaryDeleteHandler = ()=>{
-
       if( post_writer !==now_username ){
         alert("내가 쓴 일기가 아니에요! 삭제금지!ㅡㅡ")
         return;
@@ -121,18 +122,15 @@ function DiaryPostPage() {
           }
         });
       } 
-      console.log(already_Stamped)
     },[logined_username, StampList])
     
     useEffect(()=>{
         const storedAccessToken = localStorage.getItem("accessToken");
         axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
         
-        console.log(logined_username)
-        console.log(Client_diaryId, Client_postId)
+
         axios.get(`/api/v1/diary/${Client_diaryId}/post/${Client_postId}`)
         .then(response => {
-            console.log(response.data)
 
             const Post = response.data
             setDiaryTitle(Post.title)
@@ -152,7 +150,6 @@ function DiaryPostPage() {
 
         axios.get(`/api/v1/diary/${Client_diaryId}/${Client_postId}/react`)
         .then(response=>{
-          console.log(response)
           setStampList(response.data)
 
         })
@@ -215,8 +212,11 @@ function DiaryPostPage() {
             <label>Content</label>
             <div className='write_text'>{DiaryContent}</div>
 
-            {DiaryImage &&(<label>Draw</label>)}
-            {DiaryImage && (<img className="diaryPost_img" src={`data:image/png;base64,${DiaryImage}`}  alt="image"/>)}
+            {DiaryImage &&(<label className='diaryPost_img_title'>Draw</label>)}
+            <div className='diaryPost_img-wrapper'>
+              {DiaryImage && (<img className="diaryPost_img" src={`data:image/png;base64,${DiaryImage}`}  alt="image"/>)}
+            </div>
+           
             
             <label>Stamp</label>
             <div>

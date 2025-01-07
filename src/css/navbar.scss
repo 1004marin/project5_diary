@@ -56,6 +56,7 @@
     @include customTextShadow(2px, #fdddee);
 }
 .navbar_menu{
+    width: 95%;
     color: white;
     font-size: 1.1dvw;
     letter-spacing: 0;
@@ -65,6 +66,11 @@
         color: white;
         @include customTextShadow(3px, #5a5a5a); // thickness와 color를 여기서 조절합니다.
       }
+}
+.navbar_menu li {
+    display: flex; /* Flexbox로 자식 요소 배치 */
+    justify-content: space-between; /* 양쪽 끝에 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
 }
 
 .right{

@@ -14,12 +14,11 @@ const navigate = useNavigate()
 const onLogoutHandler = () => {
   dispatch(logoutUser())
     .then(response => {
-      console.log(response);
       navigate('/')
     })
     .catch(error => {
       // 로그아웃 중 에러가 발생한 경우 여기에 처리를 할 수 있습니다.
-      console.error('Logout Error:', error);
+      //console.error('Logout Error:', error);
     });
 };
 //
@@ -75,14 +74,14 @@ const handleClickOutside = (event) => {
 
             <ul  className='mobile_navbar_menu'>
                 {localStorage.getItem("is_logined") ? (
-                    <li onClick={onLogoutHandler}>로그아웃...............3</li>
+                    <li onClick={onLogoutHandler}><span>로그아웃</span><span>. . . 3</span></li>
                     ) : (
                     <Link to='/'>
-                    <li className='link'>로그인................3</li>
+                    <li className='link'><span>로그인</span><span>. . . 3</span></li>
                     </Link>
                     )}
-                    <li onClick={onLinkHandler1}>자기소개서...........12</li>
-                    <li onClick={onLinkHandler2}>내 교환일기들........34</li>
+                    <li onClick={onLinkHandler1}><span>자기소개서</span><span>. . . 12</span></li>
+                    <li onClick={onLinkHandler2}><span>내 교환일기들</span><span>. . . 34</span></li>
             </ul>
 
             <div className='mobile_navbar_sub mobileRight'>오늘은 어떤 일기가<br/>기다리고 있을까</div>

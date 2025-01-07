@@ -44,9 +44,8 @@ function MyinfoDeletePage() {
         
             axios.delete('/api/v1/user', params).then(
             response => {
-                console.log(response)
                 if(response.data === "회원 탈퇴 성공"){
-                alert("탈퇴성공이요")
+                alert("탈퇴성공이요!")
                 }
                 navigate('/');
             }

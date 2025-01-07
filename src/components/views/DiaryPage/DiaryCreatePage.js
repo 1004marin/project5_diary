@@ -16,6 +16,9 @@ const [DiaryIntroduce,setDiaryIntroduce] = useState("")
 const [DiaryPassword, setDiaryPassword] = useState("")
 const [DiaryMax, setDiaryMax] = useState("")
 
+// 기존 다이어리 이름 목록 저장
+const [existingDiaryNames, setExistingDiaryNames] = useState([]); 
+
 const onDiaryNameHandler = (e) =>{
     setDiaryName(e.currentTarget.value)
 }
@@ -29,6 +32,29 @@ const onDiaryMaxHandler = (e) =>{
     setDiaryMax(e.currentTarget.value)
 }
 
+
+  // 서버에서 다이어리 리스트 가져오기
+  useEffect(() => {
+    const fetchDiaries = async () => {
+      try {
+        const storedAccessToken = localStorage.getItem('accessToken');
+        axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
+
+        const response = await axios.get('/api/v1/diary');
+        const diaryTitles = response.data.map((diary) => diary.name); // 다이어리 이름만 추출
+        setExistingDiaryNames(diaryTitles); // 저장
+      } catch (error) {
+        console.error('다이어리 목록 불러오기 실패:', error);
+        alert('다이어리 목록을 불러오는 중 문제가 발생했습니다.');
+      }
+    };
+
+    fetchDiaries();
+  }, []); // 컴포넌트 마운트 시 한 번 실행
+
+
+
+
 const onSubmitHandler = (e) =>{
     e.preventDefault();
 
@@ -36,6 +62,13 @@ const onSubmitHandler = (e) =>{
         alert("다이어리 신청에 필수 정보를 작성해주세요!")
         return;
     }
+
+    // 중복 확인
+    if (existingDiaryNames.includes(DiaryName)) {
+        alert('이미 존재하는 일기 이름이에요. 다른 제목을 사용해주세요!');
+        return;
+    }
+
     const storedAccessToken = localStorage.getItem("accessToken");
     axios.defaults.headers.common['Authorization'] = `${storedAccessToken}`;
 
@@ -50,7 +83,7 @@ const onSubmitHandler = (e) =>{
         response => {
             if(response.status === 200){
                 alert("다요리 생성!")
-                console.log(response)//data 31받음
+                //console.log(response)//data 31받음
             }
             
             const Client_diaryId = response.data
@@ -90,7 +123,6 @@ const handleOptionClick = (option) => {
             <div className='inner_title'>
                 <div className='title'>교환일기장<br/>
                                 신청서...</div>
-                <img className="diaryCreate_pinkBubble"src={process.env.PUBLIC_URL + '/pink.png'} />
             </div>
             <div className='diaryCreate_formbox_content'>
                 <label>Name</label>

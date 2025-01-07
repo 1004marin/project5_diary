@@ -14,13 +14,12 @@ function NavBar() {
         dispatch(logoutUser())
           .then(response => {
             // 로그아웃이 성공한 경우 여기에 추가적인 처리를 할 수 있습니다.
-            console.log(response);
             navigate('/')
 
           })
           .catch(error => {
             // 로그아웃 중 에러가 발생한 경우 여기에 처리를 할 수 있습니다.
-            console.error('Logout Error:', error);
+            //console.error('Logout Error:', error);
           });
       };
 
@@ -51,14 +50,14 @@ function NavBar() {
 
         <ul className='navbar_menu'>
           {localStorage.getItem("is_logined") ? (
-              <li onClick={onLogoutHandler}>로그아웃...............3</li>
-            ) : (
-            <Link to='/'>
-              <li className='link'>로그인................3</li>
-            </Link>
-            )}
-              <li onClick={onLinkHandler1}>자기소개서...........12</li>
-              <li onClick={onLinkHandler2}>내 교환일기들........34</li>
+                    <li onClick={onLogoutHandler}><span>로그아웃</span><span>. . . 3</span></li>
+                  ) : (
+                  <Link to='/'>
+                  <li className='link'><span>로그인</span><span>. . . 3</span></li>
+                  </Link>
+                  )}
+                  <li onClick={onLinkHandler1}><span>자기소개서</span><span>. . . 12</span></li>
+                  <li onClick={onLinkHandler2}><span>내 교환일기들</span><span>. . . 34</span></li>
         </ul>
 
         <div className='navbar_sub right'>오늘은 어떤 일기가<br/>기다리고 있을까</div>

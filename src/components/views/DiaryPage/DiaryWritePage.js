@@ -66,8 +66,6 @@ export default function DiaryWritePage() {
 
                 axios.post(`/api/v1/diary/${Client_diaryId}/post`, json_diary)
                 .then(response => {
-                    console.log(response)
-        
                     if(response.status === 200){
                         alert("일기 작성 완료")
                         navigate("/diaryContent", {state: {Client_diaryId}})
@@ -100,10 +98,13 @@ export default function DiaryWritePage() {
             <input type='text' value={DiaryTitle} onChange={onDiaryTitleHandler} maxLength={25}></input>
 
             <label>Date</label>
-            <DatePicker dateFormat='yyyy年 MM月 dd日'selected={startDate}
+            <DatePicker dateFormat='yyyy年 MM月 dd日'
+            selected={startDate}
             shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
-                    onChange={(date) => setStartDate(date)}
+            onChange={(date) => setStartDate(date)}
+            maxDate={new Date()} // 오늘 날짜까지만 선택 가능
             >
+
             <div className='monthly_guide'style={{ }}>교환일기의 날짜 구다사이!!~</div>
             </DatePicker>
 

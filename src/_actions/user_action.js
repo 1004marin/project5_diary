@@ -18,8 +18,6 @@ export const loginUser = (dataTosubmit) => {
        localStorage.setItem("accessToken", accessToken);
        localStorage.setItem("refreshToken", refreshToken);
 
-      console.log(response)
-      console.log("로컬에저장한 액세스토큰: ",accessToken, "리프레시",refreshToken)
       
       dispatch({
         type: LOGIN_USER,
@@ -30,7 +28,7 @@ export const loginUser = (dataTosubmit) => {
       return response; // 추가로 onSubmitHandler에서 처리하기 위해 전체 응답을 반환합니다.
       } 
       catch (error) {
-        console.error('Async Action Error:', error);
+        //console.error('Async Action Error:', error);
         throw error; // 추가로 onSubmitHandler에서 처리하기 위해 에러를 다시 던집니다.
       }
     };
@@ -43,7 +41,7 @@ export const NotLogin=()=> {
       alert("권한이 없습니다. 부원 증명을 해주세요!")
     }
     catch (error){
-      console.error(error);
+      //console.error(error);
     }
   }
 }
@@ -59,18 +57,17 @@ export const refreshAccessToken = () => {
         'Refresh': `${refreshToken}`,
       }})
       .then(response=>{
-        console.log('액세스 재발급:',response)
 
         const newAccessToken = response.data
         localStorage.setItem('accessToken', newAccessToken);
 
-        console.log("액세스토큰 갱신 완료")
-        alert("토큰 갱신! 다시 시도해주세용")
+        //console.log("액세스토큰 갱신 완료")
+        alert("토큰 갱신! 다시 시도해주세요!")
         window.location.reload();//업뎃 보여주기용
         return;
       })
       .catch(error=>{
-        console.log("리프레시 액션에서 에러요", error)
+        //console.log("리프레시 액션에서 에러요", error)
       })
 
       
@@ -96,7 +93,7 @@ export const ExpiredRefreshError = () => {
     dispatch({
       type: EXPIRED_REFRESH
     });
-     console.log("액세스,리프레시 만료: 로그아웃!")
+     //console.log("액세스,리프레시 만료: 로그아웃!")
      alert("토큰이 만료되었어용. 다시 부원 인증해주세요!")
   }
 
@@ -109,16 +106,12 @@ export const logoutUser = () => {
       const storedAccessToken = localStorage.getItem("accessToken");
       const storedRefreshToken = localStorage.getItem("refreshToken");
 
-      console.log("저장된 액세스",storedAccessToken)
-      console.log("리프레시 토큰", storedRefreshToken)
-
 
       // 서버에 로그아웃 요청 (헤더에 설정된 토큰을 서버로 전송)
       const response = await axios.post('/api/v1/logout',null, { headers: {
         'Authorization': `${storedAccessToken}`,
         'Refresh': `${storedRefreshToken}`,
       }});
-      console.log(response.data)
       // 로컬 스토리지에서 토큰 정보 삭제
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
@@ -137,7 +130,7 @@ export const logoutUser = () => {
       return 'Logout requested successfully'; 
 
     } catch (error) {
-      console.error('Logout Error:', error);
+      //console.error('Logout Error:', error);
     }
   };
 };
