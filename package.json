@@ -22,7 +22,7 @@
   },
   "proxy": "http://123.111.37.232:12522",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HOST=0.0.0.0 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
