@@ -22,15 +22,15 @@
   },
   "proxy": "http://123.111.37.232:12522",
   "scripts": {
-    "start": "HOST=0.0.0.0 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "HOST=0.0.0.0 react-scripts-rewired start",
+    "build": "react-scripts-rewired build",
+    "test": "react-scripts-rewired test",
     "eject": "react-scripts eject",
     "heroku-postbuild": "env NODE_OPTIONS='--max-old-space-size=4096' npm run build"
   },
-"engines": {
-  "node": "18.x"
-},
+  "engines": {
+    "node": "18.x"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "react-app-rewired": "^2.2.1"
   }
 }
