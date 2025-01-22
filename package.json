@@ -12,12 +12,13 @@
     "react-dom": "^18.2.0",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^5.0.1",
     "redux": "^5.0.1",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^3.1.0",
     "sass": "^1.69.7",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.97.1"
   },
   "proxy": "http://123.111.37.232:12522",
   "scripts": {
@@ -28,7 +29,7 @@
     "heroku-postbuild": "env NODE_OPTIONS='--max-old-space-size=4096 --openssl-legacy-provider' npm run build"
   },
   "engines": {
-    "node": "22.x"
+    "node": "16.x"
   },
   "eslintConfig": {
     "extends": [
