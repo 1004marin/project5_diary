@@ -23,7 +23,7 @@
   },
   "proxy": "http://123.111.37.232:12522",
   "scripts": {
-    "start": "HOST=0.0.0.0 react-scripts-rewired start",
+    "start": "HOST=0.0.0.0 react-app-rewired start",
     "build": "react-scripts-rewired build",
     "test": "react-scripts-rewired test",
     "eject": "react-scripts eject",
@@ -33,12 +33,7 @@
     "node": "18.x",
     "npm": "10.x"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+
   "browserslist": {
     "production": [
       ">0.2%",
