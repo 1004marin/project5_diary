@@ -24,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-     "heroku-postbuild": "export NODE_OPTIONS=--max-old-space-size=4096 && npm run build"
+    "heroku-postbuild": "export NODE_OPTIONS=--max-old-space-size=4096 --openssl-legacy-provider && npm run build"
   },
   "eslintConfig": {
     "extends": [
