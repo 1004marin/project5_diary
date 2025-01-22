@@ -27,6 +27,9 @@
     "eject": "react-scripts eject",
     "heroku-postbuild": "env NODE_OPTIONS='--max-old-space-size=4096 --openssl-legacy-provider' npm run build"
   },
+  "engines": {
+    "node": "22.x"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
