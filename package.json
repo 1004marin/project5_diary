@@ -29,7 +29,8 @@
     "heroku-postbuild": "env NODE_OPTIONS='--max-old-space-size=4096' npm run build"
   },
   "engines": {
-    "node": "18.x"
+    "node": "18.x",
+    "npm": "10.x"
   },
   "eslintConfig": {
     "extends": [
