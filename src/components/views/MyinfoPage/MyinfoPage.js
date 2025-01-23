@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
-import { Navigate, useNavigate, Link} from 'react-router-dom'
+import { useNavigate, Link} from 'react-router-dom'
 
 import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu'
@@ -71,8 +71,7 @@ const onSubmitHandler = (e) => {
   else{
     body.bloodType = BloodType;
   }
-  const storedAccessToken = localStorage.getItem("accessToken");
-  const storedRefreshToken = localStorage.getItem("refreshToken");
+
 
   axios.patch(`${CONFIG.API_BASE_URL}/api/v1/user`, body)
     .then(response => {

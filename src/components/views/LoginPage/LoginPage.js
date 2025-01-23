@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { loginUser, logoutUser,logout_requested } from '../../../_actions/user_action';
+import { loginUser } from '../../../_actions/user_action';
 import '../../../css/login.scss'
 
 import SlideMenu from '../NavBar/SlideMenu'

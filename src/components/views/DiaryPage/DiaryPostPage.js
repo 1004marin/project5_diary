@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { useLocation,useNavigate } from 'react-router-dom'
-import store from '../../../_middleware/store'
 import moment from 'moment'
 import '../../../css/diary_post.scss'
 import NavBar from '../NavBar/NavBar';
@@ -35,25 +34,13 @@ function DiaryPostPage() {
     
     const logined_username = localStorage.getItem("logined_user");
     const [Stamp, setStamp] = useState("")
-    const [Stamp_route, setStamp_route] = useState("")
     const [StampList, setStampList] = useState([])
     const [already_Stamped, setAlready_Stamped] = useState(false)
     
-    const onDiaryTitleHandler =(e) => {
-      setDiaryTitle(e.currentTarget.value)
-  }
   const onDiaryWeatherHandler =(e) => {
       setDiaryWeather(e.currentTarget.value)
   }
-  const onDiaryMoodHandler =(e) => {
-      setDiaryMood(e.currentTarget.value)
-  }
-  const onDiaryContentHandler =(e) => {
-      setDiaryContent(e.currentTarget.value)
-  }
-  const onDiaryDateHandler =(e) => {
-      setDiaryDate(e.currentTarget.value)
-  }
+
     //반응
     const getImageForStamp = (Stamp) => {
       if (Stamp === 'GOOD') {
@@ -171,7 +158,7 @@ function DiaryPostPage() {
         <div className='diaryPost_inner_formbox'>
             <div className='inner_title'>
                 <div className='title'>쉿! 교환일기<br/>읽는 중...<span>☞☜</span></div>
-                <img className="diaryPost_pinkBubble"src={process.env.PUBLIC_URL + '/diary.png'} />
+                <img className="diaryPost_pinkBubble"src={process.env.PUBLIC_URL + '/diary.png'} alt="" />
             </div>
         <div className='diaryPost_formbox_content'>
             <label>Title</label>
