@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux';
 import axios from 'axios';
 import { registerUser } from '../../../_actions/user_action';
 import '../../../css/register.scss'
-import CONFIG from "./config";
+import CONFIG from "../../../config"
 
 import NavBar from '../NavBar/NavBar';
 
@@ -67,6 +67,7 @@ function RegisterPage() {
         }
 
         const jsonEmail = {"email": Email}
+        
         axios.post(`${CONFIG.API_BASE_URL}/duplicateEmail`, jsonEmail)
         .then(response => {
         const emailCheck = response.data;

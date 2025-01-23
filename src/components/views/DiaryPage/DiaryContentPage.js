@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import CONFIG from "./config";
+import CONFIG from "../../../config"
 import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu';
 import '../../../css/diary_content.scss';

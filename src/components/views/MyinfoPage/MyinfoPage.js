@@ -6,7 +6,7 @@ import { Navigate, useNavigate, Link} from 'react-router-dom'
 
 import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu'
-import CONFIG from "./config";
+import CONFIG from "../../../config"
 import '../../../css/myinfo.scss'
 function MyinfoPage() {
 

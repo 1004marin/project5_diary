@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu';
 import '../../../css/password.scss'
-import CONFIG from "./config";
+import CONFIG from "../../../config"
 
 function PasswordPage() {
     const navigate = useNavigate();

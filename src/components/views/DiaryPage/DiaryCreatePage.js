@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu';
 import '../../../css/diary_create.scss'
-import CONFIG from "./config";
+import CONFIG from "../../../config"
 
 function DiaryCreatePage() {
 

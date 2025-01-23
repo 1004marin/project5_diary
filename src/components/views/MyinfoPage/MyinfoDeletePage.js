@@ -7,7 +7,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu'
 import '../../../css/myinfo_delete.scss'
-import CONFIG from "./config";
+import CONFIG from "../../../config"
 
 function MyinfoDeletePage() {
     const navigate = useNavigate();

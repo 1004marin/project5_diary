@@ -8,7 +8,7 @@ import '../../../css/diary_post.scss'
 import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu';
 
-import CONFIG from "./config";
+import CONFIG from "../../../config"
 
 import stamp_good from './good.png';
 import stamp_great from './great.png';

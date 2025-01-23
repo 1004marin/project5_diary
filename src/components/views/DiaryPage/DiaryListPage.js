@@ -7,7 +7,7 @@ import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu'
 import '../../../css/diary_list.scss'
 
-import CONFIG from "./config";
+import CONFIG from "../../../config"
 
 import { useDispatch } from 'react-redux'
 import {logoutUser } from '../../../_actions/user_action';

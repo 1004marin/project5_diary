@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import DiaryDrawPage from './DiaryDrawPage'
 import { useLocation } from 'react-router-dom'
-import CONFIG from "./config";
+import CONFIG from "../../../config"
 
 import NavBar from '../NavBar/NavBar';
 import SlideMenu from '../NavBar/SlideMenu';
