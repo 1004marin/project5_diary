@@ -1,7 +1,7 @@
 import axios from "axios";
 import { LOGIN_USER, REGISTER_USER, UNAUTHORIZED_ERROR,LOGOUT_USER, EXPIRED_REFRESH} from "./types"
 import store from "../_middleware/store";
-import CONFIG from "../config"
+import CONFIG from "../config.js"
 
 
 export const loginUser = (dataTosubmit) => {
