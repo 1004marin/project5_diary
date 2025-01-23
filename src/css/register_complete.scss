@@ -1,0 +1,137 @@
+@import "reset.css";
+@font-face {
+    font-family: 'DOSSaemmul';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSSaemmul.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+  font-family: 'Dongle-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108_2@1.0/Dongle-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@mixin customTextShadow($thickness, $color) {
+    text-shadow: 
+      calc(#{$thickness} * 1) 0 0 $color,
+      calc(#{$thickness} * 0.9239) calc(#{$thickness} * 0.3827) 0 $color,
+      calc(#{$thickness} * 0.7071) calc(#{$thickness} * 0.7071) 0 $color,
+      calc(#{$thickness} * 0.3827) calc(#{$thickness} * 0.9239) 0 $color,
+      0 calc(#{$thickness} * 1) 0 $color,
+      calc(#{$thickness} * -0.3827) calc(#{$thickness} * 0.9239) 0 $color,
+      calc(#{$thickness} * -0.7071) calc(#{$thickness} * 0.7071) 0 $color,
+      calc(#{$thickness} * -0.9239) calc(#{$thickness} * 0.3827) 0 $color,
+      calc(#{$thickness} * -1) 0 0 $color,
+      calc(#{$thickness} * -0.9239) calc(#{$thickness} * -0.3827) 0 $color,
+      calc(#{$thickness} * -0.7071) calc(#{$thickness} * -0.7071) 0 $color,
+      calc(#{$thickness} * -0.3827) calc(#{$thickness} * -0.9239) 0 $color,
+      0 calc(#{$thickness} * -1) 0 $color,
+      calc(#{$thickness} * 0.3827) calc(#{$thickness} * -0.9239) 0 $color,
+      calc(#{$thickness} * 0.7071) calc(#{$thickness} * -0.7071) 0 $color,
+      calc(#{$thickness} * 0.9239) calc(#{$thickness} * -0.3827) 0 $color,
+      calc(5px * 1) 8px 5px rgba(0, 0, 0, 0.8); 
+  }
+
+  //
+  .inner_navbar{
+    display: none;
+  }
+  .registerComplete{
+    width: 100%;
+    height: 100dvh;
+    background-image: url('../../public/mobile_registerComplete.png');
+    background-repeat : no-repeat; 
+    background-size : 100% 100%;
+    font-family: 'Dongle-Regular';
+    font-weight: 400;
+    position: relative; 
+  }
+  .registerComplete_box{
+    position: absolute; 
+    top: 33dvh; /* 부모 요소의 상단에 배치합니다. */
+    right: 0; /* 부모 요소의 오른쪽 끝에 배치합니다. */
+    display:flex;
+    flex-direction: column;
+    height: 50dvh;
+    width: 80dvw;
+
+    & a{
+      margin-right: 12%;
+      margin-top: 20%;
+    }
+  }
+.complete_message{
+    background-image: url('../../public/letter_complete.png');
+    background-repeat : no-repeat; 
+    background-size : 100% 100%;
+    width: auto;
+    height: 26dvh;
+    padding-left:23dvw;
+    padding-top: 7dvh;
+    line-height: 30px;
+    font-size:3.7dvh;
+    color: #DA98B4;
+    @include customTextShadow(5px, #F8F8F8); // thickness와 color를 여기서 조절합니다.
+}
+.complete_message_text{
+  transform: rotate(-358.07deg);
+}
+.complete_toLogin{
+  @include customTextShadow(2px, #fdddee); 
+  color: #464646;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+//모바일 세로~
+@media screen and (min-width: 375px){
+}
+//아이패드 미니 세로~
+//아이패드에어 ~아이패드프로 세로
+@media screen and (min-width: 768px) and (max-width: 1024px){
+  .registerComplete_box{
+    top: 23dvh;
+    height: 60dvh;
+    width: 63dvw;
+  }
+  .complete_message{
+    height: 35dvh;
+    padding-left:18dvw;
+    padding-top: 10dvh;
+    line-height: 40px;
+    font-size:3.7dvh;
+  }
+.complete_toLogin{
+  font-size: 2rem;
+}
+}
+
+//아이패드 & 모바일 가로&PC
+@media screen and (min-width: 1025px), (orientation: landscape) {
+  .registerComplete{
+    background-image: url('../../public/pc_registerComplete.png');
+  }
+  .registerComplete_box{
+    top: 27dvh; /* 부모 요소의 상단에 배치합니다. */
+    height: 70%;
+    width:35dvw;
+    overflow: hidden; /* 자식이 부모 넘지 않도록 ->스크롤 막기 */
+    padding-left: 0;
+      & a{
+        margin-right: 12%;
+        margin-top: 50dvh;
+      }
+  }
+.complete_message{
+    width: 20dvw;
+    height: 35dvh;
+    right: 0;
+    padding-left:8dvw;
+    padding-top: 9dvh;
+    line-height: 4.3dvh;
+    font-size:3.4dvh;
+    position: absolute;
+}
+.complete_toLogin{
+  font-size: 3dvh;
+}
+}

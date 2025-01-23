@@ -1,0 +1,333 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400..700;1,400..700&display=swap");
+@import "reset.css";
+@import url("https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css");
+@font-face {
+  font-family: "DOSSaemmul";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSSaemmul.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Dongle-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108_2@1.0/Dongle-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+.DiaryInfo {
+  height: 100dvh;
+  width: 100%;
+  position: relative;
+}
+.DiaryInfo p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inner_navbar {
+  display: none;
+}
+
+.diaryInfo_formbox {
+  height: 100dvh;
+  width: 100%;
+  padding-bottom: 200px;
+}
+
+.diaryInfo_formbox_content {
+  font-family: "Dongle-Regular";
+}
+
+/* Webkit 브라우저(크롬, 사파리)의 스크롤 바 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* 스크롤 바 색상 */
+::-webkit-scrollbar-thumb {
+  background-color: #ffdede; /* 스크롤 바의 색상 */
+  border-radius: 6px; /* 스크롤 바의 둥근 모서리 반지름 */
+}
+
+/* 호버 시 스크롤 바 색상 */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffc0c0; /* 스크롤 바 호버 시 색상 */
+}
+
+@media screen and (min-width: 280px) {
+  .moblie_menu {
+    width: 2dvw;
+  }
+  .diaryInfo_formbox {
+    font-size: 16px;
+    line-height: normal;
+    color: #1e1e1e;
+    background-image: url("../../public/mobile_diary_info.png");
+    background-repeat: no-repeat; /*가로 세로 */
+    background-size: 100% 100%;
+    padding: 10dvh 9.5% 0 0%;
+    box-sizing: border-box; /* 내부 패딩과 테두리를 요소의 크기에 포함시킵니다 */
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden; /* 내부 컨텐츠의 넘침을 가리기 위해 overflow 속성을 hidden으로 설정 */
+  }
+  .diaryInfo_inner_formbox {
+    display: flex;
+    flex-direction: column;
+    height: 83dvh;
+    width: 70dvw;
+  }
+  .inner_title {
+    width: auto;
+    display: flex;
+    position: relative;
+    margin-bottom: 3.2dvh;
+  }
+  .title {
+    font-family: "Dongle-Regular";
+    align-self: stretch;
+    color: #686868;
+    font-size: 5.2dvh;
+    letter-spacing: 0;
+    flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
+    position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
+    line-height: 7dvh;
+    text-shadow: calc(5px * 1) 0 0 #ffffff, calc(5px * 0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * 0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * 0.3827) calc(5px * 0.9239) 0 #ffffff, 0 calc(5px * 1) 0 #ffffff, calc(5px * -0.3827) calc(5px * 0.9239) 0 #ffffff, calc(5px * -0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * -0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * -1) 0 0 #ffffff, calc(5px * -0.9239) calc(5px * -0.3827) 0 #ffffff, calc(5px * -0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * -0.3827) calc(5px * -0.9239) 0 #ffffff, 0 calc(5px * -1) 0 #ffffff, calc(5px * 0.3827) calc(5px * -0.9239) 0 #ffffff, calc(5px * 0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * 0.9239) calc(5px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
+  }
+  .diaryInfo_formbox_content {
+    width: 100%;
+    height: 68dvh;
+    display: flex;
+    flex-direction: column;
+    margin-top: 13dvh;
+    font-size: 2.5dvh;
+    overflow-y: auto; /* 세로 스크롤바를 추가하기 위해 overflow-y 속성을 auto로 설정 */
+    overflow-x: hidden;
+  }
+  .diaryInfo_formbox_content .diaryInfo_line {
+    display: block;
+    width: 100%;
+    border-top: 2px dashed #f957a3;
+    margin: 10px 0 10px 0;
+  }
+  .diaryInfo_formbox_content label {
+    text-decoration: underline;
+    text-shadow: 3px 4px 4.2px rgba(0, 0, 0, 0.2509803922), 2px 1px 0px #ffffff;
+    letter-spacing: 0;
+    font-size: 2.4dvh;
+    display: block;
+    font-family: "Cuprum";
+    margin-bottom: 0.2em;
+  }
+  .diaryPost_submit_button {
+    border-width: 0;
+    width: 32dvw;
+    height: 8dvh;
+    border-radius: 25px;
+    box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0, #fff);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
+    font-family: "DOSSaemmul";
+    font-size: 1.7dvh;
+    color: #fff;
+    margin-top: auto; /* 마지막 요소를 가장 하단에 배치합니다. */
+    margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
+  }
+  .diaryInfo_info p {
+    padding: 1dvw;
+    color: #ff989e;
+    text-shadow: calc(2px * 1) 0 0 #ffffff, calc(2px * 0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * 0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * 0.3827) calc(2px * 0.9239) 0 #ffffff, 0 calc(2px * 1) 0 #ffffff, calc(2px * -0.3827) calc(2px * 0.9239) 0 #ffffff, calc(2px * -0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * -0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * -1) 0 0 #ffffff, calc(2px * -0.9239) calc(2px * -0.3827) 0 #ffffff, calc(2px * -0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * -0.3827) calc(2px * -0.9239) 0 #ffffff, 0 calc(2px * -1) 0 #ffffff, calc(2px * 0.3827) calc(2px * -0.9239) 0 #ffffff, calc(2px * 0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * 0.9239) calc(2px * -0.3827) 0 #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: "Dongle-Regular";
+    font-size: 2.7dvh;
+    height: 4dvh;
+    background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
+    border: solid 1.5px #f39fd1;
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+  }
+  .diaryInfo_member_list p {
+    padding-left: 1dvw;
+    margin: 0.2dvh 0 0.5dvh 0;
+    color: #ff989e;
+    font-family: "Dongle-Regular";
+    text-shadow: calc(2px * 1) 0 0 #ffffff, calc(2px * 0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * 0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * 0.3827) calc(2px * 0.9239) 0 #ffffff, 0 calc(2px * 1) 0 #ffffff, calc(2px * -0.3827) calc(2px * 0.9239) 0 #ffffff, calc(2px * -0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * -0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * -1) 0 0 #ffffff, calc(2px * -0.9239) calc(2px * -0.3827) 0 #ffffff, calc(2px * -0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * -0.3827) calc(2px * -0.9239) 0 #ffffff, 0 calc(2px * -1) 0 #ffffff, calc(2px * 0.3827) calc(2px * -0.9239) 0 #ffffff, calc(2px * 0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * 0.9239) calc(2px * -0.3827) 0 #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 2.7dvh;
+    border-radius: 9px;
+    border: solid 1px #fbd5dc;
+    background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%);
+  }
+  .diaryInfo_member_title {
+    background-image: url("../../public/diary_info_member.png");
+    width: 100%;
+    height: 6dvh;
+    background-repeat: no-repeat; /*가로 세로 */
+    background-size: 100% 100%;
+    padding: 0.5dvh 0 1dvh 1.5dvh;
+    margin-top: 2dvh;
+    text-shadow: calc(2px * 1) 0 0 white, calc(2px * 0.9239) calc(2px * 0.3827) 0 white, calc(2px * 0.7071) calc(2px * 0.7071) 0 white, calc(2px * 0.3827) calc(2px * 0.9239) 0 white, 0 calc(2px * 1) 0 white, calc(2px * -0.3827) calc(2px * 0.9239) 0 white, calc(2px * -0.7071) calc(2px * 0.7071) 0 white, calc(2px * -0.9239) calc(2px * 0.3827) 0 white, calc(2px * -1) 0 0 white, calc(2px * -0.9239) calc(2px * -0.3827) 0 white, calc(2px * -0.7071) calc(2px * -0.7071) 0 white, calc(2px * -0.3827) calc(2px * -0.9239) 0 white, 0 calc(2px * -1) 0 white, calc(2px * 0.3827) calc(2px * -0.9239) 0 white, calc(2px * 0.7071) calc(2px * -0.7071) 0 white, calc(2px * 0.9239) calc(2px * -0.3827) 0 white, 5px 8px 5px rgba(0, 0, 0, 0.8);
+    font-size: 3.5dvh;
+  }
+  .diaryInfo_introduce input, .diaryInfo_introduce button {
+    background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
+    font-family: "DOSSaemmul";
+    font-size: 1.5dvh;
+    width: 100%;
+    color: white;
+    text-shadow: calc(1px * 1) 0 0 #a6a6a6, calc(1px * 0.9239) calc(1px * 0.3827) 0 #a6a6a6, calc(1px * 0.7071) calc(1px * 0.7071) 0 #a6a6a6, calc(1px * 0.3827) calc(1px * 0.9239) 0 #a6a6a6, 0 calc(1px * 1) 0 #a6a6a6, calc(1px * -0.3827) calc(1px * 0.9239) 0 #a6a6a6, calc(1px * -0.7071) calc(1px * 0.7071) 0 #a6a6a6, calc(1px * -0.9239) calc(1px * 0.3827) 0 #a6a6a6, calc(1px * -1) 0 0 #a6a6a6, calc(1px * -0.9239) calc(1px * -0.3827) 0 #a6a6a6, calc(1px * -0.7071) calc(1px * -0.7071) 0 #a6a6a6, calc(1px * -0.3827) calc(1px * -0.9239) 0 #a6a6a6, 0 calc(1px * -1) 0 #a6a6a6, calc(1px * 0.3827) calc(1px * -0.9239) 0 #a6a6a6, calc(1px * 0.7071) calc(1px * -0.7071) 0 #a6a6a6, calc(1px * 0.9239) calc(1px * -0.3827) 0 #a6a6a6;
+  }
+  .diaryInfo_introduce input {
+    border: none;
+    border-bottom: 1px solid #000;
+    font-size: 2.5dvh;
+    font-family: "Dongle-Regular";
+  }
+  .diaryInfo_introduce input::-moz-placeholder {
+    font-family: "Cuprum";
+    color: white;
+  }
+  .diaryInfo_introduce input::placeholder {
+    font-family: "Cuprum";
+    color: white;
+  }
+  .diaryInfo_introduce button {
+    border: solid 1px #a6a6a6;
+    margin-top: 0;
+    height: 3dvh;
+  }
+  .diaryInfo_delete {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .diaryInfo_delete button {
+    border-width: 0;
+    width: 25dvw;
+    height: 8dvh;
+    border-radius: 30px;
+    box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0, #fff);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
+    font-family: "DOSSaemmul";
+    font-size: 1.8dvh;
+    color: #fff;
+  }
+  .diaryInfo_delete_notice {
+    text-shadow: calc(2px * 1) 0 0 #FDDDEE, calc(2px * 0.9239) calc(2px * 0.3827) 0 #FDDDEE, calc(2px * 0.7071) calc(2px * 0.7071) 0 #FDDDEE, calc(2px * 0.3827) calc(2px * 0.9239) 0 #FDDDEE, 0 calc(2px * 1) 0 #FDDDEE, calc(2px * -0.3827) calc(2px * 0.9239) 0 #FDDDEE, calc(2px * -0.7071) calc(2px * 0.7071) 0 #FDDDEE, calc(2px * -0.9239) calc(2px * 0.3827) 0 #FDDDEE, calc(2px * -1) 0 0 #FDDDEE, calc(2px * -0.9239) calc(2px * -0.3827) 0 #FDDDEE, calc(2px * -0.7071) calc(2px * -0.7071) 0 #FDDDEE, calc(2px * -0.3827) calc(2px * -0.9239) 0 #FDDDEE, 0 calc(2px * -1) 0 #FDDDEE, calc(2px * 0.3827) calc(2px * -0.9239) 0 #FDDDEE, calc(2px * 0.7071) calc(2px * -0.7071) 0 #FDDDEE, calc(2px * 0.9239) calc(2px * -0.3827) 0 #FDDDEE, 5px 8px 5px rgba(0, 0, 0, 0.8);
+    color: #464646;
+    font-family: "DOSSaemmul";
+    font-size: 1.5dvh;
+    margin-top: 10px;
+  }
+  .diaryInfo_delete_check {
+    font-family: "DOSSaemmul";
+  }
+  .diaryInfo_delete_check {
+    margin-top: 20px;
+    display: flex;
+  }
+  .diaryInfo_delete_check button {
+    background-image: linear-gradient(to bottom, #fff, #f1f1f1, #dadada, #d0d0d0);
+    font-family: "DOSSaemmul";
+    font-size: 1.5dvh;
+    width: 100%;
+    color: white;
+    text-shadow: calc(1px * 1) 0 0 #a6a6a6, calc(1px * 0.9239) calc(1px * 0.3827) 0 #a6a6a6, calc(1px * 0.7071) calc(1px * 0.7071) 0 #a6a6a6, calc(1px * 0.3827) calc(1px * 0.9239) 0 #a6a6a6, 0 calc(1px * 1) 0 #a6a6a6, calc(1px * -0.3827) calc(1px * 0.9239) 0 #a6a6a6, calc(1px * -0.7071) calc(1px * 0.7071) 0 #a6a6a6, calc(1px * -0.9239) calc(1px * 0.3827) 0 #a6a6a6, calc(1px * -1) 0 0 #a6a6a6, calc(1px * -0.9239) calc(1px * -0.3827) 0 #a6a6a6, calc(1px * -0.7071) calc(1px * -0.7071) 0 #a6a6a6, calc(1px * -0.3827) calc(1px * -0.9239) 0 #a6a6a6, 0 calc(1px * -1) 0 #a6a6a6, calc(1px * 0.3827) calc(1px * -0.9239) 0 #a6a6a6, calc(1px * 0.7071) calc(1px * -0.7071) 0 #a6a6a6, calc(1px * 0.9239) calc(1px * -0.3827) 0 #a6a6a6;
+    border: 1px solid;
+    margin-right: 2px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 819px) {
+  .inner_title {
+    width: 48dvw;
+    margin-bottom: 3dvh;
+  }
+  .title {
+    font-size: 5.9dvh;
+    line-height: 6dvh;
+  }
+  .diaryInfo_formbox_content {
+    margin-bottom: 10px;
+  }
+  label {
+    font-size: 1.7rem;
+  }
+  input {
+    height: 2.3rem;
+    font-size: 3dvh;
+  }
+}
+@media screen and (min-width: 820px) and (max-width: 1024px) {
+  .inner_title {
+    width: 48dvw;
+    margin-bottom: 4.5dvh;
+  }
+  .title {
+    font-size: 6.5dvh;
+    line-height: 7dvh;
+  }
+  .diaryInfo_formbox_content {
+    margin-bottom: 10px;
+  }
+  label {
+    font-size: 2.8dvh;
+  }
+  input {
+    height: 3.6dvh;
+    font-size: 3.1dvh;
+  }
+}
+@media screen and (min-width: 1025px), (orientation: landscape) {
+  .moblie_menu {
+    display: none;
+  }
+  .diaryInfo_formbox {
+    background-image: url("../../public/pc_diary_info.png");
+    background-repeat: no-repeat; /*가로 세로 */
+    background-size: 100% 100%;
+    padding: 19dvh 0 10dvh 33dvw;
+  }
+  .inner_navbar {
+    display: block;
+    position: absolute;
+    top: 21dvh; /* 상단에 위치하도록 설정 */
+    left: 4dvw; /* 왼쪽에 위치하도록 설정 */
+    z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
+  }
+  .diaryInfo_inner_formbox {
+    height: 73dvh;
+    width: 62dvw;
+  }
+  .inner_title {
+    width: 27dvw;
+    margin-bottom: -3rem;
+  }
+  .title {
+    font-size: 3.2dvw;
+    line-height: 4.3dvw;
+  }
+  label {
+    font-size: 2.8dvh;
+  }
+  .diaryInfo_formbox_content {
+    width: 40%;
+    height: 70%;
+    margin-left: 19dvw;
+    z-index: 1;
+    margin-bottom: -10rem;
+    margin-top: 24dvh;
+  }
+  input {
+    font-size: 1.9dvw;
+    height: 3.8dvh;
+  }
+  .diaryInfo_delete button {
+    width: 9dvw;
+  }
+}/*# sourceMappingURL=diary_info.css.map */

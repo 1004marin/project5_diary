@@ -1,39 +1,39 @@
-import { createStore } from 'redux';
-import {LOGIN_USER, REGISTER_USER, AUTH_USER, UNAUTHORIZED_ERROR, LOGOUT_USER} from '../_actions/types';
-import axios from 'axios';
+
+import {LOGIN_USER, REGISTER_USER, UNAUTHORIZED_ERROR, EXPIRED_REFRESH, LOGOUT_USER, DIARY_ID} from '../_actions/types';
+
 const initialState = {
     loginSucess: false,
     register:null,
-    userData:null,
-    token: null,
-    Is_logout_requested: false
+    username:'',
+    Is_refresh_expired: false,
 }
-
-// 로컬 스토리지에서 토큰을 가져와서 로그인 상태를 설정
+//로그인하고 재발급 된 후에도 닉네임 있는지 체크: 페이지이동시사라짐!->로컬에저장
 
 //prevState + action을 가졌으니, nextState 돌려주기
 export default function (state= initialState, action) {
-    console.log('유저리듀서에용')
+
     switch (action.type) {//why 스위치문법? action의 type이Login_user만은 아니니까 타입마다 다른 조치 취하기
         case LOGIN_USER:
-            return {...state, loginSucess: true}//...위를 그대로 가져옴. 빈상태
+            return {...state, 
+                    loginSucess: action.payload === 200 ? true : false,
+                    username: action.payload === 200 ? action.username : "",
+                    Is_refresh_expired: false}
             break;
         case LOGOUT_USER:
-            // 로그아웃이 완료되었을 때 플래그를 false로 변경
-            return {...state, loginSucess: 'Logout', Is_logout_requested:false}//...위를 그대로 가져옴. 빈상태
+            return {...state, loginSucess: 'Logout'}
              break;
-        case 'logout_flag':
-            return{...state, Is_logout_requested: true}
-            break;
         case REGISTER_USER:
             return {...state, register: action.payload}
             break;
-        case AUTH_USER:
-            return {...state, userData: action.payload}//action.payload에 백에서 보내는 유저 모든 데이터 있음
-            break;
-            case UNAUTHORIZED_ERROR:
-                return {...state, token: 'refreshTokenING'}//action.payload에 백에서 보내는 유저 모든 데이터 있음
+        case UNAUTHORIZED_ERROR:
+                return {...state, Is_refresh_expired: true}//이거 재발급 되고 다시 false로
                 break;
+        case 'reAccess_success':
+            return{...state, Is_refresh_expired: false}//이거 빼도 재발급 후에 로그아웃되지 않는지 체크
+            break;
+        case EXPIRED_REFRESH:
+            return{...state, loginSucess: 'Logout', Is_refresh_expired: false}
+            break;
         default:
             return state;
             

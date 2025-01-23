@@ -1,0 +1,83 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400..700;1,400..700&display=swap');
+@import "reset.css";
+@font-face {
+    font-family: 'DOSSaemmul';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSSaemmul.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@mixin customTextShadow($thickness, $color) {
+    text-shadow: 
+      calc(#{$thickness} * 1) 0 0 $color,
+      calc(#{$thickness} * 0.9239) calc(#{$thickness} * 0.3827) 0 $color,
+      calc(#{$thickness} * 0.7071) calc(#{$thickness} * 0.7071) 0 $color,
+      calc(#{$thickness} * 0.3827) calc(#{$thickness} * 0.9239) 0 $color,
+      0 calc(#{$thickness} * 1) 0 $color,
+      calc(#{$thickness} * -0.3827) calc(#{$thickness} * 0.9239) 0 $color,
+      calc(#{$thickness} * -0.7071) calc(#{$thickness} * 0.7071) 0 $color,
+      calc(#{$thickness} * -0.9239) calc(#{$thickness} * 0.3827) 0 $color,
+      calc(#{$thickness} * -1) 0 0 $color,
+      calc(#{$thickness} * -0.9239) calc(#{$thickness} * -0.3827) 0 $color,
+      calc(#{$thickness} * -0.7071) calc(#{$thickness} * -0.7071) 0 $color,
+      calc(#{$thickness} * -0.3827) calc(#{$thickness} * -0.9239) 0 $color,
+      0 calc(#{$thickness} * -1) 0 $color,
+      calc(#{$thickness} * 0.3827) calc(#{$thickness} * -0.9239) 0 $color,
+      calc(#{$thickness} * 0.7071) calc(#{$thickness} * -0.7071) 0 $color,
+      calc(#{$thickness} * 0.9239) calc(#{$thickness} * -0.3827) 0 $color,
+      calc(5px * 1) 8px 5px rgba(0, 0, 0, 0.8); 
+  }
+
+
+
+.navbar_content{
+    font-family: 'DOSSaemmul';
+    display:flex;
+    flex-direction: column;
+    width: 23dvw;
+    height: 65dvh;
+    //background-color: aquamarine;
+    position: relative; /* 부모 컨테이너를 상대적인 위치로 설정 */
+
+}
+.navbar_title{
+    //background-color: darkolivegreen;
+    color: white;
+    height: 10dvh;
+    font-size: 2.1dvw;
+    letter-spacing: 0;
+    @include customTextShadow(4.5px, #5a5a5a); // thickness와 color를 여기서 조절합니다.
+}
+.navbar_sub{
+    color: #464646;
+    font-size: 1.7dvh;
+    line-height: 2dvh;
+    margin-bottom: 2dvh;
+    @include customTextShadow(2px, #fdddee);
+}
+.navbar_menu{
+    width: 95%;
+    color: white;
+    font-size: 1.1dvw;
+    letter-spacing: 0;
+    line-height: 35px;//줄간격
+    @include customTextShadow(3px, #5a5a5a); // thickness와 color를 여기서 조절합니다.
+    .link{
+        color: white;
+        @include customTextShadow(3px, #5a5a5a); // thickness와 color를 여기서 조절합니다.
+      }
+}
+.navbar_menu li {
+    display: flex; /* Flexbox로 자식 요소 배치 */
+    justify-content: space-between; /* 양쪽 끝에 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+.right{
+    position: absolute; /* 절대적인 위치로 설정 */
+    bottom: 0; /* 아래쪽으로 위치시킵니다. */
+    right: 0; /* 오른쪽으로 위치시킵니다. */
+}
+a{
+    text-decoration: none;
+}

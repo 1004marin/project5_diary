@@ -1,0 +1,474 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400..700;1,400..700&display=swap');
+@import "reset.css";
+@font-face {
+    font-family: 'DOSSaemmul';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSSaemmul.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Dongle-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108_2@1.0/Dongle-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+@mixin customTextShadow($thickness, $color) {
+    text-shadow: 
+      calc(#{$thickness} * 1) 0 0 $color,
+      calc(#{$thickness} * 0.9239) calc(#{$thickness} * 0.3827) 0 $color,
+      calc(#{$thickness} * 0.7071) calc(#{$thickness} * 0.7071) 0 $color,
+      calc(#{$thickness} * 0.3827) calc(#{$thickness} * 0.9239) 0 $color,
+      0 calc(#{$thickness} * 1) 0 $color,
+      calc(#{$thickness} * -0.3827) calc(#{$thickness} * 0.9239) 0 $color,
+      calc(#{$thickness} * -0.7071) calc(#{$thickness} * 0.7071) 0 $color,
+      calc(#{$thickness} * -0.9239) calc(#{$thickness} * 0.3827) 0 $color,
+      calc(#{$thickness} * -1) 0 0 $color,
+      calc(#{$thickness} * -0.9239) calc(#{$thickness} * -0.3827) 0 $color,
+      calc(#{$thickness} * -0.7071) calc(#{$thickness} * -0.7071) 0 $color,
+      calc(#{$thickness} * -0.3827) calc(#{$thickness} * -0.9239) 0 $color,
+      0 calc(#{$thickness} * -1) 0 $color,
+      calc(#{$thickness} * 0.3827) calc(#{$thickness} * -0.9239) 0 $color,
+      calc(#{$thickness} * 0.7071) calc(#{$thickness} * -0.7071) 0 $color,
+      calc(#{$thickness} * 0.9239) calc(#{$thickness} * -0.3827) 0 $color,
+      calc(5px * 1) 8px 5px rgba(0, 0, 0, 0.8); 
+  }
+/* Webkit 브라우저(크롬, 사파리)의 스크롤 바 */
+::-webkit-scrollbar {
+    width: 8px; 
+  }
+//폰트 중복코드
+@mixin diary-list-font {
+    color: #464646;
+    @include customTextShadow(1.5px, #ffffff);
+}
+@mixin diary-menu-font{
+    font-family: 'DOSSaemmul';
+    @include customTextShadow(2px, #B47777); 
+}
+//비번/리스트 배경
+$bg-image: url('../../public/mobile_diary_list.png'); 
+$bg-image-alt: url('../../public/mobile_diary_password.png'); 
+$bg-pc-image: url('../../public/pc_diary_list.png'); 
+$bg-pc-image-alt: url('../../public/pc_diary_password.png'); 
+
+//
+.diaryList{
+    height: 100dvh;
+    width: 100%;
+    position: relative;
+}
+.inner_navbar{
+    display: none;
+}
+.diaryList_formbox, .diaryList_password_formbox{
+    height: 100dvh;
+    width: 100%;
+    padding-bottom: 200px;
+}
+.diaryList_formbox_content{
+    font-family: 'Dongle-Regular';
+}
+
+//모바일 세로
+@media screen and (min-width: 280px){
+    .moblie_menu{
+        width: 2dvw;
+    }
+    .diaryList_formbox, .diaryList_password_formbox{
+        font-size: 16px;
+        line-height: normal;
+        color: #1e1e1e;
+        background-image: $bg-image;
+        background-repeat : no-repeat;
+        background-size : 100% 100%;
+        padding:10dvh 9.5% 0 0%; //시계방향 상 우 하 좌
+        box-sizing: border-box; /* 내부 패딩과 테두리를 요소의 크기에 포함시킵니다 */
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+    .diaryList_inner_formbox, .diaryList_password_inner_formbox{
+        display:flex;
+        flex-direction: column;
+        height: 83dvh;
+        width: 70dvw;
+        margin-left: 20dvw;
+
+        & .title{
+            font-family: 'Dongle-Regular';
+            align-self: stretch;
+            color: #686868;
+            font-size: 5.2dvh;
+            letter-spacing: 0;
+            position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
+            line-height: 5dvh;
+            @include customTextShadow(5px, #ffe2ea); // thickness와 color를 여기서 조절합니다.
+        }
+    }
+    .diaryList_create {
+        @include diary-menu-font();
+        transform: rotate(-10.98deg);
+        font-size: 1.8dvh;
+        margin-right: 34dvw;
+        margin-top: -5dvh;
+    }
+    .inner_title{
+        .diaryList_logout{
+            @include diary-menu-font();
+            font-size: 1.7dvh;
+            margin-left: auto;
+            margin-top: -1dvh;
+            margin-right: -5dvw;
+            transform: rotate(6.57deg); 
+        }
+        width: auto;
+        display: flex;
+        position: relative;
+        margin-bottom: 3.2dvh;
+    }
+    .diaryList_formbox_content{
+        width: 90%;
+        height: 40dvh;
+        display: flex;
+        flex-direction: column;
+
+        margin: auto;
+        margin-top: 13dvh;
+        font-size: 2.5dvh;
+        overflow-y: scroll;
+
+        .diaryList_guide{
+            @include diary-list-font;
+            z-index: 1;
+            font-size: 1.35dvh;
+            font-family: 'DOSSaemmul';
+        }
+        a{
+            color: #1e1e1e;
+        }
+        ul{
+            display: flex;
+            flex-wrap: wrap; /* 자식 요소가 가로로 넘칠 때 줄 바꿈*/
+            justify-content: space-between;
+            @include diary-list-font;
+        }
+        li{
+            @include diary-list-font;
+        }
+        .diaryList_underline {
+            color: #1e1e1e00;
+            width: auto;
+            height: 1px; 
+            margin-top: 0px;
+            margin-bottom: 20px;
+            background-color: black ; /* 배경색을 직접 지정 */
+            border: 2.5px solid rgb(255, 255, 255);
+          }
+        .diaryList_icon{
+            background-image: url('../../public/diary_list_icon.jpg');
+            background-repeat : no-repeat; /*가로 세로 */
+            background-size : 100% 100%;
+
+            width: calc(40% - 10px); /* 한 줄에 2개의 자식 요소가 오도록*/
+            height: 9.7dvh;
+            padding: 2dvh 1dvh 1dvh 1dvh;
+            margin-bottom: 2dvh;
+
+            /* 텍스트가 가로로 넘치지 않을 때 자동으로 줄 바꿈됨 */
+            white-space: normal;
+            /* 텍스트가 세로로 넘칠 때 말줄임표로 표시됨 */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    //비번입력 화면
+    .diaryList_password_formbox{
+        background-image: $bg-image-alt;
+        font-family: 'DOSSaemmul';
+        .diaryList_password_inner_formbox{
+            margin-left: 19dvw;
+
+            .close_password{
+                color: white;
+                font-size: 2dvh;
+                margin-left: auto;
+                margin-top: -1.5dvh;
+                @include customTextShadow(1.5px, #a4a4a4); // thickness와 color를 여기서 조절합니다.
+            }
+            .password_box{
+                width: 48dvw;
+                height: fit-content;
+                display: flex;
+                flex-direction: column;
+                margin: auto;
+                margin-top: 32dvh;
+                .password_box1{
+                    padding: 0.7dvh 0 0 2dvw;
+                    font-size: 2dvh;
+                    background-color: rgba(255, 75, 170, 0.6);
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px; 
+                    
+                }
+                .password_box2{
+                    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+                    padding: 10%;
+                    border: solid 3px rgba(255, 75, 170, 0.6);
+                    background-color: rgba(255, 255, 255, 0.7);
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px; 
+                    font-size: 1.7dvh;
+                    display: flex;
+                    flex-direction: column;
+                    & input{
+                        height: 2.4dvh;
+                        width: 78%;
+                        margin-top: 7px;
+                        font-size: 3dvh;
+                        font-family: 'Curupm';
+                        background:white;
+                    }
+                    & input, div{
+                        align-self: center;
+                    }
+                }
+
+            }
+            .diaryList_submit_button{
+                border-width: 0;
+                width: 32dvw;
+                height: 8dvh;
+                border-radius: 25px;
+                box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+                background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0 , #fff );
+                text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
+                font-family: 'DOSSaemmul';
+                font-size: 1.7dvh;
+                color: #fff;
+                margin-top: auto; /* 마지막 요소를 가장 하단에 배치합니다. */
+                margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
+            }
+        }
+        
+    }
+}
+
+
+//아이패드 미니 세로~
+@media screen and (min-width: 768px) and (max-width: 819px){
+    .diaryList_inner_formbox, .diaryList_password_inner_formbox{
+        & .title{
+            font-size: 5.9dvh;
+            line-height: 6dvh;
+        }
+    }
+    .diaryList_create {
+        transform: rotate(-5.98deg);
+        font-size: 2dvh;
+    }
+    .inner_title{
+        .diaryList_logout{
+            font-size: 2dvh;
+            margin-right: -20dvw;
+        }
+    }
+    .diaryList_formbox_content{
+        width: 70%;
+        .diaryList_guide{
+            font-size: 1.7dvh;
+        }
+    }
+    //비번입력 화면
+    .diaryList_password_formbox{
+        .diaryList_password_inner_formbox{
+
+            .close_password{
+                font-size: 2.5dvh;
+            }
+            .password_box{
+                
+                .password_box1{
+                    font-size: 2.6dvh;
+                    border-top-left-radius: 7px;
+                    border-top-right-radius: 7px; 
+                }
+                .password_box2{
+                    border-bottom-left-radius: 7px;
+                    border-bottom-right-radius: 7px; 
+                    font-size: 2.1dvh;
+                    & input{
+                        width: 66%;
+                        margin-top: 10px;
+                    }
+                }
+            }
+            .diaryList_submit_button{
+                font-size: 1.3rem;
+                width: 27dvw;
+                height: 9dvh;
+            }
+        }
+        
+    }
+}
+//아이패드에어 ~아이패드프로 세로
+@media screen and (min-width: 820px) and (max-width: 1024px){
+    .diaryList_inner_formbox, .diaryList_password_inner_formbox{
+        & .title{
+            font-size: 5.9dvh;
+            line-height: 6dvh;
+        }
+    }
+    .diaryList_create {
+        transform: rotate(-5.98deg);
+        font-size: 2dvh;
+    }
+    .inner_title{
+        .diaryList_logout{
+            font-size: 2dvh;
+            margin-right: -20dvw;
+        }
+    }
+    .diaryList_formbox_content{
+        width: 70%;
+        .diaryList_guide{
+            font-size: 1.6dvh;
+        }
+    }
+    //비번입력 화면
+    .diaryList_password_formbox{
+        .diaryList_password_inner_formbox{
+
+            .close_password{
+                font-size: 2.5dvh;
+            }
+            .password_box{
+                
+                .password_box1{
+                    font-size: 2.6dvh;
+                    border-top-left-radius: 7px;
+                    border-top-right-radius: 7px; 
+                }
+                .password_box2{
+                    border-bottom-left-radius: 7px;
+                    border-bottom-right-radius: 7px; 
+                    font-size: 2.1dvh;
+                    & input{
+                        width: 66%;
+                        margin-top: 10px;
+                    }
+                }
+            }
+            .diaryList_submit_button{
+                width: 15rem;
+                height: 8dvh;
+                font-size: 1.6rem;
+            }
+        }
+    }
+}
+
+//아이패드 & 모바일 가로&PC
+@media screen and (min-width: 1025px), (orientation: landscape) {
+    .moblie_menu{
+        display: none;
+    }
+	.diaryList_formbox{
+        background-image: $bg-pc-image;
+        background-repeat : no-repeat; /*가로 세로 */
+        background-size : 100% 100%;
+        padding:19dvh 0 10dvh 33dvw; //시계방향 상 우 하 좌
+    }
+    .inner_navbar{
+        display: block;
+        position: absolute;
+        top: 21dvh; /* 상단에 위치하도록 설정 */
+        left: 4dvw; /* 왼쪽에 위치하도록 설정 */
+        z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
+    }
+    .diaryList_inner_formbox{
+        height: 73dvh;
+        width: 62dvw;
+        //background-color: #fff;
+        margin-left: 0dvw;
+        &     .inner_title{
+            width: 27dvw;
+            margin-bottom: -3rem;
+            
+            .diaryList_logout{
+                font-size: 2.2dvh;
+                margin-right: -36dvw;
+                margin-top: 1dvh;
+            }
+        }
+        &    .title{
+            font-size: 3.2dvw;
+            line-height: 3.7dvw;
+
+        }
+    }
+    .diaryList_formbox_content{
+        width: 55%;
+        height: 60%;
+        z-index: 1;
+        margin-left: 22dvw;
+        margin-bottom: 10dvh;
+        margin-top:17dvh;
+        //background-color: #464646;
+        .diaryList_guide{
+            font-size: 1.6dvh;
+        }
+        .diaryList_icon{
+            width: calc(32% - 2dvw); /* 한 줄에 2개의 자식 요소가 오도록*/
+            height: 14dvh;
+        }
+    }
+    .diaryList_create{
+        transform: rotate(-11.98deg);
+        font-size: 2.3dvh;
+        //background-color: #686868;
+        margin-bottom: 10dvh;
+        margin-right: 47dvw;
+        text-align: left;
+    }
+
+    //비번입력 화면
+    .diaryList_password_formbox{
+        background-image: $bg-pc-image-alt;
+        .diaryList_password_inner_formbox{
+            margin-left: 30dvw;
+
+            .close_password{
+                font-size: 3dvh;
+                margin-top: 11.5dvh;
+            }
+            .password_box{
+                width: 22dvw;
+                margin-top: 22dvh;
+                .password_box1{
+                    padding: 0.7dvh 0 0 1dvw;
+                    font-size: 2.5dvh; 
+                }
+                .password_box2{
+                    padding: 10%;
+                    font-size: 2.5dvh;
+                    & input{
+                        height: 2.8dvh;
+                        width: 59%;
+                        margin-top: 10px;
+                    }
+                }
+
+            }
+            .diaryList_submit_button{
+                width: 14dvw;
+                height: 10dvh;
+                font-size: 2.3dvh;
+                z-index: 2;
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,323 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400..700;1,400..700&display=swap");
+@import "reset.css";
+@import url("https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css");
+@font-face {
+  font-family: "DOSSaemmul";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSSaemmul.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Dongle-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108_2@1.0/Dongle-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+.MyinfoDelete {
+  height: 100dvh;
+  width: 100%;
+  position: relative; /* RegisterBox를 상대적인 위치로 설정 */
+}
+
+.inner_navbar {
+  display: none;
+}
+
+.myinfoDelete_formbox {
+  height: 100%;
+  width: 100%;
+  padding-bottom: 200px;
+}
+
+.myinfoDelete_formbox_content {
+  font-family: "Dongle-Regular";
+}
+
+@media screen and (min-width: 280px) {
+  .moblie_menu {
+    width: 2dvw;
+  }
+  .myinfoDelete_formbox {
+    font-size: 16px;
+    line-height: normal;
+    color: #1e1e1e;
+    background-image: url("../../public/mobile_background.png");
+    background-repeat: no-repeat; /*가로 세로 */
+    background-size: 100% 100%;
+    padding: 10dvh 9.5% 0 0%;
+    box-sizing: border-box; /* 내부 패딩과 테두리를 요소의 크기에 포함시킵니다 */
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+  .myinfoDelete_inner_formbox {
+    display: flex;
+    flex-direction: column;
+    height: 83dvh;
+    width: 70dvw;
+  }
+  .myinfoDelete_inner_formbox .title {
+    font-family: "Dongle-Regular";
+    align-self: stretch;
+    color: #686868;
+    font-size: 5.2dvh;
+    letter-spacing: 0;
+    flex: 1; /* 텍스트가 왼쪽에 배치되도록 확장됩니다. */
+    position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
+    line-height: 6dvh;
+    text-shadow: calc(5px * 1) 0 0 #ffffff, calc(5px * 0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * 0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * 0.3827) calc(5px * 0.9239) 0 #ffffff, 0 calc(5px * 1) 0 #ffffff, calc(5px * -0.3827) calc(5px * 0.9239) 0 #ffffff, calc(5px * -0.7071) calc(5px * 0.7071) 0 #ffffff, calc(5px * -0.9239) calc(5px * 0.3827) 0 #ffffff, calc(5px * -1) 0 0 #ffffff, calc(5px * -0.9239) calc(5px * -0.3827) 0 #ffffff, calc(5px * -0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * -0.3827) calc(5px * -0.9239) 0 #ffffff, 0 calc(5px * -1) 0 #ffffff, calc(5px * 0.3827) calc(5px * -0.9239) 0 #ffffff, calc(5px * 0.7071) calc(5px * -0.7071) 0 #ffffff, calc(5px * 0.9239) calc(5px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
+  }
+  .myinfoDelete_inner_formbox .title span {
+    font-family: "DOSSaemmul";
+    font-size: 3dvh;
+  }
+  .inner_title {
+    width: auto;
+    display: flex;
+    position: relative;
+    margin-bottom: 3.2dvh;
+  }
+  .myinfo_pinkBubble {
+    width: 25dvw;
+    height: 12dvh;
+    margin-left: 40dvw;
+  }
+  .myinfoDelete_formbox_content {
+    width: 100%;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10dvh;
+    font-size: 2.5dvh;
+  }
+  label {
+    text-decoration: underline;
+    text-shadow: 3px 4px 4.2px rgba(0, 0, 0, 0.2509803922), 2px 1px 0px #ffffff;
+    letter-spacing: 0;
+    font-size: 2.4dvh;
+    display: block;
+    font-family: "Cuprum";
+    margin-bottom: 0.1em;
+  }
+}
+.delete_submit_button {
+  border-width: 0;
+  width: 32dvw;
+  height: 8dvh;
+  border-radius: 25px;
+  box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0, #fff);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
+  font-family: "DOSSaemmul";
+  font-size: 1.7dvh;
+  color: #fff;
+  margin-top: auto; /* 마지막 요소를 가장 하단에 배치합니다. */
+  margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
+}
+
+.myinfoDelete_formbox_content input {
+  padding-left: 1dvw;
+  margin: 0.6dvh 0 1dvh 0;
+  color: #ff989e;
+  text-shadow: calc(2px * 1) 0 0 #ffffff, calc(2px * 0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * 0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * 0.3827) calc(2px * 0.9239) 0 #ffffff, 0 calc(2px * 1) 0 #ffffff, calc(2px * -0.3827) calc(2px * 0.9239) 0 #ffffff, calc(2px * -0.7071) calc(2px * 0.7071) 0 #ffffff, calc(2px * -0.9239) calc(2px * 0.3827) 0 #ffffff, calc(2px * -1) 0 0 #ffffff, calc(2px * -0.9239) calc(2px * -0.3827) 0 #ffffff, calc(2px * -0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * -0.3827) calc(2px * -0.9239) 0 #ffffff, 0 calc(2px * -1) 0 #ffffff, calc(2px * 0.3827) calc(2px * -0.9239) 0 #ffffff, calc(2px * 0.7071) calc(2px * -0.7071) 0 #ffffff, calc(2px * 0.9239) calc(2px * -0.3827) 0 #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 3dvh;
+  font-weight: 300;
+  font-family: "galmuri";
+  height: 4dvh;
+  border-radius: 9px;
+  border: solid 1px #fbd5dc;
+  background-image: radial-gradient(ellipse at 50% 60%, #ffc8d2, #fff5f7 60%);
+}
+
+.delete_notice {
+  text-shadow: calc(2px * 1) 0 0 #FDDDEE, calc(2px * 0.9239) calc(2px * 0.3827) 0 #FDDDEE, calc(2px * 0.7071) calc(2px * 0.7071) 0 #FDDDEE, calc(2px * 0.3827) calc(2px * 0.9239) 0 #FDDDEE, 0 calc(2px * 1) 0 #FDDDEE, calc(2px * -0.3827) calc(2px * 0.9239) 0 #FDDDEE, calc(2px * -0.7071) calc(2px * 0.7071) 0 #FDDDEE, calc(2px * -0.9239) calc(2px * 0.3827) 0 #FDDDEE, calc(2px * -1) 0 0 #FDDDEE, calc(2px * -0.9239) calc(2px * -0.3827) 0 #FDDDEE, calc(2px * -0.7071) calc(2px * -0.7071) 0 #FDDDEE, calc(2px * -0.3827) calc(2px * -0.9239) 0 #FDDDEE, 0 calc(2px * -1) 0 #FDDDEE, calc(2px * 0.3827) calc(2px * -0.9239) 0 #FDDDEE, calc(2px * 0.7071) calc(2px * -0.7071) 0 #FDDDEE, calc(2px * 0.9239) calc(2px * -0.3827) 0 #FDDDEE, 5px 8px 5px rgba(0, 0, 0, 0.8);
+  line-height: 2dvh;
+  height: auto;
+  margin: 5dvh 0 10dvh 0;
+  font-size: 2.2dvh;
+  line-height: 2dvh;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+/* 체크박스 꾸미기 - 활성화 x */
+.check_icon::before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  width: 5dvw;
+  height: 3.5dvh;
+  box-shadow: inset 5px 4px 6.3px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  background-image: url("../../public/checkbox_none.png");
+  background-size: 100% 100%;
+}
+
+.check_icon {
+  cursor: pointer;
+}
+
+/* 체크박스 꾸미기 - 활성화 */
+.delete_agree input:checked + .check_icon::before {
+  background-image: url("../../public/checkbox_checked.png");
+  background-size: 100% 100%;
+}
+
+.delete_agree {
+  font-size: 2.6dvh;
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: 4px;
+  margin-left: auto;
+  align-items: center;
+  color: #F2A3A8;
+  text-shadow: -1.2px 0px #FFE4E4, 0px 1.2px #FFE4E4, 1.2px 0px #FFE4E4, 0px -1.2px #FFE4E4;
+}
+
+.delete_check_text {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-family: "Dongle-Regular";
+}
+
+@media screen and (min-width: 768px) and (max-width: 819px) {
+  .inner_title {
+    width: 48dvw;
+    margin-bottom: 3dvh;
+  }
+  .title {
+    font-size: 5.9dvh;
+    line-height: 6dvh;
+  }
+  .myinfo_pinkBubble {
+    width: 9rem;
+    height: 8rem;
+    margin-left: 25dvw;
+  }
+  label {
+    font-size: 1rem;
+  }
+  input {
+    height: 2.3rem;
+    font-size: 3dvh;
+  }
+  .delete_notice {
+    font-size: 2.5dvh;
+  }
+  .delete_agree {
+    font-size: 2.8dvh;
+  }
+  .delete_submit_button {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 820px) and (max-width: 1024px) {
+  .inner_title {
+    width: 48dvw;
+    margin-bottom: 4.5dvh;
+  }
+  .title {
+    font-size: 6.5dvh;
+    line-height: 7dvh;
+  }
+  .myinfo_pinkBubble {
+    width: 12rem;
+    height: 10rem;
+    margin-left: 26dvw;
+  }
+  label {
+    font-size: 2.7dvh;
+  }
+  input {
+    height: 3.6dvh;
+    font-size: 2.8dvh;
+  }
+  .myinfoDelete_formbox_content {
+    margin-top: 10dvh;
+  }
+  .delete_notice {
+    font-size: 2.5dvh;
+  }
+  .delete_agree {
+    font-size: 2.8dvh;
+  }
+  .delete_submit_button {
+    width: 17rem;
+    height: 8dvh;
+    font-size: 1.5rem;
+  }
+}
+@media screen and (min-width: 1025px), (orientation: landscape) {
+  .myinfoDelete_formbox {
+    background-image: url("../../public/pc_background.png");
+    background-repeat: no-repeat; /*가로 세로 */
+    background-size: 100% 100%;
+    padding: 19dvh 0 10dvh 33dvw;
+  }
+  .inner_navbar {
+    display: block;
+    position: absolute;
+    top: 21dvh; /* 상단에 위치하도록 설정 */
+    left: 4dvw; /* 왼쪽에 위치하도록 설정 */
+    z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
+  }
+  .myinfoDelete_inner_formbox {
+    height: 73dvh;
+    width: 62dvw;
+  }
+  .myinfoDelete_inner_formbox .title {
+    font-size: 3.2dvw;
+    line-height: 4.2dvw;
+  }
+  .myinfoDelete_inner_formbox .title span {
+    margin-left: 0.3dvw;
+    font-size: 1.7dvw;
+  }
+  .myinfoDelete_inner_formbox .myinfo_pinkBubble {
+    width: 7dvw;
+    height: 7dvw;
+    margin-top: 2dvh;
+    margin-left: 12dvw;
+  }
+  .inner_title {
+    width: 27dvw;
+    margin-bottom: -3rem;
+  }
+  .myinfoDelete_formbox_content {
+    width: 40%;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin-left: 19dvw;
+    z-index: 1;
+    margin-bottom: -10rem;
+    margin-top: 18dvh;
+  }
+  .delete_notice {
+    font-size: 2.2dvh;
+    margin-bottom: 3dvh;
+  }
+  .delete_agree {
+    font-size: 2.2dvh;
+    margin-left: 0;
+  }
+  .delete_submit_button {
+    width: 14dvw;
+    height: 10dvh;
+    font-size: 2.3dvh;
+    z-index: 2;
+  }
+  input {
+    font-size: 1.9dvw;
+    height: 3.8dvh;
+  }
+  .check_icon::before {
+    width: 1.3dvw;
+    height: 3dvh;
+  }
+}/*# sourceMappingURL=myinfo_delete.css.map */

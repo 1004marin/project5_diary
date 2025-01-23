@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.canvas-container{
+  width: 100% !important;
+  height: 30vh!important;
+}
+.lower-canvas{
+
+  width: 100% !important;
+  height: 100% !important;
+}
+.upper-canvas{
+  
+  width: 100% !important;
+  height: 100% !important;
+
+}
+
+.react-datepicker__day--selected {
+  background-image: linear-gradient(to top, #ffcccc, #ff8383)!important; 
+}
+
+input:focus {
+  outline: 2px solid  rgb(255, 188, 200);
+}

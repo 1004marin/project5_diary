@@ -1,0 +1,390 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Cuprum:ital,wght@0,400..700;1,400..700&display=swap");
+@import "reset.css";
+@font-face {
+  font-family: "DOSSaemmul";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSSaemmul.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Dongle-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108_2@1.0/Dongle-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Webkit 브라우저(크롬, 사파리)의 스크롤 바 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+.diaryList {
+  height: 100dvh;
+  width: 100%;
+  position: relative;
+}
+
+.inner_navbar {
+  display: none;
+}
+
+.diaryList_formbox, .diaryList_password_formbox {
+  height: 100dvh;
+  width: 100%;
+  padding-bottom: 200px;
+}
+
+.diaryList_formbox_content {
+  font-family: "Dongle-Regular";
+}
+
+@media screen and (min-width: 280px) {
+  .moblie_menu {
+    width: 2dvw;
+  }
+  .diaryList_formbox, .diaryList_password_formbox {
+    font-size: 16px;
+    line-height: normal;
+    color: #1e1e1e;
+    background-image: url("../../public/mobile_diary_list.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 10dvh 9.5% 0 0%;
+    box-sizing: border-box; /* 내부 패딩과 테두리를 요소의 크기에 포함시킵니다 */
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+  .diaryList_inner_formbox, .diaryList_password_inner_formbox {
+    display: flex;
+    flex-direction: column;
+    height: 83dvh;
+    width: 70dvw;
+    margin-left: 20dvw;
+  }
+  .diaryList_inner_formbox .title, .diaryList_password_inner_formbox .title {
+    font-family: "Dongle-Regular";
+    align-self: stretch;
+    color: #686868;
+    font-size: 5.2dvh;
+    letter-spacing: 0;
+    position: absolute; /* 절대 포지션으로 설정하여 다른 요소에 대해 상대적으로 배치됩니다. */
+    line-height: 5dvh;
+    text-shadow: calc(5px * 1) 0 0 #ffe2ea, calc(5px * 0.9239) calc(5px * 0.3827) 0 #ffe2ea, calc(5px * 0.7071) calc(5px * 0.7071) 0 #ffe2ea, calc(5px * 0.3827) calc(5px * 0.9239) 0 #ffe2ea, 0 calc(5px * 1) 0 #ffe2ea, calc(5px * -0.3827) calc(5px * 0.9239) 0 #ffe2ea, calc(5px * -0.7071) calc(5px * 0.7071) 0 #ffe2ea, calc(5px * -0.9239) calc(5px * 0.3827) 0 #ffe2ea, calc(5px * -1) 0 0 #ffe2ea, calc(5px * -0.9239) calc(5px * -0.3827) 0 #ffe2ea, calc(5px * -0.7071) calc(5px * -0.7071) 0 #ffe2ea, calc(5px * -0.3827) calc(5px * -0.9239) 0 #ffe2ea, 0 calc(5px * -1) 0 #ffe2ea, calc(5px * 0.3827) calc(5px * -0.9239) 0 #ffe2ea, calc(5px * 0.7071) calc(5px * -0.7071) 0 #ffe2ea, calc(5px * 0.9239) calc(5px * -0.3827) 0 #ffe2ea, 5px 8px 5px rgba(0, 0, 0, 0.8);
+  }
+  .diaryList_create {
+    font-family: "DOSSaemmul";
+    text-shadow: calc(2px * 1) 0 0 #B47777, calc(2px * 0.9239) calc(2px * 0.3827) 0 #B47777, calc(2px * 0.7071) calc(2px * 0.7071) 0 #B47777, calc(2px * 0.3827) calc(2px * 0.9239) 0 #B47777, 0 calc(2px * 1) 0 #B47777, calc(2px * -0.3827) calc(2px * 0.9239) 0 #B47777, calc(2px * -0.7071) calc(2px * 0.7071) 0 #B47777, calc(2px * -0.9239) calc(2px * 0.3827) 0 #B47777, calc(2px * -1) 0 0 #B47777, calc(2px * -0.9239) calc(2px * -0.3827) 0 #B47777, calc(2px * -0.7071) calc(2px * -0.7071) 0 #B47777, calc(2px * -0.3827) calc(2px * -0.9239) 0 #B47777, 0 calc(2px * -1) 0 #B47777, calc(2px * 0.3827) calc(2px * -0.9239) 0 #B47777, calc(2px * 0.7071) calc(2px * -0.7071) 0 #B47777, calc(2px * 0.9239) calc(2px * -0.3827) 0 #B47777, 5px 8px 5px rgba(0, 0, 0, 0.8);
+    transform: rotate(-10.98deg);
+    font-size: 1.8dvh;
+    margin-right: 34dvw;
+    margin-top: -5dvh;
+  }
+  .inner_title {
+    width: auto;
+    display: flex;
+    position: relative;
+    margin-bottom: 3.2dvh;
+  }
+  .inner_title .diaryList_logout {
+    font-family: "DOSSaemmul";
+    text-shadow: calc(2px * 1) 0 0 #B47777, calc(2px * 0.9239) calc(2px * 0.3827) 0 #B47777, calc(2px * 0.7071) calc(2px * 0.7071) 0 #B47777, calc(2px * 0.3827) calc(2px * 0.9239) 0 #B47777, 0 calc(2px * 1) 0 #B47777, calc(2px * -0.3827) calc(2px * 0.9239) 0 #B47777, calc(2px * -0.7071) calc(2px * 0.7071) 0 #B47777, calc(2px * -0.9239) calc(2px * 0.3827) 0 #B47777, calc(2px * -1) 0 0 #B47777, calc(2px * -0.9239) calc(2px * -0.3827) 0 #B47777, calc(2px * -0.7071) calc(2px * -0.7071) 0 #B47777, calc(2px * -0.3827) calc(2px * -0.9239) 0 #B47777, 0 calc(2px * -1) 0 #B47777, calc(2px * 0.3827) calc(2px * -0.9239) 0 #B47777, calc(2px * 0.7071) calc(2px * -0.7071) 0 #B47777, calc(2px * 0.9239) calc(2px * -0.3827) 0 #B47777, 5px 8px 5px rgba(0, 0, 0, 0.8);
+    font-size: 1.7dvh;
+    margin-left: auto;
+    margin-top: -1dvh;
+    margin-right: -5dvw;
+    transform: rotate(6.57deg);
+  }
+  .diaryList_formbox_content {
+    width: 90%;
+    height: 40dvh;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 13dvh;
+    font-size: 2.5dvh;
+    overflow-y: scroll;
+  }
+  .diaryList_formbox_content .diaryList_guide {
+    color: #464646;
+    text-shadow: calc(1.5px * 1) 0 0 #ffffff, calc(1.5px * 0.9239) calc(1.5px * 0.3827) 0 #ffffff, calc(1.5px * 0.7071) calc(1.5px * 0.7071) 0 #ffffff, calc(1.5px * 0.3827) calc(1.5px * 0.9239) 0 #ffffff, 0 calc(1.5px * 1) 0 #ffffff, calc(1.5px * -0.3827) calc(1.5px * 0.9239) 0 #ffffff, calc(1.5px * -0.7071) calc(1.5px * 0.7071) 0 #ffffff, calc(1.5px * -0.9239) calc(1.5px * 0.3827) 0 #ffffff, calc(1.5px * -1) 0 0 #ffffff, calc(1.5px * -0.9239) calc(1.5px * -0.3827) 0 #ffffff, calc(1.5px * -0.7071) calc(1.5px * -0.7071) 0 #ffffff, calc(1.5px * -0.3827) calc(1.5px * -0.9239) 0 #ffffff, 0 calc(1.5px * -1) 0 #ffffff, calc(1.5px * 0.3827) calc(1.5px * -0.9239) 0 #ffffff, calc(1.5px * 0.7071) calc(1.5px * -0.7071) 0 #ffffff, calc(1.5px * 0.9239) calc(1.5px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    font-size: 1.35dvh;
+    font-family: "DOSSaemmul";
+  }
+  .diaryList_formbox_content ul {
+    display: flex;
+    flex-wrap: wrap; /* 자식 요소가 가로로 넘칠 때 줄 바꿈*/
+    justify-content: space-between;
+    color: #464646;
+    text-shadow: calc(1.5px * 1) 0 0 #ffffff, calc(1.5px * 0.9239) calc(1.5px * 0.3827) 0 #ffffff, calc(1.5px * 0.7071) calc(1.5px * 0.7071) 0 #ffffff, calc(1.5px * 0.3827) calc(1.5px * 0.9239) 0 #ffffff, 0 calc(1.5px * 1) 0 #ffffff, calc(1.5px * -0.3827) calc(1.5px * 0.9239) 0 #ffffff, calc(1.5px * -0.7071) calc(1.5px * 0.7071) 0 #ffffff, calc(1.5px * -0.9239) calc(1.5px * 0.3827) 0 #ffffff, calc(1.5px * -1) 0 0 #ffffff, calc(1.5px * -0.9239) calc(1.5px * -0.3827) 0 #ffffff, calc(1.5px * -0.7071) calc(1.5px * -0.7071) 0 #ffffff, calc(1.5px * -0.3827) calc(1.5px * -0.9239) 0 #ffffff, 0 calc(1.5px * -1) 0 #ffffff, calc(1.5px * 0.3827) calc(1.5px * -0.9239) 0 #ffffff, calc(1.5px * 0.7071) calc(1.5px * -0.7071) 0 #ffffff, calc(1.5px * 0.9239) calc(1.5px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
+  }
+  .diaryList_formbox_content li {
+    color: #464646;
+    text-shadow: calc(1.5px * 1) 0 0 #ffffff, calc(1.5px * 0.9239) calc(1.5px * 0.3827) 0 #ffffff, calc(1.5px * 0.7071) calc(1.5px * 0.7071) 0 #ffffff, calc(1.5px * 0.3827) calc(1.5px * 0.9239) 0 #ffffff, 0 calc(1.5px * 1) 0 #ffffff, calc(1.5px * -0.3827) calc(1.5px * 0.9239) 0 #ffffff, calc(1.5px * -0.7071) calc(1.5px * 0.7071) 0 #ffffff, calc(1.5px * -0.9239) calc(1.5px * 0.3827) 0 #ffffff, calc(1.5px * -1) 0 0 #ffffff, calc(1.5px * -0.9239) calc(1.5px * -0.3827) 0 #ffffff, calc(1.5px * -0.7071) calc(1.5px * -0.7071) 0 #ffffff, calc(1.5px * -0.3827) calc(1.5px * -0.9239) 0 #ffffff, 0 calc(1.5px * -1) 0 #ffffff, calc(1.5px * 0.3827) calc(1.5px * -0.9239) 0 #ffffff, calc(1.5px * 0.7071) calc(1.5px * -0.7071) 0 #ffffff, calc(1.5px * 0.9239) calc(1.5px * -0.3827) 0 #ffffff, 5px 8px 5px rgba(0, 0, 0, 0.8);
+  }
+  .diaryList_formbox_content .diaryList_underline {
+    color: rgba(30, 30, 30, 0);
+    width: auto;
+    height: 1px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    background-color: black; /* 배경색을 직접 지정 */
+    border: 2.5px solid rgb(255, 255, 255);
+  }
+  .diaryList_formbox_content .diaryList_icon {
+    background-image: url("../../public/diary_list_icon.jpg");
+    background-repeat: no-repeat; /*가로 세로 */
+    background-size: 100% 100%;
+    width: calc(40% - 10px); /* 한 줄에 2개의 자식 요소가 오도록*/
+    height: 9.7dvh;
+    padding: 2dvh 1dvh 1dvh 1dvh;
+    margin-bottom: 2dvh;
+    /* 텍스트가 가로로 넘치지 않을 때 자동으로 줄 바꿈됨 */
+    white-space: normal;
+    /* 텍스트가 세로로 넘칠 때 말줄임표로 표시됨 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .diaryList_password_formbox {
+    background-image: url("../../public/mobile_diary_password.png");
+    font-family: "DOSSaemmul";
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox {
+    margin-left: 19dvw;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .close_password {
+    color: white;
+    font-size: 2dvh;
+    margin-left: auto;
+    margin-top: -1.5dvh;
+    text-shadow: calc(1.5px * 1) 0 0 #a4a4a4, calc(1.5px * 0.9239) calc(1.5px * 0.3827) 0 #a4a4a4, calc(1.5px * 0.7071) calc(1.5px * 0.7071) 0 #a4a4a4, calc(1.5px * 0.3827) calc(1.5px * 0.9239) 0 #a4a4a4, 0 calc(1.5px * 1) 0 #a4a4a4, calc(1.5px * -0.3827) calc(1.5px * 0.9239) 0 #a4a4a4, calc(1.5px * -0.7071) calc(1.5px * 0.7071) 0 #a4a4a4, calc(1.5px * -0.9239) calc(1.5px * 0.3827) 0 #a4a4a4, calc(1.5px * -1) 0 0 #a4a4a4, calc(1.5px * -0.9239) calc(1.5px * -0.3827) 0 #a4a4a4, calc(1.5px * -0.7071) calc(1.5px * -0.7071) 0 #a4a4a4, calc(1.5px * -0.3827) calc(1.5px * -0.9239) 0 #a4a4a4, 0 calc(1.5px * -1) 0 #a4a4a4, calc(1.5px * 0.3827) calc(1.5px * -0.9239) 0 #a4a4a4, calc(1.5px * 0.7071) calc(1.5px * -0.7071) 0 #a4a4a4, calc(1.5px * 0.9239) calc(1.5px * -0.3827) 0 #a4a4a4, 5px 8px 5px rgba(0, 0, 0, 0.8);
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box {
+    width: 48dvw;
+    height: -moz-fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 32dvh;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box1 {
+    padding: 0.7dvh 0 0 2dvw;
+    font-size: 2dvh;
+    background-color: rgba(255, 75, 170, 0.6);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box2 {
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 10%;
+    border: solid 3px rgba(255, 75, 170, 0.6);
+    background-color: rgba(255, 255, 255, 0.7);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 1.7dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box2 input {
+    height: 2.4dvh;
+    width: 78%;
+    margin-top: 7px;
+    font-size: 3dvh;
+    font-family: "Curupm";
+    background: white;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box2 input, .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box2 div {
+    align-self: center;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .diaryList_submit_button {
+    border-width: 0;
+    width: 32dvw;
+    height: 8dvh;
+    border-radius: 25px;
+    box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-image: linear-gradient(to top, #ffd8de, #fbadb6, #feeef0, #fff);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), -1.2px 0px #a4a4a4, 0px 1.2px #a4a4a4, 1.2px 0px #a4a4a4, 0px -1.2px #a4a4a4;
+    font-family: "DOSSaemmul";
+    font-size: 1.7dvh;
+    color: #fff;
+    margin-top: auto; /* 마지막 요소를 가장 하단에 배치합니다. */
+    margin-left: auto; /* 마지막 요소를 가장 오른쪽에 배치합니다. */
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 819px) {
+  .diaryList_inner_formbox .title, .diaryList_password_inner_formbox .title {
+    font-size: 5.9dvh;
+    line-height: 6dvh;
+  }
+  .diaryList_create {
+    transform: rotate(-5.98deg);
+    font-size: 2dvh;
+  }
+  .inner_title .diaryList_logout {
+    font-size: 2dvh;
+    margin-right: -20dvw;
+  }
+  .diaryList_formbox_content {
+    width: 70%;
+  }
+  .diaryList_formbox_content .diaryList_guide {
+    font-size: 1.7dvh;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .close_password {
+    font-size: 2.5dvh;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box1 {
+    font-size: 2.6dvh;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box2 {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    font-size: 2.1dvh;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box2 input {
+    width: 66%;
+    margin-top: 10px;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .diaryList_submit_button {
+    font-size: 1.3rem;
+    width: 27dvw;
+    height: 9dvh;
+  }
+}
+@media screen and (min-width: 820px) and (max-width: 1024px) {
+  .diaryList_inner_formbox .title, .diaryList_password_inner_formbox .title {
+    font-size: 5.9dvh;
+    line-height: 6dvh;
+  }
+  .diaryList_create {
+    transform: rotate(-5.98deg);
+    font-size: 2dvh;
+  }
+  .inner_title .diaryList_logout {
+    font-size: 2dvh;
+    margin-right: -20dvw;
+  }
+  .diaryList_formbox_content {
+    width: 70%;
+  }
+  .diaryList_formbox_content .diaryList_guide {
+    font-size: 1.6dvh;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .close_password {
+    font-size: 2.5dvh;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box1 {
+    font-size: 2.6dvh;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box2 {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    font-size: 2.1dvh;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box2 input {
+    width: 66%;
+    margin-top: 10px;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .diaryList_submit_button {
+    width: 15rem;
+    height: 8dvh;
+    font-size: 1.6rem;
+  }
+}
+@media screen and (min-width: 1025px), (orientation: landscape) {
+  .moblie_menu {
+    display: none;
+  }
+  .diaryList_formbox {
+    background-image: url("../../public/pc_diary_list.png");
+    background-repeat: no-repeat; /*가로 세로 */
+    background-size: 100% 100%;
+    padding: 19dvh 0 10dvh 33dvw;
+  }
+  .inner_navbar {
+    display: block;
+    position: absolute;
+    top: 21dvh; /* 상단에 위치하도록 설정 */
+    left: 4dvw; /* 왼쪽에 위치하도록 설정 */
+    z-index: 1; /* 다른 요소 위에 표시되도록 z-index 값 설정 */
+  }
+  .diaryList_inner_formbox {
+    height: 73dvh;
+    width: 62dvw;
+    margin-left: 0dvw;
+  }
+  .diaryList_inner_formbox .inner_title {
+    width: 27dvw;
+    margin-bottom: -3rem;
+  }
+  .diaryList_inner_formbox .inner_title .diaryList_logout {
+    font-size: 2.2dvh;
+    margin-right: -36dvw;
+    margin-top: 1dvh;
+  }
+  .diaryList_inner_formbox .title {
+    font-size: 3.2dvw;
+    line-height: 3.7dvw;
+  }
+  .diaryList_formbox_content {
+    width: 55%;
+    height: 60%;
+    z-index: 1;
+    margin-left: 22dvw;
+    margin-bottom: 10dvh;
+    margin-top: 17dvh;
+  }
+  .diaryList_formbox_content .diaryList_guide {
+    font-size: 1.6dvh;
+  }
+  .diaryList_formbox_content .diaryList_icon {
+    width: calc(32% - 2dvw); /* 한 줄에 2개의 자식 요소가 오도록*/
+    height: 14dvh;
+  }
+  .diaryList_create {
+    transform: rotate(-11.98deg);
+    font-size: 2.3dvh;
+    margin-bottom: 10dvh;
+    margin-right: 47dvw;
+    text-align: left;
+  }
+  .diaryList_password_formbox {
+    background-image: url("../../public/pc_diary_password.png");
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox {
+    margin-left: 30dvw;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .close_password {
+    font-size: 3dvh;
+    margin-top: 11.5dvh;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box {
+    width: 22dvw;
+    margin-top: 22dvh;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box1 {
+    padding: 0.7dvh 0 0 1dvw;
+    font-size: 2.5dvh;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box2 {
+    padding: 10%;
+    font-size: 2.5dvh;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .password_box .password_box2 input {
+    height: 2.8dvh;
+    width: 59%;
+    margin-top: 10px;
+  }
+  .diaryList_password_formbox .diaryList_password_inner_formbox .diaryList_submit_button {
+    width: 14dvw;
+    height: 10dvh;
+    font-size: 2.3dvh;
+    z-index: 2;
+  }
+}/*# sourceMappingURL=diary_list.css.map */
