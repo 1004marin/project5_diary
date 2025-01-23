@@ -25,7 +25,7 @@
   },
   "proxy": "http://123.111.37.232:12522",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build && gzipper compress ./build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
