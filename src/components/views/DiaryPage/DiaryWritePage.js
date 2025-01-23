@@ -92,7 +92,7 @@ export default function DiaryWritePage() {
         <div className='diaryWrite_inner_formbox'>
             <div className='inner_title'>
                 <div className='title'>쉿! 교환일기<br/>쓰는 중...<span>☞☜</span></div>
-                <img className="diaryWrite_pinkBubble"src={process.env.PUBLIC_URL + '/diary.png'} />
+                <img className="diaryWrite_pinkBubble"src={process.env.PUBLIC_URL + '/diary.png'}alt="" />
             </div>
         <form className='diaryWrite_formbox_content' onSubmit={onSubmit}>
             <label>Title</label>

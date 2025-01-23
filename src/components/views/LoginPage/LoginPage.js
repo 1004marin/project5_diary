@@ -75,7 +75,7 @@ function LoginPage() {
                 <div>ID card</div>
                 <div>Diary Exchange<br/>Club</div>
             </div>
-            <img className="profile"src={process.env.PUBLIC_URL + '/profile.png'} />
+            <img className="profile"src={process.env.PUBLIC_URL + '/profile.png'}alt="" />
         </div>
 
         <label>Username</label>
@@ -85,7 +85,7 @@ function LoginPage() {
 
         <div className='login_sub'>
             ※ 본인은 일기교환클럽의 부원임을 증명합니다.
-            <img className="stamp"src={process.env.PUBLIC_URL + '/stamp.png'} />
+            <img className="stamp"src={process.env.PUBLIC_URL + '/stamp.png'} alt=""/>
         </div>
 
         <div className='login_sub2'>

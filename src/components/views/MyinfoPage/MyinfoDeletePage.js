@@ -80,7 +80,7 @@ function MyinfoDeletePage() {
                         <div className='title'>일기교환클럽<br/>
                         자기 소개서<span>(笑)</span>
                         </div>
-                        <img className="myinfo_pinkBubble"src={process.env.PUBLIC_URL + '/profile.png'} />
+                        <img className="myinfo_pinkBubble"src={process.env.PUBLIC_URL + '/profile.png'} alt=""/>
                     </div>
                       <form className='myinfoDelete_formbox_content'>
         
