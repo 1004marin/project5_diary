@@ -46,12 +46,14 @@ function LoginPage() {
     // dispatch의 리턴값을 변수에 저장하지 않고 바로 사용
     dispatch(loginUser(body))
         .then(response => {
+            console.log(response)
             if (response.status === 200) {
                 alert('로그인에 성공했어요');
                 navigate('/diaryList');
             } 
         })
         .catch(error => {
+            console.log("에러", error)
             alert('아이디 비번 확인하세요! 에러에요');
         });
     }
