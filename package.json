@@ -26,10 +26,10 @@
   "proxy": "http://123.111.37.232:12522",
   "scripts": {
     "start": "serve -s build",
-    "build": "react-scripts build && gzipper compress ./build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "NODE_OPTIONS='--max-old-space-size=512' npm run build"
+    "heroku-postbuild": "NODE_OPTIONS='--max-old-space-size=1024' npm run build"
   },
   "eslintConfig": {
     "extends": [
