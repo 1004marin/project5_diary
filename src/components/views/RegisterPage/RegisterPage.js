@@ -72,7 +72,6 @@ function RegisterPage() {
         .then(response => {
         const emailCheck = response.data;
 
-        console.log(response); // 여기서 response가 undefined인지 확인
         if(emailCheck === "사용 가능한 이메일"){
 
             setEmailDuplicate_notice("기존 부원과 겹치지 않아요.")
