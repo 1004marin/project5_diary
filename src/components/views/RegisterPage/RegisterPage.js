@@ -68,7 +68,7 @@ function RegisterPage() {
 
         const jsonEmail = {"email": Email}
         console.log("urlㅇㅡㄴ", CONFIG.API_BASE_URL);
-
+        
         axios.post(`${CONFIG.API_BASE_URL}/duplicateEmail`, jsonEmail)
         .then(response => {
         const emailCheck = response.data;
@@ -79,7 +79,7 @@ function RegisterPage() {
             setDuplicateEmail("success")
 
 
-            axios.post('https://my-secret-diary-dee0ecb9341f.herokuapp.com/mail', jsonEmail).then(
+            axios.post(`${CONFIG.API_BASE_URL}/mail`, jsonEmail).then(
                 response=>{
                     setRealcode(response.data)
                 }
