@@ -11,15 +11,14 @@ export const loginUser = (dataTosubmit) => {
 
         const accessToken =  response.headers.authorization;
         const refreshToken = response.headers.refresh;
-        console.log("응답 헤더:", response.headers);
+
         // 액세스 토큰을 헤더에 저장
        axios.defaults.headers.common['Authorization'] = `${accessToken}`;
        axios.defaults.headers.common['Refresh'] = `${refreshToken}`; 
        // 로컬 스토리지에 액세스 토큰과 리프레시 토큰 저장
        localStorage.setItem("accessToken", accessToken);
        localStorage.setItem("refreshToken", refreshToken);
-        console.log("액세스에용",accessToken)
-        console.log("리프레시에용",refreshToken)
+
       
       dispatch({
         type: LOGIN_USER,
